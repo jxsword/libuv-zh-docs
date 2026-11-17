@@ -23,13 +23,15 @@ msgstr ""
 
 #: ../../src/design.rst:5
 msgid "Design overview"
-msgstr ""
+msgstr "设计概览"
 
 #: ../../src/design.rst:7
 msgid ""
 "libuv is cross-platform support library which was originally written for "
 "`Node.js`_. It's designed around the event-driven asynchronous I/O model."
 msgstr ""
+"libuv 是一个跨平台支持库，最初为 `Node.js`_ 编写。它围绕事件驱动的异步"
+" I/O 模型设计。"
 
 #: ../../src/design.rst:12
 msgid ""
@@ -38,64 +40,71 @@ msgid ""
 "abstraction for sockets and other entities; cross-platform file I/O and "
 "threading functionality is also provided, amongst other things."
 msgstr ""
+"该库提供的远不止对不同 I/O 轮询机制的简单抽象：“句柄”和“流”为套接字及其"
+"他实体提供了高层抽象；除此之外，还提供跨平台文件 I/O 和线程等功能。"
 
 #: ../../src/design.rst:16
 msgid ""
 "Here is a diagram illustrating the different parts that compose libuv and"
 " what subsystem they relate to:"
 msgstr ""
+"下面这张图展示了组成 libuv 的各个部分及其所属的子系统："
 
 #: ../../src/design.rst
 msgid "scale"
-msgstr ""
+msgstr "scale"
 
 #: ../../src/design.rst:22
 msgid "75%"
-msgstr ""
+msgstr "75%"
 
 #: ../../src/design.rst
 msgid "align"
-msgstr ""
+msgstr "align"
 
 #: ../../src/design.rst:23
 msgid "center"
-msgstr ""
+msgstr "center"
 
 #: ../../src/design.rst
 msgid "alt"
-msgstr ""
+msgstr "alt"
 
 #: ../../src/design.rst:24
 msgid "Picture of libuv architecture"
-msgstr ""
+msgstr "libuv 架构示意图"
 
 #: ../../src/design.rst:31
 msgid "Handles and requests"
-msgstr ""
+msgstr "句柄与请求"
 
 #: ../../src/design.rst:33
 msgid ""
 "libuv provides users with 2 abstractions to work with, in combination "
 "with the event loop: handles and requests."
 msgstr ""
+"libuv 为用户提供了 2 种可与事件循环配合使用的抽象：句柄和请求。"
 
 #: ../../src/design.rst:36
 msgid ""
 "Handles represent long-lived objects capable of performing certain "
 "operations while active. Some examples:"
 msgstr ""
+"句柄代表长生命周期的对象，在活动期间能够执行某些操作。示例如下："
 
 #: ../../src/design.rst:38
 msgid ""
 "A prepare handle gets its callback called once every loop iteration when "
 "active."
 msgstr ""
+"prepare 句柄在活动状态下，每轮循环迭代其回调都会被调用一次。"
 
 #: ../../src/design.rst:39
 msgid ""
 "A TCP server handle that gets its connection callback called every time "
 "there is a new connection."
 msgstr ""
+"TCP 服务器句柄，每当出现新连接时，其连接回调都会被调用。"
 
 #: ../../src/design.rst:41
 msgid ""
@@ -104,10 +113,13 @@ msgid ""
 "a handle; or standalone: getaddrinfo requests don't need a handle they "
 "run directly on the loop."
 msgstr ""
+"请求代表（通常）短生命周期的操作。这些操作可以在句柄之上执行：写请求用于"
+"向句柄写入数据；也可以独立执行：getaddrinfo 请求不需要句柄，直接在事件循"
+"环上运行。"
 
 #: ../../src/design.rst:45
 msgid "Guidelines for dealing with handles and requests:"
-msgstr ""
+msgstr "处理句柄与请求的准则："
 
 #: ../../src/design.rst:47
 msgid ""
@@ -115,18 +127,24 @@ msgid ""
 ":c:func:`uv_close`. If the handle's init function errors, you don't need "
 "to do anything."
 msgstr ""
+"如果 `uv_foo_init()` 成功初始化了句柄，就必须调用 :c:func:`uv_close`。"
+"如果句柄的 init 函数出错，则无需做任何事情。"
 
 #: ../../src/design.rst:51
 msgid ""
 "Only handles are closed, not requests. For example, :c:type:`uv_tcp_t` is"
 " a handle, :c:type:`uv_write_t` is a request."
 msgstr ""
+"只有句柄会被关闭，请求则不会。例如，:c:type:`uv_tcp_t` 是句柄，"
+":c:type:`uv_write_t` 是请求。"
 
 #: ../../src/design.rst:54
 msgid ""
 "The handle's memory can only be reclaimed or reused from inside the "
 ":c:type:`uv_close_cb` or afterwards, not before."
 msgstr ""
+"句柄的内存只能在 :c:type:`uv_close_cb` 内部或之后被回收或复用，在此之前"
+"不行。"
 
 #: ../../src/design.rst:57
 msgid ""
@@ -135,12 +153,16 @@ msgid ""
 ":c:func:`uv_spawn` combines handle initialization and process start into "
 "one."
 msgstr ""
+"大多数句柄都有 init + start/stop 函数；有些句柄则没有。例如："
+":c:type:`uv_tcp_t` 与 :c:type:`uv_process_t` 的对比；:c:func:`uv_spawn`"
+" 将句柄初始化和进程启动合而为一。"
 
 #: ../../src/design.rst:61
 msgid ""
 "Requests are closed automatically when they complete, or when they are "
 "cancelled with :c:func:`uv_cancel`."
 msgstr ""
+"请求会在完成时自动关闭，或在通过 :c:func:`uv_cancel` 被取消时自动关闭。"
 
 #: ../../src/design.rst:64
 msgid ""
@@ -149,16 +171,20 @@ msgid ""
 ":c:func:`uv_fs_req_cleanup` once you are done with it; for "
 ":c:type:`uv_getaddrinfo_t`, that's :c:func:`uv_freeaddrinfo`."
 msgstr ""
+"除 :c:type:`uv_fs_t` 和 :c:type:`uv_getaddrinfo_t` 请求外，无需额外的清"
+"理。对于 :c:type:`uv_fs_t`，用完后调用 :c:func:`uv_fs_req_cleanup`；对"
+"于 :c:type:`uv_getaddrinfo_t`，则调用 :c:func:`uv_freeaddrinfo`。"
 
 #: ../../src/design.rst:69
 msgid ""
 "The request's memory can only be reclaimed or reused from that point "
 "onward."
 msgstr ""
+"请求的内存只能从那一刻起被回收或复用。"
 
 #: ../../src/design.rst:72
 msgid "The I/O loop"
-msgstr ""
+msgstr "I/O 循环"
 
 #: ../../src/design.rst:74
 msgid ""
@@ -169,6 +195,10 @@ msgid ""
 "loop or handles, for that matter) **is not thread-safe** except where "
 "stated otherwise."
 msgstr ""
+"I/O（即事件）循环是 libuv 的核心部分。它为所有 I/O 操作建立了上下文，并且"
+"应当绑定到单个线程。可以运行多个事件循环，只要各自运行在不同的线程中。"
+"libuv 事件循环（就此而言，还包括任何涉及循环或句柄的其他 API）"
+"**不是线程安全的**，除非另有说明。"
 
 #: ../../src/design.rst:79
 msgid ""
@@ -181,20 +211,27 @@ msgid ""
 "callbacks will be fired indicating socket conditions (readable, writable "
 "hangup) so handles can read, write or perform the desired I/O operation."
 msgstr ""
+"事件循环采用相当常见的单线程异步 I/O 方式：所有（网络）I/O 都在非阻塞套接"
+"字上进行，并使用给定平台上可用的最佳机制轮询这些套接字：Linux 上是"
+" epoll，OSX 及其他 BSD 上是 kqueue，SunOS 上是 event ports，Windows 上是"
+" IOCP。作为循环迭代的一部分，循环会阻塞等待已加入轮询器的套接字上的 I/O 活"
+"动，并触发回调来指示套接字状态（可读、可写、挂断），使句柄能够读取、写入"
+"或执行所需的 I/O 操作。"
 
 #: ../../src/design.rst:86
 msgid ""
 "In order to better understand how the event loop operates, the following "
 "diagram illustrates all stages of a loop iteration:"
 msgstr ""
+"为了更好地理解事件循环是如何运作的，下图展示了一轮循环迭代的全部阶段："
 
 #: ../../src/design.rst:-1
 msgid "Picture of libuv loop iteration"
-msgstr ""
+msgstr "libuv 循环迭代示意图"
 
 #: ../../src/design.rst:100
 msgid "The loop concept of 'now' is initially set."
-msgstr ""
+msgstr "循环的“now”概念被初始设定。"
 
 #: ../../src/design.rst:102
 msgid ""
@@ -202,6 +239,8 @@ msgid ""
 "active timers scheduled for a time before the loop's concept of *now* get"
 " their callbacks called."
 msgstr ""
+"如果循环以 ``UV_RUN_DEFAULT`` 模式运行，到期的定时器就会被执行。所有计划"
+"时间早于循环的 *now* 概念的活动定时器，其回调都会被调用。"
 
 #: ../../src/design.rst:105
 msgid ""
@@ -210,6 +249,9 @@ msgid ""
 "has active and ref'd handles, active requests or closing handles it's "
 "considered to be *alive*."
 msgstr ""
+"如果循环 *存活*，就会开始一轮迭代，否则循环将立即退出。那么，何时认为循环"
+" *存活*？如果循环有活动且被引用的句柄、活动的请求或正在关闭的句柄，就认为"
+"它 *存活*。"
 
 #: ../../src/design.rst:109
 msgid ""
@@ -219,18 +261,25 @@ msgid ""
 "previous iteration deferred any I/O callback it will be run at this "
 "point."
 msgstr ""
+"挂起的回调会被调用。大体上，所有 I/O 回调都会在轮询 I/O 之后立即被调用。"
+"但也有一些情况，这类回调的调用会被推迟到下一轮循环迭代。如果上一轮迭代推"
+"迟了任何 I/O 回调，它就会在此刻被执行。"
 
 #: ../../src/design.rst:113
 msgid ""
 "Idle handle callbacks are called. Despite the unfortunate name, idle "
 "handles are run on every loop iteration, if they are active."
 msgstr ""
+"Idle 句柄的回调会被调用。尽管这个名字起得不太恰当，但只要处于活动状态，"
+"idle 句柄在每轮循环迭代中都会运行。"
 
 #: ../../src/design.rst:116
 msgid ""
 "Prepare handle callbacks are called. Prepare handles get their callbacks "
 "called right before the loop will block for I/O."
 msgstr ""
+"Prepare 句柄的回调会被调用。Prepare 句柄的回调恰好在循环阻塞等待 I/O 之"
+"前被调用。"
 
 #: ../../src/design.rst:119
 msgid ""
@@ -238,34 +287,39 @@ msgid ""
 "for how long it should block. These are the rules when calculating the "
 "timeout:"
 msgstr ""
+"计算轮询超时。在阻塞等待 I/O 之前，循环会计算应该阻塞多长时间。以下是计"
+"算超时时使用的规则："
 
 #: ../../src/design.rst:122
 msgid "If the loop was run with the ``UV_RUN_NOWAIT`` flag, the timeout is 0."
-msgstr ""
+msgstr "如果循环以 ``UV_RUN_NOWAIT`` 标志运行，则超时为 0。"
 
 #: ../../src/design.rst:123
 msgid ""
 "If the loop is going to be stopped (:c:func:`uv_stop` was called), the "
 "timeout is 0."
 msgstr ""
+"如果循环即将停止（已调用 :c:func:`uv_stop`），则超时为 0。"
 
 #: ../../src/design.rst:124
 msgid "If there are no active handles or requests, the timeout is 0."
-msgstr ""
+msgstr "如果没有活动的句柄或请求，则超时为 0。"
 
 #: ../../src/design.rst:125
 msgid "If there are any idle handles active, the timeout is 0."
-msgstr ""
+msgstr "如果有任何处于活动状态的 idle 句柄，则超时为 0。"
 
 #: ../../src/design.rst:126
 msgid "If there are any handles pending to be closed, the timeout is 0."
-msgstr ""
+msgstr "如果有任何句柄等待关闭，则超时为 0。"
 
 #: ../../src/design.rst:127
 msgid ""
 "If none of the above cases matches, the timeout of the closest timer is "
 "taken, or if there are no active timers, infinity."
 msgstr ""
+"如果以上情况都不匹配，则取最近一个定时器的超时；如果没有活动的定时器，则"
+"为无穷大。"
 
 #: ../../src/design.rst:130
 msgid ""
@@ -274,6 +328,8 @@ msgid ""
 "that were monitoring a given file descriptor for a read or write "
 "operation get their callbacks called at this point."
 msgstr ""
+"循环阻塞等待 I/O。此时，循环会按上一步计算出的时长阻塞等待 I/O。所有正在"
+"监视某个文件描述符的读或写操作的 I/O 相关句柄，其回调都会在此刻被调用。"
 
 #: ../../src/design.rst:134
 msgid ""
@@ -281,16 +337,20 @@ msgid ""
 "called right after the loop has blocked for I/O. Check handles are "
 "essentially the counterpart of prepare handles."
 msgstr ""
+"Check 句柄的回调会被调用。Check 句柄的回调会在循环阻塞等待 I/O 之后立即"
+"被调用。Check 句柄本质上是 prepare 句柄的对应物。"
 
 #: ../../src/design.rst:137
 msgid ""
 "Close callbacks are called. If a handle was closed by calling "
 ":c:func:`uv_close` it will get the close callback called."
 msgstr ""
+"关闭回调会被调用。如果句柄是通过调用 :c:func:`uv_close` 被关闭的，其关闭"
+"回调就会被调用。"
 
 #: ../../src/design.rst:140
 msgid "The loop concept of 'now' is updated."
-msgstr ""
+msgstr "循环的“now”概念被更新。"
 
 #: ../../src/design.rst:142
 msgid ""
@@ -298,6 +358,9 @@ msgid ""
 "loop iteration. So if a timer became due while other timers were being "
 "processed, it won't be run until the following event loop iteration."
 msgstr ""
+"到期的定时器会被执行。注意，在下一轮循环迭代之前，“now”不会再次更新。因"
+"此，如果某个定时器在其他定时器被处理期间到期，它要到下一次事件循环迭代才"
+"会运行。"
 
 #: ../../src/design.rst:146
 msgid ""
@@ -306,6 +369,9 @@ msgid ""
 "return. If the loop was run with ``UV_RUN_DEFAULT`` it will continue from"
 " the start if it's still *alive*, otherwise it will also end."
 msgstr ""
+"迭代结束。如果循环以 ``UV_RUN_NOWAIT`` 或 ``UV_RUN_ONCE`` 模式运行，迭代"
+"结束，:c:func:`uv_run` 将返回。如果循环以 ``UV_RUN_DEFAULT`` 模式运行，"
+"只要它仍然 *存活*，就会从头开始继续，否则也会结束。"
 
 #: ../../src/design.rst:152
 msgid ""
@@ -313,16 +379,19 @@ msgid ""
 "possible, but network I/O is **always** performed in a single thread, "
 "each loop's thread."
 msgstr ""
+"libuv 使用线程池使异步文件 I/O 操作成为可能，但网络 I/O **始终** 在单个线"
+"程中执行，即每个循环各自的线程。"
 
 #: ../../src/design.rst:156
 msgid ""
 "While the polling mechanism is different, libuv makes the execution model"
 " consistent across Unix systems and Windows."
 msgstr ""
+"尽管轮询机制各不相同，libuv 使执行模型在 Unix 系统和 Windows 上保持一致。"
 
 #: ../../src/design.rst:161
 msgid "File I/O"
-msgstr ""
+msgstr "文件 I/O"
 
 #: ../../src/design.rst:163
 msgid ""
@@ -330,6 +399,8 @@ msgid ""
 "libuv could rely on, so the current approach is to run blocking file I/O "
 "operations in a thread pool."
 msgstr ""
+"与网络 I/O 不同，并不存在 libuv 可以依赖的平台特定的文件 I/O 原语，因此目"
+"前的做法是在线程池中运行阻塞式文件 I/O 操作。"
 
 #: ../../src/design.rst:166
 msgid ""
@@ -337,28 +408,33 @@ msgid ""
 "check out `this post <https://blog.libtorrent.org/2012/10/asynchronous-"
 "disk-io/>`_."
 msgstr ""
+"关于跨平台文件 I/O 全貌的详尽阐述，请参阅 `这篇文章"
+" <https://blog.libtorrent.org/2012/10/asynchronous-disk-io/>`_。"
 
 #: ../../src/design.rst:169
 msgid ""
 "libuv currently uses a global thread pool on which all loops can queue "
 "work. 3 types of operations are currently run on this pool:"
 msgstr ""
+"libuv 目前使用一个全局线程池，所有循环都可以在其中排队工作。目前在这个线"
+"程池上运行的有 3 类操作："
 
 #: ../../src/design.rst:172
 msgid "File system operations"
-msgstr ""
+msgstr "文件系统操作"
 
 #: ../../src/design.rst:173
 msgid "DNS functions (getaddrinfo and getnameinfo)"
-msgstr ""
+msgstr "DNS 函数（getaddrinfo 和 getnameinfo）"
 
 #: ../../src/design.rst:174
 msgid "User specified code via :c:func:`uv_queue_work`"
-msgstr ""
+msgstr "通过 :c:func:`uv_queue_work` 指定的用户代码"
 
 #: ../../src/design.rst:177
 msgid ""
 "See the :c:ref:`threadpool` section for more details, but keep in mind "
 "the thread pool size is quite limited."
 msgstr ""
+"详情请参阅 :c:ref:`threadpool` 一节，但请记住线程池的大小相当有限。"
 

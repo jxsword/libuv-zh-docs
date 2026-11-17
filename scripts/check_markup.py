@@ -153,6 +153,41 @@ def extract(text: str) -> dict:
     return {"roles": roles, "lits2": lits2, "urls": urls, "bold": bold, "ital": ital, "lits1": lits1}
 
 
+# ---------- 邻接规则（P1 校对轮引入：内联标记紧邻 CJK/全角开括号 → 渲染损坏） ----------
+
+# docutils 内联标记识别要求起始标记前、结束标记后为 \W 字符（空白/标点/行界）。
+# 中文汉字属 \w，紧邻即失效（星号反引号变字面量，部分静默无警告）。
+# 全角开括号（【〔 属 openers，允许作起始前缀但不允许作结束后缀（P1 实测 processes.po）。
+ADJ_OPENERS = "（【〔｛"
+
+
+def adjacency_errors(msgstr: str) -> list:
+    """检查 msgstr 中所有内联标记的邻接字符，返回问题列表。"""
+    errs = []
+    token_re = re.compile(
+        r"``[^`]+``"          # 双反引号字面量
+        r"|\*\*[^*]+\*\*"     # 粗体
+        r"|`[^`]+`_"          # 命名引用（含尾部 _）
+        r"|:[\w.:+-]*:`[^`]+`"  # role（防被单反引号规则误拆）
+        r"|`[^`]+`"           # 单反引号
+        r"|\*[^*\n]+\*"       # 斜体
+    )
+    for m in token_re.finditer(msgstr):
+        start, end = m.span()
+        tok = m.group(0)
+        if start > 0:
+            prev = msgstr[start - 1]
+            if re.match(r"\w", prev, re.UNICODE):
+                errs.append(f"起始标记 …{tok[:10]} 前邻接汉字/字母「{prev}」→ 渲染损坏（补半角空格）")
+        if end < len(msgstr):
+            nxt = msgstr[end]
+            if re.match(r"\w", nxt, re.UNICODE):
+                errs.append(f"结束标记 {tok[-10:]}… 后邻接汉字/字母「{nxt}」→ 渲染损坏（补半角空格）")
+            elif nxt in ADJ_OPENERS:
+                errs.append(f"结束标记 {tok[-10:]}… 后紧跟全角开括号「{nxt}」→ 引用解析失败")
+    return errs
+
+
 def main() -> int:
     files = [Path(a) for a in sys.argv[1:]] or sorted(LOCALE_DIR.rglob("*.po"))
     if not files:
@@ -196,6 +231,8 @@ def main() -> int:
                 warn(f"*斜体* 数量不等: msgid={len(src['ital'])} msgstr={len(dst['ital'])}")
             if src["lits1"] != dst["lits1"]:
                 warn(f"`单反引号` 内容不一致（若为默认 role 可译文本请人工确认）:\n    msgid: {src['lits1']}\n    msgstr: {dst['lits1']}")
+            for adj_err in adjacency_errors(e["msgstr"]):
+                err(adj_err)
             for ln in e["msgstr"].split("\n"):
                 if ln != ln.rstrip():
                     warn("msgstr 存在行尾空格")

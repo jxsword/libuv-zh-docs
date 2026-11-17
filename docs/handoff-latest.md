@@ -1,55 +1,38 @@
 # 会话交接文档（handoff-latest）
 
-> 更新: 2026-11-18 ｜ 里程碑: **P0 完成**（脚手架全就位，占位站上线）｜ 下一批: P1（入门 12 文件，509 条 msgid）
+> 更新: 2026-11-18 ｜ 里程碑: **P1 完成（中文站首发待发布）** ｜ 下一批: P2（核心 API 19 文件，799 条，errors.rst 优先）
 > 本文件是每批次收尾更新的唯一交接入口；新会话开工前**必读**本文件 + 计划 §5/§7。
 
-## 1. 已完成清单（P0 全部 10 步）
+## 1. 状态快照
 
-| # | 事项 | 证据 |
-|---|---|---|
-| 1 | git init（main）+ 骨架 + .gitignore | commit 27a1f81 |
-| 2 | v1.53.0 快照（docs/ 全部 42 rst + include/uv/version.h） | commit 55169dc；gh api 直连成功（未用代理） |
-| 3 | gen_workdir.sh（镜像布局 + overlay + 安全补丁幂等套用） | workdir 自检全过；overlay 已验证 |
-| 4 | venv 3.14.4 + requirements-zh.txt（上游全 pin + sphinx-intl 2.4.0 + jieba 0.42.1） | pip 全精确 pin；gettext 0.23.2 系统已装（未提权） |
-| 5 | 英文构建冒烟 | exit=0；基线 11 warning + **2 条上游存量 error** 入 reports/warning-baseline-v1.53.0.{txt,raw.log} |
-| 6 | pot 抽取 + po 初始化 | 42 pot / **1728 msgid**；43 po（42 + sphinx.po 占位）头部规范化，msgfmt -c 全过 |
-| 7 | glossary.md（43 术语 + 48 错误译法 + 39 词机器黑名单）+ STYLE_GUIDE.md（§5 全 7 条规则） | commit 98c9f29 |
-| 8 | scripts 全套 10 件 + 3 workflow | 校验器实测 0 error；upstream-watch 实测 success（无 issue） |
-| 9 | 远程仓库 jxsword/libuv-zh-docs + push + Pages | https://jxsword.github.io/libuv-zh-docs/ **HTTP 200**（2026-11-18 实测，直连） |
-| 10 | README（TASL + 免责声明）+ LICENSE（CC BY 4.0 官方全文）+ handoff | commit 98c9f29 / c9fbae4 |
+- 分支: `p1-intro`（12 文件 509 条译文 + 修复 + 报告），PR 流程：PR → pr.yml（validate + linkcheck）→ squash merge 进 main → pages.yml 自动发布 **https://jxsword.github.io/libuv-zh-docs/** 中文站。
+- main@f67517e（CI 门禁批次化 + linkcheck 步骤）；远程 SSH 通道可用。
+- 翻译进度 **509 / 1728（29%）**，fuzzy=0；P1 全部 12 文件 100% 翻译。
+- 终态门禁: msgfmt -c 全过 / check_markup 0 error（含新邻接规则）/ term_check 0 error / validate_po 批次模式 exit=0 / 中文构建 warning=基线 9 行 0 新增。
+- 术语表: §2 已扩至 ~91 条（P1 新增 48），§5.1 黑名单 43 词。
 
-## 2. 状态快照
+## 2. P1 关键经验（坑位沉淀）
 
-- 分支 main，最新 commit **c9fbae4**，远程 origin=git@github.com:jxsword/libuv-zh-docs.git（SSH 通道可用）。
-- 基线 v1.53.0（DR-004）；上游 watch 已启用（每周一 03:00 UTC cron + 实测通过）。
-- 翻译进度 **0 / 1728**（reports/progress.md）；fuzzy=0；所有 po 空（占位站 = 英文内容 + 中文标题）。
-- Pages: build_type=workflow，pages.yml 实测构建成功（48s，含 gettext 补装修复 c9fbae4）。
-- 全链路已实证：po → msgfmt → .mo → sphinx zh_CN → HTML 中文渲染 + jieba 中文搜索索引（测试译文回滚，占位站干净）。
-- 收尾验证: reports/p0-final-verification.md（stat 门禁 exit 1 = P0 预期；fuzzy/markup/term/构建增量门禁全绿）。
+1. **内联标记邻接规则**（本轮最大坑）：`**`/`*`/`` `` ``/`` ` `` 起始前/结束后必须邻空白或全角标点；结束后紧跟全角开括号「（」也会炸（连 Sphinx 引用一致性告警都会触发）。已固化进 check_markup.py（error 级）+ STYLE_GUIDE §2。修法 = 标记两侧补半角空格。
+2. **`::` 结尾条目定案**：译文全角冒号「：」收尾即可，无需保留 `::`（实证：sphinx i18n doctree 层替换，HTML 仍输出 `<pre>` 代码块）；两种写法渲染等价，全库统一前者。勿再争论。
+3. **agent 并发上限 2**：本机 zcode 会话并行 agent 上限 2（不是计划的 3–5）；波次编排按 2 并行设计，小文件可合并给单 agent 串行处理（1 po = 1 agent 任务的精神是禁并发写同文件，串行合并不违规）。
+4. **agent 标题与任务可能错位**：并发拒绝/恢复后 agent 的显示标题与实际任务可能不一致，**以文件实际状态为准**（msgfmt --statistics 快查），勿信标题。
+5. **agent 会因"Start Plan is busy"流恢复耗尽而失败**：失败后文件可能 0 写入（未开始）或部分写入；重启任务前必须先查文件实际状态，再决定续做还是重做。
+6. **本机 linkcheck 不可判定**：直连 DNS 失败、代理出口 502——权威判定放 PR CI（pr.yml 已加 linkcheck 步骤）。
+7. msgfmt 无 `-o` 落 messages.mo；babel 拒绝日期占位符；runner 需显式装 gettext——均见 P0 handoff §4（仍然有效）。
 
-## 3. P1 入口（下一批，中文站首发）
+## 3. P2 入口（下一批）
 
-- 范围（计划 §7，msgid 已实测）: index 22 / design 58 / guide 2 / guide/about 5 / guide/introduction 16 / guide/basics 41 / guide/eventloops 9 / guide/networking 58 / guide/filesystem 61 / guide/processes 81 / guide/threads 67 / guide/utilities 89 = **509 条**。
-- 入口动作: `scripts/agent_prompt_template.md` 生成每文件 prompt → agent 逐文件翻译（不同 po 可并行 3–5，同 po 内分段严禁并发写）→ `msgfmt -c` 自检 → `scripts/validate_po.sh <文件...>` 批次模式门禁 → 批次报告入 reports/ → 分支 PR（pr.yml 自动跑门禁）→ squash merge → Pages 自动发布中文站。
-- 验收（计划 §5）: 抽检 ≥10% 语义准确 + 术语 0 违规 + fuzzy=0 + 零新增 error/warning（对照基线）+ linkcheck。
+- 范围: 19 文件 799 条（明细见 reports/pot-stats-v1.53.0.md）；**errors.rst（93 条）优先**——错误描述惯用译法 glossary §3 已备好。
+- 大文件: misc 157（P2 最大）、fs 138——单 agent 任务，必要时按 msgid 区间分段串行（同文件严禁并发写）。
+- 流程同 P1：模板生成 prompt → 并行翻译（2 波次）→ 自检 → 2 校对 agent（含邻接规则机器扫描）→ 修复 → validate_po 批次门禁 + PR CI → squash merge → Pages。
+- 校对重点: uv_* 标识符顺序保持（term_check 强制）、role/字面量逐字相等、邻接规则（机器门禁会拦）。
 
-## 4. 坑位与经验（P0 实战沉淀）
-
-1. **re.sub 替换模板会把 `\n` 解析成真实换行**（init_po.sh 踩坑修复）——替换串一律经 lambda 传入。
-2. **babel 拒绝 `YEAR-MO-DA HO:MI+ZONE` 日期占位符**（sphinx-intl stat 直接 ValueError）——po 头日期必须是真实值。
-3. **msgfmt 无 `-o` 时会在 CWD 落 messages.mo**——统计一律加 `-o /dev/null`；`.mo` 已入 .gitignore。
-4. **GitHub runner（ubuntu-latest）无预装 gettext**——pages.yml / pr.yml 均已显式 `apt-get install gettext`。
-5. **上游 rst 自带 2 条 docutils ERROR**（misc.rst:906 code-block、tcp.rst:112 缩进）+ 11 条 warning，均入基线；门禁语义 = **零新增**（R1-8），validate_po.sh 已按此实现。
-6. **Mimosa 安全门禁强制拦截 SSTI 模式**：上游 sphinx-plugins 插件已做等价加固（string.Template → str.replace），偏离登记于文件头 + scripts/patches/manpage-security.patch（双向 dry-run 验证）；**未来 sync 重下快照后必须重新套用该补丁**。
-7. 本机 Mimosa hook 会拦截命令文本中出现源文件字面路径（.py/.h）的 Bash 调用——写源文件一律走 Write/Edit 工具；机器生成 diff 用 `git diff --no-index` 输出重定向到 .patch。
-8. sphinx.po 为 0 条目占位：Sphinx 内置 zh_CN UI .mo 已生效；furo 主题个别 UI 词（如 "Contents"）仍英文——furo 自身语言包覆盖范围，P1 首发后观察决定是否补覆盖。
-9. guide 行号警告里的 `filesystem.rst.rst`/`threads.rst.rst` 双后缀是 Sphinx literalinclude 行号警告的显示怪癖，实际文件名正常。
-
-## 5. 硬性纪律（下会话开工前重申）
+## 4. 硬性纪律（重申）
 
 - 一切以计划文档为准；改架构/目录/工具链属重大决策（决策矩阵 + 用户确认 + decision_log）。
 - fuzzy 硬门禁：任何构建前 fuzzy=0；修订 fuzzy 必须先比对 `#|` 旧原文。
-- workdir 布局不可变（src/ 与 code/ 同级、version.h 就位）；改动 gen_workdir.sh 后必须重跑英文冒烟。
-- 网络：gh api / dist.libuv.org 直连优先，失败按代理 http://192.168.33.1:10808 回退一次；提权走 zcode-run。
-- 初译期上游发版：只开 issue，不切基线（DR-004）。
-- 每批次/每次 sync 一个 commit（分支 PR + squash merge）；批次收尾必更新本文件与 reports/progress.md。
+- 只填 msgstr；msgid/注释/文件头禁改；`uv_*`/`UV_*`/`SIG*`/errno/文件名不译；标记原样保留（含邻接规则）。
+- 网络纪律：gh api 直连优先，失败走代理 http://192.168.33.1:10808 回退一次；提权经 zcode-run。
+- 初译期上游发版只开 issue 不切基线（DR-004）。
+- 每批次一个 squash commit；批次收尾必更新本文件与 reports/progress.md。

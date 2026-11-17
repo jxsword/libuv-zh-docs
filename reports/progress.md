@@ -1,32 +1,32 @@
 # 翻译进度看板（po_stats.sh 自动生成，勿手改）
 
-> 最近更新: 2026-11-18 03:47:51 CST ｜ 基线: v1.53.0（DR-004）｜ 总条目: 1728
+> 最近更新: 2026-11-18 05:49:56 CST ｜ 基线: v1.53.0（DR-004）｜ 总条目: 1728
 
 | 文件 | 批次 | translated | fuzzy | untranslated |
 |---|---|---:|---:|---:|
 | api | P4 | 0 | 0 | 1 |
 | async | P2 | 0 | 0 | 21 |
 | check | P2 | 0 | 0 | 16 |
-| design | P1 | 0 | 0 | 58 |
+| design | P1 | 58 | 0 | 0 |
 | dll | P2 | 0 | 0 | 11 |
 | dns | P2 | 0 | 0 | 28 |
 | errors | P2 | 0 | 0 | 93 |
 | fs_event | P2 | 0 | 0 | 28 |
 | fs | P2 | 0 | 0 | 138 |
 | fs_poll | P2 | 0 | 0 | 19 |
-| guide/about | P1 | 0 | 0 | 5 |
-| guide/basics | P1 | 0 | 0 | 41 |
-| guide/eventloops | P1 | 0 | 0 | 9 |
-| guide/filesystem | P1 | 0 | 0 | 61 |
-| guide/introduction | P1 | 0 | 0 | 16 |
-| guide/networking | P1 | 0 | 0 | 58 |
-| guide | P1 | 0 | 0 | 2 |
-| guide/processes | P1 | 0 | 0 | 81 |
-| guide/threads | P1 | 0 | 0 | 67 |
-| guide/utilities | P1 | 0 | 0 | 89 |
+| guide/about | P1 | 5 | 0 | 0 |
+| guide/basics | P1 | 41 | 0 | 0 |
+| guide/eventloops | P1 | 9 | 0 | 0 |
+| guide/filesystem | P1 | 61 | 0 | 0 |
+| guide/introduction | P1 | 16 | 0 | 0 |
+| guide/networking | P1 | 58 | 0 | 0 |
+| guide | P1 | 2 | 0 | 0 |
+| guide/processes | P1 | 81 | 0 | 0 |
+| guide/threads | P1 | 67 | 0 | 0 |
+| guide/utilities | P1 | 89 | 0 | 0 |
 | handle | P2 | 0 | 0 | 59 |
 | idle | P2 | 0 | 0 | 18 |
-| index | P1 | 0 | 0 | 22 |
+| index | P1 | 22 | 0 | 0 |
 | loop | P2 | 0 | 0 | 54 |
 | metrics | P2 | 0 | 0 | 13 |
 | migration_010_100 | P4 | 0 | 0 | 33 |
@@ -48,8 +48,8 @@
 | upgrading | P4 | 0 | 0 | 2 |
 | version | P2 | 0 | 0 | 12 |
 
-| **合计** | - | **0** | **0** | **1728** |
+| **合计** | - | **509** | **0** | **1219** |
 
-**完成度: 0 / 1728（0%）** ｜ fuzzy 硬门禁: ✅ 0
+**完成度: 509 / 1728（29%）** ｜ fuzzy 硬门禁: ✅ 0
 
 批次完成度: P1（509 条）/ P2（799 条）/ P3（384 条）/ P4（36 条）—— 对应计划 §7
