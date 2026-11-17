@@ -1,0 +1,124 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/fs_poll.rst:5
+msgid ":c:type:`uv_fs_poll_t` --- FS Poll handle"
+msgstr ""
+
+#: ../../src/fs_poll.rst:7
+msgid ""
+"FS Poll handles allow the user to monitor a given path for changes. "
+"Unlike :c:type:`uv_fs_event_t`, fs poll handles use `stat` to detect when"
+" a file has changed so they can work on file systems where fs event "
+"handles can't."
+msgstr ""
+
+#: ../../src/fs_poll.rst:13
+msgid "Data types"
+msgstr ""
+
+#: ../../src/fs_poll.rst:17
+msgid "FS Poll handle type."
+msgstr ""
+
+#: ../../src/fs_poll.rst:21
+msgid ""
+"Callback passed to :c:func:`uv_fs_poll_start` which will be called "
+"repeatedly after the handle is started, when any change happens to the "
+"monitored path."
+msgstr ""
+
+#: ../../src/fs_poll.rst:24
+msgid ""
+"The callback is invoked with `status < 0` if `path` does not exist or is "
+"inaccessible. The watcher is *not* stopped but your callback is not "
+"called again until something changes (e.g. when the file is created or "
+"the error reason changes)."
+msgstr ""
+
+#: ../../src/fs_poll.rst:29
+msgid ""
+"When `status == 0`, the callback receives pointers to the old and new "
+":c:type:`uv_stat_t` structs. They are valid for the duration of the "
+"callback only."
+msgstr ""
+
+#: ../../src/fs_poll.rst:35
+msgid "Public members"
+msgstr ""
+
+#: ../../src/fs_poll.rst:37
+msgid "N/A"
+msgstr ""
+
+#: ../../src/fs_poll.rst:39
+msgid "The :c:type:`uv_handle_t` members also apply."
+msgstr ""
+
+#: ../../src/fs_poll.rst:43
+msgid "API"
+msgstr ""
+
+#: ../../src/fs_poll.rst:47
+msgid "Initialize the handle."
+msgstr ""
+
+#: ../../src/fs_poll.rst:51
+msgid "Check the file at `path` for changes every `interval` milliseconds."
+msgstr ""
+
+#: ../../src/fs_poll.rst:54
+msgid ""
+"For maximum portability, use multi-second intervals. Sub-second intervals"
+" will not detect all changes on many file systems."
+msgstr ""
+
+#: ../../src/fs_poll.rst:59
+msgid "Stop the handle, the callback will no longer be called."
+msgstr ""
+
+#: ../../src/fs_poll.rst:63
+msgid ""
+"Get the path being monitored by the handle. The buffer must be "
+"preallocated by the user. Returns 0 on success or an error code < 0 in "
+"case of failure. On success, `buffer` will contain the path and `size` "
+"its length. If the buffer is not big enough `UV_ENOBUFS` will be returned"
+" and `size` will be set to the required size."
+msgstr ""
+
+#: ../../src/fs_poll.rst:69
+msgid ""
+"the returned length no longer includes the terminating null byte, and the"
+" buffer is not null terminated."
+msgstr ""
+
+#: ../../src/fs_poll.rst:72
+msgid ""
+"the returned length includes the terminating null byte on `UV_ENOBUFS`, "
+"and the buffer is null terminated on success."
+msgstr ""
+
+#: ../../src/fs_poll.rst:77
+msgid "The :c:type:`uv_handle_t` API functions also apply."
+msgstr ""
+

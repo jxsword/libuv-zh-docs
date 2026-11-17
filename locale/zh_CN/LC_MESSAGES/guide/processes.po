@@ -1,0 +1,550 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/guide/processes.rst:2
+msgid "Processes"
+msgstr ""
+
+#: ../../src/guide/processes.rst:4
+msgid ""
+"libuv offers considerable child process management, abstracting the "
+"platform differences and allowing communication with the child process "
+"using streams or named pipes."
+msgstr ""
+
+#: ../../src/guide/processes.rst:8
+msgid ""
+"A common idiom in Unix is for every process to do one thing and do it "
+"well. In such a case, a process often uses multiple child processes to "
+"achieve tasks (similar to using pipes in shells). A multi-process model "
+"with messages may also be easier to reason about compared to one with "
+"threads and shared memory."
+msgstr ""
+
+#: ../../src/guide/processes.rst:14
+msgid ""
+"A common refrain against event-based programs is that they cannot take "
+"advantage of multiple cores in modern computers. In a multi-threaded "
+"program the kernel can perform scheduling and assign different threads to"
+" different cores, improving performance. But an event loop has only one "
+"thread.  The workaround can be to launch multiple processes instead, with"
+" each process running an event loop, and each process getting assigned to"
+" a separate CPU core."
+msgstr ""
+
+#: ../../src/guide/processes.rst:23
+msgid "Spawning child processes"
+msgstr ""
+
+#: ../../src/guide/processes.rst:25
+msgid ""
+"The simplest case is when you simply want to launch a process and know "
+"when it exits. This is achieved using ``uv_spawn``."
+msgstr ""
+
+#: ../../src/guide/processes.rst:28 ../../src/guide/processes.rst:58
+msgid "spawn/main.c"
+msgstr ""
+
+#: ../../src/guide/processes.rst:37
+msgid ""
+"``options`` is implicitly initialized with zeros since it is a global "
+"variable.  If you change ``options`` to a local variable, remember to "
+"initialize it to null out all unused fields::"
+msgstr ""
+
+#: ../../src/guide/processes.rst:43
+msgid ""
+"The ``uv_process_t`` struct only acts as the handle, all options are set "
+"via ``uv_process_options_t``. To simply launch a process, you need to set"
+" only the ``file`` and ``args`` fields. ``file`` is the program to "
+"execute. Since ``uv_spawn`` uses :man:`execvp(3)` internally, there is no"
+" need to supply the full path. Finally as per underlying conventions, "
+"**the arguments array has to be one larger than the number of arguments, "
+"with the last element being NULL**."
+msgstr ""
+
+#: ../../src/guide/processes.rst:50
+msgid ""
+"After the call to ``uv_spawn``, ``uv_process_t.pid`` will contain the "
+"process ID of the child process."
+msgstr ""
+
+#: ../../src/guide/processes.rst:53
+msgid ""
+"The exit callback will be invoked with the *exit status* and the type of "
+"*signal* which caused the exit."
+msgstr ""
+
+#: ../../src/guide/processes.rst:56
+msgid ""
+"Note that it is important **not** to call ``uv_close`` before the exit "
+"callback."
+msgstr ""
+
+#: ../../src/guide/processes.rst:65
+msgid "It is **required** to close the process watcher after the process exits."
+msgstr ""
+
+#: ../../src/guide/processes.rst:68
+msgid "Changing process parameters"
+msgstr ""
+
+#: ../../src/guide/processes.rst:70
+msgid ""
+"Before the child process is launched you can control the execution "
+"environment using fields in ``uv_process_options_t``."
+msgstr ""
+
+#: ../../src/guide/processes.rst:74
+msgid "Change execution directory"
+msgstr ""
+
+#: ../../src/guide/processes.rst:76
+msgid "Set ``uv_process_options_t.cwd`` to the corresponding directory."
+msgstr ""
+
+#: ../../src/guide/processes.rst:79
+msgid "Set environment variables"
+msgstr ""
+
+#: ../../src/guide/processes.rst:81
+msgid ""
+"``uv_process_options_t.env`` is a null-terminated array of strings, each "
+"of the form ``VAR=VALUE`` used to set up the environment variables for "
+"the process. Set this to ``NULL`` to inherit the environment from the "
+"parent (this) process."
+msgstr ""
+
+#: ../../src/guide/processes.rst:86
+msgid "Option flags"
+msgstr ""
+
+#: ../../src/guide/processes.rst:88
+msgid ""
+"Setting ``uv_process_options_t.flags`` to a bitwise OR of the following "
+"flags, modifies the child process behaviour:"
+msgstr ""
+
+#: ../../src/guide/processes.rst:91
+msgid ""
+"``UV_PROCESS_SETUID`` - sets the child's execution user ID to "
+"``uv_process_options_t.uid``."
+msgstr ""
+
+#: ../../src/guide/processes.rst:92
+msgid ""
+"``UV_PROCESS_SETGID`` - sets the child's execution group ID to "
+"``uv_process_options_t.gid``."
+msgstr ""
+
+#: ../../src/guide/processes.rst:94
+msgid ""
+"Changing the UID/GID is only supported on Unix, ``uv_spawn`` will fail on"
+" Windows with ``UV_ENOTSUP``."
+msgstr ""
+
+#: ../../src/guide/processes.rst:97
+msgid ""
+"``UV_PROCESS_WINDOWS_VERBATIM_ARGUMENTS`` - No quoting or escaping of "
+"``uv_process_options_t.args`` is done on Windows. Ignored on Unix."
+msgstr ""
+
+#: ../../src/guide/processes.rst:99
+msgid ""
+"``UV_PROCESS_DETACHED`` - Starts the child process in a new session, "
+"which will keep running after the parent process exits. See example "
+"below."
+msgstr ""
+
+#: ../../src/guide/processes.rst:103
+msgid "Detaching processes"
+msgstr ""
+
+#: ../../src/guide/processes.rst:105
+msgid ""
+"Passing the flag ``UV_PROCESS_DETACHED`` can be used to launch daemons, "
+"or child processes which are independent of the parent so that the parent"
+" exiting does not affect it."
+msgstr ""
+
+#: ../../src/guide/processes.rst:109
+msgid "detach/main.c"
+msgstr ""
+
+#: ../../src/guide/processes.rst:116
+msgid ""
+"Just remember that the handle is still monitoring the child, so your "
+"program won't exit. Use ``uv_unref()`` if you want to be more *fire-and-"
+"forget*."
+msgstr ""
+
+#: ../../src/guide/processes.rst:120
+msgid "Sending signals to processes"
+msgstr ""
+
+#: ../../src/guide/processes.rst:122
+msgid ""
+"libuv wraps the standard ``kill(2)`` system call on Unix and implements "
+"one with similar semantics on Windows, with *one caveat*: all of "
+"``SIGTERM``, ``SIGINT`` and ``SIGKILL``, lead to termination of the "
+"process. The signature of ``uv_kill`` is::"
+msgstr ""
+
+#: ../../src/guide/processes.rst:129
+msgid ""
+"For processes started using libuv, you may use ``uv_process_kill`` "
+"instead, which accepts the ``uv_process_t`` watcher as the first "
+"argument, rather than the pid. In this case, **remember to call** "
+"``uv_close`` on the watcher _after_ the exit callback has been called."
+msgstr ""
+
+#: ../../src/guide/processes.rst:135
+msgid "Signals"
+msgstr ""
+
+#: ../../src/guide/processes.rst:137
+msgid ""
+"libuv provides wrappers around Unix signals with `some Windows support "
+"<https://docs.libuv.org/en/v1.x/signal.html#signal>`_ as well."
+msgstr ""
+
+#: ../../src/guide/processes.rst:140
+msgid ""
+"Use ``uv_signal_init()`` to initialize a handle and associate it with a "
+"loop. To listen for particular signals on that handler, use "
+"``uv_signal_start()`` with the handler function. Each handler can only be"
+" associated with one signal number, with subsequent calls to "
+"``uv_signal_start()`` overwriting earlier associations. Use "
+"``uv_signal_stop()`` to stop watching. Here is a small example "
+"demonstrating the various possibilities:"
+msgstr ""
+
+#: ../../src/guide/processes.rst:147
+msgid "signal/main.c"
+msgstr ""
+
+#: ../../src/guide/processes.rst:155
+msgid ""
+"``uv_run(loop, UV_RUN_NOWAIT)`` is similar to ``uv_run(loop, "
+"UV_RUN_ONCE)`` in that it will process only one event. UV_RUN_ONCE blocks"
+" if there are no pending events, while UV_RUN_NOWAIT will return "
+"immediately. We use NOWAIT so that one of the loops isn't starved because"
+" the other one has no pending activity."
+msgstr ""
+
+#: ../../src/guide/processes.rst:161
+msgid ""
+"Send ``SIGUSR1`` to the process, and you'll find the handler being "
+"invoked 4 times, one for each ``uv_signal_t``. The handler just stops "
+"each handle, so that the program exits. This sort of dispatch to all "
+"handlers is very useful. A server using multiple event loops could ensure"
+" that all data was safely saved before termination, simply by every loop "
+"adding a watcher for ``SIGINT``."
+msgstr ""
+
+#: ../../src/guide/processes.rst:169
+msgid "Child Process I/O"
+msgstr ""
+
+#: ../../src/guide/processes.rst:171
+msgid ""
+"A normal, newly spawned process has its own set of file descriptors, with"
+" 0, 1 and 2 being ``stdin``, ``stdout`` and ``stderr`` respectively. "
+"Sometimes you may want to share file descriptors with the child. For "
+"example, perhaps your applications launches a sub-command and you want "
+"any errors to go in the log file, but ignore ``stdout``. For this you'd "
+"like to have ``stderr`` of the child be the same as the stderr of the "
+"parent. In this case, libuv supports *inheriting* file descriptors. In "
+"this sample, we invoke the test program, which is:"
+msgstr ""
+
+#: ../../src/guide/processes.rst:180
+msgid "proc-streams/test.c"
+msgstr ""
+
+#: ../../src/guide/processes.rst:184
+msgid ""
+"The actual program ``proc-streams`` runs this while sharing only "
+"``stderr``. The file descriptors of the child process are set using the "
+"``stdio`` field in ``uv_process_options_t``. First set the "
+"``stdio_count`` field to the number of file descriptors being set. "
+"``uv_process_options_t.stdio`` is an array of ``uv_stdio_container_t``, "
+"which is:"
+msgstr ""
+
+#: ../../src/guide/processes.rst:201
+msgid ""
+"where flags can have several values. Use ``UV_IGNORE`` if it isn't going "
+"to be used. If the first three ``stdio`` fields are marked as "
+"``UV_IGNORE`` they'll redirect to ``/dev/null``."
+msgstr ""
+
+#: ../../src/guide/processes.rst:205
+msgid ""
+"Since we want to pass on an existing descriptor, we'll use "
+"``UV_INHERIT_FD``. Then we set the ``fd`` to ``stderr``."
+msgstr ""
+
+#: ../../src/guide/processes.rst:208
+msgid "proc-streams/main.c"
+msgstr ""
+
+#: ../../src/guide/processes.rst:215
+msgid ""
+"If you run ``proc-stream`` you'll see that only the line \"This is "
+"stderr\" will be displayed. Try marking ``stdout`` as being inherited and"
+" see the output."
+msgstr ""
+
+#: ../../src/guide/processes.rst:218
+msgid ""
+"It is dead simple to apply this redirection to streams.  By setting "
+"``flags`` to ``UV_INHERIT_STREAM`` and setting ``data.stream`` to the "
+"stream in the parent process, the child process can treat that stream as "
+"standard I/O. This can be used to implement something like CGI_."
+msgstr ""
+
+#: ../../src/guide/processes.rst:225
+msgid "A sample CGI script/executable is:"
+msgstr ""
+
+#: ../../src/guide/processes.rst:227
+msgid "cgi/tick.c"
+msgstr ""
+
+#: ../../src/guide/processes.rst:231
+msgid ""
+"The CGI server combines the concepts from this chapter and "
+":doc:`networking` so that every client is sent ten ticks after which that"
+" connection is closed."
+msgstr ""
+
+#: ../../src/guide/processes.rst:234 ../../src/guide/processes.rst:244
+msgid "cgi/main.c"
+msgstr ""
+
+#: ../../src/guide/processes.rst:241
+msgid ""
+"Here we simply accept the TCP connection and pass on the socket "
+"(*stream*) to ``invoke_cgi_script``."
+msgstr ""
+
+#: ../../src/guide/processes.rst:251
+msgid ""
+"The ``stdout`` of the CGI script is set to the socket so that whatever "
+"our tick script prints, gets sent to the client. By using processes, we "
+"can offload the read/write buffering to the operating system, so in terms"
+" of convenience this is great. Just be warned that creating processes is "
+"a costly task."
+msgstr ""
+
+#: ../../src/guide/processes.rst:259
+msgid "Parent-child IPC"
+msgstr ""
+
+#: ../../src/guide/processes.rst:261
+msgid ""
+"A parent and child can have one or two way communication over a pipe "
+"created by settings ``uv_stdio_container_t.flags`` to a bit-wise "
+"combination of ``UV_CREATE_PIPE`` and ``UV_READABLE_PIPE`` or "
+"``UV_WRITABLE_PIPE``. The read/write flag is from the perspective of the "
+"child process.  In this case, the ``uv_stream_t* stream`` field must be "
+"set to point to an initialized, unopened ``uv_pipe_t`` instance."
+msgstr ""
+
+#: ../../src/guide/processes.rst:269
+msgid "New stdio Pipes"
+msgstr ""
+
+#: ../../src/guide/processes.rst:271
+msgid ""
+"The ``uv_pipe_t`` structure represents more than just `pipe(7)`_ (or "
+"``|``), but supports any streaming file-like objects. On Windows, the "
+"only object of that description is the `Named Pipe`_.  On Unix, this "
+"could be any of `Unix Domain Socket`_, or derived from `mkfifo(1)`_, or "
+"it could actually be a `pipe(7)`_.  When ``uv_spawn`` initializes a "
+"``uv_pipe_t`` due to the `UV_CREATE_PIPE` flag, it opts for creating a "
+"`socketpair(2)`_."
+msgstr ""
+
+#: ../../src/guide/processes.rst:278
+msgid ""
+"This is intended for the purpose of allowing multiple libuv processes to "
+"communicate with IPC. This is discussed below."
+msgstr ""
+
+#: ../../src/guide/processes.rst:289
+msgid "Arbitrary process IPC"
+msgstr ""
+
+#: ../../src/guide/processes.rst:291
+msgid ""
+"Since domain sockets [#]_ can have a well known name and a location in "
+"the file-system they can be used for IPC between unrelated processes. The"
+" D-BUS_ system used by open source desktop environments uses domain "
+"sockets for event notification. Various applications can then react when "
+"a contact comes online or new hardware is detected. The MySQL server also"
+" runs a domain socket on which clients can interact with it."
+msgstr ""
+
+#: ../../src/guide/processes.rst:300
+msgid ""
+"When using domain sockets, a client-server pattern is usually followed "
+"with the creator/owner of the socket acting as the server. After the "
+"initial setup, messaging is no different from TCP, so we'll re-use the "
+"echo server example."
+msgstr ""
+
+#: ../../src/guide/processes.rst:304
+msgid "pipe-echo-server/main.c"
+msgstr ""
+
+#: ../../src/guide/processes.rst:311
+msgid ""
+"We name the socket ``echo.sock`` which means it will be created in the "
+"local directory. This socket now behaves no different from TCP sockets as"
+" far as the stream API is concerned. You can test this server using "
+"`socat`_::"
+msgstr ""
+
+#: ../../src/guide/processes.rst:317
+msgid "A client which wants to connect to a domain socket will use::"
+msgstr ""
+
+#: ../../src/guide/processes.rst:321
+msgid ""
+"where ``name`` will be ``echo.sock`` or similar. On Unix systems, "
+"``name`` must point to a valid file (e.g. ``/tmp/echo.sock``). On "
+"Windows, ``name`` follows a ``\\\\?\\pipe\\echo.sock`` format."
+msgstr ""
+
+#: ../../src/guide/processes.rst:328
+msgid "Sending file descriptors over pipes"
+msgstr ""
+
+#: ../../src/guide/processes.rst:330
+msgid ""
+"The cool thing about domain sockets is that file descriptors can be "
+"exchanged between processes by sending them over a domain socket. This "
+"allows processes to hand off their I/O to other processes. Applications "
+"include load-balancing servers, worker processes and other ways to make "
+"optimum use of CPU. libuv only supports sending **TCP sockets or other "
+"pipes** over pipes for now."
+msgstr ""
+
+#: ../../src/guide/processes.rst:336
+msgid ""
+"To demonstrate, we will look at an echo server implementation that hands "
+"off clients to worker processes in a round-robin fashion. This program is"
+" a bit involved, and while only snippets are included in the book, it is "
+"recommended to read the full code to really understand it."
+msgstr ""
+
+#: ../../src/guide/processes.rst:341
+msgid ""
+"The worker process is quite simple, since the file-descriptor is handed "
+"over to it by the master."
+msgstr ""
+
+#: ../../src/guide/processes.rst:344 ../../src/guide/processes.rst:358
+msgid "multi-echo-server/worker.c"
+msgstr ""
+
+#: ../../src/guide/processes.rst:351
+msgid ""
+"``queue`` is the pipe connected to the master process on the other end, "
+"along which new file descriptors get sent. It is important to set the "
+"``ipc`` argument of ``uv_pipe_init`` to 1 to indicate this pipe will be "
+"used for inter-process communication! Since the master will write the "
+"file handle to the standard input of the worker, we connect the pipe to "
+"``stdin`` using ``uv_pipe_open``."
+msgstr ""
+
+#: ../../src/guide/processes.rst:365
+msgid ""
+"First we call ``uv_pipe_pending_count()`` to ensure that a handle is "
+"available to read out. If your program could deal with different types of"
+" handles, ``uv_pipe_pending_type()`` can be used to determine the type. "
+"Although ``accept`` seems odd in this code, it actually makes sense. What"
+" ``accept`` traditionally does is get a file descriptor (the client) from"
+" another file descriptor (The listening socket). Which is exactly what we"
+" do here. Fetch the file descriptor (``client``) from ``queue``. From "
+"this point the worker does standard echo server stuff."
+msgstr ""
+
+#: ../../src/guide/processes.rst:374
+msgid ""
+"Turning now to the master, let's take a look at how the workers are "
+"launched to allow load balancing."
+msgstr ""
+
+#: ../../src/guide/processes.rst:377 ../../src/guide/processes.rst:386
+#: ../../src/guide/processes.rst:405
+msgid "multi-echo-server/main.c"
+msgstr ""
+
+#: ../../src/guide/processes.rst:383
+msgid ""
+"The ``child_worker`` structure wraps the process, and the pipe between "
+"the master and the individual process."
+msgstr ""
+
+#: ../../src/guide/processes.rst:393
+msgid ""
+"In setting up the workers, we use the nifty libuv function "
+"``uv_cpu_info`` to get the number of CPUs so we can launch an equal "
+"number of workers. Again it is important to initialize the pipe acting as"
+" the IPC channel with the third argument as 1. We then indicate that the "
+"child process' ``stdin`` is to be a readable pipe (from the point of view"
+" of the child). Everything is straightforward till here. The workers are "
+"launched and waiting for file descriptors to be written to their standard"
+" input."
+msgstr ""
+
+#: ../../src/guide/processes.rst:401
+msgid ""
+"It is in ``on_new_connection`` (the TCP infrastructure is initialized in "
+"``main()``), that we accept the client socket and pass it along to the "
+"next worker in the round-robin."
+msgstr ""
+
+#: ../../src/guide/processes.rst:412
+msgid ""
+"The ``uv_write2`` call handles all the abstraction and it is simply a "
+"matter of passing in the handle (``client``) as the right argument. With "
+"this our multi-process echo server is operational."
+msgstr ""
+
+#: ../../src/guide/processes.rst:416
+msgid ""
+"Thanks to Kyle for `pointing out`_ that ``uv_write2()`` requires a non-"
+"empty buffer even when sending handles."
+msgstr ""
+
+#: ../../src/guide/processes.rst:423
+msgid ""
+"In this section domain sockets stands in for named pipes on Windows as "
+"well."
+msgstr ""
+

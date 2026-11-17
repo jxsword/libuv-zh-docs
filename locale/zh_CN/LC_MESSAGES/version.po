@@ -1,0 +1,85 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/version.rst:5
+msgid "Version-checking macros and functions"
+msgstr ""
+
+#: ../../src/version.rst:7
+msgid ""
+"Starting with version 1.0.0 libuv follows the `semantic versioning`_ "
+"scheme. This means that new APIs can be introduced throughout the "
+"lifetime of a major release. In this section you'll find all macros and "
+"functions that will allow you to write or compile code conditionally, in "
+"order to work with multiple libuv versions."
+msgstr ""
+
+#: ../../src/version.rst:17
+msgid "Macros"
+msgstr ""
+
+#: ../../src/version.rst:21
+msgid "libuv version's major number."
+msgstr ""
+
+#: ../../src/version.rst:25
+msgid "libuv version's minor number."
+msgstr ""
+
+#: ../../src/version.rst:29
+msgid "libuv version's patch number."
+msgstr ""
+
+#: ../../src/version.rst:33
+msgid ""
+"Set to 1 to indicate a release version of libuv, 0 for a development "
+"snapshot."
+msgstr ""
+
+#: ../../src/version.rst:38
+msgid ""
+"libuv version suffix. Certain development releases such as Release "
+"Candidates might have a suffix such as \"rc\"."
+msgstr ""
+
+#: ../../src/version.rst:43
+msgid ""
+"Returns the libuv version packed into a single integer. 8 bits are used "
+"for each component, with the patch number stored in the 8 least "
+"significant bits. E.g. for libuv 1.2.3 this would be 0x010203."
+msgstr ""
+
+#: ../../src/version.rst:51
+msgid "Functions"
+msgstr ""
+
+#: ../../src/version.rst:55
+msgid "Returns :c:macro:`UV_VERSION_HEX`."
+msgstr ""
+
+#: ../../src/version.rst:59
+msgid ""
+"Returns the libuv version number as a string. For non-release versions "
+"the version suffix is included."
+msgstr ""
+

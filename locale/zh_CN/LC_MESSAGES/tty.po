@@ -1,0 +1,174 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/tty.rst:5
+msgid ":c:type:`uv_tty_t` --- TTY handle"
+msgstr ""
+
+#: ../../src/tty.rst:7
+msgid "TTY handles represent a stream for the console."
+msgstr ""
+
+#: ../../src/tty.rst:9
+msgid ":c:type:`uv_tty_t` is a 'subclass' of :c:type:`uv_stream_t`."
+msgstr ""
+
+#: ../../src/tty.rst:13
+msgid "Data types"
+msgstr ""
+
+#: ../../src/tty.rst:17
+msgid "TTY handle type."
+msgstr ""
+
+#: ../../src/tty.rst:23
+msgid "TTY mode type:"
+msgstr ""
+
+#: ../../src/tty.rst:43
+msgid "Console virtual terminal mode type:"
+msgstr ""
+
+#: ../../src/tty.rst:62
+msgid "Public members"
+msgstr ""
+
+#: ../../src/tty.rst:64
+msgid "N/A"
+msgstr ""
+
+#: ../../src/tty.rst:66
+msgid "The :c:type:`uv_stream_t` members also apply."
+msgstr ""
+
+#: ../../src/tty.rst:70
+msgid "API"
+msgstr ""
+
+#: ../../src/tty.rst:74
+msgid ""
+"Initialize a new TTY stream with the given file descriptor. Usually the "
+"file descriptor will be:"
+msgstr ""
+
+#: ../../src/tty.rst:77
+msgid "0 = stdin"
+msgstr ""
+
+#: ../../src/tty.rst:78
+msgid "1 = stdout"
+msgstr ""
+
+#: ../../src/tty.rst:79
+msgid "2 = stderr"
+msgstr ""
+
+#: ../../src/tty.rst:81
+msgid ""
+"On Unix this function will determine the path of the fd of the terminal "
+"using :man:`ttyname_r(3)`, open it, and use it if the passed file "
+"descriptor refers to a TTY. This lets libuv put the tty in non-blocking "
+"mode without affecting other processes that share the tty."
+msgstr ""
+
+#: ../../src/tty.rst:86
+msgid ""
+"This function is not thread safe on systems that don't support ioctl "
+"TIOCGPTN or TIOCPTYGNAME, for instance OpenBSD and Solaris."
+msgstr ""
+
+#: ../../src/tty.rst:90
+msgid "If reopening the TTY fails, libuv falls back to blocking writes."
+msgstr ""
+
+#: ../../src/tty.rst:92
+msgid ""
+"the `readable` parameter is now unused and ignored. The correct value "
+"will now be auto-detected from the kernel."
+msgstr ""
+
+#: ../../src/tty.rst:95
+msgid ""
+"the path of the TTY is determined by :man:`ttyname_r(3)`. In earlier "
+"versions libuv opened `/dev/tty` instead."
+msgstr ""
+
+#: ../../src/tty.rst:99
+msgid ""
+"trying to initialize a TTY stream with a file descriptor that refers to a"
+" file returns `UV_EINVAL` on UNIX."
+msgstr ""
+
+#: ../../src/tty.rst:105
+msgid "the mode is specified as a :c:enum:`uv_tty_mode_t` value."
+msgstr ""
+
+#: ../../src/tty.rst:108
+msgid "Set the TTY using the specified terminal mode."
+msgstr ""
+
+#: ../../src/tty.rst:112
+msgid ""
+"To be called when the program exits. Resets TTY settings to default "
+"values for the next process to take over."
+msgstr ""
+
+#: ../../src/tty.rst:115
+msgid ""
+"This function is async signal-safe on Unix platforms but can fail with "
+"error code ``UV_EBUSY`` if you call it when execution is inside "
+":c:func:`uv_tty_set_mode`."
+msgstr ""
+
+#: ../../src/tty.rst:121
+msgid "Gets the current Window size. On success it returns 0."
+msgstr ""
+
+#: ../../src/tty.rst:123
+msgid "The :c:type:`uv_stream_t` API functions also apply."
+msgstr ""
+
+#: ../../src/tty.rst:127
+msgid ""
+"Controls whether console virtual terminal sequences are processed by "
+"libuv or console. Useful in particular for enabling ConEmu support of "
+"ANSI X3.64 and Xterm 256 colors. Otherwise Windows10 consoles are usually"
+" detected automatically."
+msgstr ""
+
+#: ../../src/tty.rst:132
+msgid ""
+"This function is only meaningful on Windows systems. On Unix it is "
+"silently ignored."
+msgstr ""
+
+#: ../../src/tty.rst:139
+msgid ""
+"Get the current state of whether console virtual terminal sequences are "
+"handled by libuv or the console."
+msgstr ""
+
+#: ../../src/tty.rst:142
+msgid "This function is not implemented on Unix, where it returns ``UV_ENOTSUP``."
+msgstr ""
+

@@ -1,0 +1,401 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/guide/filesystem.rst:2
+msgid "Filesystem"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:4
+msgid ""
+"Simple filesystem read/write is achieved using the ``uv_fs_*`` functions "
+"and the ``uv_fs_t`` struct."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:9
+msgid ""
+"The libuv filesystem operations are different from :doc:`socket "
+"operations <networking>`. Socket operations use the non-blocking "
+"operations provided by the operating system. Filesystem operations use "
+"blocking functions internally, but invoke these functions in a `thread "
+"pool`_ and notify watchers registered with the event loop when "
+"application interaction is required."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:18
+msgid ""
+"All filesystem functions have two forms - *synchronous* and "
+"*asynchronous*."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:20
+msgid ""
+"The *synchronous* forms automatically get called (and **block**) if the "
+"callback is null. The return value of functions is a :ref:`libuv error "
+"code <libuv-error-handling>`. This is usually only useful for synchronous"
+" calls. The *asynchronous* form is called when a callback is passed and "
+"the return value is 0."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:27
+msgid "Reading/Writing files"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:29
+msgid "A file descriptor is obtained using"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:35
+msgid ""
+"``flags`` and ``mode`` are standard `Unix flags <https://man7.org/linux"
+"/man-pages/man2/open.2.html>`_. libuv takes care of converting to the "
+"appropriate Windows flags."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:39
+msgid "File descriptors are closed using"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:46
+msgid "Filesystem operation callbacks have the signature:"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:52
+msgid ""
+"Let's see a simple implementation of ``cat``. We start with registering a"
+" callback for when the file is opened:"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:55
+msgid "uvcat/main.c - opening a file"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:62
+msgid ""
+"The ``result`` field of a ``uv_fs_t`` is the file descriptor in case of "
+"the ``uv_fs_open`` callback. If the file is successfully opened, we start"
+" reading it."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:65
+msgid "uvcat/main.c - read callback"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:72
+msgid ""
+"In the case of a read call, you should pass an *initialized* buffer which"
+" will be filled with data before the read callback is triggered. The "
+"``uv_fs_*`` operations map almost directly to certain POSIX functions, so"
+" EOF is indicated in this case by ``result`` being 0. In the case of "
+"streams or pipes, the ``UV_EOF`` constant would have been passed as a "
+"status instead."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:78
+msgid ""
+"Here you see a common pattern when writing asynchronous programs. The "
+"``uv_fs_close()`` call is performed synchronously. *Usually tasks which "
+"are one-off, or are done as part of the startup or shutdown stage are "
+"performed synchronously, since we are interested in fast I/O when the "
+"program is going about its primary task and dealing with multiple I/O "
+"sources*. For solo tasks the performance difference usually is negligible"
+" and may lead to simpler code."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:85
+msgid ""
+"Filesystem writing is similarly simple using ``uv_fs_write()``.  *Your "
+"callback will be triggered after the write is complete*.  In our case the"
+" callback simply drives the next read. Thus read and write proceed in "
+"lockstep via callbacks."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:90
+msgid "uvcat/main.c - write callback"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:99
+msgid ""
+"Due to the way filesystems and disk drives are configured for "
+"performance, a write that 'succeeds' may not be committed to disk yet."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:102
+msgid "We set the dominos rolling in ``main()``:"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:104
+msgid "uvcat/main.c"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:113
+msgid ""
+"The ``uv_fs_req_cleanup()`` function must always be called on filesystem "
+"requests to free internal memory allocations in libuv."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:117 ../../src/guide/filesystem.rst:124
+msgid "Filesystem operations"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:119
+msgid ""
+"All the standard filesystem operations like ``unlink``, ``rmdir``, "
+"``stat`` are supported asynchronously and have intuitive argument order. "
+"They follow the same patterns as the read/write/open calls, returning the"
+" result in the ``uv_fs_t.result`` field. The full list:"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:169
+msgid "Buffers and Streams"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:171
+msgid ""
+"The basic I/O handle in libuv is the stream (``uv_stream_t``). TCP "
+"sockets, TTYs, and pipes for file I/O and IPC are all treated as stream "
+"subclasses."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:174
+msgid ""
+"Streams are initialized using custom functions for each subclass, then "
+"operated upon using"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:184
+msgid ""
+"The stream based functions are simpler to use than the filesystem ones "
+"and libuv will automatically keep reading from a stream when "
+"``uv_read_start()`` is called once, until ``uv_read_stop()`` is called."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:188
+msgid ""
+"The discrete unit of data is the buffer -- ``uv_buf_t``. This is simply a"
+" collection of a pointer to bytes (``uv_buf_t.base``) and the length "
+"(``uv_buf_t.len``). The ``uv_buf_t`` is lightweight and passed around by "
+"value. What does require management is the actual bytes, which have to be"
+" allocated and freed by the application."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:196
+msgid "**THIS PROGRAM DOES NOT ALWAYS WORK, NEED SOMETHING BETTER**"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:198
+msgid ""
+"To demonstrate streams we will need to use ``uv_pipe_t``. This allows "
+"streaming local files [#]_. Here is a simple tee utility using libuv.  "
+"Doing all operations asynchronously shows the power of evented I/O. The "
+"two writes won't block each other, but we have to be careful to copy over"
+" the buffer data to ensure we don't free a buffer until it has been "
+"written."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:204
+msgid "The program is to be executed as::"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:208
+msgid ""
+"We start off opening pipes on the files we require. libuv pipes to a file"
+" are opened as bidirectional by default."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:211
+msgid "uvtee/main.c - read on pipes"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:218
+msgid ""
+"The third argument of ``uv_pipe_init()`` should be set to 1 for IPC using"
+" named pipes. This is covered in :doc:`processes`. The ``uv_pipe_open()``"
+" call associates the pipe with the file descriptor, in this case ``0`` "
+"(standard input)."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:223
+msgid ""
+"We start monitoring ``stdin``. The ``alloc_buffer`` callback is invoked "
+"as new buffers are required to hold incoming data. ``read_stdin`` will be"
+" called with these buffers."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:227
+msgid "uvtee/main.c - reading buffers"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:233
+msgid ""
+"The standard ``malloc`` is sufficient here, but you can use any memory "
+"allocation scheme. For example, node.js uses its own slab allocator which"
+" associates buffers with V8 objects."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:237
+msgid ""
+"The read callback ``nread`` parameter is less than 0 on any error. This "
+"error might be EOF, in which case we close all the streams, using the "
+"generic close function ``uv_close()`` which deals with the handle based "
+"on its internal type. Otherwise ``nread`` is a non-negative number and we"
+" can attempt to write that many bytes to the output streams. Finally "
+"remember that buffer allocation and deallocation is application "
+"responsibility, so we free the data."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:244
+msgid ""
+"The allocation callback may return a buffer with length zero if it fails "
+"to allocate memory. In this case, the read callback is invoked with error"
+" UV_ENOBUFS. libuv will continue to attempt to read the stream though, so"
+" you must explicitly call ``uv_close()`` if you want to stop when "
+"allocation fails."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:249
+msgid ""
+"The read callback may be called with ``nread = 0``, indicating that at "
+"this point there is nothing to be read. Most applications will just "
+"ignore this."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:252
+msgid "uvtee/main.c - Write to pipe"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:258
+msgid ""
+"``write_data()`` makes a copy of the buffer obtained from read. This "
+"buffer does not get passed through to the write callback trigged on write"
+" completion. To get around this we wrap a write request and a buffer in "
+"``write_req_t`` and unwrap it in the callbacks. We make a copy so we can "
+"free the two buffers from the two calls to ``write_data`` independently "
+"of each other. While acceptable for a demo program like this, you'll "
+"probably want smarter memory management, like reference counted buffers "
+"or a pool of buffers in any major application."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:268
+msgid ""
+"If your program is meant to be used with other programs it may knowingly "
+"or unknowingly be writing to a pipe. This makes it susceptible to "
+"`aborting on receiving a SIGPIPE`_. It is a good idea to insert::"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:274
+msgid "in the initialization stages of your application."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:279
+msgid "File change events"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:281
+msgid ""
+"All modern operating systems provide APIs to put watches on individual "
+"files or directories and be informed when the files are modified. libuv "
+"wraps common file change notification libraries [#fsnotify]_. This is one"
+" of the more inconsistent parts of libuv. File change notification "
+"systems are themselves extremely varied across platforms so getting "
+"everything working everywhere is difficult. To demonstrate, I'm going to "
+"build a simple utility which runs a command whenever any of the watched "
+"files change::"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:293
+msgid ""
+"Currently this example only works on OSX and Windows. Refer to the `notes"
+" of uv_fs_event_start`_ function."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:298
+msgid "The file change notification is started using ``uv_fs_event_init()``:"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:300
+msgid "onchange/main.c - The setup"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:307
+msgid ""
+"The third argument is the actual file or directory to monitor. The last "
+"argument, ``flags``, can be:"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:321
+msgid ""
+"``UV_FS_EVENT_WATCH_ENTRY`` and ``UV_FS_EVENT_STAT`` don't do anything "
+"(yet). ``UV_FS_EVENT_RECURSIVE`` will start watching subdirectories as "
+"well on supported platforms."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:325
+msgid "The callback will receive the following arguments:"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:327
+msgid ""
+"``uv_fs_event_t *handle`` - The handle. The ``path`` field of the handle "
+"is the file on which the watch was set."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:329
+msgid ""
+"``const char *filename`` - If a directory is being monitored, this is the"
+" file which was changed. Only non-``null`` on Linux and Windows. May be "
+"``null`` even on those platforms."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:332
+msgid ""
+"``int events`` - one of ``UV_RENAME`` or ``UV_CHANGE``, or a bitwise OR "
+"of both."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:334
+msgid ""
+"``int status`` - If ``status < 0``, there is an :ref:`libuv error<libuv-"
+"error-handling>`."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:336
+msgid ""
+"In our example we simply print the arguments and run the command using "
+"``system()``."
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:339
+msgid "onchange/main.c - file change notification callback"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:347
+msgid ""
+"inotify on Linux, FSEvents on Darwin, kqueue on BSDs, "
+"ReadDirectoryChangesW on Windows, event ports on Solaris, unsupported on "
+"Cygwin"
+msgstr ""
+
+#: ../../src/guide/filesystem.rst:349
+msgid "see :ref:`pipes`"
+msgstr ""
+

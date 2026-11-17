@@ -1,0 +1,342 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/stream.rst:5
+msgid ":c:type:`uv_stream_t` --- Stream handle"
+msgstr ""
+
+#: ../../src/stream.rst:7
+msgid ""
+"Stream handles provide an abstraction of a duplex communication channel. "
+":c:type:`uv_stream_t` is an abstract type, libuv provides 3 stream "
+"implementations in the form of :c:type:`uv_tcp_t`, :c:type:`uv_pipe_t` "
+"and :c:type:`uv_tty_t`."
+msgstr ""
+
+#: ../../src/stream.rst:13
+msgid "Data types"
+msgstr ""
+
+#: ../../src/stream.rst:17
+msgid "Stream handle type."
+msgstr ""
+
+#: ../../src/stream.rst:21
+msgid "Connect request type."
+msgstr ""
+
+#: ../../src/stream.rst:25
+msgid "Shutdown request type."
+msgstr ""
+
+#: ../../src/stream.rst:29
+msgid ""
+"Write request type. Careful attention must be paid when reusing objects "
+"of this type. When a stream is in non-blocking mode, write requests sent "
+"with ``uv_write`` will be queued. Reusing objects at this point is "
+"undefined behaviour. It is safe to reuse the ``uv_write_t`` object only "
+"after the callback passed to ``uv_write`` is fired."
+msgstr ""
+
+#: ../../src/stream.rst:37
+msgid "Callback called when data was read on a stream."
+msgstr ""
+
+#: ../../src/stream.rst:39
+msgid ""
+"`nread` is > 0 if there is data available or < 0 on error. When we've "
+"reached EOF, `nread` will be set to ``UV_EOF``. When `nread` < 0, the "
+"`buf` parameter might not point to a valid buffer; in that case `buf.len`"
+" and `buf.base` are both set to 0."
+msgstr ""
+
+#: ../../src/stream.rst:45
+msgid ""
+"`nread` might be 0, which does *not* indicate an error or EOF. This is "
+"equivalent to ``EAGAIN`` or ``EWOULDBLOCK`` under ``read(2)``."
+msgstr ""
+
+#: ../../src/stream.rst:48
+msgid ""
+"The callee is responsible for stopping/closing the stream when an error "
+"happens by calling :c:func:`uv_read_stop` or :c:func:`uv_close`. Trying "
+"to read from the stream again is undefined."
+msgstr ""
+
+#: ../../src/stream.rst:52
+msgid ""
+"The callee is responsible for freeing the buffer, libuv does not reuse "
+"it. The buffer may be a null buffer (where `buf->base` == NULL and "
+"`buf->len` == 0) on error."
+msgstr ""
+
+#: ../../src/stream.rst:58
+msgid ""
+"Callback called after data was written on a stream. `status` will be 0 in"
+" case of success, < 0 otherwise."
+msgstr ""
+
+#: ../../src/stream.rst:63
+msgid ""
+"Callback called after a connection started by :c:func:`uv_connect` is "
+"done. `status` will be 0 in case of success, < 0 otherwise."
+msgstr ""
+
+#: ../../src/stream.rst:68
+msgid ""
+"Callback called after a shutdown request has been completed. `status` "
+"will be 0 in case of success, < 0 otherwise."
+msgstr ""
+
+#: ../../src/stream.rst:73
+msgid ""
+"Callback called when a stream server has received an incoming connection."
+" The user can accept the connection by calling :c:func:`uv_accept`. "
+"`status` will be 0 in case of success, < 0 otherwise."
+msgstr ""
+
+#: ../../src/stream.rst:79
+msgid "Public members"
+msgstr ""
+
+#: ../../src/stream.rst:83
+msgid "Contains the amount of queued bytes waiting to be sent. Readonly."
+msgstr ""
+
+#: ../../src/stream.rst:87
+msgid "Pointer to the stream where this connection request is running."
+msgstr ""
+
+#: ../../src/stream.rst:91
+msgid "Pointer to the stream where this shutdown request is running."
+msgstr ""
+
+#: ../../src/stream.rst:95
+msgid "Pointer to the stream where this write request is running."
+msgstr ""
+
+#: ../../src/stream.rst:99
+msgid "Pointer to the stream being sent using this write request."
+msgstr ""
+
+#: ../../src/stream.rst:101
+msgid "The :c:type:`uv_handle_t` members also apply."
+msgstr ""
+
+#: ../../src/stream.rst:105
+msgid "API"
+msgstr ""
+
+#: ../../src/stream.rst:109
+msgid ""
+"Shutdown the outgoing (write) side of a duplex stream. It waits for "
+"pending write requests to complete. The `handle` should refer to a "
+"initialized stream. `req` should be an uninitialized shutdown request "
+"struct. The `cb` is called after shutdown is complete."
+msgstr ""
+
+#: ../../src/stream.rst:116
+msgid ""
+"Start listening for incoming connections. `backlog` indicates the number "
+"of connections the kernel might queue, same as :man:`listen(2)`. When a "
+"new incoming connection is received the :c:type:`uv_connection_cb` "
+"callback is called."
+msgstr ""
+
+#: ../../src/stream.rst:123
+msgid ""
+"This call is used in conjunction with :c:func:`uv_listen` to accept "
+"incoming connections. Call this function after receiving a "
+":c:type:`uv_connection_cb` to accept the connection. Before calling this "
+"function the client handle must be initialized. < 0 return value "
+"indicates an error."
+msgstr ""
+
+#: ../../src/stream.rst:128
+msgid ""
+"When the :c:type:`uv_connection_cb` callback is called it is guaranteed "
+"that this function will complete successfully the first time. If you "
+"attempt to use it more than once, it may fail. It is suggested to only "
+"call this function once per :c:type:`uv_connection_cb` call."
+msgstr ""
+
+#: ../../src/stream.rst:134
+msgid "`server` and `client` must be handles running on the same loop."
+msgstr ""
+
+#: ../../src/stream.rst:138
+msgid ""
+"Read data from an incoming stream. The :c:type:`uv_read_cb` callback will"
+" be made several times until there is no more data to read or "
+":c:func:`uv_read_stop` is called."
+msgstr ""
+
+#: ../../src/stream.rst:142
+msgid ""
+":c:func:`uv_read_start` now consistently returns `UV_EALREADY` when "
+"called twice, and `UV_EINVAL` when the stream is closing. With older "
+"libuv versions, it returns `UV_EALREADY` on Windows but not UNIX, and "
+"`UV_EINVAL` on UNIX but not Windows."
+msgstr ""
+
+#: ../../src/stream.rst:149
+msgid ""
+"Stop reading data from the stream. The :c:type:`uv_read_cb` callback will"
+" no longer be called."
+msgstr ""
+
+#: ../../src/stream.rst:152
+msgid "This function is idempotent and may be safely called on a stopped stream."
+msgstr ""
+
+#: ../../src/stream.rst:154
+msgid ""
+"This function will always succeed; hence, checking its return value is "
+"unnecessary. A non-zero return indicates that finishing releasing "
+"resources may be pending on the next input event on that TTY on Windows, "
+"and does not indicate failure."
+msgstr ""
+
+#: ../../src/stream.rst:161
+msgid "Write data to stream. Buffers are written in order. Example:"
+msgstr ""
+
+#: ../../src/stream.rst:187
+msgid ""
+"The memory pointed to by the buffers must remain valid until the callback"
+" gets called. This also holds for :c:func:`uv_write2`."
+msgstr ""
+
+#: ../../src/stream.rst:192
+msgid ""
+"Extended write function for sending handles over a pipe. The pipe must be"
+" initialized with `ipc` == 1."
+msgstr ""
+
+#: ../../src/stream.rst:196
+msgid ""
+"`send_handle` must be a TCP, pipe and UDP handle on Unix, or a TCP handle"
+" on Windows, which is a server or a connection (listening or connected "
+"state). Bound sockets or pipes will be assumed to be servers."
+msgstr ""
+
+#: ../../src/stream.rst:202
+msgid ""
+"Same as :c:func:`uv_write`, but won't queue a write request if it can't "
+"be completed immediately."
+msgstr ""
+
+#: ../../src/stream.rst:205
+msgid "Will return either:"
+msgstr ""
+
+#: ../../src/stream.rst:207
+msgid "> 0: number of bytes written (can be less than the supplied buffer size)."
+msgstr ""
+
+#: ../../src/stream.rst:208
+msgid ""
+"< 0: negative error code (``UV_EAGAIN`` is returned if no data can be "
+"sent immediately)."
+msgstr ""
+
+#: ../../src/stream.rst:213
+msgid ""
+"Same as :c:func:`uv_try_write` and extended write function for sending "
+"handles over a pipe like c:func:`uv_write2`."
+msgstr ""
+
+#: ../../src/stream.rst:216
+msgid ""
+"Try to send a handle is not supported on Windows, where it returns "
+"``UV_EAGAIN``."
+msgstr ""
+
+#: ../../src/stream.rst:223
+msgid ""
+"Returns the number of bytes written by a write request. Only valid when "
+"called from within the write callback (:c:type:`uv_write_cb`)."
+msgstr ""
+
+#: ../../src/stream.rst:226
+msgid ""
+"This is primarily useful when a write has been cancelled via "
+":c:func:`uv_cancel` and the callback receives ``UV_ECANCELED`` status, to"
+" determine how many bytes were actually written before cancellation. Note"
+" that cancelled writes may still succeed or fail with other errors if the"
+" kernel finished processing the write before the cancellation took "
+"effect."
+msgstr ""
+
+#: ../../src/stream.rst:237
+msgid "Returns 1 if the stream is readable, 0 otherwise."
+msgstr ""
+
+#: ../../src/stream.rst:241
+msgid "Returns 1 if the stream is writable, 0 otherwise."
+msgstr ""
+
+#: ../../src/stream.rst:245
+msgid "Enable or disable blocking mode for a stream."
+msgstr ""
+
+#: ../../src/stream.rst:247
+msgid ""
+"When blocking mode is enabled all writes complete synchronously. The "
+"interface remains unchanged otherwise, e.g. completion or failure of the "
+"operation will still be reported through a callback which is made "
+"asynchronously."
+msgstr ""
+
+#: ../../src/stream.rst:253
+msgid ""
+"Relying too much on this API is not recommended. It is likely to change "
+"significantly in the future."
+msgstr ""
+
+#: ../../src/stream.rst:256
+msgid ""
+"Currently only works on Windows for :c:type:`uv_pipe_t` handles. On UNIX "
+"platforms, all :c:type:`uv_stream_t` handles are supported."
+msgstr ""
+
+#: ../../src/stream.rst:259
+msgid ""
+"Also libuv currently makes no ordering guarantee when the blocking mode "
+"is changed after write requests have already been submitted. Therefore it"
+" is recommended to set the blocking mode immediately after opening or "
+"creating the stream."
+msgstr ""
+
+#: ../../src/stream.rst:264
+msgid "UNIX implementation added."
+msgstr ""
+
+#: ../../src/stream.rst:268
+msgid "Returns `stream->write_queue_size`."
+msgstr ""
+
+#: ../../src/stream.rst:272
+msgid "The :c:type:`uv_handle_t` API functions also apply."
+msgstr ""
+

@@ -1,0 +1,20 @@
+# Sphinx 界面字符串覆盖占位（sphinx.po）
+# Copyright (C) 2014-present, libuv contributors
+# 本文件为占位（0 条目）：Sphinx 内置 zh_CN 界面翻译（sphinx/locale/zh_CN）已自动生效。
+# 未来如需覆盖个别界面字符串，在此添加条目（msgid 需与 sphinx/locale/sphinx.pot 一致）。
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"

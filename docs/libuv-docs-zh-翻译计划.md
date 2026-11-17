@@ -19,7 +19,7 @@
 |---|---|
 | 官方文档 | https://docs.libuv.org/en/v1.x/ 仅英文，无中文（Sphinx 7.0.1 + Furo 主题） |
 | 最新版本 | v1.53.0（2026-09-24 发布，GitHub API 实测） |
-| 文档源码 | [libuv/libuv](https://github.com/libuv/libuv) `v1.x` 分支 `docs/src/`，41 个 `.rst` 共约 296 KB |
+| 文档源码 | [libuv/libuv](https://github.com/libuv/libuv) `v1.x` 分支 `docs/src/`，42 个 `.rst` 共约 296 KB（P0 实测 v1.53.0，2026-11-18；freertos.rst 已被上游移除） |
 | 文档许可证 | CC-BY-4.0（仓库根 `LICENSE-docs`）；代码 MIT。翻译发布合法，须署名 |
 | 官方中文版 | 无。组织下亦无独立文档仓库（`libuv/api-docs` 2015 年已废弃） |
 
@@ -118,7 +118,7 @@ html_title = 'libuv documentation（中文翻译）'
 
 ## 5. 翻译工作流（agent 批次翻译）
 
-**翻译单元**：1 个 po 文件 = 1 个 agent 任务（个别大文件如 `fs.rst` 超限时按 msgid 区间拆为顺序子任务——**同一 po 文件的多段任务严禁并发写**，不同 po 可并行 3–5 个 agent）。每文件预计 50–300 条 msgid（P0 抽取后出精确清单）。
+**翻译单元**：1 个 po 文件 = 1 个 agent 任务（个别大文件如 `fs.rst` 超限时按 msgid 区间拆为顺序子任务——**同一 po 文件的多段任务严禁并发写**，不同 po 可并行 3–5 个 agent）。每文件 1–157 条 msgid（P0 实测：最大 misc.po 157 条，最小 api.po 1 条）。
 
 **Agent 输入**（统一 prompt 模板 `scripts/agent_prompt_template.md`）：
 1. 目标 po 文件路径；2. `glossary.md` + `STYLE_GUIDE.md`（强制全文遵守）；3. 上游对应 rst 原文路径（供上下文）；4. 批次报告输出路径（`reports/`）。
@@ -156,15 +156,15 @@ html_title = 'libuv documentation（中文翻译）'
 
 ## 7. 范围与批次（DR-002：全量 41 文件，分 5 期）
 
-| 期 | 内容 | 文件数 | 发布点 |
-|---|---|---|---|
-| **P0** | 脚手架：git init、目录与脚本、workdir 链路、pot 抽取与 po 初始化、术语表/风格指南初版、Pages 上线、远程仓库创建 | 0 | 站点骨架上线（英文占位） |
-| **P1** | 入门：index、design、guide.rst、guide/about|introduction|basics|eventloops|networking|filesystem|processes|threads|utilities | 12 | **中文站首次发布** |
-| **P2** | 核心 API：errors、version、loop、handle、request、timer、prepare、check、idle、async、poll、signal、fs、fs_event、fs_poll、dns、dll、metrics、misc（**errors.rst 优先**：错误码描述是高频引用文本，错误信息惯用译法先行入术语表） | 19 | 增量发布 |
-| **P3** | 网络/进程/线程：stream、tcp、pipe、tty、udp、process、threading、threadpool | 8 | 增量发布 |
-| **P4** | 收尾：freertos、api.rst、全文术语一致性 sweep、obsolete 清理、交叉校对复审 | 2 | **v1.0 全量发布**（此后进入随上游 release 的增量模式） |
+| 期 | 内容 | 文件数 | msgid | 发布点 |
+|---|---|---|---|---|
+| **P0** | 脚手架：git init、目录与脚本、workdir 链路、pot 抽取与 po 初始化、术语表/风格指南初版、Pages 上线、远程仓库创建 | 0 | 0 | 站点骨架上线（英文占位） |
+| **P1** | 入门：index、design、guide.rst、guide/about|introduction|basics|eventloops|networking|filesystem|processes|threads|utilities | 12 | 509 | **中文站首次发布** |
+| **P2** | 核心 API：errors、version、loop、handle、request、timer、prepare、check、idle、async、poll、signal、fs、fs_event、fs_poll、dns、dll、metrics、misc（**errors.rst 优先**：错误码描述是高频引用文本，错误信息惯用译法先行入术语表） | 19 | 799 | 增量发布 |
+| **P3** | 网络/进程/线程：stream、tcp、pipe、tty、udp、process、threading、threadpool | 8 | 384 | 增量发布 |
+| **P4** | 收尾：api.rst、migration_010_100.rst、upgrading.rst（freertos.rst 已不在 v1.53.0，P0 实测修正）、全文术语一致性 sweep、obsolete 清理、交叉校对复审 | 3 | 36 | **v1.0 全量发布**（此后进入随上游 release 的增量模式） |
 
-合计 41 个 rst（12+19+8+2）。规模估算：约 296 KB 原文，非代码文本估 1500–2500 条 msgid（P0 抽取后出精确数并回填本节与 §11）。
+合计 42 个 rst（12+19+8+3，P0 实测）。规模估算：约 296 KB 原文，msgid 精确总数 **1728**（P0 抽取实测 2026-11-18，已回填本节与 §11；分文件明细见 reports/pot-stats-v1.53.0.md）。
 
 ## 8. 质量保障与风险
 
@@ -208,7 +208,7 @@ P0 完成后跑全链路验证（占位站构建 + po_stats + stat 门禁），�
 
 ## 11. 工作量与节奏估算（粗估，P0 精确化后回填）
 
-- 翻译单元：1500–2500 条 msgid（41 文件，~296 KB 原文，非代码文本约 60%）。
+- 翻译单元：**1728 条 msgid**（P0 实测精确数，2026-11-18；42 文件，~296 KB 原文，原估算区间 1500–2500）。
 - Agent 成本粗估：每条目翻译 + 校对两遍约 0.5–1.5k tokens（含上下文），**全量初译约 5M–15M tokens 量级**，仅供排期参考。
 - 节奏：**每会话 1 个批次**（对齐 §12）；批内不同 po 文件 agent 并行 3–5 个，同文件分段串行。
 

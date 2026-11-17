@@ -1,0 +1,420 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/errors.rst:5
+msgid "Error handling"
+msgstr ""
+
+#: ../../src/errors.rst:7
+msgid ""
+"In libuv errors are negative numbered constants. As a rule of thumb, "
+"whenever there is a status parameter, or an API functions returns an "
+"integer, a negative number will imply an error."
+msgstr ""
+
+#: ../../src/errors.rst:11
+msgid ""
+"When a function which takes a callback returns an error, the callback "
+"will never be called."
+msgstr ""
+
+#: ../../src/errors.rst:15
+msgid ""
+"Implementation detail: on Unix error codes are the negated `errno` (or "
+"`-errno`), while on Windows they are defined by libuv to arbitrary "
+"negative numbers."
+msgstr ""
+
+#: ../../src/errors.rst:20
+msgid "Error constants"
+msgstr ""
+
+#: ../../src/errors.rst:24
+msgid "argument list too long"
+msgstr ""
+
+#: ../../src/errors.rst:28
+msgid "permission denied"
+msgstr ""
+
+#: ../../src/errors.rst:32
+msgid "address already in use"
+msgstr ""
+
+#: ../../src/errors.rst:36
+msgid "address not available"
+msgstr ""
+
+#: ../../src/errors.rst:40 ../../src/errors.rst:48
+msgid "address family not supported"
+msgstr ""
+
+#: ../../src/errors.rst:44
+msgid "resource temporarily unavailable"
+msgstr ""
+
+#: ../../src/errors.rst:52
+msgid "temporary failure"
+msgstr ""
+
+#: ../../src/errors.rst:56
+msgid "bad ai_flags value"
+msgstr ""
+
+#: ../../src/errors.rst:60
+msgid "invalid value for hints"
+msgstr ""
+
+#: ../../src/errors.rst:64
+msgid "request canceled"
+msgstr ""
+
+#: ../../src/errors.rst:68
+msgid "permanent failure"
+msgstr ""
+
+#: ../../src/errors.rst:72
+msgid "ai_family not supported"
+msgstr ""
+
+#: ../../src/errors.rst:76
+msgid "out of memory"
+msgstr ""
+
+#: ../../src/errors.rst:80
+msgid "no address"
+msgstr ""
+
+#: ../../src/errors.rst:84
+msgid "unknown node or service"
+msgstr ""
+
+#: ../../src/errors.rst:88
+msgid "argument buffer overflow"
+msgstr ""
+
+#: ../../src/errors.rst:92
+msgid "resolved protocol is unknown"
+msgstr ""
+
+#: ../../src/errors.rst:96
+msgid "service not available for socket type"
+msgstr ""
+
+#: ../../src/errors.rst:100 ../../src/errors.rst:340
+msgid "socket type not supported"
+msgstr ""
+
+#: ../../src/errors.rst:104
+msgid "connection already in progress"
+msgstr ""
+
+#: ../../src/errors.rst:108
+msgid "bad file descriptor"
+msgstr ""
+
+#: ../../src/errors.rst:112
+msgid "resource busy or locked"
+msgstr ""
+
+#: ../../src/errors.rst:116
+msgid "operation canceled"
+msgstr ""
+
+#: ../../src/errors.rst:120
+msgid "invalid Unicode character"
+msgstr ""
+
+#: ../../src/errors.rst:124
+msgid "software caused connection abort"
+msgstr ""
+
+#: ../../src/errors.rst:128
+msgid "connection refused"
+msgstr ""
+
+#: ../../src/errors.rst:132
+msgid "connection reset by peer"
+msgstr ""
+
+#: ../../src/errors.rst:136
+msgid "destination address required"
+msgstr ""
+
+#: ../../src/errors.rst:140
+msgid "file already exists"
+msgstr ""
+
+#: ../../src/errors.rst:144
+msgid "bad address in system call argument"
+msgstr ""
+
+#: ../../src/errors.rst:148
+msgid "file too large"
+msgstr ""
+
+#: ../../src/errors.rst:152
+msgid "host is unreachable"
+msgstr ""
+
+#: ../../src/errors.rst:156
+msgid "interrupted system call"
+msgstr ""
+
+#: ../../src/errors.rst:160
+msgid "invalid argument"
+msgstr ""
+
+#: ../../src/errors.rst:164
+msgid "i/o error"
+msgstr ""
+
+#: ../../src/errors.rst:168
+msgid "socket is already connected"
+msgstr ""
+
+#: ../../src/errors.rst:172
+msgid "illegal operation on a directory"
+msgstr ""
+
+#: ../../src/errors.rst:176
+msgid "too many symbolic links encountered"
+msgstr ""
+
+#: ../../src/errors.rst:180
+msgid "too many open files"
+msgstr ""
+
+#: ../../src/errors.rst:184
+msgid "message too long"
+msgstr ""
+
+#: ../../src/errors.rst:188
+msgid "name too long"
+msgstr ""
+
+#: ../../src/errors.rst:192
+msgid "network is down"
+msgstr ""
+
+#: ../../src/errors.rst:196
+msgid "network is unreachable"
+msgstr ""
+
+#: ../../src/errors.rst:200
+msgid "file table overflow"
+msgstr ""
+
+#: ../../src/errors.rst:204
+msgid "no buffer space available"
+msgstr ""
+
+#: ../../src/errors.rst:208
+msgid "no such device"
+msgstr ""
+
+#: ../../src/errors.rst:212
+msgid "no such file or directory"
+msgstr ""
+
+#: ../../src/errors.rst:216
+msgid "not enough memory"
+msgstr ""
+
+#: ../../src/errors.rst:220
+msgid "machine is not on the network"
+msgstr ""
+
+#: ../../src/errors.rst:224
+msgid "protocol not available"
+msgstr ""
+
+#: ../../src/errors.rst:228
+msgid "no space left on device"
+msgstr ""
+
+#: ../../src/errors.rst:232
+msgid "function not implemented"
+msgstr ""
+
+#: ../../src/errors.rst:236
+msgid "socket is not connected"
+msgstr ""
+
+#: ../../src/errors.rst:240
+msgid "not a directory"
+msgstr ""
+
+#: ../../src/errors.rst:244
+msgid "directory not empty"
+msgstr ""
+
+#: ../../src/errors.rst:248
+msgid "socket operation on non-socket"
+msgstr ""
+
+#: ../../src/errors.rst:252
+msgid "operation not supported on socket"
+msgstr ""
+
+#: ../../src/errors.rst:256
+msgid "value too large for defined data type"
+msgstr ""
+
+#: ../../src/errors.rst:260
+msgid "operation not permitted"
+msgstr ""
+
+#: ../../src/errors.rst:264
+msgid "broken pipe"
+msgstr ""
+
+#: ../../src/errors.rst:268
+msgid "protocol error"
+msgstr ""
+
+#: ../../src/errors.rst:272
+msgid "protocol not supported"
+msgstr ""
+
+#: ../../src/errors.rst:276
+msgid "protocol wrong type for socket"
+msgstr ""
+
+#: ../../src/errors.rst:280
+msgid "result too large"
+msgstr ""
+
+#: ../../src/errors.rst:284
+msgid "read-only file system"
+msgstr ""
+
+#: ../../src/errors.rst:288
+msgid "cannot send after transport endpoint shutdown"
+msgstr ""
+
+#: ../../src/errors.rst:292
+msgid "invalid seek"
+msgstr ""
+
+#: ../../src/errors.rst:296
+msgid "no such process"
+msgstr ""
+
+#: ../../src/errors.rst:300
+msgid "connection timed out"
+msgstr ""
+
+#: ../../src/errors.rst:304
+msgid "text file is busy"
+msgstr ""
+
+#: ../../src/errors.rst:308
+msgid "cross-device link not permitted"
+msgstr ""
+
+#: ../../src/errors.rst:312
+msgid "unknown error"
+msgstr ""
+
+#: ../../src/errors.rst:316
+msgid "end of file"
+msgstr ""
+
+#: ../../src/errors.rst:320
+msgid "no such device or address"
+msgstr ""
+
+#: ../../src/errors.rst:324
+msgid "too many links"
+msgstr ""
+
+#: ../../src/errors.rst:328
+msgid "inappropriate ioctl for device"
+msgstr ""
+
+#: ../../src/errors.rst:332
+msgid "inappropriate file type or format"
+msgstr ""
+
+#: ../../src/errors.rst:336
+msgid "illegal byte sequence"
+msgstr ""
+
+#: ../../src/errors.rst:344
+msgid "protocol driver not attached"
+msgstr ""
+
+#: ../../src/errors.rst:347
+msgid "API"
+msgstr ""
+
+#: ../../src/errors.rst:351
+msgid ""
+"Macro that expands to a series of invocations of `iter_macro` for each of"
+" the error constants above. `iter_macro` is invoked with two arguments: "
+"the name of the error constant without the `UV_` prefix, and the error "
+"message string literal."
+msgstr ""
+
+#: ../../src/errors.rst:358
+msgid ""
+"Returns the error message for the given error code.  Leaks a few bytes of"
+" memory when you call it with an unknown error code."
+msgstr ""
+
+#: ../../src/errors.rst:363
+msgid ""
+"Returns the error message for the given error code. The zero-terminated "
+"message is stored in the user-supplied buffer `buf` of at most `buflen` "
+"bytes."
+msgstr ""
+
+#: ../../src/errors.rst:370
+msgid ""
+"Returns the error name for the given error code.  Leaks a few bytes of "
+"memory when you call it with an unknown error code."
+msgstr ""
+
+#: ../../src/errors.rst:375
+msgid ""
+"Returns the error name for the given error code. The zero-terminated name"
+" is stored in the user-supplied buffer `buf` of at most `buflen` bytes."
+msgstr ""
+
+#: ../../src/errors.rst:382
+msgid ""
+"Returns the libuv error code equivalent to the given platform dependent "
+"error code: POSIX error codes on Unix (the ones stored in `errno`), and "
+"Win32 error codes on Windows (those returned by `GetLastError()` or "
+"`WSAGetLastError()`)."
+msgstr ""
+
+#: ../../src/errors.rst:386
+msgid "If `sys_errno` is already a libuv error, it is simply returned."
+msgstr ""
+
+#: ../../src/errors.rst:388
+msgid "function declared public."
+msgstr ""
+

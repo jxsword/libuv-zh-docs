@@ -1,0 +1,171 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/fs_event.rst:5
+msgid ":c:type:`uv_fs_event_t` --- FS Event handle"
+msgstr ""
+
+#: ../../src/fs_event.rst:7
+msgid ""
+"FS Event handles allow the user to monitor a given path for changes, for "
+"example, if the file was renamed or there was a generic change in it. "
+"This handle uses the best backend for the job on each platform."
+msgstr ""
+
+#: ../../src/fs_event.rst:12
+msgid ""
+"For AIX, the non default IBM bos.ahafs package has to be installed. The "
+"AIX Event Infrastructure file system (ahafs) has some limitations:"
+msgstr ""
+
+#: ../../src/fs_event.rst:15
+msgid ""
+"ahafs tracks monitoring per process and is not thread safe. A separate "
+"process must be spawned for each monitor for the same event."
+msgstr ""
+
+#: ../../src/fs_event.rst:17
+msgid ""
+"Events for file modification (writing to a file) are not received if only"
+" the containing folder is watched."
+msgstr ""
+
+#: ../../src/fs_event.rst:20
+msgid "See documentation_ for more details."
+msgstr ""
+
+#: ../../src/fs_event.rst:22
+msgid ""
+"The z/OS file system events monitoring infrastructure does not notify of "
+"file creation/deletion within a directory that is being monitored. See "
+"the `IBM Knowledge centre`_ for more details."
+msgstr ""
+
+#: ../../src/fs_event.rst:33
+msgid "Data types"
+msgstr ""
+
+#: ../../src/fs_event.rst:37
+msgid "FS Event handle type."
+msgstr ""
+
+#: ../../src/fs_event.rst:41
+msgid ""
+"Callback passed to :c:func:`uv_fs_event_start` which will be called "
+"repeatedly after the handle is started."
+msgstr ""
+
+#: ../../src/fs_event.rst:44
+msgid ""
+"If the handle was started with a directory the `filename` parameter will "
+"be a relative path to a file contained in the directory, or `NULL` if the"
+" file name cannot be determined."
+msgstr ""
+
+#: ../../src/fs_event.rst:48
+msgid "The `events` parameter is an ORed mask of :c:enum:`uv_fs_event` elements."
+msgstr ""
+
+#: ../../src/fs_event.rst:51
+msgid "For FreeBSD path could sometimes be `NULL` due to a kernel bug."
+msgstr ""
+
+#: ../../src/fs_event.rst:57
+msgid "Event types that :c:type:`uv_fs_event_t` handles monitor."
+msgstr ""
+
+#: ../../src/fs_event.rst:68
+msgid ""
+"Flags that can be passed to :c:func:`uv_fs_event_start` to control its "
+"behavior."
+msgstr ""
+
+#: ../../src/fs_event.rst:100
+msgid "Public members"
+msgstr ""
+
+#: ../../src/fs_event.rst:102
+msgid "N/A"
+msgstr ""
+
+#: ../../src/fs_event.rst:104
+msgid "The :c:type:`uv_handle_t` members also apply."
+msgstr ""
+
+#: ../../src/fs_event.rst:108
+msgid "API"
+msgstr ""
+
+#: ../../src/fs_event.rst:112
+msgid "Initialize the handle."
+msgstr ""
+
+#: ../../src/fs_event.rst:116
+msgid ""
+"Start the handle with the given callback, which will watch the specified "
+"`path` for changes. `flags` can be an ORed mask of "
+":c:enum:`uv_fs_event_flags`."
+msgstr ""
+
+#: ../../src/fs_event.rst:119
+msgid ""
+"Currently the only supported flag is ``UV_FS_EVENT_RECURSIVE`` and only "
+"on OSX and Windows."
+msgstr ""
+
+#: ../../src/fs_event.rst:121
+msgid ""
+"On macOS, events collected by the OS immediately before calling "
+"``uv_fs_event_start`` might be reported to the `uv_fs_event_cb` callback."
+msgstr ""
+
+#: ../../src/fs_event.rst:127
+msgid "Stop the handle, the callback will no longer be called."
+msgstr ""
+
+#: ../../src/fs_event.rst:131
+msgid ""
+"Get the path being monitored by the handle. The buffer must be "
+"preallocated by the user. Returns 0 on success or an error code < 0 in "
+"case of failure. On success, `buffer` will contain the path and `size` "
+"its length. If the buffer is not big enough `UV_ENOBUFS` will be returned"
+" and `size` will be set to the required size, including the null "
+"terminator."
+msgstr ""
+
+#: ../../src/fs_event.rst:137
+msgid ""
+"the returned length no longer includes the terminating null byte, and the"
+" buffer is not null terminated."
+msgstr ""
+
+#: ../../src/fs_event.rst:140
+msgid ""
+"the returned length includes the terminating null byte on `UV_ENOBUFS`, "
+"and the buffer is null terminated on success."
+msgstr ""
+
+#: ../../src/fs_event.rst:144
+msgid "The :c:type:`uv_handle_t` API functions also apply."
+msgstr ""
+

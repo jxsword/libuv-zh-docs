@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/guide/eventloops.rst:2
+msgid "Advanced event loops"
+msgstr ""
+
+#: ../../src/guide/eventloops.rst:4
+msgid ""
+"libuv provides considerable user control over event loops, and you can "
+"achieve interesting results by juggling multiple loops. You can also "
+"embed libuv's event loop into another event loop based library -- imagine"
+" a Qt based UI, and Qt's event loop driving a libuv backend which does "
+"intensive system level tasks."
+msgstr ""
+
+#: ../../src/guide/eventloops.rst:11
+msgid "Stopping an event loop"
+msgstr ""
+
+#: ../../src/guide/eventloops.rst:13
+msgid ""
+"``uv_stop()`` can be used to stop an event loop. The earliest the loop "
+"will stop running is *on the next iteration*, possibly later. This means "
+"that events that are ready to be processed in this iteration of the loop "
+"will still be processed, so ``uv_stop()`` can't be used as a kill switch."
+" When ``uv_stop()`` is called, the loop **won't** block for i/o on this "
+"iteration. The semantics of these things can be a bit difficult to "
+"understand, so let's look at ``uv_run()`` where all the control flow "
+"occurs."
+msgstr ""
+
+#: ../../src/guide/eventloops.rst:21
+msgid "src/unix/core.c - uv_run"
+msgstr ""
+
+#: ../../src/guide/eventloops.rst:28
+msgid ""
+"``stop_flag`` is set by ``uv_stop()``. Now all libuv callbacks are "
+"invoked within the event loop, which is why invoking ``uv_stop()`` in "
+"them will still lead to this iteration of the loop occurring. First libuv"
+" updates timers, then runs pending timer, idle and prepare callbacks, and"
+" invokes any pending I/O callbacks. If you were to call ``uv_stop()`` in "
+"any of them, ``stop_flag`` would be set. This causes "
+"``uv_backend_timeout()`` to return ``0``, which is why the loop does not "
+"block on I/O. If on the other hand, you called ``uv_stop()`` in one of "
+"the check handlers, I/O has already finished and is not affected."
+msgstr ""
+
+#: ../../src/guide/eventloops.rst:38
+msgid ""
+"``uv_stop()`` is useful to shutdown a loop when a result has been "
+"computed or there is an error, without having to ensure that all handlers"
+" are stopped one by one."
+msgstr ""
+
+#: ../../src/guide/eventloops.rst:42
+msgid ""
+"Here is a simple example that stops the loop and demonstrates how the "
+"current iteration of the loop still takes places."
+msgstr ""
+
+#: ../../src/guide/eventloops.rst:45
+msgid "uvstop/main.c"
+msgstr ""
+

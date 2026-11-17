@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/check.rst:5
+msgid ":c:type:`uv_check_t` --- Check handle"
+msgstr ""
+
+#: ../../src/check.rst:7
+msgid ""
+"Check handles will run the given callback once per loop iteration, right "
+"after polling for i/o."
+msgstr ""
+
+#: ../../src/check.rst:12
+msgid "Data types"
+msgstr ""
+
+#: ../../src/check.rst:16
+msgid "Check handle type."
+msgstr ""
+
+#: ../../src/check.rst:20
+msgid "Type definition for callback passed to :c:func:`uv_check_start`."
+msgstr ""
+
+#: ../../src/check.rst:24
+msgid "Public members"
+msgstr ""
+
+#: ../../src/check.rst:26
+msgid "N/A"
+msgstr ""
+
+#: ../../src/check.rst:28
+msgid "The :c:type:`uv_handle_t` members also apply."
+msgstr ""
+
+#: ../../src/check.rst:32
+msgid "API"
+msgstr ""
+
+#: ../../src/check.rst:36
+msgid "Initialize the handle. This function always succeeds."
+msgstr ""
+
+#: ../../src/check.rst
+msgid "返回"
+msgstr ""
+
+#: ../../src/check.rst:38 ../../src/check.rst:52
+msgid "0"
+msgstr ""
+
+#: ../../src/check.rst:42
+msgid ""
+"Start the handle with the given callback. This function always succeeds, "
+"except when `cb` is `NULL`."
+msgstr ""
+
+#: ../../src/check.rst:45
+msgid "0 on success, or `UV_EINVAL` when `cb == NULL`."
+msgstr ""
+
+#: ../../src/check.rst:49
+msgid ""
+"Stop the handle, the callback will no longer be called. This function "
+"always succeeds."
+msgstr ""
+
+#: ../../src/check.rst:54
+msgid "The :c:type:`uv_handle_t` API functions also apply."
+msgstr ""
+

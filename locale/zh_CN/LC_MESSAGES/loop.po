@@ -1,0 +1,343 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/loop.rst:5
+msgid ":c:type:`uv_loop_t` --- Event loop"
+msgstr ""
+
+#: ../../src/loop.rst:7
+msgid ""
+"The event loop is the central part of libuv's functionality. It takes "
+"care of polling for i/o and scheduling callbacks to be run based on "
+"different sources of events."
+msgstr ""
+
+#: ../../src/loop.rst:13
+msgid "Data types"
+msgstr ""
+
+#: ../../src/loop.rst:17
+msgid "Loop data type."
+msgstr ""
+
+#: ../../src/loop.rst:21
+msgid "Additional loop options. See :c:func:`uv_loop_configure`."
+msgstr ""
+
+#: ../../src/loop.rst:34
+msgid "Mode used to run the loop with :c:func:`uv_run`."
+msgstr ""
+
+#: ../../src/loop.rst:46
+msgid "Type definition for callback passed to :c:func:`uv_walk`."
+msgstr ""
+
+#: ../../src/loop.rst:50
+msgid "Public members"
+msgstr ""
+
+#: ../../src/loop.rst:54
+msgid ""
+"Space for user-defined arbitrary data. libuv does not use and does not "
+"touch this field."
+msgstr ""
+
+#: ../../src/loop.rst:59
+msgid "API"
+msgstr ""
+
+#: ../../src/loop.rst:63
+msgid "Initializes the given `uv_loop_t` structure."
+msgstr ""
+
+#: ../../src/loop.rst:69
+msgid ""
+"Set additional loop options.  You should normally call this before the "
+"first call to :c:func:`uv_run` unless mentioned otherwise."
+msgstr ""
+
+#: ../../src/loop.rst:72
+msgid ""
+"Returns 0 on success or a UV_E* error code on failure.  Be prepared to "
+"handle UV_ENOSYS; it means the loop option is not supported by the "
+"platform."
+msgstr ""
+
+#: ../../src/loop.rst:75
+msgid "Supported options:"
+msgstr ""
+
+#: ../../src/loop.rst:77
+msgid ""
+"UV_LOOP_BLOCK_SIGNAL: Block a signal when polling for new events.  The "
+"second argument to :c:func:`uv_loop_configure` is the signal number."
+msgstr ""
+
+#: ../../src/loop.rst:80
+msgid ""
+"This operation is currently only implemented for SIGPROF signals, to "
+"suppress unnecessary wakeups when using a sampling profiler. Requesting "
+"other signals will fail with UV_EINVAL."
+msgstr ""
+
+#: ../../src/loop.rst:84
+msgid ""
+"UV_METRICS_IDLE_TIME: Accumulate the amount of idle time the event loop "
+"spends in the event provider."
+msgstr ""
+
+#: ../../src/loop.rst:87
+msgid "This option is necessary to use :c:func:`uv_metrics_idle_time`."
+msgstr ""
+
+#: ../../src/loop.rst:89
+msgid ""
+"UV_LOOP_USE_IO_URING_SQPOLL: Enable SQPOLL io_uring instance to handle "
+"asynchronous file system operations."
+msgstr ""
+
+#: ../../src/loop.rst:92
+msgid "added the UV_METRICS_IDLE_TIME option."
+msgstr ""
+
+#: ../../src/loop.rst:94
+msgid "added the UV_LOOP_USE_IO_URING_SQPOLL option."
+msgstr ""
+
+#: ../../src/loop.rst:98
+msgid ""
+"Releases all internal loop resources. Call this function only when the "
+"loop has finished executing and all open handles and requests have been "
+"closed, or it will return UV_EBUSY. After this function returns, the user"
+" can free the memory allocated for the loop."
+msgstr ""
+
+#: ../../src/loop.rst:105
+msgid ""
+"Returns the initialized default loop. It may return NULL in case of "
+"allocation failure."
+msgstr ""
+
+#: ../../src/loop.rst:108
+msgid ""
+"This function is just a convenient way for having a global loop "
+"throughout an application, the default loop is in no way different than "
+"the ones initialized with :c:func:`uv_loop_init`. As such, the default "
+"loop can (and should) be closed with :c:func:`uv_loop_close` so the "
+"resources associated with it are freed."
+msgstr ""
+
+#: ../../src/loop.rst:115
+msgid "This function is not thread safe."
+msgstr ""
+
+#: ../../src/loop.rst:119
+msgid ""
+"This function runs the event loop. It will act differently depending on "
+"the specified mode:"
+msgstr ""
+
+#: ../../src/loop.rst:122
+msgid ""
+"UV_RUN_DEFAULT: Runs the event loop until there are no more active and "
+"referenced handles or requests. Returns non-zero if :c:func:`uv_stop` was"
+" called and there are still active handles or requests.  Returns zero in "
+"all other cases."
+msgstr ""
+
+#: ../../src/loop.rst:126
+msgid ""
+"UV_RUN_ONCE: Poll for i/o once. Note that this function blocks if there "
+"are no pending callbacks. Returns zero when done (no active handles or "
+"requests left), or non-zero if more callbacks are expected (meaning you "
+"should run the event loop again sometime in the future)."
+msgstr ""
+
+#: ../../src/loop.rst:130
+msgid ""
+"UV_RUN_NOWAIT: Poll for i/o once but don't block if there are no pending "
+"callbacks. Returns zero if done (no active handles or requests left), or "
+"non-zero if more callbacks are expected (meaning you should run the event"
+" loop again sometime in the future)."
+msgstr ""
+
+#: ../../src/loop.rst:135
+msgid ":c:func:`uv_run` is not reentrant. It must not be called from a callback."
+msgstr ""
+
+#: ../../src/loop.rst:139
+msgid ""
+"Returns non-zero if there are referenced active handles, active requests "
+"or closing handles in the loop."
+msgstr ""
+
+#: ../../src/loop.rst:144
+msgid ""
+"Stop the event loop, causing :c:func:`uv_run` to end as soon as possible."
+" This will happen not sooner than the next loop iteration. If this "
+"function was called before blocking for i/o, the loop won't block for i/o"
+" on this iteration."
+msgstr ""
+
+#: ../../src/loop.rst:151
+msgid ""
+"Returns the size of the `uv_loop_t` structure. Useful for FFI binding "
+"writers who don't want to know the structure layout."
+msgstr ""
+
+#: ../../src/loop.rst:156
+msgid ""
+"Get backend file descriptor. Only kqueue, epoll and event ports are "
+"supported."
+msgstr ""
+
+#: ../../src/loop.rst:159
+msgid ""
+"This can be used in conjunction with `uv_run(loop, UV_RUN_NOWAIT)` to "
+"poll in one thread and run the event loop's callbacks in another see test"
+"/test-embed.c for an example."
+msgstr ""
+
+#: ../../src/loop.rst:164
+msgid ""
+"Embedding a kqueue fd in another kqueue pollset doesn't work on all "
+"platforms. It's not an error to add the fd but it never generates events."
+msgstr ""
+
+#: ../../src/loop.rst:169
+msgid ""
+"Get the poll timeout. The return value is in milliseconds, or -1 for no "
+"timeout."
+msgstr ""
+
+#: ../../src/loop.rst:174
+msgid ""
+"Return the current timestamp in milliseconds. The timestamp is cached at "
+"the start of the event loop tick, see :c:func:`uv_update_time` for "
+"details and rationale."
+msgstr ""
+
+#: ../../src/loop.rst:178
+msgid ""
+"The timestamp increases monotonically from some arbitrary point in time. "
+"Don't make assumptions about the starting point, you will only get "
+"disappointed."
+msgstr ""
+
+#: ../../src/loop.rst:183
+msgid "Use :c:func:`uv_hrtime` if you need sub-millisecond granularity."
+msgstr ""
+
+#: ../../src/loop.rst:187
+msgid ""
+"Update the event loop's concept of \"now\". Libuv caches the current time"
+" at the start of the event loop tick in order to reduce the number of "
+"time-related system calls."
+msgstr ""
+
+#: ../../src/loop.rst:191
+msgid ""
+"You won't normally need to call this function unless you have callbacks "
+"that block the event loop for longer periods of time, where \"longer\" is"
+" somewhat subjective but probably on the order of a millisecond or more."
+msgstr ""
+
+#: ../../src/loop.rst:197
+msgid "Walk the list of handles: `walk_cb` will be executed with the given `arg`."
+msgstr ""
+
+#: ../../src/loop.rst:203
+msgid ""
+"Reinitialize any kernel state necessary in the child process after a "
+":man:`fork(2)` system call."
+msgstr ""
+
+#: ../../src/loop.rst:206
+msgid ""
+"Previously started watchers will continue to be started in the child "
+"process."
+msgstr ""
+
+#: ../../src/loop.rst:209
+msgid ""
+"It is necessary to explicitly call this function on every event loop "
+"created in the parent process that you plan to continue to use in the "
+"child, including the default loop (even if you don't continue to use it "
+"in the parent). This function must be called before calling "
+":c:func:`uv_run` or any other API function using the loop in the child. "
+"Failure to do so will result in undefined behaviour, possibly including "
+"duplicate events delivered to both parent and child or aborting the child"
+" process."
+msgstr ""
+
+#: ../../src/loop.rst:218
+msgid ""
+"When possible, it is preferred to create a new loop in the child process "
+"instead of reusing a loop created in the parent. New loops created in the"
+" child process after the fork should not use this function."
+msgstr ""
+
+#: ../../src/loop.rst:223
+msgid ""
+"This function is not implemented on Windows, where it returns "
+"``UV_ENOSYS``."
+msgstr ""
+
+#: ../../src/loop.rst:227
+msgid ""
+"This function is experimental. It may contain bugs, and is subject to "
+"change or removal. API and ABI stability is not guaranteed."
+msgstr ""
+
+#: ../../src/loop.rst:232
+msgid ""
+"On Mac OS X, if directory FS event handles were in use in the parent "
+"process *for any event loop*, the child process will no longer be able to"
+" use the most efficient FSEvent implementation. Instead, uses of "
+"directory FS event handles in the child will fall back to the same "
+"implementation used for files and on other kqueue-based systems."
+msgstr ""
+
+#: ../../src/loop.rst:241
+msgid ""
+"On AIX and SunOS, FS event handles that were already started in the "
+"parent process at the time of forking will *not* deliver events in the "
+"child process; they must be closed and restarted. On all other platforms,"
+" they will continue to work normally without any further intervention."
+msgstr ""
+
+#: ../../src/loop.rst:249
+msgid ""
+"Any previous value returned from :c:func:`uv_backend_fd` is now invalid. "
+"That function must be called again to determine the correct backend file "
+"descriptor."
+msgstr ""
+
+#: ../../src/loop.rst:255
+msgid "Returns `loop->data`."
+msgstr ""
+
+#: ../../src/loop.rst:261
+msgid "Sets `loop->data` to `data`."
+msgstr ""
+

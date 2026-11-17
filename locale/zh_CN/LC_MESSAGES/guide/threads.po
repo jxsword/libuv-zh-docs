@@ -1,0 +1,473 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/guide/threads.rst:2
+msgid "Threads"
+msgstr ""
+
+#: ../../src/guide/threads.rst:4
+msgid ""
+"Wait a minute? Why are we on threads? Aren't event loops supposed to be "
+"**the way** to do *web-scale programming*? Well... no. Threads are still "
+"the medium in which processors do their jobs. Threads are therefore "
+"mighty useful sometimes, even though you might have to wade through "
+"various synchronization primitives."
+msgstr ""
+
+#: ../../src/guide/threads.rst:9
+msgid ""
+"Threads are used internally to fake the asynchronous nature of all of the"
+" system calls. libuv also uses threads to allow you, the application, to "
+"perform a task asynchronously that is actually blocking, by spawning a "
+"thread and collecting the result when it is done."
+msgstr ""
+
+#: ../../src/guide/threads.rst:14
+msgid ""
+"Today there are two predominant thread libraries: the Windows threads "
+"implementation and POSIX's :man:`pthreads(7)`. libuv's thread API is "
+"analogous to the pthreads API and often has similar semantics."
+msgstr ""
+
+#: ../../src/guide/threads.rst:18
+msgid ""
+"A notable aspect of libuv's thread facilities is that it is a self "
+"contained section within libuv. Whereas other features intimately depend "
+"on the event loop and callback principles, threads are complete agnostic,"
+" they block as required, signal errors directly via return values, and, "
+"as shown in the :ref:`first example <thread-create-example>`, don't even "
+"require a running event loop."
+msgstr ""
+
+#: ../../src/guide/threads.rst:25
+msgid ""
+"libuv's thread API is also very limited since the semantics and syntax of"
+" threads are different on all platforms, with different levels of "
+"completeness."
+msgstr ""
+
+#: ../../src/guide/threads.rst:28
+msgid ""
+"This chapter makes the following assumption: **There is only one event "
+"loop, running in one thread (the main thread)**. No other thread "
+"interacts with the event loop (except using ``uv_async_send``)."
+msgstr ""
+
+#: ../../src/guide/threads.rst:33
+msgid "Core thread operations"
+msgstr ""
+
+#: ../../src/guide/threads.rst:35
+msgid ""
+"There isn't much here, you just start a thread using "
+"``uv_thread_create()`` and wait for it to close using "
+"``uv_thread_join()``."
+msgstr ""
+
+#: ../../src/guide/threads.rst:40 ../../src/guide/threads.rst:57
+msgid "thread-create/main.c"
+msgstr ""
+
+#: ../../src/guide/threads.rst:49
+msgid ""
+"``uv_thread_t`` is just an alias for ``pthread_t`` on Unix, but this is "
+"an implementation detail, avoid depending on it to always be true."
+msgstr ""
+
+#: ../../src/guide/threads.rst:52
+msgid ""
+"The second parameter is the function which will serve as the entry point "
+"for the thread, the last parameter is a ``void *`` argument which can be "
+"used to pass custom parameters to the thread. The function ``hare`` will "
+"now run in a separate thread, scheduled pre-emptively by the operating "
+"system:"
+msgstr ""
+
+#: ../../src/guide/threads.rst:64
+msgid ""
+"Unlike ``pthread_join()`` which allows the target thread to pass back a "
+"value to the calling thread using a second parameter, "
+"``uv_thread_join()`` does not. To send values use :ref:`inter-thread-"
+"communication`."
+msgstr ""
+
+#: ../../src/guide/threads.rst:69
+msgid "Synchronization Primitives"
+msgstr ""
+
+#: ../../src/guide/threads.rst:71
+msgid ""
+"This section is purposely spartan. This book is not about threads, so I "
+"only catalogue any surprises in the libuv APIs here. For the rest you can"
+" look at the :man:`pthreads(7)` man pages."
+msgstr ""
+
+#: ../../src/guide/threads.rst:76
+msgid "Mutexes"
+msgstr ""
+
+#: ../../src/guide/threads.rst:78
+msgid "The mutex functions are a **direct** map to the pthread equivalents."
+msgstr ""
+
+#: ../../src/guide/threads.rst:80
+msgid "libuv mutex functions"
+msgstr ""
+
+#: ../../src/guide/threads.rst:90
+msgid ""
+"The ``uv_mutex_init()``, ``uv_mutex_init_recursive()`` and "
+"``uv_mutex_trylock()`` functions will return 0 on success, and an error "
+"code otherwise."
+msgstr ""
+
+#: ../../src/guide/threads.rst:93
+msgid ""
+"If `libuv` has been compiled with debugging enabled, "
+"``uv_mutex_destroy()``, ``uv_mutex_lock()`` and ``uv_mutex_unlock()`` "
+"will ``abort()`` on error. Similarly ``uv_mutex_trylock()`` will abort if"
+" the error is anything *other than* ``EAGAIN`` or ``EBUSY``."
+msgstr ""
+
+#: ../../src/guide/threads.rst:98
+msgid ""
+"Recursive mutexes are supported, but you should not rely on them. Also, "
+"they should not be used with ``uv_cond_t`` variables."
+msgstr ""
+
+#: ../../src/guide/threads.rst:101
+msgid ""
+"The default BSD mutex implementation will raise an error if a thread "
+"which has locked a mutex attempts to lock it again. For example, a "
+"construct like::"
+msgstr ""
+
+#: ../../src/guide/threads.rst:110
+msgid ""
+"can be used to wait until another thread initializes some stuff and then "
+"unlocks ``a_mutex`` but will lead to your program crashing if in debug "
+"mode, or return an error in the second call to ``uv_mutex_lock()``."
+msgstr ""
+
+#: ../../src/guide/threads.rst:116
+msgid "Mutexes on Windows are always recursive."
+msgstr ""
+
+#: ../../src/guide/threads.rst:119
+msgid "Locks"
+msgstr ""
+
+#: ../../src/guide/threads.rst:121
+msgid ""
+"Read-write locks are a more granular access mechanism. Two readers can "
+"access shared memory at the same time. A writer may not acquire the lock "
+"when it is held by a reader. A reader or writer may not acquire a lock "
+"when a writer is holding it. Read-write locks are frequently used in "
+"databases. Here is a toy example."
+msgstr ""
+
+#: ../../src/guide/threads.rst:127
+msgid "locks/main.c - simple rwlocks"
+msgstr ""
+
+#: ../../src/guide/threads.rst:133
+msgid ""
+"Run this and observe how the readers will sometimes overlap. In case of "
+"multiple writers, schedulers will usually give them higher priority, so "
+"if you add two writers, you'll see that both writers tend to finish first"
+" before the readers get a chance again."
+msgstr ""
+
+#: ../../src/guide/threads.rst:138
+msgid ""
+"We also use barriers in the above example so that the main thread can "
+"wait for all readers and writers to indicate they have ended."
+msgstr ""
+
+#: ../../src/guide/threads.rst:142
+msgid "Others"
+msgstr ""
+
+#: ../../src/guide/threads.rst:144
+msgid ""
+"libuv also supports semaphores_, `condition variables`_ and barriers_ "
+"with APIs very similar to their pthread counterparts."
+msgstr ""
+
+#: ../../src/guide/threads.rst:151
+msgid ""
+"In addition, libuv provides a convenience function ``uv_once()``. "
+"Multiple threads can attempt to call ``uv_once()`` with a given guard and"
+" a function pointer, **only the first one will win, the function will be "
+"called once and only once**::"
+msgstr ""
+
+#: ../../src/guide/threads.rst:179
+msgid "After all threads are done, ``i == 1``."
+msgstr ""
+
+#: ../../src/guide/threads.rst:183
+msgid ""
+"libuv v0.11.11 onwards also added a ``uv_key_t`` struct and api_ for "
+"thread-local storage."
+msgstr ""
+
+#: ../../src/guide/threads.rst:189
+msgid "libuv work queue"
+msgstr ""
+
+#: ../../src/guide/threads.rst:191
+msgid ""
+"``uv_queue_work()`` is a convenience function that allows an application "
+"to run a task in a separate thread, and have a callback that is triggered"
+" when the task is done. A seemingly simple function, what makes "
+"``uv_queue_work()`` tempting is that it allows potentially any third-"
+"party libraries to be used with the event-loop paradigm. When you use "
+"event loops, it is *imperative to make sure that no function which runs "
+"periodically in the loop thread blocks when performing I/O or is a "
+"serious CPU hog*, because this means that the loop slows down and events "
+"are not being handled at full capacity."
+msgstr ""
+
+#: ../../src/guide/threads.rst:200
+msgid ""
+"However, a lot of existing code out there features blocking functions "
+"(for example a routine which performs I/O under the hood) to be used with"
+" threads if you want responsiveness (the classic 'one thread per client' "
+"server model), and getting them to play with an event loop library "
+"generally involves rolling your own system of running the task in a "
+"separate thread.  libuv just provides a convenient abstraction for this."
+msgstr ""
+
+#: ../../src/guide/threads.rst:207
+msgid ""
+"Here is a simple example inspired by `node.js is cancer`_. We are going "
+"to calculate fibonacci numbers, sleeping a bit along the way, but run it "
+"in a separate thread so that the blocking and CPU bound task does not "
+"prevent the event loop from performing other activities."
+msgstr ""
+
+#: ../../src/guide/threads.rst:212
+msgid "queue-work/main.c - lazy fibonacci"
+msgstr ""
+
+#: ../../src/guide/threads.rst:218
+msgid ""
+"The actual task function is simple, nothing to show that it is going to "
+"be run in a separate thread. The ``uv_work_t`` structure is the clue. You"
+" can pass arbitrary data through it using the ``void* data`` field and "
+"use it to communicate to and from the thread. But be sure you are using "
+"proper locks if you are changing things while both threads may be "
+"running."
+msgstr ""
+
+#: ../../src/guide/threads.rst:224
+msgid "The trigger is ``uv_queue_work``:"
+msgstr ""
+
+#: ../../src/guide/threads.rst:226
+msgid "queue-work/main.c"
+msgstr ""
+
+#: ../../src/guide/threads.rst:233
+msgid ""
+"The thread function will be launched in a separate thread, passed the "
+"``uv_work_t`` structure and once the function returns, the *after* "
+"function will be called on the thread the event loop is running in. It "
+"will be passed the same structure."
+msgstr ""
+
+#: ../../src/guide/threads.rst:238
+msgid ""
+"For writing wrappers to blocking libraries, a common :ref:`pattern "
+"<baton>` is to use a baton to exchange data."
+msgstr ""
+
+#: ../../src/guide/threads.rst:241
+msgid ""
+"Since libuv version `0.9.4` an additional function, ``uv_cancel()``, is "
+"available. This allows you to cancel tasks on the libuv work queue. Only "
+"tasks that *are yet to be started* can be cancelled. If a task has "
+"*already started executing, or it has finished executing*, "
+"``uv_cancel()`` **will fail**."
+msgstr ""
+
+#: ../../src/guide/threads.rst:246
+msgid ""
+"``uv_cancel()`` is useful to cleanup pending tasks if the user requests "
+"termination. For example, a music player may queue up multiple "
+"directories to be scanned for audio files. If the user terminates the "
+"program, it should quit quickly and not wait until all pending requests "
+"are run."
+msgstr ""
+
+#: ../../src/guide/threads.rst:251
+msgid ""
+"Let's modify the fibonacci example to demonstrate ``uv_cancel()``. We "
+"first set up a signal handler for termination."
+msgstr ""
+
+#: ../../src/guide/threads.rst:254 ../../src/guide/threads.rst:264
+#: ../../src/guide/threads.rst:274
+msgid "queue-cancel/main.c"
+msgstr ""
+
+#: ../../src/guide/threads.rst:260
+msgid ""
+"When the user triggers the signal by pressing ``Ctrl+C`` we send "
+"``uv_cancel()`` to all the workers. ``uv_cancel()`` will return ``0`` for"
+" those tasks that are pending execution and could be cancelled."
+msgstr ""
+
+#: ../../src/guide/threads.rst:271
+msgid ""
+"For tasks that do get cancelled successfully, the *after* function is "
+"called with ``status`` set to ``UV_ECANCELED``."
+msgstr ""
+
+#: ../../src/guide/threads.rst:281
+msgid ""
+"``uv_cancel()`` can also be used with ``uv_fs_t`` and "
+"``uv_getaddrinfo_t`` requests. For the filesystem family of functions, "
+"``uv_fs_t.errorno`` will be set to ``UV_ECANCELED``."
+msgstr ""
+
+#: ../../src/guide/threads.rst:287
+msgid ""
+"A well designed program would have a way to terminate long running "
+"workers that have already started executing. Such a worker could "
+"periodically check for a variable that only the main process sets to "
+"signal termination."
+msgstr ""
+
+#: ../../src/guide/threads.rst:294
+msgid "Inter-thread communication"
+msgstr ""
+
+#: ../../src/guide/threads.rst:296
+msgid ""
+"Sometimes you want various threads to actually send each other messages "
+"*while* they are running. For example you might be running some long "
+"duration task in a separate thread (perhaps using ``uv_queue_work``) but "
+"want to notify progress to the main thread. This is a simple example of "
+"having a download manager informing the user of the status of running "
+"downloads."
+msgstr ""
+
+#: ../../src/guide/threads.rst:302 ../../src/guide/threads.rst:328
+#: ../../src/guide/threads.rst:339 ../../src/guide/threads.rst:349
+msgid "progress/main.c"
+msgstr ""
+
+#: ../../src/guide/threads.rst:309
+msgid ""
+"The async thread communication works *on loops* so although any thread "
+"can be the message sender, only threads with libuv loops can be receivers"
+" (or rather the loop is the receiver). libuv will invoke the callback "
+"(``print_progress``) with the async watcher whenever it receives a "
+"message."
+msgstr ""
+
+#: ../../src/guide/threads.rst:316
+msgid ""
+"It is important to realize that since the message send is *async*, the "
+"callback may be invoked immediately after ``uv_async_send`` is called in "
+"another thread, or it may be invoked after some time. libuv may also "
+"combine multiple calls to ``uv_async_send`` and invoke your callback only"
+" once. The only guarantee that libuv makes is -- The callback function is"
+" called *at least once* after the call to ``uv_async_send``. If you have "
+"no pending calls to ``uv_async_send``, the callback won't be called. If "
+"you make two or more calls, and libuv hasn't had a chance to run the "
+"callback yet, it *may* invoke your callback *only once* for the multiple "
+"invocations of ``uv_async_send``. Your callback will never be called "
+"twice for just one event."
+msgstr ""
+
+#: ../../src/guide/threads.rst:335
+msgid ""
+"In the download function, we modify the progress indicator and queue the "
+"message for delivery with ``uv_async_send``. Remember: ``uv_async_send`` "
+"is also non-blocking and will return immediately."
+msgstr ""
+
+#: ../../src/guide/threads.rst:345
+msgid ""
+"The callback is a standard libuv pattern, extracting the data from the "
+"watcher."
+msgstr ""
+
+#: ../../src/guide/threads.rst:347
+msgid "Finally it is important to remember to clean up the watcher."
+msgstr ""
+
+#: ../../src/guide/threads.rst:356
+msgid ""
+"After this example, which showed the abuse of the ``data`` field, "
+"bnoordhuis_ pointed out that using the ``data`` field is not thread safe,"
+" and ``uv_async_send()`` is actually only meant to wake up the event "
+"loop. Use a mutex or rwlock to ensure accesses are performed in the right"
+" order."
+msgstr ""
+
+#: ../../src/guide/threads.rst:363
+msgid ""
+"mutexes and rwlocks **DO NOT** work inside a signal handler, whereas "
+"``uv_async_send`` does."
+msgstr ""
+
+#: ../../src/guide/threads.rst:366
+msgid ""
+"One use case where ``uv_async_send`` is required is when interoperating "
+"with libraries that require thread affinity for their functionality. For "
+"example in node.js, a v8 engine instance, contexts and its objects are "
+"bound to the thread that the v8 instance was started in. Interacting with"
+" v8 data structures from another thread can lead to undefined results. "
+"Now consider some node.js module which binds a third party library. It "
+"may go something like this:"
+msgstr ""
+
+#: ../../src/guide/threads.rst:373
+msgid ""
+"In node, the third party library is set up with a JavaScript callback to "
+"be invoked for more information::"
+msgstr ""
+
+#: ../../src/guide/threads.rst:385
+msgid ""
+"``lib.do`` is supposed to be non-blocking but the third party lib is "
+"blocking, so the binding uses ``uv_queue_work``."
+msgstr ""
+
+#: ../../src/guide/threads.rst:388
+msgid ""
+"The actual work being done in a separate thread wants to invoke the "
+"progress callback, but cannot directly call into v8 to interact with "
+"JavaScript. So it uses ``uv_async_send``."
+msgstr ""
+
+#: ../../src/guide/threads.rst:392
+msgid ""
+"The async callback, invoked in the main loop thread, which is the v8 "
+"thread, then interacts with v8 to invoke the JavaScript callback."
+msgstr ""
+

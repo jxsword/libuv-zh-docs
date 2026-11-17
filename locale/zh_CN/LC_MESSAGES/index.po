@@ -1,0 +1,120 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/index.rst:3
+msgid "Welcome to the libuv documentation"
+msgstr ""
+
+#: ../../src/index.rst:6
+msgid "Overview"
+msgstr ""
+
+#: ../../src/index.rst:8
+msgid ""
+"libuv is a multi-platform support library with a focus on asynchronous "
+"I/O. It was primarily developed for use by `Node.js`_, but it's also used"
+" by `Luvit`_, `Julia`_, `uvloop`_, and `others`_."
+msgstr ""
+
+#: ../../src/index.rst:13
+msgid ""
+"In case you find errors in this documentation you can help by sending "
+"`pull requests <https://github.com/libuv/libuv>`_!"
+msgstr ""
+
+#: ../../src/index.rst:24
+msgid "Features"
+msgstr ""
+
+#: ../../src/index.rst:26
+msgid "Full-featured event loop backed by epoll, kqueue, IOCP, event ports."
+msgstr ""
+
+#: ../../src/index.rst:27
+msgid "Asynchronous TCP and UDP sockets"
+msgstr ""
+
+#: ../../src/index.rst:28
+msgid "Asynchronous DNS resolution"
+msgstr ""
+
+#: ../../src/index.rst:29
+msgid "Asynchronous file and file system operations"
+msgstr ""
+
+#: ../../src/index.rst:30
+msgid "File system events"
+msgstr ""
+
+#: ../../src/index.rst:31
+msgid "ANSI escape code controlled TTY"
+msgstr ""
+
+#: ../../src/index.rst:32
+msgid ""
+"IPC with socket sharing, using Unix domain sockets or named pipes "
+"(Windows)"
+msgstr ""
+
+#: ../../src/index.rst:33
+msgid "Child processes"
+msgstr ""
+
+#: ../../src/index.rst:34
+msgid "Thread pool"
+msgstr ""
+
+#: ../../src/index.rst:35
+msgid "Signal handling"
+msgstr ""
+
+#: ../../src/index.rst:36
+msgid "High resolution clock"
+msgstr ""
+
+#: ../../src/index.rst:37
+msgid "Threading and synchronization primitives"
+msgstr ""
+
+#: ../../src/index.rst:41
+msgid "Documentation"
+msgstr ""
+
+#: ../../src/index.rst:53
+msgid "Downloads"
+msgstr ""
+
+#: ../../src/index.rst:55
+msgid "libuv can be downloaded from `here <https://dist.libuv.org/dist/>`_."
+msgstr ""
+
+#: ../../src/index.rst:59
+msgid "Installation"
+msgstr ""
+
+#: ../../src/index.rst:61
+msgid ""
+"Installation instructions can be found in the `README "
+"<https://github.com/libuv/libuv/blob/master/README.md>`_."
+msgstr ""
+

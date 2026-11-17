@@ -1,0 +1,364 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/design.rst:5
+msgid "Design overview"
+msgstr ""
+
+#: ../../src/design.rst:7
+msgid ""
+"libuv is cross-platform support library which was originally written for "
+"`Node.js`_. It's designed around the event-driven asynchronous I/O model."
+msgstr ""
+
+#: ../../src/design.rst:12
+msgid ""
+"The library provides much more than a simple abstraction over different "
+"I/O polling mechanisms: 'handles' and 'streams' provide a high level "
+"abstraction for sockets and other entities; cross-platform file I/O and "
+"threading functionality is also provided, amongst other things."
+msgstr ""
+
+#: ../../src/design.rst:16
+msgid ""
+"Here is a diagram illustrating the different parts that compose libuv and"
+" what subsystem they relate to:"
+msgstr ""
+
+#: ../../src/design.rst
+msgid "scale"
+msgstr ""
+
+#: ../../src/design.rst:22
+msgid "75%"
+msgstr ""
+
+#: ../../src/design.rst
+msgid "align"
+msgstr ""
+
+#: ../../src/design.rst:23
+msgid "center"
+msgstr ""
+
+#: ../../src/design.rst
+msgid "alt"
+msgstr ""
+
+#: ../../src/design.rst:24
+msgid "Picture of libuv architecture"
+msgstr ""
+
+#: ../../src/design.rst:31
+msgid "Handles and requests"
+msgstr ""
+
+#: ../../src/design.rst:33
+msgid ""
+"libuv provides users with 2 abstractions to work with, in combination "
+"with the event loop: handles and requests."
+msgstr ""
+
+#: ../../src/design.rst:36
+msgid ""
+"Handles represent long-lived objects capable of performing certain "
+"operations while active. Some examples:"
+msgstr ""
+
+#: ../../src/design.rst:38
+msgid ""
+"A prepare handle gets its callback called once every loop iteration when "
+"active."
+msgstr ""
+
+#: ../../src/design.rst:39
+msgid ""
+"A TCP server handle that gets its connection callback called every time "
+"there is a new connection."
+msgstr ""
+
+#: ../../src/design.rst:41
+msgid ""
+"Requests represent (typically) short-lived operations. These operations "
+"can be performed over a handle: write requests are used to write data on "
+"a handle; or standalone: getaddrinfo requests don't need a handle they "
+"run directly on the loop."
+msgstr ""
+
+#: ../../src/design.rst:45
+msgid "Guidelines for dealing with handles and requests:"
+msgstr ""
+
+#: ../../src/design.rst:47
+msgid ""
+"If `uv_foo_init()` succeeds in initializing the handle, you must call "
+":c:func:`uv_close`. If the handle's init function errors, you don't need "
+"to do anything."
+msgstr ""
+
+#: ../../src/design.rst:51
+msgid ""
+"Only handles are closed, not requests. For example, :c:type:`uv_tcp_t` is"
+" a handle, :c:type:`uv_write_t` is a request."
+msgstr ""
+
+#: ../../src/design.rst:54
+msgid ""
+"The handle's memory can only be reclaimed or reused from inside the "
+":c:type:`uv_close_cb` or afterwards, not before."
+msgstr ""
+
+#: ../../src/design.rst:57
+msgid ""
+"Most handles have init + start/stop functions; some handles don't. "
+"Example: :c:type:`uv_tcp_t` vs. :c:type:`uv_process_t`; "
+":c:func:`uv_spawn` combines handle initialization and process start into "
+"one."
+msgstr ""
+
+#: ../../src/design.rst:61
+msgid ""
+"Requests are closed automatically when they complete, or when they are "
+"cancelled with :c:func:`uv_cancel`."
+msgstr ""
+
+#: ../../src/design.rst:64
+msgid ""
+"No additional cleanup is needed except for :c:type:`uv_fs_t` and "
+":c:type:`uv_getaddrinfo_t` requests. For :c:type:`uv_fs_t`, call "
+":c:func:`uv_fs_req_cleanup` once you are done with it; for "
+":c:type:`uv_getaddrinfo_t`, that's :c:func:`uv_freeaddrinfo`."
+msgstr ""
+
+#: ../../src/design.rst:69
+msgid ""
+"The request's memory can only be reclaimed or reused from that point "
+"onward."
+msgstr ""
+
+#: ../../src/design.rst:72
+msgid "The I/O loop"
+msgstr ""
+
+#: ../../src/design.rst:74
+msgid ""
+"The I/O (or event) loop is the central part of libuv. It establishes the "
+"content for all I/O operations, and it's meant to be tied to a single "
+"thread. One can run multiple event loops as long as each runs in a "
+"different thread. The libuv event loop (or any other API involving the "
+"loop or handles, for that matter) **is not thread-safe** except where "
+"stated otherwise."
+msgstr ""
+
+#: ../../src/design.rst:79
+msgid ""
+"The event loop follows the rather usual single threaded asynchronous I/O "
+"approach: all (network) I/O is performed on non-blocking sockets which "
+"are polled using the best mechanism available on the given platform: "
+"epoll on Linux, kqueue on OSX and other BSDs, event ports on SunOS and "
+"IOCP on Windows. As part of a loop iteration the loop will block waiting "
+"for I/O activity on sockets which have been added to the poller and "
+"callbacks will be fired indicating socket conditions (readable, writable "
+"hangup) so handles can read, write or perform the desired I/O operation."
+msgstr ""
+
+#: ../../src/design.rst:86
+msgid ""
+"In order to better understand how the event loop operates, the following "
+"diagram illustrates all stages of a loop iteration:"
+msgstr ""
+
+#: ../../src/design.rst:-1
+msgid "Picture of libuv loop iteration"
+msgstr ""
+
+#: ../../src/design.rst:100
+msgid "The loop concept of 'now' is initially set."
+msgstr ""
+
+#: ../../src/design.rst:102
+msgid ""
+"Due timers are run if the loop was run with ``UV_RUN_DEFAULT``. All "
+"active timers scheduled for a time before the loop's concept of *now* get"
+" their callbacks called."
+msgstr ""
+
+#: ../../src/design.rst:105
+msgid ""
+"If the loop is *alive*  an iteration is started, otherwise the loop will "
+"exit immediately. So, when is a loop considered to be *alive*? If a loop "
+"has active and ref'd handles, active requests or closing handles it's "
+"considered to be *alive*."
+msgstr ""
+
+#: ../../src/design.rst:109
+msgid ""
+"Pending callbacks are called. All I/O callbacks are called right after "
+"polling for I/O, for the most part. There are cases, however, in which "
+"calling such a callback is deferred for the next loop iteration. If the "
+"previous iteration deferred any I/O callback it will be run at this "
+"point."
+msgstr ""
+
+#: ../../src/design.rst:113
+msgid ""
+"Idle handle callbacks are called. Despite the unfortunate name, idle "
+"handles are run on every loop iteration, if they are active."
+msgstr ""
+
+#: ../../src/design.rst:116
+msgid ""
+"Prepare handle callbacks are called. Prepare handles get their callbacks "
+"called right before the loop will block for I/O."
+msgstr ""
+
+#: ../../src/design.rst:119
+msgid ""
+"Poll timeout is calculated. Before blocking for I/O the loop calculates "
+"for how long it should block. These are the rules when calculating the "
+"timeout:"
+msgstr ""
+
+#: ../../src/design.rst:122
+msgid "If the loop was run with the ``UV_RUN_NOWAIT`` flag, the timeout is 0."
+msgstr ""
+
+#: ../../src/design.rst:123
+msgid ""
+"If the loop is going to be stopped (:c:func:`uv_stop` was called), the "
+"timeout is 0."
+msgstr ""
+
+#: ../../src/design.rst:124
+msgid "If there are no active handles or requests, the timeout is 0."
+msgstr ""
+
+#: ../../src/design.rst:125
+msgid "If there are any idle handles active, the timeout is 0."
+msgstr ""
+
+#: ../../src/design.rst:126
+msgid "If there are any handles pending to be closed, the timeout is 0."
+msgstr ""
+
+#: ../../src/design.rst:127
+msgid ""
+"If none of the above cases matches, the timeout of the closest timer is "
+"taken, or if there are no active timers, infinity."
+msgstr ""
+
+#: ../../src/design.rst:130
+msgid ""
+"The loop blocks for I/O. At this point the loop will block for I/O for "
+"the duration calculated in the previous step. All I/O related handles "
+"that were monitoring a given file descriptor for a read or write "
+"operation get their callbacks called at this point."
+msgstr ""
+
+#: ../../src/design.rst:134
+msgid ""
+"Check handle callbacks are called. Check handles get their callbacks "
+"called right after the loop has blocked for I/O. Check handles are "
+"essentially the counterpart of prepare handles."
+msgstr ""
+
+#: ../../src/design.rst:137
+msgid ""
+"Close callbacks are called. If a handle was closed by calling "
+":c:func:`uv_close` it will get the close callback called."
+msgstr ""
+
+#: ../../src/design.rst:140
+msgid "The loop concept of 'now' is updated."
+msgstr ""
+
+#: ../../src/design.rst:142
+msgid ""
+"Due timers are run. Note that 'now' is not updated again until the next "
+"loop iteration. So if a timer became due while other timers were being "
+"processed, it won't be run until the following event loop iteration."
+msgstr ""
+
+#: ../../src/design.rst:146
+msgid ""
+"Iteration ends. If the loop was run with ``UV_RUN_NOWAIT`` or "
+"``UV_RUN_ONCE`` modes the iteration ends and :c:func:`uv_run` will "
+"return. If the loop was run with ``UV_RUN_DEFAULT`` it will continue from"
+" the start if it's still *alive*, otherwise it will also end."
+msgstr ""
+
+#: ../../src/design.rst:152
+msgid ""
+"libuv uses a thread pool to make asynchronous file I/O operations "
+"possible, but network I/O is **always** performed in a single thread, "
+"each loop's thread."
+msgstr ""
+
+#: ../../src/design.rst:156
+msgid ""
+"While the polling mechanism is different, libuv makes the execution model"
+" consistent across Unix systems and Windows."
+msgstr ""
+
+#: ../../src/design.rst:161
+msgid "File I/O"
+msgstr ""
+
+#: ../../src/design.rst:163
+msgid ""
+"Unlike network I/O, there are no platform-specific file I/O primitives "
+"libuv could rely on, so the current approach is to run blocking file I/O "
+"operations in a thread pool."
+msgstr ""
+
+#: ../../src/design.rst:166
+msgid ""
+"For a thorough explanation of the cross-platform file I/O landscape, "
+"check out `this post <https://blog.libtorrent.org/2012/10/asynchronous-"
+"disk-io/>`_."
+msgstr ""
+
+#: ../../src/design.rst:169
+msgid ""
+"libuv currently uses a global thread pool on which all loops can queue "
+"work. 3 types of operations are currently run on this pool:"
+msgstr ""
+
+#: ../../src/design.rst:172
+msgid "File system operations"
+msgstr ""
+
+#: ../../src/design.rst:173
+msgid "DNS functions (getaddrinfo and getnameinfo)"
+msgstr ""
+
+#: ../../src/design.rst:174
+msgid "User specified code via :c:func:`uv_queue_work`"
+msgstr ""
+
+#: ../../src/design.rst:177
+msgid ""
+"See the :c:ref:`threadpool` section for more details, but keep in mind "
+"the thread pool size is quite limited."
+msgstr ""
+

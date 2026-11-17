@@ -1,0 +1,536 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/udp.rst:5
+msgid ":c:type:`uv_udp_t` --- UDP handle"
+msgstr ""
+
+#: ../../src/udp.rst:7
+msgid "UDP handles encapsulate UDP communication for both clients and servers."
+msgstr ""
+
+#: ../../src/udp.rst:11
+msgid "Data types"
+msgstr ""
+
+#: ../../src/udp.rst:15
+msgid "UDP handle type."
+msgstr ""
+
+#: ../../src/udp.rst:19
+msgid "UDP send request type."
+msgstr ""
+
+#: ../../src/udp.rst:23
+msgid "Flags used in :c:func:`uv_udp_bind` and :c:type:`uv_udp_recv_cb`.."
+msgstr ""
+
+#: ../../src/udp.rst:87
+msgid ""
+"Type definition for callback passed to :c:func:`uv_udp_send`, which is "
+"called after the data was sent."
+msgstr ""
+
+#: ../../src/udp.rst:92
+msgid ""
+"Type definition for callback passed to :c:func:`uv_udp_recv_start`, which"
+" is called when the endpoint receives data."
+msgstr ""
+
+#: ../../src/udp.rst:95
+msgid "`handle`: UDP handle"
+msgstr ""
+
+#: ../../src/udp.rst:96
+msgid ""
+"`nread`:  Number of bytes that have been received. 0 if there is no more "
+"data to read. Note that 0 may also mean that an empty datagram was "
+"received (in this case `addr` is not NULL). < 0 if a transmission error "
+"was detected; if using :man:`recvmmsg(2)` no more chunks will be received"
+" and the buffer can be freed safely."
+msgstr ""
+
+#: ../../src/udp.rst:101
+msgid "`buf`: :c:type:`uv_buf_t` with the received data."
+msgstr ""
+
+#: ../../src/udp.rst:102
+msgid ""
+"`addr`: ``struct sockaddr*`` containing the address of the sender. Can be"
+" NULL. Valid for the duration of the callback only."
+msgstr ""
+
+#: ../../src/udp.rst:104
+msgid "`flags`: One or more or'ed UV_UDP_* constants."
+msgstr ""
+
+#: ../../src/udp.rst:106
+msgid ""
+"The callee is responsible for freeing the buffer, libuv does not reuse "
+"it. The buffer may be a null buffer (where `buf->base` == NULL and "
+"`buf->len` == 0) on error."
+msgstr ""
+
+#: ../../src/udp.rst:110
+msgid ""
+"When using :man:`recvmmsg(2)`, chunks will have the `UV_UDP_MMSG_CHUNK` "
+"flag set, those must not be freed. If no errors occur, there will be a "
+"final callback with `nread` set to 0, `addr` set to NULL and the buffer "
+"pointing at the initially allocated data with the `UV_UDP_MMSG_CHUNK` "
+"flag cleared and the `UV_UDP_MMSG_FREE` flag set. If a UDP socket error "
+"occurs, `nread` will be < 0. In either scenario, the callee can now "
+"safely free the provided buffer."
+msgstr ""
+
+#: ../../src/udp.rst:117
+msgid "added the `UV_UDP_MMSG_FREE` flag."
+msgstr ""
+
+#: ../../src/udp.rst:120
+msgid ""
+"The receive callback will be called with `nread` == 0 and `addr` == NULL "
+"when there is nothing to read, and with `nread` == 0 and `addr` != NULL "
+"when an empty UDP packet is received."
+msgstr ""
+
+#: ../../src/udp.rst:126
+msgid "Membership type for a multicast address."
+msgstr ""
+
+#: ../../src/udp.rst:137
+msgid "Public members"
+msgstr ""
+
+#: ../../src/udp.rst:141
+msgid ""
+"Number of bytes queued for sending. This field strictly shows how much "
+"information is currently queued."
+msgstr ""
+
+#: ../../src/udp.rst:146
+msgid "Number of send requests currently in the queue awaiting to be processed."
+msgstr ""
+
+#: ../../src/udp.rst:150
+msgid "UDP handle where this send request is taking place."
+msgstr ""
+
+#: ../../src/udp.rst:152
+msgid "The :c:type:`uv_handle_t` members also apply."
+msgstr ""
+
+#: ../../src/udp.rst:156
+msgid "API"
+msgstr ""
+
+#: ../../src/udp.rst:160
+msgid ""
+"Initialize a new UDP handle. The actual socket is created lazily. Returns"
+" 0 on success."
+msgstr ""
+
+#: ../../src/udp.rst:165
+msgid ""
+"Initialize the handle with the specified flags. The lower 8 bits of the "
+"`flags` parameter are used as the socket domain. A socket will be created"
+" for the given domain. If the specified domain is ``AF_UNSPEC`` no socket"
+" is created, just like :c:func:`uv_udp_init`."
+msgstr ""
+
+#: ../../src/udp.rst:169
+msgid "The remaining bits can be used to set one of these flags:"
+msgstr ""
+
+#: ../../src/udp.rst:171
+msgid ""
+"`UV_UDP_RECVMMSG`: if set, and the platform supports it, "
+":man:`recvmmsg(2)` will be used. The :c:type:`uv_alloc_cb` for this "
+"handle should create buffers that are multiples of 64 KiB."
+msgstr ""
+
+#: ../../src/udp.rst:176
+msgid "added the `UV_UDP_RECVMMSG` flag."
+msgstr ""
+
+#: ../../src/udp.rst:180 ../../src/udp.rst:196
+msgid "Opens an existing file descriptor or Windows SOCKET as a UDP handle."
+msgstr ""
+
+#: ../../src/udp.rst
+msgid "参数"
+msgstr ""
+
+#: ../../src/udp.rst:182 ../../src/udp.rst:218 ../../src/udp.rst:252
+#: ../../src/udp.rst:301 ../../src/udp.rst:316 ../../src/udp.rst:415
+#: ../../src/udp.rst:471 ../../src/udp.rst:506
+msgid "UDP handle. Should have been initialized with :c:func:`uv_udp_init`."
+msgstr ""
+
+#: ../../src/udp.rst:185
+msgid "An existing socket to associate with the handle."
+msgstr ""
+
+#: ../../src/udp.rst:187
+msgid ""
+"Flags that control socket behavior, ``UV_UDP_REUSEADDR``, and "
+"``UV_UDP_REUSEPORT`` are supported."
+msgstr ""
+
+#: ../../src/udp.rst
+msgid "返回"
+msgstr ""
+
+#: ../../src/udp.rst:190 ../../src/udp.rst:228 ../../src/udp.rst:258
+#: ../../src/udp.rst:295 ../../src/udp.rst:310 ../../src/udp.rst:327
+#: ../../src/udp.rst:343 ../../src/udp.rst:356 ../../src/udp.rst:369
+#: ../../src/udp.rst:382 ../../src/udp.rst:395 ../../src/udp.rst:427
+#: ../../src/udp.rst:478 ../../src/udp.rst:509
+msgid "0 on success, or an error code < 0 on failure."
+msgstr ""
+
+#: ../../src/udp.rst:198
+msgid ""
+"Unix only: The only requirement of the `sock` argument is that it follows"
+" the datagram contract (works in unconnected mode, supports "
+"sendmsg()/recvmsg(), etc). In other words, other datagram-type sockets "
+"like raw sockets or netlink sockets can also be passed to this function."
+msgstr ""
+
+#: ../../src/udp.rst:204
+msgid "the file descriptor is set to non-blocking mode."
+msgstr ""
+
+#: ../../src/udp.rst:207
+msgid ""
+"The passed file descriptor or SOCKET is not checked for its type, but "
+"it's required that it represents a valid datagram socket."
+msgstr ""
+
+#: ../../src/udp.rst:210
+msgid ""
+"Internally sets the SO_REUSEADDR socket option unconditionally. This "
+"means the reuse flag is always enabled, regardless of user intent. For "
+"more control use :c:func:`uv_udp_open_ex`."
+msgstr ""
+
+#: ../../src/udp.rst:216
+msgid "Bind the UDP handle to an IP address and port."
+msgstr ""
+
+#: ../../src/udp.rst:221
+msgid ""
+"`struct sockaddr_in` or `struct sockaddr_in6` with the address and port "
+"to bind to."
+msgstr ""
+
+#: ../../src/udp.rst:224
+msgid ""
+"Indicate how the socket will be bound, ``UV_UDP_IPV6ONLY``, "
+"``UV_UDP_REUSEADDR``, ``UV_UDP_REUSEPORT``, and ``UV_UDP_RECVERR`` are "
+"supported."
+msgstr ""
+
+#: ../../src/udp.rst:230
+msgid "added the ``UV_UDP_REUSEPORT`` flag."
+msgstr ""
+
+#: ../../src/udp.rst:233
+msgid ""
+"``UV_UDP_REUSEPORT`` flag is available only on Linux 3.9+, DragonFlyBSD "
+"3.6+, FreeBSD 12.0+, Solaris 11.4, and AIX 7.2.5+ at the moment. On other"
+" platforms this function will return an UV_ENOTSUP error. For platforms "
+"where `SO_REUSEPORT`s have the capability of load balancing, specifying "
+"both ``UV_UDP_REUSEADDR`` and ``UV_UDP_REUSEPORT`` in flags is allowed "
+"and `SO_REUSEPORT` will always override the behavior of `SO_REUSEADDR`. "
+"For platforms where `SO_REUSEPORT`s don't have the capability of load "
+"balancing, specifying both ``UV_UDP_REUSEADDR`` and ``UV_UDP_REUSEPORT`` "
+"in flags will fail, returning an UV_ENOTSUP error."
+msgstr ""
+
+#: ../../src/udp.rst:245
+msgid ""
+"Associate the UDP handle to a remote address and port, so every message "
+"sent by this handle is automatically sent to that destination. Calling "
+"this function with a `NULL` `addr` disconnects the handle. Trying to call"
+" `uv_udp_connect()` on an already connected handle will result in an "
+"`UV_EISCONN` error. Trying to disconnect a handle that is not connected "
+"will return an `UV_ENOTCONN` error."
+msgstr ""
+
+#: ../../src/udp.rst:255
+msgid ""
+"`struct sockaddr_in` or `struct sockaddr_in6` with the address and port "
+"to associate to."
+msgstr ""
+
+#: ../../src/udp.rst:264
+msgid ""
+"Get the remote IP and port of the UDP handle on connected UDP handles. On"
+" unconnected handles, it returns `UV_ENOTCONN`."
+msgstr ""
+
+#: ../../src/udp.rst:267 ../../src/udp.rst:285
+msgid ""
+"UDP handle. Should have been initialized with :c:func:`uv_udp_init` and "
+"bound."
+msgstr ""
+
+#: ../../src/udp.rst:270 ../../src/udp.rst:288
+msgid ""
+"Pointer to the structure to be filled with the address data. In order to "
+"support IPv4 and IPv6 `struct sockaddr_storage` should be used."
+msgstr ""
+
+#: ../../src/udp.rst:274 ../../src/udp.rst:292
+msgid ""
+"On input it indicates the data of the `name` field. On output it "
+"indicates how much of it was filled."
+msgstr ""
+
+#: ../../src/udp.rst:277
+msgid "0 on success, or an error code < 0 on failure"
+msgstr ""
+
+#: ../../src/udp.rst:283
+msgid "Get the local IP and port of the UDP handle."
+msgstr ""
+
+#: ../../src/udp.rst:299
+msgid "Set membership for a multicast address"
+msgstr ""
+
+#: ../../src/udp.rst:304 ../../src/udp.rst:319
+msgid "Multicast address to set membership for."
+msgstr ""
+
+#: ../../src/udp.rst:306 ../../src/udp.rst:321
+msgid "Interface address."
+msgstr ""
+
+#: ../../src/udp.rst:308 ../../src/udp.rst:325
+msgid "Should be ``UV_JOIN_GROUP`` or ``UV_LEAVE_GROUP``."
+msgstr ""
+
+#: ../../src/udp.rst:314
+msgid "Set membership for a source-specific multicast group."
+msgstr ""
+
+#: ../../src/udp.rst:323
+msgid "Source address."
+msgstr ""
+
+#: ../../src/udp.rst:333
+msgid ""
+"Set IP multicast loop flag. Makes multicast packets loop back to local "
+"sockets."
+msgstr ""
+
+#: ../../src/udp.rst:336 ../../src/udp.rst:349 ../../src/udp.rst:362
+#: ../../src/udp.rst:375 ../../src/udp.rst:388
+msgid ""
+"UDP handle. Should have been initialized with :c:func:`uv_udp_init_ex` as"
+" either ``AF_INET`` or ``AF_INET6``, or have been bound to an address "
+"explicitly with :c:func:`uv_udp_bind`, or implicitly with "
+":c:func:`uv_udp_send` or :c:func:`uv_udp_recv_start`."
+msgstr ""
+
+#: ../../src/udp.rst:341 ../../src/udp.rst:380
+msgid "1 for on, 0 for off."
+msgstr ""
+
+#: ../../src/udp.rst:347
+msgid "Set the multicast ttl."
+msgstr ""
+
+#: ../../src/udp.rst:354 ../../src/udp.rst:393
+msgid "1 through 255."
+msgstr ""
+
+#: ../../src/udp.rst:360
+msgid "Set the multicast interface to send or receive data on."
+msgstr ""
+
+#: ../../src/udp.rst:367
+msgid "interface address."
+msgstr ""
+
+#: ../../src/udp.rst:373
+msgid "Set broadcast on or off."
+msgstr ""
+
+#: ../../src/udp.rst:386
+msgid "Set the time to live."
+msgstr ""
+
+#: ../../src/udp.rst:399
+msgid ""
+"Send data over the UDP socket. If the socket has not previously been "
+"bound with :c:func:`uv_udp_bind` it will be bound to 0.0.0.0 (the \"all "
+"interfaces\" IPv4 address) and a random port number."
+msgstr ""
+
+#: ../../src/udp.rst:403
+msgid ""
+"On Windows if the `addr` is initialized to point to an unspecified "
+"address (``0.0.0.0`` or ``::``) it will be changed to point to "
+"``localhost``. This is done to match the behavior of Linux systems."
+msgstr ""
+
+#: ../../src/udp.rst:407 ../../src/udp.rst:439
+msgid ""
+"For connected UDP handles, `addr` must be set to `NULL`, otherwise it "
+"will return `UV_EISCONN` error."
+msgstr ""
+
+#: ../../src/udp.rst:410 ../../src/udp.rst:442
+msgid ""
+"For connectionless UDP handles, `addr` cannot be `NULL`, otherwise it "
+"will return `UV_EDESTADDRREQ` error."
+msgstr ""
+
+#: ../../src/udp.rst:413
+msgid "UDP request handle. Need not be initialized."
+msgstr ""
+
+#: ../../src/udp.rst:418
+msgid "List of buffers to send."
+msgstr ""
+
+#: ../../src/udp.rst:420
+msgid "Number of buffers in `bufs`."
+msgstr ""
+
+#: ../../src/udp.rst:422
+msgid ""
+"`struct sockaddr_in` or `struct sockaddr_in6` with the address and port "
+"of the remote peer."
+msgstr ""
+
+#: ../../src/udp.rst:425
+msgid "Callback to invoke when the data has been sent out."
+msgstr ""
+
+#: ../../src/udp.rst:429
+msgid "added ``0.0.0.0`` and ``::`` to ``localhost`` mapping"
+msgstr ""
+
+#: ../../src/udp.rst:432 ../../src/udp.rst:449
+msgid "added support for connected sockets"
+msgstr ""
+
+#: ../../src/udp.rst:436
+msgid ""
+"Same as :c:func:`uv_udp_send`, but won't queue a send request if it can't"
+" be completed immediately."
+msgstr ""
+
+#: ../../src/udp.rst:445
+msgid ""
+">= 0: number of bytes sent (it matches the given buffer size). < 0: "
+"negative error code (``UV_EAGAIN`` is returned when the message can't be "
+"sent immediately)."
+msgstr ""
+
+#: ../../src/udp.rst:453
+msgid ""
+"Like :c:func:`uv_udp_try_send`, but can send multiple datagrams. "
+"Lightweight abstraction around :man:`sendmmsg(2)`, with a "
+":man:`sendmsg(2)` fallback loop for platforms that do not support the "
+"former. The handle must be fully initialized; call c:func:`uv_udp_bind` "
+"first."
+msgstr ""
+
+#: ../../src/udp.rst:458
+msgid ""
+">= 0: number of datagrams sent. Zero only if `count` was zero. < 0: "
+"negative error code. Only if sending the first datagram fails, otherwise "
+"returns a positive send count. ``UV_EAGAIN`` when datagrams cannot be "
+"sent right now; fall back to :c:func:`uv_udp_send`."
+msgstr ""
+
+#: ../../src/udp.rst:467
+msgid ""
+"Prepare for receiving data. If the socket has not previously been bound "
+"with :c:func:`uv_udp_bind` it is bound to 0.0.0.0 (the \"all interfaces\""
+" IPv4 address) and a random port number."
+msgstr ""
+
+#: ../../src/udp.rst:474
+msgid "Callback to invoke when temporary storage is needed."
+msgstr ""
+
+#: ../../src/udp.rst:476
+msgid "Callback to invoke with received data."
+msgstr ""
+
+#: ../../src/udp.rst:481
+msgid ""
+"When using :man:`recvmmsg(2)`, the number of messages received at a time "
+"is limited by the number of max size dgrams that will fit into the buffer"
+" allocated in `alloc_cb`, and `suggested_size` in `alloc_cb` for udp_recv"
+" is always set to the size of 1 max size dgram."
+msgstr ""
+
+#: ../../src/udp.rst:485
+msgid ""
+"added support for :man:`recvmmsg(2)` on supported platforms). The "
+":c:type:`uv_alloc_cb` for this handle should create buffers that are "
+"multiples of 64 KiB."
+msgstr ""
+
+#: ../../src/udp.rst:488
+msgid ""
+":man:`recvmmsg(2)` support is no longer enabled implicitly, it must be "
+"explicitly requested by passing the `UV_UDP_RECVMMSG` flag to "
+":c:func:`uv_udp_init_ex`."
+msgstr ""
+
+#: ../../src/udp.rst:491
+msgid ""
+":c:func:`uv_udp_using_recvmmsg` can be used in `alloc_cb` to determine if"
+" a buffer sized for use with :man:`recvmmsg(2)` should be allocated for "
+"the current handle/platform."
+msgstr ""
+
+#: ../../src/udp.rst:497
+msgid ""
+"Returns 1 if the UDP handle was created with the `UV_UDP_RECVMMSG` flag "
+"and the platform supports :man:`recvmmsg(2)`, 0 otherwise."
+msgstr ""
+
+#: ../../src/udp.rst:504
+msgid "Stop listening for incoming datagrams."
+msgstr ""
+
+#: ../../src/udp.rst:513
+msgid "Returns `handle->send_queue_size`."
+msgstr ""
+
+#: ../../src/udp.rst:519
+msgid "Returns `handle->send_queue_count`."
+msgstr ""
+
+#: ../../src/udp.rst:523
+msgid "The :c:type:`uv_handle_t` API functions also apply."
+msgstr ""
+

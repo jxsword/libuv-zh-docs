@@ -1,0 +1,350 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/handle.rst:5
+msgid ":c:type:`uv_handle_t` --- Base handle"
+msgstr ""
+
+#: ../../src/handle.rst:7
+msgid "`uv_handle_t` is the base type for all libuv handle types."
+msgstr ""
+
+#: ../../src/handle.rst:9
+msgid ""
+"Structures are aligned so that any libuv handle can be cast to "
+"`uv_handle_t`. All API functions defined here work with any handle type."
+msgstr ""
+
+#: ../../src/handle.rst:12
+msgid ""
+"Libuv handles are not movable. Pointers to handle structures passed to "
+"functions must remain valid for the duration of the requested operation. "
+"Take care when using stack allocated handles."
+msgstr ""
+
+#: ../../src/handle.rst:17
+msgid "Data types"
+msgstr ""
+
+#: ../../src/handle.rst:21
+msgid "The base libuv handle type."
+msgstr ""
+
+#: ../../src/handle.rst:25
+msgid "The kind of the libuv handle."
+msgstr ""
+
+#: ../../src/handle.rst:53
+msgid "Union of all handle types."
+msgstr ""
+
+#: ../../src/handle.rst:57
+msgid ""
+"Type definition for callback passed to :c:func:`uv_read_start` and "
+":c:func:`uv_udp_recv_start`. The user must allocate memory and fill the "
+"supplied :c:type:`uv_buf_t` structure. If NULL is assigned as the "
+"buffer's base or 0 as its length, a ``UV_ENOBUFS`` error will be "
+"triggered in the :c:type:`uv_udp_recv_cb` or the :c:type:`uv_read_cb` "
+"callback."
+msgstr ""
+
+#: ../../src/handle.rst:63
+msgid ""
+"Each buffer is used only once and the user is responsible for freeing it "
+"in the :c:type:`uv_udp_recv_cb` or the :c:type:`uv_read_cb` callback."
+msgstr ""
+
+#: ../../src/handle.rst:66
+msgid ""
+"A suggested size (65536 at the moment in most cases) is provided, but "
+"it's just an indication, not related in any way to the pending data to be"
+" read. The user is free to allocate the amount of memory they decide."
+msgstr ""
+
+#: ../../src/handle.rst:70
+msgid ""
+"As an example, applications with custom allocation schemes such as using "
+"freelists, allocation pools or slab based allocators may decide to use a "
+"different size which matches the memory chunks they already have."
+msgstr ""
+
+#: ../../src/handle.rst:74
+msgid "Example:"
+msgstr ""
+
+#: ../../src/handle.rst:85
+msgid "Type definition for callback passed to :c:func:`uv_close`."
+msgstr ""
+
+#: ../../src/handle.rst:89
+msgid "Public members"
+msgstr ""
+
+#: ../../src/handle.rst:93
+msgid "Pointer to the :c:type:`uv_loop_t` the handle is running on. Readonly."
+msgstr ""
+
+#: ../../src/handle.rst:97
+msgid ""
+"The :c:enum:`uv_handle_type`, indicating the type of the underlying "
+"handle. Readonly."
+msgstr ""
+
+#: ../../src/handle.rst:101
+msgid "Space for user-defined arbitrary data. libuv does not use this field."
+msgstr ""
+
+#: ../../src/handle.rst:105
+msgid "API"
+msgstr ""
+
+#: ../../src/handle.rst:109
+msgid ""
+"Macro that expands to a series of invocations of `iter_macro` for each of"
+" the handle types. `iter_macro` is invoked with two arguments: the name "
+"of the `uv_handle_type` element without the `UV_` prefix, and the name of"
+" the corresponding structure type without the `uv_` prefix and `_t` "
+"suffix."
+msgstr ""
+
+#: ../../src/handle.rst:117
+msgid ""
+"Returns non-zero if the handle is active, zero if it's inactive. What "
+"\"active\" means depends on the type of handle:"
+msgstr ""
+
+#: ../../src/handle.rst:120
+msgid ""
+"A uv_async_t handle is always active and cannot be deactivated, except by"
+" closing it with uv_close()."
+msgstr ""
+
+#: ../../src/handle.rst:123
+msgid ""
+"A uv_pipe_t, uv_tcp_t, uv_udp_t, etc. handle - basically any handle that "
+"deals with i/o - is active when it is doing something that involves i/o, "
+"like reading, writing, connecting, accepting new connections, etc."
+msgstr ""
+
+#: ../../src/handle.rst:127
+msgid ""
+"A uv_check_t, uv_idle_t, uv_timer_t, etc. handle is active when it has "
+"been started with a call to uv_check_start(), uv_idle_start(), etc."
+msgstr ""
+
+#: ../../src/handle.rst:130
+msgid ""
+"Rule of thumb: if a handle of type `uv_foo_t` has a `uv_foo_start()` "
+"function, then it's active from the moment that function is called. "
+"Likewise, `uv_foo_stop()` deactivates the handle again."
+msgstr ""
+
+#: ../../src/handle.rst:136
+msgid "Returns non-zero if the handle is closing or closed, zero otherwise."
+msgstr ""
+
+#: ../../src/handle.rst:139
+msgid ""
+"This function should only be used between the initialization of the "
+"handle and the arrival of the close callback."
+msgstr ""
+
+#: ../../src/handle.rst:144
+msgid ""
+"Request handle to be closed. `close_cb` will be called asynchronously "
+"after this call. This MUST be called on each handle before memory is "
+"released. Moreover, the memory can only be released in `close_cb` or "
+"after it has returned."
+msgstr ""
+
+#: ../../src/handle.rst:149
+msgid ""
+"Handles that wrap file descriptors are closed immediately but `close_cb` "
+"will still be deferred to the next iteration of the event loop. It gives "
+"you a chance to free up any resources associated with the handle."
+msgstr ""
+
+#: ../../src/handle.rst:153
+msgid ""
+"In-progress requests, like uv_connect_t or uv_write_t, are cancelled and "
+"have their callbacks called asynchronously with status=UV_ECANCELED."
+msgstr ""
+
+#: ../../src/handle.rst:156
+msgid ""
+"`close_cb` can be `NULL` in cases where no cleanup or deallocation is "
+"necessary."
+msgstr ""
+
+#: ../../src/handle.rst:161
+msgid ""
+"Reference the given handle. References are idempotent, that is, if a "
+"handle is already referenced calling this function again will have no "
+"effect."
+msgstr ""
+
+#: ../../src/handle.rst:164 ../../src/handle.rst:171 ../../src/handle.rst:177
+msgid "See :ref:`refcount`."
+msgstr ""
+
+#: ../../src/handle.rst:168
+msgid ""
+"Un-reference the given handle. References are idempotent, that is, if a "
+"handle is not referenced calling this function again will have no effect."
+msgstr ""
+
+#: ../../src/handle.rst:175
+msgid "Returns non-zero if the handle referenced, zero otherwise."
+msgstr ""
+
+#: ../../src/handle.rst:181
+msgid ""
+"Returns the size of the given handle type. Useful for FFI binding writers"
+" who don't want to know the structure layout."
+msgstr ""
+
+#: ../../src/handle.rst:186
+msgid "Miscellaneous API functions"
+msgstr ""
+
+#: ../../src/handle.rst:188
+msgid ""
+"The following API functions take a :c:type:`uv_handle_t` argument but "
+"they work just for some handle types."
+msgstr ""
+
+#: ../../src/handle.rst:193
+msgid ""
+"Gets or sets the size of the send buffer that the operating system uses "
+"for the socket."
+msgstr ""
+
+#: ../../src/handle.rst:196
+msgid ""
+"If `*value` == 0, then it will set `*value` to the current send buffer "
+"size. If `*value` > 0 then it will use `*value` to set the new send "
+"buffer size."
+msgstr ""
+
+#: ../../src/handle.rst:199 ../../src/handle.rst:216
+msgid "On success, zero is returned. On error, a negative result is returned."
+msgstr ""
+
+#: ../../src/handle.rst:202 ../../src/handle.rst:219
+msgid ""
+"This function works for TCP, pipe and UDP handles on Unix and for TCP and"
+" UDP handles on Windows."
+msgstr ""
+
+#: ../../src/handle.rst:206 ../../src/handle.rst:223
+msgid ""
+"Linux will set double the size and return double the size of the original"
+" set value."
+msgstr ""
+
+#: ../../src/handle.rst:210
+msgid ""
+"Gets or sets the size of the receive buffer that the operating system "
+"uses for the socket."
+msgstr ""
+
+#: ../../src/handle.rst:213
+msgid ""
+"If `*value` == 0, then it will set `*value` to the current receive buffer"
+" size. If `*value` > 0 then it will use `*value` to set the new receive "
+"buffer size."
+msgstr ""
+
+#: ../../src/handle.rst:227
+msgid "Gets the platform dependent file descriptor equivalent."
+msgstr ""
+
+#: ../../src/handle.rst:229
+msgid ""
+"The following handles are supported: TCP, pipes, TTY, UDP and poll. "
+"Passing any other handle type will fail with `UV_EINVAL`."
+msgstr ""
+
+#: ../../src/handle.rst:232
+msgid ""
+"If a handle doesn't have an attached file descriptor yet or the handle "
+"itself has been closed, this function will return `UV_EBADF`."
+msgstr ""
+
+#: ../../src/handle.rst:236
+msgid ""
+"Be very careful when using this function. libuv assumes it's in control "
+"of the file descriptor so any change to it may lead to malfunction."
+msgstr ""
+
+#: ../../src/handle.rst:241
+msgid "Returns `handle->loop`."
+msgstr ""
+
+#: ../../src/handle.rst:247
+msgid "Returns `handle->data`."
+msgstr ""
+
+#: ../../src/handle.rst:253
+msgid "Sets `handle->data` to `data`."
+msgstr ""
+
+#: ../../src/handle.rst:259
+msgid "Returns `handle->type`."
+msgstr ""
+
+#: ../../src/handle.rst:265
+msgid ""
+"Returns the name for the equivalent struct for a given handle type, e.g. "
+"`\"pipe\"` (as in :c:type:`uv_pipe_t`) for `UV_NAMED_PIPE`."
+msgstr ""
+
+#: ../../src/handle.rst:268
+msgid "If no such handle type exists, this returns `NULL`."
+msgstr ""
+
+#: ../../src/handle.rst:275
+msgid "Reference counting"
+msgstr ""
+
+#: ../../src/handle.rst:277
+msgid ""
+"The libuv event loop (if run in the default mode) will run until there "
+"are no active `and` referenced handles left. The user can force the loop "
+"to exit early by unreferencing handles which are active, for example by "
+"calling :c:func:`uv_unref` after calling :c:func:`uv_timer_start`."
+msgstr ""
+
+#: ../../src/handle.rst:282
+msgid ""
+"A handle can be referenced or unreferenced, the refcounting scheme "
+"doesn't use a counter, so both operations are idempotent."
+msgstr ""
+
+#: ../../src/handle.rst:285
+msgid ""
+"All handles are referenced when active by default, see "
+":c:func:`uv_is_active` for a more detailed explanation on what being "
+"`active` involves."
+msgstr ""
+

@@ -1,0 +1,290 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/threading.rst:5
+msgid "Threading and synchronization utilities"
+msgstr ""
+
+#: ../../src/threading.rst:7
+msgid ""
+"libuv provides cross-platform implementations for multiple threading and "
+"synchronization primitives. The API largely follows the pthreads API."
+msgstr ""
+
+#: ../../src/threading.rst:12
+msgid "Data types"
+msgstr ""
+
+#: ../../src/threading.rst:16
+msgid "Thread data type."
+msgstr ""
+
+#: ../../src/threading.rst:20
+msgid ""
+"Callback that is invoked to initialize thread execution. `arg` is the "
+"same value that was passed to :c:func:`uv_thread_create`."
+msgstr ""
+
+#: ../../src/threading.rst:25
+msgid "Thread-local key data type."
+msgstr ""
+
+#: ../../src/threading.rst:29
+msgid "Once-only initializer data type."
+msgstr ""
+
+#: ../../src/threading.rst:33
+msgid "Mutex data type."
+msgstr ""
+
+#: ../../src/threading.rst:37
+msgid "Read-write lock data type."
+msgstr ""
+
+#: ../../src/threading.rst:41
+msgid "Semaphore data type."
+msgstr ""
+
+#: ../../src/threading.rst:45
+msgid "Condition data type."
+msgstr ""
+
+#: ../../src/threading.rst:49
+msgid "Barrier data type."
+msgstr ""
+
+#: ../../src/threading.rst:53
+msgid "API"
+msgstr ""
+
+#: ../../src/threading.rst:56
+msgid "Threads"
+msgstr ""
+
+#: ../../src/threading.rst:60
+msgid ""
+"Options for spawning a new thread (passed to "
+":c:func:`uv_thread_create_ex`)."
+msgstr ""
+
+#: ../../src/threading.rst:72
+msgid ""
+"More fields may be added to this struct at any time, so its exact layout "
+"and size should not be relied upon."
+msgstr ""
+
+#: ../../src/threading.rst:79
+msgid "returns a UV_E* error code on failure"
+msgstr ""
+
+#: ../../src/threading.rst:83
+msgid ""
+"Detaches a thread. Detached threads automatically release their resources"
+" upon termination, eliminating the need for the application to call "
+"`uv_thread_join`."
+msgstr ""
+
+#: ../../src/threading.rst:91
+msgid ""
+"Like :c:func:`uv_thread_create`, but additionally specifies options for "
+"creating a new thread."
+msgstr ""
+
+#: ../../src/threading.rst:93
+msgid ""
+"If `UV_THREAD_HAS_STACK_SIZE` is set, `stack_size` specifies a stack size"
+" for the new thread. `0` indicates that the default value should be used,"
+" i.e. behaves as if the flag was not set. Other values will be rounded up"
+" to the nearest page boundary."
+msgstr ""
+
+#: ../../src/threading.rst:101
+msgid ""
+"Sets the specified thread's affinity to cpumask, which is specified in "
+"bytes. Optionally returning the previous affinity setting in oldmask. On "
+"Unix, uses :man:`pthread_getaffinity_np(3)` to get the affinity setting "
+"and maps the cpu_set_t to bytes in oldmask. Then maps the bytes in "
+"cpumask to a cpu_set_t and uses :man:`pthread_setaffinity_np(3)`. On "
+"Windows, maps the bytes in cpumask to a bitmask and uses "
+"SetThreadAffinityMask() which returns the previous affinity setting."
+msgstr ""
+
+#: ../../src/threading.rst:109
+msgid ""
+"The mask_size specifies the number of entries (bytes) in cpumask / "
+"oldmask, and must be greater-than-or-equal-to :c:func:`uv_cpumask_size`."
+msgstr ""
+
+#: ../../src/threading.rst:113
+msgid "Thread affinity setting is not atomic on Windows. Unsupported on macOS."
+msgstr ""
+
+#: ../../src/threading.rst:119
+msgid ""
+"Gets the specified thread's affinity setting. On Unix, this maps the "
+"cpu_set_t returned by :man:`pthread_getaffinity_np(3)` to bytes in "
+"cpumask."
+msgstr ""
+
+#: ../../src/threading.rst:122
+msgid ""
+"The mask_size specifies the number of entries (bytes) in cpumask, and "
+"must be greater-than-or-equal-to :c:func:`uv_cpumask_size`."
+msgstr ""
+
+#: ../../src/threading.rst:126
+msgid "Thread affinity getting is not atomic on Windows. Unsupported on macOS."
+msgstr ""
+
+#: ../../src/threading.rst:132
+msgid "Gets the CPU number on which the calling thread is running."
+msgstr ""
+
+#: ../../src/threading.rst:135
+msgid "Currently only implemented on Windows, Linux and FreeBSD."
+msgstr ""
+
+#: ../../src/threading.rst:145
+msgid ""
+"Sets the name of the current thread. Different platforms define different"
+" limits on the max number of characters a thread name can be: Linux, IBM "
+"i (16), macOS (64), Windows (32767), and NetBSD (32), etc. "
+"`uv_thread_setname()` will truncate it in case `name` is larger than the "
+"limit of the platform."
+msgstr ""
+
+#: ../../src/threading.rst:149 ../../src/threading.rst:162
+msgid "Not supported on Windows Server 2016, returns `UV_ENOSYS`."
+msgstr ""
+
+#: ../../src/threading.rst:155
+msgid ""
+"Gets the name of the thread specified by `tid`. The thread name is "
+"copied, with the trailing NUL, into the buffer pointed to by `name`. The "
+"`size` parameter specifies the size of the buffer pointed to by `name`. "
+"The buffer should be large enough to hold the name of the thread plus the"
+" trailing NUL, or it will be truncated to fit with the trailing NUL."
+msgstr ""
+
+#: ../../src/threading.rst:160 ../../src/threading.rst:176
+#: ../../src/threading.rst:188
+msgid "It's undefined behavior to call this after the thread has terminated."
+msgstr ""
+
+#: ../../src/threading.rst:168
+msgid ""
+"If the function succeeds, the return value is 0. If the function fails, "
+"the return value is less than zero. Sets the scheduling priority of the "
+"thread specified by tid. It requires elevated privilege to set specific "
+"priorities on some platforms. The priority can be set to the following "
+"constants. UV_THREAD_PRIORITY_HIGHEST, UV_THREAD_PRIORITY_ABOVE_NORMAL, "
+"UV_THREAD_PRIORITY_NORMAL, UV_THREAD_PRIORITY_BELOW_NORMAL, "
+"UV_THREAD_PRIORITY_LOWEST."
+msgstr ""
+
+#: ../../src/threading.rst:182
+msgid ""
+"If the function succeeds, the return value is 0. If the function fails, "
+"the return value is less than zero. Retrieves the scheduling priority of "
+"the thread specified by tid. The value in the output parameter priority "
+"is platform dependent. For Linux, when schedule policy is SCHED_OTHER "
+"(default), priority is 0."
+msgstr ""
+
+#: ../../src/threading.rst:193
+msgid "Thread-local storage"
+msgstr ""
+
+#: ../../src/threading.rst:196
+msgid ""
+"The total thread-local storage size may be limited. That is, it may not "
+"be possible to create many TLS keys."
+msgstr ""
+
+#: ../../src/threading.rst:205
+msgid "Once-only initialization"
+msgstr ""
+
+#: ../../src/threading.rst:207
+msgid ""
+"Runs a function once and only once. Concurrent calls to :c:func:`uv_once`"
+" with the same guard will block all callers except one (it's unspecified "
+"which one). The guard should be initialized statically with the "
+"UV_ONCE_INIT macro."
+msgstr ""
+
+#: ../../src/threading.rst:214
+msgid "Mutex locks"
+msgstr ""
+
+#: ../../src/threading.rst:216 ../../src/threading.rst:229
+#: ../../src/threading.rst:244 ../../src/threading.rst:256
+#: ../../src/threading.rst:280
+msgid ""
+"Functions return 0 on success or an error code < 0 (unless the return "
+"type is void, of course)."
+msgstr ""
+
+#: ../../src/threading.rst:227
+msgid "Read-write locks"
+msgstr ""
+
+#: ../../src/threading.rst:242
+msgid "Semaphores"
+msgstr ""
+
+#: ../../src/threading.rst:254
+msgid "Conditions"
+msgstr ""
+
+#: ../../src/threading.rst:260
+msgid ""
+"Callers should be prepared to deal with spurious wakeups on "
+":c:func:`uv_cond_wait` and :c:func:`uv_cond_timedwait`."
+msgstr ""
+
+#: ../../src/threading.rst:262
+msgid ""
+"The timeout parameter for :c:func:`uv_cond_timedwait` is relative to the "
+"time at which function is called."
+msgstr ""
+
+#: ../../src/threading.rst:264
+msgid ""
+"On z/OS, the timeout parameter for :c:func:`uv_cond_timedwait` is "
+"converted to an absolute system time at which the wait expires. If the "
+"current system clock time passes the absolute time calculated before the "
+"condition is signaled, an ETIMEDOUT error results. After the wait begins,"
+" the wait time is not affected by changes to the system clock."
+msgstr ""
+
+#: ../../src/threading.rst:278
+msgid "Barriers"
+msgstr ""
+
+#: ../../src/threading.rst:284
+msgid ""
+":c:func:`uv_barrier_wait` returns a value > 0 to an arbitrarily chosen "
+"\"serializer\" thread to facilitate cleanup, i.e."
+msgstr ""
+

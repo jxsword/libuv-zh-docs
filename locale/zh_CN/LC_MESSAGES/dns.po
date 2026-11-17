@@ -1,0 +1,157 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/dns.rst:5
+msgid "DNS utility functions"
+msgstr ""
+
+#: ../../src/dns.rst:7
+msgid "libuv provides asynchronous variants of `getaddrinfo` and `getnameinfo`."
+msgstr ""
+
+#: ../../src/dns.rst:11
+msgid "Data types"
+msgstr ""
+
+#: ../../src/dns.rst:15
+msgid "`getaddrinfo` request type."
+msgstr ""
+
+#: ../../src/dns.rst:19
+msgid ""
+"Callback which will be called with the getaddrinfo request result once "
+"complete. In case it was cancelled, `status` will have a value of "
+"``UV_ECANCELED``."
+msgstr ""
+
+#: ../../src/dns.rst:25
+msgid "`getnameinfo` request type."
+msgstr ""
+
+#: ../../src/dns.rst:29
+msgid ""
+"Callback which will be called with the getnameinfo request result once "
+"complete. In case it was cancelled, `status` will have a value of "
+"``UV_ECANCELED``."
+msgstr ""
+
+#: ../../src/dns.rst:35
+msgid "Public members"
+msgstr ""
+
+#: ../../src/dns.rst:39
+msgid ""
+"Loop that started this getaddrinfo request and where completion will be "
+"reported. Readonly."
+msgstr ""
+
+#: ../../src/dns.rst:44
+msgid ""
+"Pointer to a `struct addrinfo` containing the result. Must be freed by "
+"the user with :c:func:`uv_freeaddrinfo`."
+msgstr ""
+
+#: ../../src/dns.rst:47 ../../src/dns.rst:58 ../../src/dns.rst:64
+msgid "the field is declared as public."
+msgstr ""
+
+#: ../../src/dns.rst:51
+msgid ""
+"Loop that started this getnameinfo request and where completion will be "
+"reported. Readonly."
+msgstr ""
+
+#: ../../src/dns.rst:56
+msgid "Char array containing the resulting host. It's null terminated."
+msgstr ""
+
+#: ../../src/dns.rst:62
+msgid "Char array containing the resulting service. It's null terminated."
+msgstr ""
+
+#: ../../src/dns.rst:66
+msgid "The :c:type:`uv_req_t` members also apply."
+msgstr ""
+
+#: ../../src/dns.rst:70
+msgid "API"
+msgstr ""
+
+#: ../../src/dns.rst:74
+msgid "Asynchronous :man:`getaddrinfo(3)`."
+msgstr ""
+
+#: ../../src/dns.rst:76
+msgid "Either node or service may be NULL but not both."
+msgstr ""
+
+#: ../../src/dns.rst:78
+msgid ""
+"`hints` is a pointer to a struct addrinfo with additional address type "
+"constraints, or NULL. Consult `man -s 3 getaddrinfo` for more details."
+msgstr ""
+
+#: ../../src/dns.rst:81
+msgid ""
+"Returns 0 on success or an error code < 0 on failure. If successful, the "
+"callback will get called sometime in the future with the lookup result, "
+"which is either:"
+msgstr ""
+
+#: ../../src/dns.rst:85
+msgid "status == 0, the res argument points to a valid `struct addrinfo`, or"
+msgstr ""
+
+#: ../../src/dns.rst:86
+msgid "status < 0, the res argument is NULL. See the UV_EAI_* constants."
+msgstr ""
+
+#: ../../src/dns.rst:88
+msgid "Call :c:func:`uv_freeaddrinfo` to free the addrinfo structure."
+msgstr ""
+
+#: ../../src/dns.rst:90 ../../src/dns.rst:105
+msgid ""
+"the callback parameter is now allowed to be NULL, in which case the "
+"request will run **synchronously**."
+msgstr ""
+
+#: ../../src/dns.rst:95
+msgid "Free the struct addrinfo. Passing NULL is allowed and is a no-op."
+msgstr ""
+
+#: ../../src/dns.rst:99
+msgid "Asynchronous :man:`getnameinfo(3)`."
+msgstr ""
+
+#: ../../src/dns.rst:101
+msgid ""
+"Returns 0 on success or an error code < 0 on failure. If successful, the "
+"callback will get called sometime in the future with the lookup result. "
+"Consult `man -s 3 getnameinfo` for more details."
+msgstr ""
+
+#: ../../src/dns.rst:108
+msgid "The :c:type:`uv_req_t` API functions also apply."
+msgstr ""
+

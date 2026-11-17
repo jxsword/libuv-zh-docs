@@ -1,0 +1,163 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/request.rst:5
+msgid ":c:type:`uv_req_t` --- Base request"
+msgstr ""
+
+#: ../../src/request.rst:7
+msgid "`uv_req_t` is the base type for all libuv request types."
+msgstr ""
+
+#: ../../src/request.rst:9
+msgid ""
+"Structures are aligned so that any libuv request can be cast to "
+"`uv_req_t`. All API functions defined here work with any request type."
+msgstr ""
+
+#: ../../src/request.rst:14
+msgid "Data types"
+msgstr ""
+
+#: ../../src/request.rst:18
+msgid "The base libuv request structure."
+msgstr ""
+
+#: ../../src/request.rst:22
+msgid "Union of all request types."
+msgstr ""
+
+#: ../../src/request.rst:26
+msgid "The kind of the libuv request."
+msgstr ""
+
+#: ../../src/request.rst:46
+msgid "Public members"
+msgstr ""
+
+#: ../../src/request.rst:50
+msgid "Space for user-defined arbitrary data. libuv does not use this field."
+msgstr ""
+
+#: ../../src/request.rst:54
+msgid "The :c:enum:`uv_req_type`, indicating the type of the request. Readonly."
+msgstr ""
+
+#: ../../src/request.rst:58
+msgid "API"
+msgstr ""
+
+#: ../../src/request.rst:62
+msgid ""
+"Macro that expands to a series of invocations of `iter_macro` for each of"
+" the request types. `iter_macro` is invoked with two arguments: the name "
+"of the `uv_req_type` element without the `UV_` prefix, and the name of "
+"the corresponding structure type without the `uv_` prefix and `_t` "
+"suffix."
+msgstr ""
+
+#: ../../src/request.rst:70
+msgid ""
+"Cancel a pending request. Fails if the request is executing or has "
+"finished executing. Write requests are an exception: cancellation of a "
+"write that is already in progress will attempt to interrupt it (the "
+"callback may report a partial write), and cancellation of an already-"
+"completed write is a successful no-op."
+msgstr ""
+
+#: ../../src/request.rst:76
+msgid "Returns 0 on success, or an error code < 0 on failure."
+msgstr ""
+
+#: ../../src/request.rst:78
+msgid ""
+"Only cancellation of :c:type:`uv_write_t`, :c:type:`uv_fs_t`, "
+":c:type:`uv_getaddrinfo_t`, :c:type:`uv_getnameinfo_t`, "
+":c:type:`uv_random_t` and :c:type:`uv_work_t` requests is currently "
+"supported."
+msgstr ""
+
+#: ../../src/request.rst:83
+msgid ""
+"Cancelled requests have their callbacks invoked some time in the future. "
+"It's **not** safe to free the memory associated with the request until "
+"the callback is called."
+msgstr ""
+
+#: ../../src/request.rst:87
+msgid "Here is how cancellation is reported to the callback:"
+msgstr ""
+
+#: ../../src/request.rst:89
+msgid ""
+"A :c:type:`uv_fs_t` request has its req->result field set to "
+"`UV_ECANCELED`."
+msgstr ""
+
+#: ../../src/request.rst:91
+msgid ""
+"A :c:type:`uv_work_t`, :c:type:`uv_getaddrinfo_t`, "
+":c:type:`uv_getnameinfo_t` or :c:type:`uv_random_t` request has its "
+"callback invoked with status == `UV_ECANCELED`."
+msgstr ""
+
+#: ../../src/request.rst:95
+msgid ""
+"A :c:type:`uv_write_t` request has its callback invoked with status == "
+"`UV_ECANCELED`. Use :c:func:`uv_write_nwritten` from the callback to "
+"determine how many bytes were written before cancellation. Fully "
+"cancelled writes (where no bytes were written) may have their callbacks "
+"called out of order with respect to other writes on the same stream. Note"
+" that cancelled writes may still succeed or fail with other errors if the"
+" kernel finished processing the write before the cancellation took "
+"effect."
+msgstr ""
+
+#: ../../src/request.rst:106
+msgid ""
+"Returns the size of the given request type. Useful for FFI binding "
+"writers who don't want to know the structure layout."
+msgstr ""
+
+#: ../../src/request.rst:111
+msgid "Returns `req->data`."
+msgstr ""
+
+#: ../../src/request.rst:117
+msgid "Sets `req->data` to `data`."
+msgstr ""
+
+#: ../../src/request.rst:123
+msgid "Returns `req->type`."
+msgstr ""
+
+#: ../../src/request.rst:129
+msgid ""
+"Returns the name for the equivalent struct for a given request type, e.g."
+" `\"connect\"` (as in :c:type:`uv_connect_t`) for `UV_CONNECT`."
+msgstr ""
+
+#: ../../src/request.rst:132
+msgid "If no such request type exists, this returns `NULL`."
+msgstr ""
+

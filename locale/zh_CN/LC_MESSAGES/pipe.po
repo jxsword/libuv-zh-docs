@@ -1,0 +1,233 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/pipe.rst:5
+msgid ":c:type:`uv_pipe_t` --- Pipe handle"
+msgstr ""
+
+#: ../../src/pipe.rst:7
+msgid ""
+"Pipe handles provide an abstraction over streaming files on Unix "
+"(including local domain sockets, pipes, and FIFOs) and named pipes on "
+"Windows."
+msgstr ""
+
+#: ../../src/pipe.rst:10
+msgid ":c:type:`uv_pipe_t` is a 'subclass' of :c:type:`uv_stream_t`."
+msgstr ""
+
+#: ../../src/pipe.rst:14
+msgid "Data types"
+msgstr ""
+
+#: ../../src/pipe.rst:18
+msgid "Pipe handle type."
+msgstr ""
+
+#: ../../src/pipe.rst:22
+msgid "Public members"
+msgstr ""
+
+#: ../../src/pipe.rst:26
+msgid ""
+"Whether this pipe is suitable for handle passing between processes. Only "
+"a connected pipe that will be passing the handles should have this flag "
+"set, not the listening pipe that uv_accept is called on."
+msgstr ""
+
+#: ../../src/pipe.rst:30
+msgid "The :c:type:`uv_stream_t` members also apply."
+msgstr ""
+
+#: ../../src/pipe.rst:34
+msgid "API"
+msgstr ""
+
+#: ../../src/pipe.rst:38
+msgid ""
+"Initialize a pipe handle. The `ipc` argument is a boolean to indicate if "
+"this pipe will be used for handle passing between processes (which may "
+"change the bytes on the wire). Only a connected pipe that will be passing"
+" the handles should have this flag set, not the listening pipe that "
+"uv_accept is called on."
+msgstr ""
+
+#: ../../src/pipe.rst:46
+msgid "Open an existing file descriptor or HANDLE as a pipe."
+msgstr ""
+
+#: ../../src/pipe.rst:48
+msgid "the file descriptor is set to non-blocking mode."
+msgstr ""
+
+#: ../../src/pipe.rst:51
+msgid ""
+"The passed file descriptor or HANDLE is not checked for its type, but "
+"it's required that it represents a valid pipe."
+msgstr ""
+
+#: ../../src/pipe.rst:56 ../../src/pipe.rst:69
+msgid "Bind the pipe to a file path (Unix) or a name (Windows)."
+msgstr ""
+
+#: ../../src/pipe.rst:58
+msgid ""
+"Does not support Linux abstract namespace sockets, unlike "
+":c:func:`uv_pipe_bind2`."
+msgstr ""
+
+#: ../../src/pipe.rst:61
+msgid "Alias for ``uv_pipe_bind2(handle, name, strlen(name), 0)``."
+msgstr ""
+
+#: ../../src/pipe.rst:64 ../../src/pipe.rst:94
+msgid ""
+"Paths on Unix get truncated to ``sizeof(sockaddr_un.sun_path)`` bytes, "
+"typically between 92 and 108 bytes."
+msgstr ""
+
+#: ../../src/pipe.rst:71
+msgid ""
+"``flags`` must be zero or ``UV_PIPE_NO_TRUNCATE``. Returns ``UV_EINVAL`` "
+"for unsupported flags without performing the bind operation."
+msgstr ""
+
+#: ../../src/pipe.rst:74 ../../src/pipe.rst:104
+msgid ""
+"Supports Linux abstract namespace sockets. ``namelen`` must include the "
+"leading nul byte but not the trailing nul byte."
+msgstr ""
+
+#: ../../src/pipe.rst:80 ../../src/pipe.rst:110
+msgid ""
+"Paths on Unix get truncated to ``sizeof(sockaddr_un.sun_path)`` bytes, "
+"typically between 92 and 108 bytes, unless the ``UV_PIPE_NO_TRUNCATE`` "
+"flag is specified, in which case an ``UV_EINVAL`` error is returned."
+msgstr ""
+
+#: ../../src/pipe.rst:86 ../../src/pipe.rst:99
+msgid "Connect to the Unix domain socket or the Windows named pipe."
+msgstr ""
+
+#: ../../src/pipe.rst:88
+msgid ""
+"Does not support Linux abstract namespace sockets, unlike "
+":c:func:`uv_pipe_connect2`."
+msgstr ""
+
+#: ../../src/pipe.rst:91
+msgid "Alias for ``uv_pipe_connect2(req, handle, name, strlen(name), 0, cb)``."
+msgstr ""
+
+#: ../../src/pipe.rst:101
+msgid ""
+"``flags`` must be zero or ``UV_PIPE_NO_TRUNCATE``. Returns ``UV_EINVAL`` "
+"for unsupported flags without performing the connect operation."
+msgstr ""
+
+#: ../../src/pipe.rst:116
+msgid "Get the name of the Unix domain socket or the named pipe."
+msgstr ""
+
+#: ../../src/pipe.rst:118 ../../src/pipe.rst:135
+msgid ""
+"A preallocated buffer must be provided. The size parameter holds the "
+"length of the buffer and it's set to the number of bytes written to the "
+"buffer on output. If the buffer is not big enough ``UV_ENOBUFS`` will be "
+"returned and len will contain the required size."
+msgstr ""
+
+#: ../../src/pipe.rst:123
+msgid ""
+"UNIX domain socket paths on FreeBSD cannot exceed the size of "
+"``sockaddr_un.sun_path`` although the platform defines a "
+"``SOCK_MAXADDRLEN`` that is larger."
+msgstr ""
+
+#: ../../src/pipe.rst:127
+msgid ""
+"the returned length no longer includes the terminating null byte, and the"
+" buffer is not null terminated."
+msgstr ""
+
+#: ../../src/pipe.rst:132
+msgid ""
+"Get the name of the Unix domain socket or the named pipe to which the "
+"handle is connected."
+msgstr ""
+
+#: ../../src/pipe.rst:144
+msgid ""
+"Set the number of pending pipe instance handles when the pipe server is "
+"waiting for connections."
+msgstr ""
+
+#: ../../src/pipe.rst:148
+msgid "This setting applies to Windows only."
+msgstr ""
+
+#: ../../src/pipe.rst:153
+msgid "Used to receive handles over IPC pipes."
+msgstr ""
+
+#: ../../src/pipe.rst:155
+msgid ""
+"First - call :c:func:`uv_pipe_pending_count`, if it's > 0 then initialize"
+" a handle of the given `type`, returned by :c:func:`uv_pipe_pending_type`"
+" and call ``uv_accept(pipe, handle)``."
+msgstr ""
+
+#: ../../src/pipe.rst:159
+msgid "The :c:type:`uv_stream_t` API functions also apply."
+msgstr ""
+
+#: ../../src/pipe.rst:163
+msgid ""
+"Alters pipe permissions, allowing it to be accessed from processes run by"
+" different users. Makes the pipe writable or readable by all users. Mode "
+"can be ``UV_WRITABLE``, ``UV_READABLE`` or ``UV_WRITABLE | UV_READABLE``."
+" This function is blocking."
+msgstr ""
+
+#: ../../src/pipe.rst:172
+msgid ""
+"Create a pair of connected pipe handles. Data may be written to `fds[1]` "
+"and read from `fds[0]`. The resulting handles can be passed to "
+"`uv_pipe_open`, used with `uv_spawn`, or for any other purpose."
+msgstr ""
+
+#: ../../src/pipe.rst:177
+msgid "Valid values for `flags` are:"
+msgstr ""
+
+#: ../../src/pipe.rst:179
+msgid ""
+"UV_NONBLOCK_PIPE: Opens the specified socket handle for `OVERLAPPED` or "
+"`FIONBIO`/`O_NONBLOCK` I/O usage. This is recommended for handles that "
+"will be used by libuv, and not usually recommended otherwise."
+msgstr ""
+
+#: ../../src/pipe.rst:184
+msgid "Equivalent to :man:`pipe(2)` with the `O_CLOEXEC` flag set."
+msgstr ""
+

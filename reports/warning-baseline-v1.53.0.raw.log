@@ -1,0 +1,157 @@
+make: 进入目录“/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/docs”
+sphinx-build -b html -d build/doctrees  -t Graphical  src build/html
+正在运行 Sphinx v7.0.1
+正在加载翻译 [zh_CN]…完成
+/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/docs/src/sphinx-plugins/manpage.py:39: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  p = re.compile("([a-zA-Z0-9_\.-_]+)\((\d)\)")
+正在创建输出目录... 完成
+正在构建 [mo]： 0 个 po 文件的目标文件已过期
+正在写入输出……
+正在构建 [html]： 42 个源文件的目标文件已过期
+正在更新环境：[新配置] 有 42 个新增文件，有 0 个文件已被修改，有 0 个文件已被移除
+正在读取源文件……[  2%] api
+正在读取源文件……[  4%] async
+正在读取源文件……[  7%] check
+正在读取源文件……[  9%] design
+正在读取源文件……[ 11%] dll
+正在读取源文件……[ 14%] dns
+正在读取源文件……[ 16%] errors
+正在读取源文件……[ 19%] fs
+正在读取源文件……[ 21%] fs_event
+正在读取源文件……[ 23%] fs_poll
+正在读取源文件……[ 26%] guide
+正在读取源文件……[ 28%] guide/about
+正在读取源文件……[ 30%] guide/basics
+正在读取源文件……[ 33%] guide/eventloops
+正在读取源文件……[ 35%] guide/filesystem
+正在读取源文件……[ 38%] guide/introduction
+正在读取源文件……[ 40%] guide/networking
+正在读取源文件……[ 42%] guide/processes
+正在读取源文件……[ 45%] guide/threads
+正在读取源文件……[ 47%] guide/utilities
+正在读取源文件……[ 50%] handle
+正在读取源文件……[ 52%] idle
+正在读取源文件……[ 54%] index
+正在读取源文件……[ 57%] loop
+正在读取源文件……[ 59%] metrics
+正在读取源文件……[ 61%] migration_010_100
+正在读取源文件……[ 64%] misc
+正在读取源文件……[ 66%] pipe
+正在读取源文件……[ 69%] poll
+正在读取源文件……[ 71%] prepare
+正在读取源文件……[ 73%] process
+正在读取源文件……[ 76%] request
+正在读取源文件……[ 78%] signal
+正在读取源文件……[ 80%] stream
+正在读取源文件……[ 83%] tcp
+正在读取源文件……[ 85%] threading
+正在读取源文件……[ 88%] threadpool
+正在读取源文件……[ 90%] timer
+正在读取源文件……[ 92%] tty
+正在读取源文件……[ 95%] udp
+正在读取源文件……[ 97%] upgrading
+正在读取源文件……[100%] version
+
+/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/docs/src/design.rst:22: WARNING: Explicit markup ends without a blank line; unexpected unindent.
+/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/docs/src/dns.rst:54: WARNING: Error in declarator or parameters
+Invalid C declaration: Expected identifier in nested name. [error at 4]
+  char[NI_MAXHOST] uv_getnameinfo_t.host
+  ----^
+/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/docs/src/dns.rst:60: WARNING: Error in declarator or parameters
+Invalid C declaration: Expected identifier in nested name. [error at 4]
+  char[NI_MAXSERV] uv_getnameinfo_t.service
+  ----^
+/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/docs/src/guide/eventloops.rst:22: WARNING: 要包含的文件 '/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/src/unix/core.c' 不存在或读取失败
+/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/docs/src/guide/filesystem.rst.rst:212: WARNING: 指定的行号超出范围（1-79）：'62-80'
+/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/docs/src/guide/threads.rst.rst:41: WARNING: 指定的行号超出范围（1-35）：'26-36'
+/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/docs/src/misc.rst:906: ERROR: Error in "code-block" directive:
+maximum 1 argument(s) allowed, 17 supplied.
+
+.. code-block:: c
+    #include <uv.h>
+    #include <stdio.h>
+    int main() {
+        printf("Sleeping for 1 second...\n");
+        uv_sleep(1000);
+        printf("Awake!\n");
+        return 0;
+    }
+/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/docs/src/tcp.rst:112: ERROR: Unexpected indentation.
+/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/docs/src/udp.rst:451: WARNING: Parsing of expression failed. Using fallback parser. Error was:
+Invalid C declaration: Expected identifier in nested name. [error at 74]
+  int uv_udp_try_send2(uv_udp_t* handle, unsigned int count, uv_buf_t* bufs[/*count*/], unsigned int nbufs[/*count*/], struct sockaddr* addrs[/*count*/], unsigned int flags)
+  --------------------------------------------------------------------------^
+/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/docs/src/udp.rst:451: WARNING: Parsing of expression failed. Using fallback parser. Error was:
+Invalid C declaration: Expected identifier in nested name. [error at 105]
+  int uv_udp_try_send2(uv_udp_t* handle, unsigned int count, uv_buf_t* bufs[/*count*/], unsigned int nbufs[/*count*/], struct sockaddr* addrs[/*count*/], unsigned int flags)
+  ---------------------------------------------------------------------------------------------------------^
+/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/docs/src/udp.rst:451: WARNING: Parsing of expression failed. Using fallback parser. Error was:
+Invalid C declaration: Expected identifier in nested name. [error at 140]
+  int uv_udp_try_send2(uv_udp_t* handle, unsigned int count, uv_buf_t* bufs[/*count*/], unsigned int nbufs[/*count*/], struct sockaddr* addrs[/*count*/], unsigned int flags)
+  --------------------------------------------------------------------------------------------------------------------------------------------^
+正在查找当前已过期的文件……没有找到已过期文件
+正在 Pickle 序列化环境... 完成
+正在校验一致性... 完成
+正在准备写入文档... 完成
+正在写入输出……[  2%] api
+Building prefix dict from the default dictionary ...
+Dumping model to file cache /tmp/jieba.cache
+Loading model cost 0.242 seconds.
+Prefix dict has been built successfully.
+正在写入输出……[  4%] async
+正在写入输出……[  7%] check
+正在写入输出……[  9%] design
+正在写入输出……[ 11%] dll
+正在写入输出……[ 14%] dns
+正在写入输出……[ 16%] errors
+正在写入输出……[ 19%] fs
+正在写入输出……[ 21%] fs_event
+正在写入输出……[ 23%] fs_poll
+正在写入输出……[ 26%] guide
+正在写入输出……[ 28%] guide/about
+正在写入输出……[ 30%] guide/basics
+正在写入输出……[ 33%] guide/eventloops
+正在写入输出……[ 35%] guide/filesystem
+正在写入输出……[ 38%] guide/introduction
+正在写入输出……[ 40%] guide/networking
+正在写入输出……[ 42%] guide/processes
+正在写入输出……[ 45%] guide/threads
+正在写入输出……[ 47%] guide/utilities
+正在写入输出……[ 50%] handle
+正在写入输出……[ 52%] idle
+正在写入输出……[ 54%] index
+正在写入输出……[ 57%] loop
+正在写入输出……[ 59%] metrics
+正在写入输出……[ 61%] migration_010_100
+正在写入输出……[ 64%] misc
+正在写入输出……[ 66%] pipe
+正在写入输出……[ 69%] poll
+正在写入输出……[ 71%] prepare
+正在写入输出……[ 73%] process
+正在写入输出……[ 76%] request
+正在写入输出……[ 78%] signal
+正在写入输出……[ 80%] stream
+正在写入输出……[ 83%] tcp
+正在写入输出……[ 85%] threading
+正在写入输出……[ 88%] threadpool
+正在写入输出……[ 90%] timer
+正在写入输出……[ 92%] tty
+正在写入输出……[ 95%] udp
+正在写入输出……[ 97%] upgrading
+正在写入输出……[100%] version
+
+正在生成索引... genindex 完成
+正在写入附加页面... search 完成
+正在复制图像文件……[ 50%] static/architecture.png
+正在复制图像文件……[100%] static/loop_iteration.png
+
+正在复制静态文件... 完成
+正在复制额外文件... 完成
+正在导出 Chinese (code: zh) 的搜索索引... 完成
+正在导出对象清单... 完成
+构建成功，11 条警告。
+
+HTML 页面保存在 build/html 目录。
+
+Build finished. The HTML pages are in build/html.
+make: 离开目录“/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/docs”

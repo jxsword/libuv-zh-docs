@@ -1,0 +1,786 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/fs.rst:5
+msgid "File system operations"
+msgstr ""
+
+#: ../../src/fs.rst:7
+msgid ""
+"libuv provides a wide variety of cross-platform sync and async file "
+"system operations. All functions defined in this document take a "
+"callback, which is allowed to be NULL. If the callback is NULL the "
+"request is completed synchronously, otherwise it will be performed "
+"asynchronously."
+msgstr ""
+
+#: ../../src/fs.rst:12
+msgid ""
+"All file operations are run on the threadpool. See :ref:`threadpool` for "
+"information on the threadpool size."
+msgstr ""
+
+#: ../../src/fs.rst:15
+msgid ""
+"Starting with libuv v1.45.0, some file operations on Linux are handed off"
+" to `io_uring <https://en.wikipedia.org/wiki/Io_uring>` when possible. "
+"Apart from a (sometimes significant) increase in throughput there should "
+"be no change in observable behavior. Libuv reverts to using its "
+"threadpool when the necessary kernel features are unavailable or "
+"unsuitable. Starting with libuv v1.49.0 this behavior was reverted and "
+"Libuv on Linux by default will be using the threadpool again. In order to"
+" enable io_uring the :c:type:`uv_loop_t` instance must be configured with"
+" the :c:type:`UV_LOOP_USE_IO_URING_SQPOLL` option."
+msgstr ""
+
+#: ../../src/fs.rst:25
+msgid "On Windows `uv_fs_*` functions use utf-8 encoding."
+msgstr ""
+
+#: ../../src/fs.rst:28
+msgid "Data types"
+msgstr ""
+
+#: ../../src/fs.rst:32 ../../src/fs.rst:73
+msgid "File system request type."
+msgstr ""
+
+#: ../../src/fs.rst:36
+msgid ""
+"Y2K38-unsafe data type for storing times with nanosecond resolution. Will"
+" be replaced with :c:type:`uv_timespec64_t` in libuv v2.0."
+msgstr ""
+
+#: ../../src/fs.rst:48
+msgid "Portable equivalent of ``struct stat``."
+msgstr ""
+
+#: ../../src/fs.rst:119
+msgid ""
+"Reduced cross platform equivalent of ``struct statfs``. Used in "
+":c:func:`uv_fs_statfs`."
+msgstr ""
+
+#: ../../src/fs.rst:138
+msgid "Type of dirent."
+msgstr ""
+
+#: ../../src/fs.rst:156
+msgid ""
+"Cross platform (reduced) equivalent of ``struct dirent``. Used in "
+":c:func:`uv_fs_scandir_next`."
+msgstr ""
+
+#: ../../src/fs.rst:168
+msgid ""
+"Data type used for streaming directory iteration. Used by "
+":c:func:`uv_fs_opendir`, :c:func:`uv_fs_readdir`, and "
+":c:func:`uv_fs_closedir`. `dirents` represents a user provided array of "
+"`uv_dirent_t`s used to hold results. `nentries` is the user provided "
+"maximum array size of `dirents`."
+msgstr ""
+
+#: ../../src/fs.rst:183
+msgid "Callback called when a request is completed asynchronously."
+msgstr ""
+
+#: ../../src/fs.rst:187
+msgid "Public members"
+msgstr ""
+
+#: ../../src/fs.rst:191
+msgid ""
+"Loop that started this request and where completion will be reported. "
+"Readonly."
+msgstr ""
+
+#: ../../src/fs.rst:196
+msgid "FS request type."
+msgstr ""
+
+#: ../../src/fs.rst:200
+msgid "Path affecting the request."
+msgstr ""
+
+#: ../../src/fs.rst:204
+msgid ""
+"Result of the request. < 0 means error, success otherwise. On requests "
+"such as :c:func:`uv_fs_read` or :c:func:`uv_fs_write` it indicates the "
+"amount of data that was read or written, respectively."
+msgstr ""
+
+#: ../../src/fs.rst:210
+msgid "Stores the result of :c:func:`uv_fs_stat` and other stat requests."
+msgstr ""
+
+#: ../../src/fs.rst:214
+msgid ""
+"Stores the result of :c:func:`uv_fs_readlink` and "
+":c:func:`uv_fs_realpath` and serves as an alias to `statbuf`."
+msgstr ""
+
+#: ../../src/fs.rst:217
+msgid "The :c:type:`uv_req_t` members also apply."
+msgstr ""
+
+#: ../../src/fs.rst:221
+msgid "API"
+msgstr ""
+
+#: ../../src/fs.rst:225
+msgid ""
+"Cleanup request. Must be called after a request is finished to deallocate"
+" any memory libuv might have allocated."
+msgstr ""
+
+#: ../../src/fs.rst:230
+msgid "Equivalent to :man:`close(2)`."
+msgstr ""
+
+#: ../../src/fs.rst:234
+msgid "Equivalent to :man:`open(2)`."
+msgstr ""
+
+#: ../../src/fs.rst:237
+msgid ""
+"On Windows libuv uses `CreateFileW` and thus the file is always opened in"
+" binary mode. Because of this the O_BINARY and O_TEXT flags are not "
+"supported."
+msgstr ""
+
+#: ../../src/fs.rst:243
+msgid ""
+"Equivalent to :man:`preadv(2)`. If the `offset` argument is `-1`, then "
+"the current file offset is used and updated."
+msgstr ""
+
+#: ../../src/fs.rst:247
+msgid ""
+"On Windows, under non-MSVC environments (e.g. when GCC or Clang is used "
+"to build libuv), files opened using ``UV_FS_O_FILEMAP`` may cause a fatal"
+" crash if the memory mapped read operation fails."
+msgstr ""
+
+#: ../../src/fs.rst:253
+msgid "Equivalent to :man:`unlink(2)`."
+msgstr ""
+
+#: ../../src/fs.rst:257
+msgid ""
+"Equivalent to :man:`pwritev(2)`. If the `offset` argument is `-1`, then "
+"the current file offset is used and updated."
+msgstr ""
+
+#: ../../src/fs.rst:261
+msgid ""
+"On Windows, under non-MSVC environments (e.g. when GCC or Clang is used "
+"to build libuv), files opened using ``UV_FS_O_FILEMAP`` may cause a fatal"
+" crash if the memory mapped write operation fails."
+msgstr ""
+
+#: ../../src/fs.rst:267
+msgid "Equivalent to :man:`mkdir(2)`."
+msgstr ""
+
+#: ../../src/fs.rst:270
+msgid "`mode` is currently not implemented on Windows."
+msgstr ""
+
+#: ../../src/fs.rst:274
+msgid ""
+"Equivalent to :man:`mkdtemp(3)`. The result can be found as a null "
+"terminated string at `req->path`."
+msgstr ""
+
+#: ../../src/fs.rst:278
+msgid ""
+"Equivalent to :man:`mkstemp(3)`. The created file path can be found as a "
+"null terminated string at `req->path`. The file descriptor can be found "
+"as an integer at `req->result`."
+msgstr ""
+
+#: ../../src/fs.rst:285
+msgid "Equivalent to :man:`rmdir(2)`."
+msgstr ""
+
+#: ../../src/fs.rst:289
+msgid ""
+"Opens `path` as a directory stream. On success, a `uv_dir_t` is allocated"
+" and returned via `req->ptr`. This memory is not freed by "
+"`uv_fs_req_cleanup()`, although `req->ptr` is set to `NULL`. The "
+"allocated memory must be freed by calling `uv_fs_closedir()`. On failure,"
+" no memory is allocated."
+msgstr ""
+
+#: ../../src/fs.rst:295
+msgid ""
+"The contents of the directory can be iterated over by passing the "
+"resulting `uv_dir_t` to `uv_fs_readdir()`."
+msgstr ""
+
+#: ../../src/fs.rst:302
+msgid ""
+"Closes the directory stream represented by `dir` and frees the memory "
+"allocated by `uv_fs_opendir()`."
+msgstr ""
+
+#: ../../src/fs.rst:309
+msgid ""
+"Iterates over the directory stream, `dir`, returned by a successful "
+"`uv_fs_opendir()` call. Prior to invoking `uv_fs_readdir()`, the caller "
+"must set `dir->dirents` and `dir->nentries`, representing the array of "
+":c:type:`uv_dirent_t` elements used to hold the read directory entries "
+"and its size."
+msgstr ""
+
+#: ../../src/fs.rst:315
+msgid ""
+"On success, the result is an integer >= 0 representing the number of "
+"entries read from the stream."
+msgstr ""
+
+#: ../../src/fs.rst:321
+msgid "`uv_fs_readdir()` is not thread safe."
+msgstr ""
+
+#: ../../src/fs.rst:324
+msgid "This function does not return the \".\" and \"..\" entries."
+msgstr ""
+
+#: ../../src/fs.rst:327
+msgid ""
+"On success this function allocates memory that must be freed using "
+"`uv_fs_req_cleanup()`. `uv_fs_req_cleanup()` must be called before "
+"closing the directory with `uv_fs_closedir()`."
+msgstr ""
+
+#: ../../src/fs.rst:334
+msgid ""
+"Equivalent to :man:`scandir(3)`, with a slightly different API. Once the "
+"callback for the request is called, the user can use "
+":c:func:`uv_fs_scandir_next` to get `ent` populated with the next "
+"directory entry data. When there are no more entries ``UV_EOF`` will be "
+"returned."
+msgstr ""
+
+#: ../../src/fs.rst:340
+msgid ""
+"Unlike `scandir(3)`, this function does not return the \".\" and \"..\" "
+"entries."
+msgstr ""
+
+#: ../../src/fs.rst:343
+msgid ""
+"On Linux, getting the type of an entry is only supported by some file "
+"systems (btrfs, ext2, ext3 and ext4 at the time of this writing), check "
+"the :man:`getdents(2)` man page."
+msgstr ""
+
+#: ../../src/fs.rst:350
+msgid ""
+"Equivalent to :man:`stat(2)`, :man:`fstat(2)` and :man:`lstat(2)` "
+"respectively."
+msgstr ""
+
+#: ../../src/fs.rst:354
+msgid ""
+"Equivalent to :man:`statfs(2)`. On success, a `uv_statfs_t` is allocated "
+"and returned via `req->ptr`. This memory is freed by "
+"`uv_fs_req_cleanup()`."
+msgstr ""
+
+#: ../../src/fs.rst:358
+msgid ""
+"Any fields in the resulting `uv_statfs_t` that are not supported by the "
+"underlying operating system are set to zero."
+msgstr ""
+
+#: ../../src/fs.rst:365
+msgid "Equivalent to :man:`rename(2)`."
+msgstr ""
+
+#: ../../src/fs.rst:369
+msgid "Equivalent to :man:`fsync(2)`."
+msgstr ""
+
+#: ../../src/fs.rst:372
+msgid ""
+"For AIX, `uv_fs_fsync` returns `UV_EBADF` on file descriptors referencing"
+" non regular files."
+msgstr ""
+
+#: ../../src/fs.rst:377
+msgid "Equivalent to :man:`fdatasync(2)`."
+msgstr ""
+
+#: ../../src/fs.rst:381
+msgid "Equivalent to :man:`ftruncate(2)`."
+msgstr ""
+
+#: ../../src/fs.rst:385
+msgid ""
+"Copies a file from `path` to `new_path`. Supported `flags` are described "
+"below."
+msgstr ""
+
+#: ../../src/fs.rst:387
+msgid ""
+"`UV_FS_COPYFILE_EXCL`: If present, `uv_fs_copyfile()` will fail with "
+"`UV_EEXIST` if the destination path already exists. The default behavior "
+"is to overwrite the destination if it exists."
+msgstr ""
+
+#: ../../src/fs.rst:390
+msgid ""
+"`UV_FS_COPYFILE_FICLONE`: If present, `uv_fs_copyfile()` will attempt to "
+"create a copy-on-write reflink. If the underlying platform does not "
+"support copy-on-write, or an error occurs while attempting to use copy-"
+"on-write, a fallback copy mechanism based on :c:func:`uv_fs_sendfile` is "
+"used."
+msgstr ""
+
+#: ../../src/fs.rst:395
+msgid ""
+"`UV_FS_COPYFILE_FICLONE_FORCE`: If present, `uv_fs_copyfile()` will "
+"attempt to create a copy-on-write reflink. If the underlying platform "
+"does not support copy-on-write, or an error occurs while attempting to "
+"use copy-on-write, then an error is returned."
+msgstr ""
+
+#: ../../src/fs.rst:401
+msgid ""
+"If the destination path is created, but an error occurs while copying the"
+" data, then the destination path is removed. There is a brief window of "
+"time between closing and removing the file where another process could "
+"access the file."
+msgstr ""
+
+#: ../../src/fs.rst:408
+msgid "`UV_FS_COPYFILE_FICLONE` and `UV_FS_COPYFILE_FICLONE_FORCE` are supported."
+msgstr ""
+
+#: ../../src/fs.rst:411
+msgid ""
+"If an error occurs while using `UV_FS_COPYFILE_FICLONE_FORCE`, that error"
+" is returned. Previously, all errors were mapped to `UV_ENOTSUP`."
+msgstr ""
+
+#: ../../src/fs.rst:417
+msgid "Limited equivalent to :man:`sendfile(2)`."
+msgstr ""
+
+#: ../../src/fs.rst:421
+msgid ""
+"Equivalent to :man:`access(2)` on Unix. Windows uses "
+"``GetFileAttributesW()``."
+msgstr ""
+
+#: ../../src/fs.rst:426
+msgid "Equivalent to :man:`chmod(2)` and :man:`fchmod(2)` respectively."
+msgstr ""
+
+#: ../../src/fs.rst:432
+msgid ""
+"Equivalent to :man:`utime(2)`, :man:`futimes(3)` and :man:`lutimes(3)` "
+"respectively."
+msgstr ""
+
+#: ../../src/fs.rst:434
+msgid ""
+"Passing `UV_FS_UTIME_NOW` as the atime or mtime sets the timestamp to the"
+" current time."
+msgstr ""
+
+#: ../../src/fs.rst:437
+msgid ""
+"Passing `UV_FS_UTIME_OMIT` as the atime or mtime leaves the timestamp "
+"untouched."
+msgstr ""
+
+#: ../../src/fs.rst:441
+msgid ""
+"z/OS: `uv_fs_lutime()` is not implemented for z/OS. It can still be "
+"called but will return ``UV_ENOSYS``."
+msgstr ""
+
+#: ../../src/fs.rst:445
+msgid ""
+"AIX: `uv_fs_futime()` and `uv_fs_lutime()` functions only work for AIX "
+"7.1 and newer. They can still be called on older versions but will return"
+" ``UV_ENOSYS``."
+msgstr ""
+
+#: ../../src/fs.rst:448
+msgid "sub-second precission is supported on Windows"
+msgstr ""
+
+#: ../../src/fs.rst:452
+msgid "Equivalent to :man:`link(2)`."
+msgstr ""
+
+#: ../../src/fs.rst:456
+msgid "Equivalent to :man:`symlink(2)`."
+msgstr ""
+
+#: ../../src/fs.rst:459
+msgid ""
+"On Windows the `flags` parameter can be specified to control how the "
+"symlink will be created:"
+msgstr ""
+
+#: ../../src/fs.rst:462
+msgid "``UV_FS_SYMLINK_DIR``: indicates that `path` points to a directory."
+msgstr ""
+
+#: ../../src/fs.rst:464
+msgid ""
+"``UV_FS_SYMLINK_JUNCTION``: request that the symlink is created using "
+"junction points."
+msgstr ""
+
+#: ../../src/fs.rst:469
+msgid ""
+"Equivalent to :man:`readlink(2)`. The resulting string is stored in "
+"`req->ptr`."
+msgstr ""
+
+#: ../../src/fs.rst:474
+msgid ""
+"Equivalent to :man:`realpath(3)` on Unix. Windows uses "
+"`GetFinalPathNameByHandleW <https://learn.microsoft.com/en-"
+"us/windows/win32/api/fileapi/nf-fileapi-getfinalpathnamebyhandlew>`_. The"
+" resulting string is stored in `req->ptr`."
+msgstr ""
+
+#: ../../src/fs.rst:478
+msgid ""
+"This function has certain platform-specific caveats that were discovered "
+"when used in Node."
+msgstr ""
+
+#: ../../src/fs.rst:480
+msgid ""
+"macOS and other BSDs: this function will fail with UV_ELOOP if more than "
+"32 symlinks are found while resolving the given path.  This limit is "
+"hardcoded and cannot be sidestepped."
+msgstr ""
+
+#: ../../src/fs.rst:482
+msgid ""
+"Windows: while this function works in the common case, there are a number"
+" of corner cases where it doesn't:"
+msgstr ""
+
+#: ../../src/fs.rst:485
+msgid ""
+"Paths in ramdisk volumes created by tools which sidestep the Volume "
+"Manager (such as ImDisk) cannot be resolved."
+msgstr ""
+
+#: ../../src/fs.rst:487
+msgid "Inconsistent casing when using drive letters."
+msgstr ""
+
+#: ../../src/fs.rst:488
+msgid "Resolved path bypasses subst'd drives."
+msgstr ""
+
+#: ../../src/fs.rst:490
+msgid ""
+"While this function can still be used, it's not recommended if scenarios "
+"such as the above need to be supported."
+msgstr ""
+
+#: ../../src/fs.rst:493
+msgid ""
+"The background story and some more details on these issues can be checked"
+" `here <https://github.com/nodejs/node/issues/7726>`_."
+msgstr ""
+
+#: ../../src/fs.rst:502
+msgid ""
+"Equivalent to :man:`chown(2)`, :man:`fchown(2)` and :man:`lchown(2)` "
+"respectively."
+msgstr ""
+
+#: ../../src/fs.rst:505
+msgid "These functions are not implemented on Windows."
+msgstr ""
+
+#: ../../src/fs.rst:507
+msgid "implemented uv_fs_lchown"
+msgstr ""
+
+#: ../../src/fs.rst:511
+msgid "Returns `req->fs_type`."
+msgstr ""
+
+#: ../../src/fs.rst:517
+msgid "Returns `req->result`."
+msgstr ""
+
+#: ../../src/fs.rst:523
+msgid ""
+"Returns the platform specific error code - `GetLastError()` value on "
+"Windows and `-(req->result)` on other platforms."
+msgstr ""
+
+#: ../../src/fs.rst:530
+msgid "Returns `req->ptr`."
+msgstr ""
+
+#: ../../src/fs.rst:536
+msgid "Returns `req->path`."
+msgstr ""
+
+#: ../../src/fs.rst:542
+msgid "Returns `&req->statbuf`."
+msgstr ""
+
+#: ../../src/fs.rst:546
+msgid "The :c:type:`uv_req_t` API functions also apply."
+msgstr ""
+
+#: ../../src/fs.rst:549
+msgid "Helper functions"
+msgstr ""
+
+#: ../../src/fs.rst:553
+msgid ""
+"For a file descriptor in the C runtime, get the OS-dependent handle. On "
+"UNIX, returns the ``fd`` intact. On Windows, this calls `_get_osfhandle "
+"<https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/get-"
+"osfhandle?view=vs-2019>`_. Note that the return value is still owned by "
+"the C runtime, any attempts to close it or to use it after closing the fd"
+" may lead to malfunction."
+msgstr ""
+
+#: ../../src/fs.rst:562
+msgid ""
+"For a OS-dependent handle, get the file descriptor in the C runtime. On "
+"UNIX, returns the ``os_fd`` intact. On Windows, this calls "
+"`_open_osfhandle <https://learn.microsoft.com/en-us/cpp/c-runtime-"
+"library/reference/open-osfhandle?view=vs-2019>`_. Note that this consumes"
+" the argument, any attempts to close it or to use it after closing the "
+"return value may lead to malfunction."
+msgstr ""
+
+#: ../../src/fs.rst:570
+msgid "File open constants"
+msgstr ""
+
+#: ../../src/fs.rst:574
+msgid ""
+"The file is opened in append mode. Before each write, the file offset is "
+"positioned at the end of the file."
+msgstr ""
+
+#: ../../src/fs.rst:579
+msgid "The file is created if it does not already exist."
+msgstr ""
+
+#: ../../src/fs.rst:583
+msgid ""
+"File I/O is done directly to and from user-space buffers, which must be "
+"aligned. Buffer size and address should be a multiple of the physical "
+"sector size of the block device."
+msgstr ""
+
+#: ../../src/fs.rst:588
+msgid ""
+"`UV_FS_O_DIRECT` is supported on Linux, and on Windows via "
+"`FILE_FLAG_NO_BUFFERING <https://learn.microsoft.com/en-"
+"us/windows/win32/fileio/file-buffering>`_. `UV_FS_O_DIRECT` is not "
+"supported on macOS."
+msgstr ""
+
+#: ../../src/fs.rst:594
+msgid "If the path is not a directory, fail the open."
+msgstr ""
+
+#: ../../src/fs.rst:597
+msgid "`UV_FS_O_DIRECTORY` is not supported on Windows."
+msgstr ""
+
+#: ../../src/fs.rst:601
+msgid ""
+"The file is opened for synchronous I/O. Write operations will complete "
+"once all data and a minimum of metadata are flushed to disk."
+msgstr ""
+
+#: ../../src/fs.rst:605
+msgid ""
+"`UV_FS_O_DSYNC` is supported on Windows via `FILE_FLAG_WRITE_THROUGH "
+"<https://learn.microsoft.com/en-us/windows/win32/fileio/file-"
+"buffering>`_."
+msgstr ""
+
+#: ../../src/fs.rst:610
+msgid "If the `O_CREAT` flag is set and the file already exists, fail the open."
+msgstr ""
+
+#: ../../src/fs.rst:613
+msgid ""
+"In general, the behavior of `O_EXCL` is undefined if it is used without "
+"`O_CREAT`. There is one exception: on Linux 2.6 and later, `O_EXCL` can "
+"be used without `O_CREAT` if pathname refers to a block device. If the "
+"block device is in use by the system (e.g., mounted), the open will fail "
+"with the error `EBUSY`."
+msgstr ""
+
+#: ../../src/fs.rst:621
+msgid "Atomically obtain an exclusive lock."
+msgstr ""
+
+#: ../../src/fs.rst:624
+msgid "`UV_FS_O_EXLOCK` is only supported on macOS and Windows."
+msgstr ""
+
+#: ../../src/fs.rst:626
+msgid "support is added for Windows."
+msgstr ""
+
+#: ../../src/fs.rst:630
+msgid ""
+"Use a memory file mapping to access the file. When using this flag, the "
+"file cannot be open multiple times concurrently."
+msgstr ""
+
+#: ../../src/fs.rst:634
+msgid "`UV_FS_O_FILEMAP` is only supported on Windows."
+msgstr ""
+
+#: ../../src/fs.rst:638
+msgid "Do not update the file access time when the file is read."
+msgstr ""
+
+#: ../../src/fs.rst:641
+msgid "`UV_FS_O_NOATIME` is not supported on Windows."
+msgstr ""
+
+#: ../../src/fs.rst:645
+msgid ""
+"If the path identifies a terminal device, opening the path will not cause"
+" that terminal to become the controlling terminal for the process (if the"
+" process does not already have one)."
+msgstr ""
+
+#: ../../src/fs.rst:650
+msgid "`UV_FS_O_NOCTTY` is not supported on Windows."
+msgstr ""
+
+#: ../../src/fs.rst:654
+msgid "If the path is a symbolic link, fail the open."
+msgstr ""
+
+#: ../../src/fs.rst:657
+msgid "`UV_FS_O_NOFOLLOW` is not supported on Windows."
+msgstr ""
+
+#: ../../src/fs.rst:661
+msgid "Open the file in nonblocking mode if possible."
+msgstr ""
+
+#: ../../src/fs.rst:664
+msgid "`UV_FS_O_NONBLOCK` is not supported on Windows."
+msgstr ""
+
+#: ../../src/fs.rst:668
+msgid ""
+"Access is intended to be random. The system can use this as a hint to "
+"optimize file caching."
+msgstr ""
+
+#: ../../src/fs.rst:672
+msgid ""
+"`UV_FS_O_RANDOM` is only supported on Windows via "
+"`FILE_FLAG_RANDOM_ACCESS <https://learn.microsoft.com/en-"
+"us/windows/win32/api/fileapi/nf-fileapi-createfilew>`_."
+msgstr ""
+
+#: ../../src/fs.rst:677
+msgid "Open the file for read-only access."
+msgstr ""
+
+#: ../../src/fs.rst:681
+msgid "Open the file for read-write access."
+msgstr ""
+
+#: ../../src/fs.rst:685
+msgid ""
+"Access is intended to be sequential from beginning to end. The system can"
+" use this as a hint to optimize file caching."
+msgstr ""
+
+#: ../../src/fs.rst:689
+msgid ""
+"`UV_FS_O_SEQUENTIAL` is only supported on Windows via "
+"`FILE_FLAG_SEQUENTIAL_SCAN <https://learn.microsoft.com/en-"
+"us/windows/win32/api/fileapi/nf-fileapi-createfilew>`_."
+msgstr ""
+
+#: ../../src/fs.rst:694 ../../src/fs.rst:715
+msgid "The file is temporary and should not be flushed to disk if possible."
+msgstr ""
+
+#: ../../src/fs.rst:697
+msgid ""
+"`UV_FS_O_SHORT_LIVED` is only supported on Windows via "
+"`FILE_ATTRIBUTE_TEMPORARY <https://learn.microsoft.com/en-"
+"us/windows/win32/api/fileapi/nf-fileapi-createfilew>`_."
+msgstr ""
+
+#: ../../src/fs.rst:702
+msgid "Open the symbolic link itself rather than the resource it points to."
+msgstr ""
+
+#: ../../src/fs.rst:706
+msgid ""
+"The file is opened for synchronous I/O. Write operations will complete "
+"once all data and all metadata are flushed to disk."
+msgstr ""
+
+#: ../../src/fs.rst:710
+msgid ""
+"`UV_FS_O_SYNC` is supported on Windows via `FILE_FLAG_WRITE_THROUGH "
+"<https://learn.microsoft.com/en-us/windows/win32/fileio/file-"
+"buffering>`_."
+msgstr ""
+
+#: ../../src/fs.rst:718
+msgid ""
+"`UV_FS_O_TEMPORARY` is only supported on Windows via "
+"`FILE_ATTRIBUTE_TEMPORARY <https://learn.microsoft.com/en-"
+"us/windows/win32/api/fileapi/nf-fileapi-createfilew>`_."
+msgstr ""
+
+#: ../../src/fs.rst:723
+msgid ""
+"If the file exists and is a regular file, and the file is opened "
+"successfully for write access, its length shall be truncated to zero."
+msgstr ""
+
+#: ../../src/fs.rst:728
+msgid "Open the file for write-only access."
+msgstr ""
+

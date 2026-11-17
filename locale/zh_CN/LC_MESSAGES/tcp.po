@@ -1,0 +1,329 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/tcp.rst:5
+msgid ":c:type:`uv_tcp_t` --- TCP handle"
+msgstr ""
+
+#: ../../src/tcp.rst:7
+msgid "TCP handles are used to represent both TCP streams and servers."
+msgstr ""
+
+#: ../../src/tcp.rst:9
+msgid ":c:type:`uv_tcp_t` is a 'subclass' of :c:type:`uv_stream_t`."
+msgstr ""
+
+#: ../../src/tcp.rst:13
+msgid "Data types"
+msgstr ""
+
+#: ../../src/tcp.rst:17
+msgid "TCP handle type."
+msgstr ""
+
+#: ../../src/tcp.rst:21
+msgid "Flags used in :c:func:`uv_tcp_bind`."
+msgstr ""
+
+#: ../../src/tcp.rst:43
+msgid "Public members"
+msgstr ""
+
+#: ../../src/tcp.rst:45
+msgid "N/A"
+msgstr ""
+
+#: ../../src/tcp.rst:47
+msgid "The :c:type:`uv_stream_t` members also apply."
+msgstr ""
+
+#: ../../src/tcp.rst:51
+msgid "API"
+msgstr ""
+
+#: ../../src/tcp.rst:55
+msgid "Initialize the handle. No socket is created as of yet."
+msgstr ""
+
+#: ../../src/tcp.rst:59
+msgid ""
+"Initialize the handle with the specified flags. At the moment only the "
+"lower 8 bits of the `flags` parameter are used as the socket domain. A "
+"socket will be created for the given domain. If the specified domain is "
+"``AF_UNSPEC`` no socket is created, just like :c:func:`uv_tcp_init`."
+msgstr ""
+
+#: ../../src/tcp.rst:68
+msgid "Open an existing file descriptor or SOCKET as a TCP handle."
+msgstr ""
+
+#: ../../src/tcp.rst:70
+msgid "the file descriptor is set to non-blocking mode."
+msgstr ""
+
+#: ../../src/tcp.rst:73
+msgid ""
+"The passed file descriptor or SOCKET is not checked for its type, but "
+"it's required that it represents a valid stream socket."
+msgstr ""
+
+#: ../../src/tcp.rst:78
+msgid "Enable `TCP_NODELAY`, which disables Nagle's algorithm."
+msgstr ""
+
+#: ../../src/tcp.rst:82
+msgid ""
+"Enable / disable TCP keep-alive. `delay` is the initial delay in seconds,"
+" ignored when `enable` is zero."
+msgstr ""
+
+#: ../../src/tcp.rst:85
+msgid ""
+"After `delay` has been reached, 10 successive probes, each spaced 1 "
+"second from the previous one, will still happen. If the connection is "
+"still lost at the end of this procedure, then the handle is destroyed "
+"with a ``UV_ETIMEDOUT`` error passed to the corresponding callback."
+msgstr ""
+
+#: ../../src/tcp.rst:90
+msgid "If `delay` is less than 1 then ``UV_EINVAL`` is returned."
+msgstr ""
+
+#: ../../src/tcp.rst:92
+msgid "If `delay` is less than 1 then ``UV_EINVAL``` is returned."
+msgstr ""
+
+#: ../../src/tcp.rst:96
+msgid ""
+"Enable / disable TCP keep-alive with all socket options: `TCP_KEEPIDLE`, "
+"`TCP_KEEPINTVL` and `TCP_KEEPCNT`. `idle` is the value for "
+"`TCP_KEEPIDLE`, `intvl` is the value for `TCP_KEEPINTVL`, `cnt` is the "
+"value for `TCP_KEEPCNT`, ignored when `on` is zero."
+msgstr ""
+
+#: ../../src/tcp.rst:100
+msgid ""
+"With TCP keep-alive enabled, `idle` is the time (in seconds) the "
+"connection needs to remain idle before TCP starts sending keep-alive "
+"probes. `intvl` is the time (in seconds) between individual keep-alive "
+"probes. TCP will drop the connection after sending `cnt` probes without "
+"getting any replies from the peer, then the handle is destroyed with a "
+"``UV_ETIMEDOUT`` error passed to the corresponding callback."
+msgstr ""
+
+#: ../../src/tcp.rst:105
+msgid ""
+"If one of `idle`, `intvl`, or `cnt` is less than 1, ``UV_EINVAL`` is "
+"returned."
+msgstr ""
+
+#: ../../src/tcp.rst:107
+msgid "added support of setting `TCP_KEEPINTVL` and `TCP_KEEPCNT` socket options."
+msgstr ""
+
+#: ../../src/tcp.rst:110
+msgid ""
+"Ensure that the socket options are supported by the underlying operating "
+"system. Currently supported platforms:"
+msgstr ""
+
+#: ../../src/tcp.rst:112
+msgid "AIX"
+msgstr ""
+
+#: ../../src/tcp.rst:113
+msgid "DragonFlyBSD"
+msgstr ""
+
+#: ../../src/tcp.rst:114
+msgid "FreeBSD"
+msgstr ""
+
+#: ../../src/tcp.rst:115
+msgid "illumos"
+msgstr ""
+
+#: ../../src/tcp.rst:116
+msgid "Linux"
+msgstr ""
+
+#: ../../src/tcp.rst:117
+msgid "macOS"
+msgstr ""
+
+#: ../../src/tcp.rst:118
+msgid "NetBSD"
+msgstr ""
+
+#: ../../src/tcp.rst:119
+msgid "Solaris"
+msgstr ""
+
+#: ../../src/tcp.rst:120
+msgid "Windows"
+msgstr ""
+
+#: ../../src/tcp.rst:124
+msgid ""
+"Enable / disable simultaneous asynchronous accept requests that are "
+"queued by the operating system when listening for new TCP connections."
+msgstr ""
+
+#: ../../src/tcp.rst:127
+msgid ""
+"This setting is used to tune a TCP server for the desired performance. "
+"Having simultaneous accepts can significantly improve the rate of "
+"accepting connections (which is why it is enabled by default) but may "
+"lead to uneven load distribution in multi-process setups."
+msgstr ""
+
+#: ../../src/tcp.rst:134
+msgid "Bind the handle to an address and port."
+msgstr ""
+
+#: ../../src/tcp.rst:136
+msgid ""
+"When the port is already taken, you can expect to see an "
+"``UV_EADDRINUSE`` error from :c:func:`uv_listen` or "
+":c:func:`uv_tcp_connect` unless you specify ``UV_TCP_REUSEPORT`` in "
+"`flags` for all the binding sockets. That is, a successful call to this "
+"function does not guarantee that the call to :c:func:`uv_listen` or "
+":c:func:`uv_tcp_connect` will succeed as well."
+msgstr ""
+
+#: ../../src/tcp.rst
+msgid "参数"
+msgstr ""
+
+#: ../../src/tcp.rst:142
+msgid "TCP handle. It should have been initialized with :c:func:`uv_tcp_init`."
+msgstr ""
+
+#: ../../src/tcp.rst:144
+msgid ""
+"Address to bind to. It should point to an initialized ``struct "
+"sockaddr_in`` or ``struct sockaddr_in6``."
+msgstr ""
+
+#: ../../src/tcp.rst:147
+msgid ""
+"Flags that control the behavior of binding the socket. "
+"``UV_TCP_IPV6ONLY`` can be contained in `flags` to disable dual-stack "
+"support and only use IPv6. ``UV_TCP_REUSEPORT`` can be contained in "
+"`flags` to enable the socket option `SO_REUSEPORT` with the capability of"
+" load balancing that distribute incoming connections across all listening"
+" sockets in multiple processes or threads."
+msgstr ""
+
+#: ../../src/tcp.rst
+msgid "返回"
+msgstr ""
+
+#: ../../src/tcp.rst:154
+msgid "0 on success, or an error code < 0 on failure."
+msgstr ""
+
+#: ../../src/tcp.rst:156
+msgid "added the ``UV_TCP_REUSEPORT`` flag."
+msgstr ""
+
+#: ../../src/tcp.rst:159
+msgid ""
+"``UV_TCP_REUSEPORT`` flag is available only on Linux 3.9+, DragonFlyBSD "
+"3.6+, FreeBSD 12.0+, Solaris 11.4, and AIX 7.2.5+ at the moment. On other"
+" platforms this function will return an UV_ENOTSUP error."
+msgstr ""
+
+#: ../../src/tcp.rst:165
+msgid ""
+"Get the current address to which the handle is bound. `name` must point "
+"to a valid and big enough chunk of memory, ``struct sockaddr_storage`` is"
+" recommended for IPv4 and IPv6 support."
+msgstr ""
+
+#: ../../src/tcp.rst:171
+msgid ""
+"Get the address of the peer connected to the handle. `name` must point to"
+" a valid and big enough chunk of memory, ``struct sockaddr_storage`` is "
+"recommended for IPv4 and IPv6 support."
+msgstr ""
+
+#: ../../src/tcp.rst:177
+msgid ""
+"Establish an IPv4 or IPv6 TCP connection. Provide an initialized TCP "
+"handle and an uninitialized :c:type:`uv_connect_t`. `addr` should point "
+"to an initialized ``struct sockaddr_in`` or ``struct sockaddr_in6``."
+msgstr ""
+
+#: ../../src/tcp.rst:181
+msgid ""
+"On Windows if the `addr` is initialized to point to an unspecified "
+"address (``0.0.0.0`` or ``::``) it will be changed to point to "
+"``localhost``. This is done to match the behavior of Linux systems."
+msgstr ""
+
+#: ../../src/tcp.rst:185
+msgid ""
+"The callback is made when the connection has been established or when a "
+"connection error happened."
+msgstr ""
+
+#: ../../src/tcp.rst:188
+msgid "added ``0.0.0.0`` and ``::`` to ``localhost`` mapping"
+msgstr ""
+
+#: ../../src/tcp.rst:191
+msgid "The :c:type:`uv_stream_t` API functions also apply."
+msgstr ""
+
+#: ../../src/tcp.rst:195
+msgid ""
+"Resets a TCP connection by sending a RST packet. This is accomplished by "
+"setting the `SO_LINGER` socket option with a linger interval of zero and "
+"then calling :c:func:`uv_close`. Due to some platform inconsistencies, "
+"mixing of :c:func:`uv_shutdown` and :c:func:`uv_tcp_close_reset` calls is"
+" not allowed."
+msgstr ""
+
+#: ../../src/tcp.rst:205
+msgid ""
+"Create a pair of connected sockets with the specified properties. The "
+"resulting handles can be passed to `uv_tcp_open`, used with `uv_spawn`, "
+"or for any other purpose."
+msgstr ""
+
+#: ../../src/tcp.rst:209
+msgid "Valid values for `flags0` and `flags1` are:"
+msgstr ""
+
+#: ../../src/tcp.rst:211
+msgid ""
+"UV_NONBLOCK_PIPE: Opens the specified socket handle for `OVERLAPPED` or "
+"`FIONBIO`/`O_NONBLOCK` I/O usage. This is recommended for handles that "
+"will be used by libuv, and not usually recommended otherwise."
+msgstr ""
+
+#: ../../src/tcp.rst:216
+msgid "Equivalent to :man:`socketpair(2)` with a domain of AF_UNIX."
+msgstr ""
+

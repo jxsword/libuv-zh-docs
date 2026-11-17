@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/idle.rst:5
+msgid ":c:type:`uv_idle_t` --- Idle handle"
+msgstr ""
+
+#: ../../src/idle.rst:7
+msgid ""
+"Idle handles will run the given callback once per loop iteration, right "
+"before the :c:type:`uv_prepare_t` handles."
+msgstr ""
+
+#: ../../src/idle.rst:11
+msgid ""
+"The notable difference with prepare handles is that when there are active"
+" idle handles, the loop will perform a zero timeout poll instead of "
+"blocking for i/o."
+msgstr ""
+
+#: ../../src/idle.rst:15
+msgid ""
+"Despite the name, idle handles will get their callbacks called on every "
+"loop iteration, not when the loop is actually \"idle\"."
+msgstr ""
+
+#: ../../src/idle.rst:20
+msgid "Data types"
+msgstr ""
+
+#: ../../src/idle.rst:24
+msgid "Idle handle type."
+msgstr ""
+
+#: ../../src/idle.rst:28
+msgid "Type definition for callback passed to :c:func:`uv_idle_start`."
+msgstr ""
+
+#: ../../src/idle.rst:32
+msgid "Public members"
+msgstr ""
+
+#: ../../src/idle.rst:34
+msgid "N/A"
+msgstr ""
+
+#: ../../src/idle.rst:36
+msgid "The :c:type:`uv_handle_t` members also apply."
+msgstr ""
+
+#: ../../src/idle.rst:40
+msgid "API"
+msgstr ""
+
+#: ../../src/idle.rst:44
+msgid "Initialize the handle. This function always succeeds."
+msgstr ""
+
+#: ../../src/idle.rst
+msgid "返回"
+msgstr ""
+
+#: ../../src/idle.rst:46 ../../src/idle.rst:60
+msgid "0"
+msgstr ""
+
+#: ../../src/idle.rst:50
+msgid ""
+"Start the handle with the given callback. This function always succeeds, "
+"except when `cb` is `NULL`."
+msgstr ""
+
+#: ../../src/idle.rst:53
+msgid "0 on success, or `UV_EINVAL` when `cb == NULL`."
+msgstr ""
+
+#: ../../src/idle.rst:57
+msgid ""
+"Stop the handle, the callback will no longer be called. This function "
+"always succeeds."
+msgstr ""
+
+#: ../../src/idle.rst:62
+msgid "The :c:type:`uv_handle_t` API functions also apply."
+msgstr ""
+

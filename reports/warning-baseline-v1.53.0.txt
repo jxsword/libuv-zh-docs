@@ -1,0 +1,21 @@
+# libuv v1.53.0 英文构建 warning 基线（P0 步骤5，2026-11-18）
+# 环境: Python 3.14.4 + Sphinx 7.0.1 + furo 2024.8.6（venv 精确 pin，见 requirements-zh.txt）
+# 命令: make -C workdir/docs html（venv sphinx-build）
+# 结果: 构建成功 exit=0，11 条 warning，0 error
+# 门禁: 后续批次 = 零 error + 增量 warning 清零（对照本清单）
+# 注: guide/eventloops.rst:22 的 libuv C 源码文件缺失警告，因快照范围不含 C 源码树，为永久基线项
+
+## warning 明细（grep WARNING 原始行，去绝对路径前缀）
+      3 udp.rst:451: WARNING: Parsing of expression failed. Using fallback parser. Error was:
+      1 guide/threads.rst.rst:41: WARNING: 指定的行号超出范围（1-35）：'26-36'
+      1 guide/filesystem.rst.rst:212: WARNING: 指定的行号超出范围（1-79）：'62-80'
+      1 guide/eventloops.rst:22: WARNING: 要包含的文件 '/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/src/unix/core.c' 不存在或读取失败
+      1 dns.rst:60: WARNING: Error in declarator or parameters
+      1 dns.rst:54: WARNING: Error in declarator or parameters
+      1 design.rst:22: WARNING: Explicit markup ends without a blank line; unexpected unindent.
+
+## sphinx 汇总
+HTML 页面保存在 build/html 目录。
+
+Build finished. The HTML pages are in build/html.
+make: 离开目录“/home/ssy/soft-tech-docs-translate/libuv-zh-docs/workdir/docs”

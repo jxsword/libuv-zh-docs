@@ -1,0 +1,127 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/threadpool.rst:5
+msgid "Thread pool work scheduling"
+msgstr ""
+
+#: ../../src/threadpool.rst:7
+msgid ""
+"libuv provides a threadpool which can be used to run user code and get "
+"notified in the loop thread. This thread pool is internally used to run "
+"all file system operations, as well as getaddrinfo and getnameinfo "
+"requests."
+msgstr ""
+
+#: ../../src/threadpool.rst:11
+msgid ""
+"Its default size is 4, but it can be changed at startup time by setting "
+"the ``UV_THREADPOOL_SIZE`` environment variable to any value (the "
+"absolute maximum is 1024)."
+msgstr ""
+
+#: ../../src/threadpool.rst:15
+msgid "the maximum UV_THREADPOOL_SIZE allowed was increased from 128 to 1024."
+msgstr ""
+
+#: ../../src/threadpool.rst:17
+msgid ""
+"threads now have an 8 MB stack instead of the (sometimes too low) "
+"platform default."
+msgstr ""
+
+#: ../../src/threadpool.rst:20
+msgid "threads now have a default name of libuv-worker."
+msgstr ""
+
+#: ../../src/threadpool.rst:22
+msgid ""
+"The threadpool is global and shared across all event loops. When a "
+"particular function makes use of the threadpool (e.g. when using "
+":c:func:`uv_queue_work`) libuv preallocates and initializes the maximum "
+"number of threads allowed by ``UV_THREADPOOL_SIZE``. More threads usually"
+" means more throughput but a higher memory footprint. Thread stacks grow "
+"lazily on most platforms though."
+msgstr ""
+
+#: ../../src/threadpool.rst:29
+msgid ""
+"Note that even though a global thread pool which is shared across all "
+"events loops is used, the functions are not thread safe."
+msgstr ""
+
+#: ../../src/threadpool.rst:34
+msgid "Data types"
+msgstr ""
+
+#: ../../src/threadpool.rst:38
+msgid "Work request type."
+msgstr ""
+
+#: ../../src/threadpool.rst:42
+msgid ""
+"Callback passed to :c:func:`uv_queue_work` which will be run on the "
+"thread pool."
+msgstr ""
+
+#: ../../src/threadpool.rst:47
+msgid ""
+"Callback passed to :c:func:`uv_queue_work` which will be called on the "
+"loop thread after the work on the threadpool has been completed. If the "
+"work was cancelled using :c:func:`uv_cancel` `status` will be "
+"``UV_ECANCELED``."
+msgstr ""
+
+#: ../../src/threadpool.rst:53
+msgid "Public members"
+msgstr ""
+
+#: ../../src/threadpool.rst:57
+msgid ""
+"Loop that started this request and where completion will be reported. "
+"Readonly."
+msgstr ""
+
+#: ../../src/threadpool.rst:60
+msgid "The :c:type:`uv_req_t` members also apply."
+msgstr ""
+
+#: ../../src/threadpool.rst:64
+msgid "API"
+msgstr ""
+
+#: ../../src/threadpool.rst:68
+msgid ""
+"Initializes a work request which will run the given `work_cb` in a thread"
+" from the threadpool. Once `work_cb` is completed, `after_work_cb` will "
+"be called on the loop thread."
+msgstr ""
+
+#: ../../src/threadpool.rst:72
+msgid "This request can be cancelled with :c:func:`uv_cancel`."
+msgstr ""
+
+#: ../../src/threadpool.rst:74
+msgid "The :c:type:`uv_req_t` API functions also apply."
+msgstr ""
+

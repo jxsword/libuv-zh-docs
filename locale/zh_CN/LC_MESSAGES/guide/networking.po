@@ -1,0 +1,358 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/guide/networking.rst:2
+msgid "Networking"
+msgstr ""
+
+#: ../../src/guide/networking.rst:4
+msgid ""
+"Networking in libuv is not much different from directly using the BSD "
+"socket interface, some things are easier, all are non-blocking, but the "
+"concepts stay the same. In addition libuv offers utility functions to "
+"abstract the annoying, repetitive and low-level tasks like setting up "
+"sockets using the BSD socket structures, DNS lookup, and tweaking various"
+" socket parameters."
+msgstr ""
+
+#: ../../src/guide/networking.rst:10
+msgid "The ``uv_tcp_t`` and ``uv_udp_t`` structures are used for network I/O."
+msgstr ""
+
+#: ../../src/guide/networking.rst:14
+msgid ""
+"The code samples in this chapter exist to show certain libuv APIs. They "
+"are not examples of good quality code. They leak memory and don't always "
+"close connections properly."
+msgstr ""
+
+#: ../../src/guide/networking.rst:19
+msgid "TCP"
+msgstr ""
+
+#: ../../src/guide/networking.rst:21
+msgid ""
+"TCP is a connection oriented, stream protocol and is therefore based on "
+"the libuv streams infrastructure."
+msgstr ""
+
+#: ../../src/guide/networking.rst:25
+msgid "Server"
+msgstr ""
+
+#: ../../src/guide/networking.rst:27
+msgid "Server sockets proceed by:"
+msgstr ""
+
+#: ../../src/guide/networking.rst:29
+msgid "``uv_tcp_init`` the TCP handle."
+msgstr ""
+
+#: ../../src/guide/networking.rst:30
+msgid "``uv_tcp_bind`` it."
+msgstr ""
+
+#: ../../src/guide/networking.rst:31
+msgid ""
+"Call ``uv_listen`` on the handle to have a callback invoked whenever a "
+"new connection is established by a client."
+msgstr ""
+
+#: ../../src/guide/networking.rst:33
+msgid "Use ``uv_accept`` to accept the connection."
+msgstr ""
+
+#: ../../src/guide/networking.rst:34
+msgid ""
+"Use :ref:`stream operations <buffers-and-streams>` to communicate with "
+"the client."
+msgstr ""
+
+#: ../../src/guide/networking.rst:37
+msgid "Here is a simple echo server"
+msgstr ""
+
+#: ../../src/guide/networking.rst:39
+msgid "tcp-echo-server/main.c - The listen socket"
+msgstr ""
+
+#: ../../src/guide/networking.rst:46
+msgid ""
+"You can see the utility function ``uv_ip4_addr`` being used to convert "
+"from a human readable IP address, port pair to the sockaddr_in structure "
+"required by the BSD socket APIs. The reverse can be obtained using "
+"``uv_ip4_name``."
+msgstr ""
+
+#: ../../src/guide/networking.rst:52
+msgid "There are ``uv_ip6_*`` analogues for the ip4 functions."
+msgstr ""
+
+#: ../../src/guide/networking.rst:54
+msgid ""
+"Most of the setup functions are synchronous since they are CPU-bound. "
+"``uv_listen`` is where we return to libuv's callback style. The second "
+"arguments is the backlog queue -- the maximum length of queued "
+"connections."
+msgstr ""
+
+#: ../../src/guide/networking.rst:58
+msgid ""
+"When a connection is initiated by clients, the callback is required to "
+"set up a handle for the client socket and associate the handle using "
+"``uv_accept``. In this case we also establish interest in reading from "
+"this stream."
+msgstr ""
+
+#: ../../src/guide/networking.rst:62
+msgid "tcp-echo-server/main.c - Accepting the client"
+msgstr ""
+
+#: ../../src/guide/networking.rst:69
+msgid ""
+"The remaining set of functions is very similar to the streams example and"
+" can be found in the code. Just remember to call ``uv_close`` when the "
+"socket isn't required. This can be done even in the ``uv_listen`` "
+"callback if you are not interested in accepting the connection."
+msgstr ""
+
+#: ../../src/guide/networking.rst:75
+msgid "Client"
+msgstr ""
+
+#: ../../src/guide/networking.rst:77
+msgid ""
+"Where you do bind/listen/accept on the server, on the client side it's "
+"simply a matter of calling ``uv_tcp_connect``. The same ``uv_connect_cb``"
+" style callback of ``uv_listen`` is used by ``uv_tcp_connect``. Try::"
+msgstr ""
+
+#: ../../src/guide/networking.rst:91
+msgid ""
+"where ``on_connect`` will be called after the connection is established. "
+"The callback receives the ``uv_connect_t`` struct, which has a member "
+"``.handle`` pointing to the socket."
+msgstr ""
+
+#: ../../src/guide/networking.rst:96
+msgid "UDP"
+msgstr ""
+
+#: ../../src/guide/networking.rst:98
+msgid ""
+"The `User Datagram Protocol`_ offers connectionless, unreliable network "
+"communication. Hence libuv doesn't offer a stream. Instead libuv provides"
+" non-blocking UDP support via the `uv_udp_t` handle (for receiving) and "
+"`uv_udp_send_t` request (for sending) and related functions. That said, "
+"the actual API for reading/writing is very similar to normal stream "
+"reads. To look at how UDP can be used, the example shows the first stage "
+"of obtaining an IP address from a `DHCP`_ server -- DHCP Discover."
+msgstr ""
+
+#: ../../src/guide/networking.rst:108
+msgid ""
+"You will have to run `udp-dhcp` as **root** since it uses well known port"
+" numbers below 1024."
+msgstr ""
+
+#: ../../src/guide/networking.rst:111
+msgid "udp-dhcp/main.c - Setup and send UDP packets"
+msgstr ""
+
+#: ../../src/guide/networking.rst:120
+msgid ""
+"The IP address ``0.0.0.0`` is used to bind to all interfaces. The IP "
+"address ``255.255.255.255`` is a broadcast address meaning that packets "
+"will be sent to all interfaces on the subnet.  port ``0`` means that the "
+"OS randomly assigns a port."
+msgstr ""
+
+#: ../../src/guide/networking.rst:125
+msgid ""
+"First we setup the receiving socket to bind on all interfaces on port 68 "
+"(DHCP client) and start a read on it. This will read back responses from "
+"any DHCP server that replies. We use the UV_UDP_REUSEADDR flag to play "
+"nice with any other system DHCP clients that are running on this computer"
+" on the same port. Then we setup a similar send socket and use "
+"``uv_udp_send`` to send a *broadcast message* on port 67 (DHCP server)."
+msgstr ""
+
+#: ../../src/guide/networking.rst:132
+msgid ""
+"It is **necessary** to set the broadcast flag, otherwise you will get an "
+"``EACCES`` error [#]_. The exact message being sent is not relevant to "
+"this book and you can study the code if you are interested. As usual the "
+"read and write callbacks will receive a status code of < 0 if something "
+"went wrong."
+msgstr ""
+
+#: ../../src/guide/networking.rst:137
+msgid ""
+"Since UDP sockets are not connected to a particular peer, the read "
+"callback receives an extra parameter about the sender of the packet."
+msgstr ""
+
+#: ../../src/guide/networking.rst:140
+msgid ""
+"``nread`` may be zero if there is no more data to be read. If ``addr`` is"
+" NULL, it indicates there is nothing to read (the callback shouldn't do "
+"anything), if not NULL, it indicates that an empty datagram was received "
+"from the host at ``addr``. The ``flags`` parameter may be "
+"``UV_UDP_PARTIAL`` if the buffer provided by your allocator was not large"
+" enough to hold the data. *In this case the OS will discard the data that"
+" could not fit* (That's UDP for you!)."
+msgstr ""
+
+#: ../../src/guide/networking.rst:147
+msgid "udp-dhcp/main.c - Reading packets"
+msgstr ""
+
+#: ../../src/guide/networking.rst:155
+msgid "UDP Options"
+msgstr ""
+
+#: ../../src/guide/networking.rst:158
+msgid "Time-to-live"
+msgstr ""
+
+#: ../../src/guide/networking.rst:160
+msgid ""
+"The TTL of packets sent on the socket can be changed using "
+"``uv_udp_set_ttl``."
+msgstr ""
+
+#: ../../src/guide/networking.rst:163
+msgid "IPv6 stack only"
+msgstr ""
+
+#: ../../src/guide/networking.rst:165
+msgid ""
+"IPv6 sockets can be used for both IPv4 and IPv6 communication. If you "
+"want to restrict the socket to IPv6 only, pass the ``UV_UDP_IPV6ONLY`` "
+"flag to ``uv_udp_bind``."
+msgstr ""
+
+#: ../../src/guide/networking.rst:170
+msgid "Multicast"
+msgstr ""
+
+#: ../../src/guide/networking.rst:172
+msgid "A socket can (un)subscribe to a multicast group using:"
+msgstr ""
+
+#: ../../src/guide/networking.rst:178
+msgid "where ``membership`` is ``UV_JOIN_GROUP`` or ``UV_LEAVE_GROUP``."
+msgstr ""
+
+#: ../../src/guide/networking.rst:180
+msgid "The concepts of multicasting are nicely explained in `this guide`_."
+msgstr ""
+
+#: ../../src/guide/networking.rst:184
+msgid ""
+"Local loopback of multicast packets is enabled by default [#]_, use "
+"``uv_udp_set_multicast_loop`` to switch it off."
+msgstr ""
+
+#: ../../src/guide/networking.rst:187
+msgid ""
+"The packet time-to-live for multicast packets can be changed using "
+"``uv_udp_set_multicast_ttl``."
+msgstr ""
+
+#: ../../src/guide/networking.rst:191
+msgid "Querying DNS"
+msgstr ""
+
+#: ../../src/guide/networking.rst:193
+msgid ""
+"libuv provides asynchronous DNS resolution. For this it provides its own "
+"``getaddrinfo`` replacement [#]_. In the callback you can perform normal "
+"socket operations on the retrieved addresses. Let's connect to "
+"Libera.chat to see an example of DNS resolution."
+msgstr ""
+
+#: ../../src/guide/networking.rst:198 ../../src/guide/networking.rst:215
+msgid "dns/main.c"
+msgstr ""
+
+#: ../../src/guide/networking.rst:205
+msgid ""
+"If ``uv_getaddrinfo`` returns non-zero, something went wrong in the setup"
+" and your callback won't be invoked at all. All arguments can be freed "
+"immediately after ``uv_getaddrinfo`` returns. The `hostname`, `servname` "
+"and `hints` structures are documented in `the getaddrinfo man page "
+"<getaddrinfo_>`_. The callback can be ``NULL`` in which case the function"
+" will run synchronously."
+msgstr ""
+
+#: ../../src/guide/networking.rst:211
+msgid ""
+"In the resolver callback, you can pick any IP from the linked list of "
+"``struct addrinfo(s)``. This also demonstrates ``uv_tcp_connect``. It is "
+"necessary to call ``uv_freeaddrinfo`` in the callback."
+msgstr ""
+
+#: ../../src/guide/networking.rst:222
+msgid "libuv also provides the inverse `uv_getnameinfo`_."
+msgstr ""
+
+#: ../../src/guide/networking.rst:227
+msgid "Network interfaces"
+msgstr ""
+
+#: ../../src/guide/networking.rst:229
+msgid ""
+"Information about the system's network interfaces can be obtained through"
+" libuv using ``uv_interface_addresses``. This simple program just prints "
+"out all the interface details so you get an idea of the fields that are "
+"available. This is useful to allow your service to bind to IP addresses "
+"when it starts."
+msgstr ""
+
+#: ../../src/guide/networking.rst:234
+msgid "interfaces/main.c"
+msgstr ""
+
+#: ../../src/guide/networking.rst:240
+msgid ""
+"``is_internal`` is true for loopback interfaces. Note that if a physical "
+"interface has multiple IPv4/IPv6 addresses, the name will be reported "
+"multiple times, with each address being reported once."
+msgstr ""
+
+#: ../../src/guide/networking.rst:252
+msgid "https://beej.us/guide/bgnet/html/#broadcast-packetshello-world"
+msgstr ""
+
+#: ../../src/guide/networking.rst:253
+msgid "https://tldp.org/HOWTO/Multicast-HOWTO-6.html#ss6.1"
+msgstr ""
+
+#: ../../src/guide/networking.rst:254
+msgid ""
+"libuv use the system ``getaddrinfo`` in the libuv threadpool. libuv "
+"v0.8.0 and earlier also included c-ares_ as an alternative, but this has "
+"been removed in v0.9.0."
+msgstr ""
+

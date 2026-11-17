@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014-present, libuv contributors
+# This file is distributed under the same license as the libuv API
+# documentation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+# 中文译文: libuv-zh-docs <https://github.com/jxsword/libuv-zh-docs> (CC BY 4.0)
+# 上游原文: libuv documentation v1.53.0 <https://docs.libuv.org/en/v1.x/> © libuv contributors (CC BY 4.0)
+msgid ""
+msgstr ""
+"Project-Id-Version: libuv docs 1.53.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-18 03:32+0800\n"
+"PO-Revision-Date: 2026-11-18 03:40+0800\n"
+"Last-Translator: jxsword <jxsword@users.noreply.github.com>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../src/metrics.rst:5
+msgid "Metrics operations"
+msgstr ""
+
+#: ../../src/metrics.rst:7
+msgid ""
+"libuv provides a metrics API to track various internal operations of the "
+"event loop."
+msgstr ""
+
+#: ../../src/metrics.rst:12
+msgid "Data types"
+msgstr ""
+
+#: ../../src/metrics.rst:16
+msgid ""
+"The struct that contains event loop metrics. It is recommended to "
+"retrieve these metrics in a :c:type:`uv_prepare_cb` in order to make sure"
+" there are no inconsistencies with the metrics counters."
+msgstr ""
+
+#: ../../src/metrics.rst:32
+msgid "Public members"
+msgstr ""
+
+#: ../../src/metrics.rst:36
+msgid "Number of event loop iterations."
+msgstr ""
+
+#: ../../src/metrics.rst:40
+msgid "Number of events that have been processed by the event handler."
+msgstr ""
+
+#: ../../src/metrics.rst:44
+msgid ""
+"Number of events that were waiting to be processed when the event "
+"provider was called."
+msgstr ""
+
+#: ../../src/metrics.rst:49
+msgid "API"
+msgstr ""
+
+#: ../../src/metrics.rst:53
+msgid ""
+"Retrieve the amount of time the event loop has been idle in the kernel's "
+"event provider (e.g. ``epoll_wait``). The call is thread safe."
+msgstr ""
+
+#: ../../src/metrics.rst:56
+msgid ""
+"The return value is the accumulated time spent idle in the kernel's event"
+" provider starting from when the :c:type:`uv_loop_t` was configured to "
+"collect the idle time."
+msgstr ""
+
+#: ../../src/metrics.rst:61
+msgid ""
+"The event loop will not begin accumulating the event provider's idle time"
+" until calling :c:type:`uv_loop_configure` with "
+":c:type:`UV_METRICS_IDLE_TIME`."
+msgstr ""
+
+#: ../../src/metrics.rst:69
+msgid "Copy the current set of event loop metrics to the ``metrics`` pointer."
+msgstr ""
+
