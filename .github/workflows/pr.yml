@@ -1,0 +1,36 @@
+# PR 校验门禁：翻译批次 PR 必须通过 validate_po.sh 才可合并
+name: validate
+
+on:
+  pull_request:
+    paths:
+      - 'locale/**'
+      - 'scripts/**'
+      - 'requirements-zh.txt'
+      - 'glossary.md'
+      - 'STYLE_GUIDE.md'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements-zh.txt
+          sudo apt-get update && sudo apt-get install -y gettext
+
+      - name: Generate workdir
+        run: bash scripts/gen_workdir.sh
+
+      - name: Validate po (msgfmt -c / fuzzy=0 / markup / terms / build smoke)
+        run: bash scripts/validate_po.sh

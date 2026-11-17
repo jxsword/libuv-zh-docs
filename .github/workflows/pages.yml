@@ -1,0 +1,53 @@
+# GitHub Pages 发布流水线：push main → gen_workdir → 中文构建 → deploy
+# P0 阶段 po 全空 → 内容回退英文（英文占位站）；P1 起随批次推进逐步中文化。
+name: pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'   # 对齐上游 CI（计划 §4 / R1-7）
+
+      - name: Install dependencies
+        run: pip install -r requirements-zh.txt
+
+      - name: Generate workdir (mirror + conf overlay + security patch)
+        run: bash scripts/gen_workdir.sh
+
+      - name: Build zh docs
+        run: bash scripts/build_zh.sh
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: workdir/docs/build/html
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

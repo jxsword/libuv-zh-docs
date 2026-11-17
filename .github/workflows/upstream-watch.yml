@@ -1,0 +1,51 @@
+# 上游发版监控：每周一查 libuv latest release，发新版则自动开 issue 记录
+# 行为约束（DR-004 基线锁定）: 初译期（P0–P4）只记录、不切基线、不重抽 pot、不合并 po
+name: upstream-watch
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'   # 每周一 03:00 UTC
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    env:
+      LOCKED_BASELINE: v1.53.0   # DR-004 锁定基线；v1.0 全量发布后按计划 §6 切换
+      UPSTREAM_REPO: libuv/libuv
+    steps:
+      - name: Check latest upstream release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          LATEST=$(gh api repos/$UPSTREAM_REPO/releases/latest --jq .tag_name)
+          RELEASE_URL=$(gh api repos/$UPSTREAM_REPO/releases/latest --jq .html_url)
+          PUBLISHED=$(gh api repos/$UPSTREAM_REPO/releases/latest --jq .published_at)
+          echo "锁定基线: $LOCKED_BASELINE / 上游最新: $LATEST ($PUBLISHED)"
+
+          if [ "$LATEST" = "$LOCKED_BASELINE" ]; then
+            echo "上游与基线一致，无需处理"
+            exit 0
+          fi
+
+          # 去重：已有同版本 open issue 则跳过
+          if gh issue list --state open --search "上游发版: $LATEST in:title" --limit 5 | grep -q "$LATEST"; then
+            echo "issue 已存在，跳过"
+            exit 0
+          fi
+
+          gh issue create \
+            --title "上游发版: $LATEST（基线仍锁定 $LOCKED_BASELINE，DR-004）" \
+            --body "上游 libuv 发布新版本 [$LATEST]($RELEASE_URL)（$PUBLISHED）。
+
+          按 DR-004 基线锁定策略，初译期（P0–P4）**只记录不切换**：
+          - [ ] 本 issue 仅作记录，不切基线、不重抽 pot、不合并 po
+          - [ ] v1.0 全量发布后，按计划 §6 流程一次性切换（sync_upstream 流程）
+          - [ ] 切换前确认 release tarball 可下载（gh api / dist.libuv.org + 代理回退）
+          - [ ] 切换时重新套用 scripts/patches/manpage-security.patch 并跑英文构建冒烟" \
+            --label "upstream-watch"

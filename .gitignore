@@ -17,3 +17,6 @@ venv/
 
 # 本地工具目录
 .mimosa/
+
+# msgfmt 派生产物（build_zh.sh 每次构建重新编译，不入库）
+*.mo
