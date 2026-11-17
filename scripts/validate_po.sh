@@ -109,8 +109,17 @@ if [ "$BUILD" -eq 1 ]; then
         echo "FAIL: 中文构建失败（日志: $log）"; tail -20 "$log"; rc=1
     else
         echo "   构建成功: $(tail -3 "$log" | grep -oE 'build succeeded[^.]*' || echo ok)"
-        grep -E 'ERROR|CRITICAL' "$log" && { echo "FAIL: 构建存在 ERROR"; rc=1; }
-        # 增量 warning 对照基线（基线含 11 条，此处仅数量告警，明细人工比对）
+        # 增量门禁（R1-8）: 上游 rst 自带 2 条存量 error（misc.rst:906 / tcp.rst:112，见基线说明），
+        # 门禁按「零新增」比对，不是绝对零 error
+        enow=$(grep -cE 'ERROR|CRITICAL' "$log" || true)
+        ebase=$(grep -cE 'ERROR|CRITICAL' "$REPO_ROOT/reports/warning-baseline-v1.53.0.raw.log" || true)
+        echo "   error: 本次 $enow / 基线 $ebase（上游存量，按增量比对）"
+        if [ "$enow" -gt "$ebase" ]; then
+            echo "FAIL: 构建出现新增 error（超过基线 $ebase 条），明细:"
+            grep -E 'ERROR|CRITICAL' "$log" | grep -vFf <(grep -E 'ERROR|CRITICAL' "$REPO_ROOT/reports/warning-baseline-v1.53.0.raw.log" | sed 's|^.*/workdir/docs/src/||') | head -10
+            rc=1
+        fi
+        # 增量 warning 对照基线（此处仅数量告警，明细人工比对）
         wnow=$(grep -c 'WARNING' "$log" || true)
         wbase=$(grep -c 'WARNING' "$REPO_ROOT/reports/warning-baseline-v1.53.0.raw.log" || true)
         echo "   warning: 本次 $wnow / 基线 $wbase（数量上涨需人工比对明细）"
