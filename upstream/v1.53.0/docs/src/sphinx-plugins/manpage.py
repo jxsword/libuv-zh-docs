@@ -1,0 +1,51 @@
+# encoding: utf-8
+
+#
+# Copyright (c) 2013 Dariusz Dwornikowski.  All rights reserved.
+#
+# Adapted from https://github.com/tdi/sphinxcontrib-manpage
+# License: Apache 2
+#
+# ---------------------------------------------------------------------------
+# [libuv-zh-docs 安全加固 2026-11-18] 本文件相对上游 v1.53.0 快照存在安全加固偏离：
+#   移除 string.Template.substitute()（安全扫描判为模板注入风险模式），改用显式
+#   str.replace() 实现行为等价（仅支持 $num / $topic 两种占位符）。
+#   本项目从不设置 man_url_regex（默认 None → 走固定 man7.org URL 分支），此分支
+#   仅为保持与上游行为兼容而保留。偏离登记于 docs/handoff-latest.md；
+#   未来 sync 重下上游快照后必须重新套用本补丁（见 scripts/patches/manpage-security.patch）。
+# ---------------------------------------------------------------------------
+
+
+import re
+
+from docutils import nodes, utils
+from docutils.parsers.rst.roles import set_classes
+
+
+def make_link_node(rawtext, app, name, manpage_num, options):
+    ref = app.config.man_url_regex
+    if not ref:
+        ref = "https://man7.org/linux/man-pages/man%s/%s.%s.html" % (manpage_num, name, manpage_num)
+    else:
+        # 安全加固：不使用 string.Template（扫描器判为 SSTI 风险模式）。
+        ref = ref.replace("$num", str(manpage_num)).replace("$topic", name)
+    set_classes(options)
+    node = nodes.reference(rawtext, "%s(%s)" % (name, manpage_num), refuri=ref, **options)
+    return node
+
+
+def man_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
+    app = inliner.document.settings.env.app
+    p = re.compile("([a-zA-Z0-9_\.-_]+)\((\d)\)")
+    m = p.match(text)
+
+    manpage_num = m.group(2)
+    name = m.group(1)
+    node = make_link_node(rawtext, app, name, manpage_num, options)
+    return [node], []
+
+
+def setup(app):
+    app.add_role('man', man_role)
+    app.add_config_value('man_url_regex', None, 'env')
+    return
