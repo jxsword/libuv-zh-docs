@@ -70,6 +70,11 @@ locale_dirs = ['../../../locale']   # 相对 srcdir（workdir/docs/src/）→ �
 gettext_compact = False             # 按 rst 文件拆分 pot/po（41+1 个 po）
 html_title = 'libuv documentation（中文翻译）'
 gettext_additional_targets = []     # 与上游行为对齐：literal block 不抽取（计划 §3）
+# IBM 文档站对自动化请求返回 403（bot 防护，非死链；PR CI linkcheck 实测 2026-11-18），
+# 沿用上游 linkcheck_ignore 机制（上游同样忽略 invisible-island.net）
+linkcheck_ignore = linkcheck_ignore + [
+    r'https://www\.ibm\.com/docs/.*',
+]
 OVERLAY_EOF
     echo "== conf.py overlay 已追加 =="
 else
