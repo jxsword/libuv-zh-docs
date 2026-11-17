@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../../src/guide/threads.rst:2
 msgid "Threads"
-msgstr ""
+msgstr "线程"
 
 #: ../../src/guide/threads.rst:4
 msgid ""
@@ -32,7 +32,7 @@ msgid ""
 "the medium in which processors do their jobs. Threads are therefore "
 "mighty useful sometimes, even though you might have to wade through "
 "various synchronization primitives."
-msgstr ""
+msgstr "等一下？为什么我们要谈线程？事件循环难道不应该是做 *Web 规模编程* 的 **正道** 吗？嗯……并非如此。线程仍然是处理器执行任务的载体。因此线程有时相当有用，尽管你可能不得不费力趟过各种同步原语。"
 
 #: ../../src/guide/threads.rst:9
 msgid ""
@@ -40,14 +40,14 @@ msgid ""
 " system calls. libuv also uses threads to allow you, the application, to "
 "perform a task asynchronously that is actually blocking, by spawning a "
 "thread and collecting the result when it is done."
-msgstr ""
+msgstr "libuv 在内部使用线程来模拟所有系统调用的异步特性。libuv 也使用线程，让你——即应用程序——能够异步执行实际上是阻塞的任务：派生一个线程，并在其完成时收集结果。"
 
 #: ../../src/guide/threads.rst:14
 msgid ""
 "Today there are two predominant thread libraries: the Windows threads "
 "implementation and POSIX's :man:`pthreads(7)`. libuv's thread API is "
 "analogous to the pthreads API and often has similar semantics."
-msgstr ""
+msgstr "如今主流的线程库有两个：Windows 的线程实现和 POSIX 的 :man:`pthreads(7)`。libuv 的线程 API 与 pthreads API 类似，并且常常具有相似的语义。"
 
 #: ../../src/guide/threads.rst:18
 msgid ""
@@ -57,42 +57,42 @@ msgid ""
 " they block as required, signal errors directly via return values, and, "
 "as shown in the :ref:`first example <thread-create-example>`, don't even "
 "require a running event loop."
-msgstr ""
+msgstr "libuv 线程设施的一个显著特点是，它是 libuv 内部一个自成一体的部分。其他特性都紧密依赖事件循环和回调原则，而线程则完全与之无关：线程按需阻塞，直接通过返回值报告错误，而且正如 :ref:`first example <thread-create-example>` 所示，甚至不需要一个正在运行的事件循环。"
 
 #: ../../src/guide/threads.rst:25
 msgid ""
 "libuv's thread API is also very limited since the semantics and syntax of"
 " threads are different on all platforms, with different levels of "
 "completeness."
-msgstr ""
+msgstr "libuv 的线程 API 也非常有限，因为线程的语义和语法在各平台上都不相同，完备程度也参差不齐。"
 
 #: ../../src/guide/threads.rst:28
 msgid ""
 "This chapter makes the following assumption: **There is only one event "
 "loop, running in one thread (the main thread)**. No other thread "
 "interacts with the event loop (except using ``uv_async_send``)."
-msgstr ""
+msgstr "本章作如下假设：**只有一个事件循环，运行在一个线程（主线程）中**。其他线程都不与事件循环交互（使用 ``uv_async_send`` 的情形除外）。"
 
 #: ../../src/guide/threads.rst:33
 msgid "Core thread operations"
-msgstr ""
+msgstr "线程核心操作"
 
 #: ../../src/guide/threads.rst:35
 msgid ""
 "There isn't much here, you just start a thread using "
 "``uv_thread_create()`` and wait for it to close using "
 "``uv_thread_join()``."
-msgstr ""
+msgstr "这里的内容不多：使用 ``uv_thread_create()`` 启动一个线程，然后用 ``uv_thread_join()`` 等待它结束即可。"
 
 #: ../../src/guide/threads.rst:40 ../../src/guide/threads.rst:57
 msgid "thread-create/main.c"
-msgstr ""
+msgstr "thread-create/main.c"
 
 #: ../../src/guide/threads.rst:49
 msgid ""
 "``uv_thread_t`` is just an alias for ``pthread_t`` on Unix, but this is "
 "an implementation detail, avoid depending on it to always be true."
-msgstr ""
+msgstr "在 Unix 上，``uv_thread_t`` 只是 ``pthread_t`` 的别名，但这是一个实现细节，不要依赖它永远成立。"
 
 #: ../../src/guide/threads.rst:52
 msgid ""
@@ -101,7 +101,7 @@ msgid ""
 "used to pass custom parameters to the thread. The function ``hare`` will "
 "now run in a separate thread, scheduled pre-emptively by the operating "
 "system:"
-msgstr ""
+msgstr "第二个参数是将作为线程入口点的函数，最后一个参数是一个 ``void *``，可用于向线程传递自定义参数。函数 ``hare`` 现在将在单独的线程中运行，由操作系统抢占式调度："
 
 #: ../../src/guide/threads.rst:64
 msgid ""
@@ -109,37 +109,37 @@ msgid ""
 "value to the calling thread using a second parameter, "
 "``uv_thread_join()`` does not. To send values use :ref:`inter-thread-"
 "communication`."
-msgstr ""
+msgstr "``pthread_join()`` 允许目标线程通过第二个参数向调用线程传回一个值，而 ``uv_thread_join()`` 不支持这样做。要传递值，请使用 :ref:`inter-thread-communication`。"
 
 #: ../../src/guide/threads.rst:69
 msgid "Synchronization Primitives"
-msgstr ""
+msgstr "同步原语"
 
 #: ../../src/guide/threads.rst:71
 msgid ""
 "This section is purposely spartan. This book is not about threads, so I "
 "only catalogue any surprises in the libuv APIs here. For the rest you can"
 " look at the :man:`pthreads(7)` man pages."
-msgstr ""
+msgstr "本节刻意从简。这本书并不是讲线程的，所以我只在这里罗列 libuv API 中那些出人意料之处。其余内容可以查阅 :man:`pthreads(7)` 手册页。"
 
 #: ../../src/guide/threads.rst:76
 msgid "Mutexes"
-msgstr ""
+msgstr "互斥锁"
 
 #: ../../src/guide/threads.rst:78
 msgid "The mutex functions are a **direct** map to the pthread equivalents."
-msgstr ""
+msgstr "互斥锁函数是对 pthread 对应函数的 **直接** 映射。"
 
 #: ../../src/guide/threads.rst:80
 msgid "libuv mutex functions"
-msgstr ""
+msgstr "libuv 互斥锁函数"
 
 #: ../../src/guide/threads.rst:90
 msgid ""
 "The ``uv_mutex_init()``, ``uv_mutex_init_recursive()`` and "
 "``uv_mutex_trylock()`` functions will return 0 on success, and an error "
 "code otherwise."
-msgstr ""
+msgstr "``uv_mutex_init()``、``uv_mutex_init_recursive()`` 和 ``uv_mutex_trylock()`` 函数成功时返回 0，否则返回错误码。"
 
 #: ../../src/guide/threads.rst:93
 msgid ""
@@ -147,35 +147,35 @@ msgid ""
 "``uv_mutex_destroy()``, ``uv_mutex_lock()`` and ``uv_mutex_unlock()`` "
 "will ``abort()`` on error. Similarly ``uv_mutex_trylock()`` will abort if"
 " the error is anything *other than* ``EAGAIN`` or ``EBUSY``."
-msgstr ""
+msgstr "如果 `libuv` 在编译时启用了调试，``uv_mutex_destroy()``、``uv_mutex_lock()`` 和 ``uv_mutex_unlock()`` 在出错时会调用 ``abort()``。类似地，``uv_mutex_trylock()`` 若遇到的错误 *并非* ``EAGAIN`` 或 ``EBUSY``，同样会中止。"
 
 #: ../../src/guide/threads.rst:98
 msgid ""
 "Recursive mutexes are supported, but you should not rely on them. Also, "
 "they should not be used with ``uv_cond_t`` variables."
-msgstr ""
+msgstr "支持递归互斥锁，但不应依赖它们。此外，不应将递归互斥锁与 ``uv_cond_t`` 变量一起使用。"
 
 #: ../../src/guide/threads.rst:101
 msgid ""
 "The default BSD mutex implementation will raise an error if a thread "
 "which has locked a mutex attempts to lock it again. For example, a "
 "construct like::"
-msgstr ""
+msgstr "默认的 BSD 互斥锁实现会在已锁定某个互斥锁的线程再次尝试锁定它时报错。例如，像下面这样的结构："
 
 #: ../../src/guide/threads.rst:110
 msgid ""
 "can be used to wait until another thread initializes some stuff and then "
 "unlocks ``a_mutex`` but will lead to your program crashing if in debug "
 "mode, or return an error in the second call to ``uv_mutex_lock()``."
-msgstr ""
+msgstr "可以用来等待另一个线程初始化一些东西然后解锁 ``a_mutex``；但如果处于调试模式，会导致程序崩溃，或者在第二次调用 ``uv_mutex_lock()`` 时返回错误。"
 
 #: ../../src/guide/threads.rst:116
 msgid "Mutexes on Windows are always recursive."
-msgstr ""
+msgstr "Windows 上的互斥锁总是递归的。"
 
 #: ../../src/guide/threads.rst:119
 msgid "Locks"
-msgstr ""
+msgstr "锁"
 
 #: ../../src/guide/threads.rst:121
 msgid ""
@@ -184,11 +184,11 @@ msgid ""
 "when it is held by a reader. A reader or writer may not acquire a lock "
 "when a writer is holding it. Read-write locks are frequently used in "
 "databases. Here is a toy example."
-msgstr ""
+msgstr "读写锁是一种更细粒度的访问机制。两个读者可以同时访问共享内存。当锁被读者持有时，写者不能获取该锁。当写者持有锁时，读者或写者都不能获取锁。读写锁在数据库中很常用。下面是一个简单的示例。"
 
 #: ../../src/guide/threads.rst:127
 msgid "locks/main.c - simple rwlocks"
-msgstr ""
+msgstr "locks/main.c - 简单读写锁"
 
 #: ../../src/guide/threads.rst:133
 msgid ""
@@ -196,23 +196,23 @@ msgid ""
 "multiple writers, schedulers will usually give them higher priority, so "
 "if you add two writers, you'll see that both writers tend to finish first"
 " before the readers get a chance again."
-msgstr ""
+msgstr "运行它并观察读者有时会如何重叠执行。当存在多个写者时，调度器通常会给予它们更高的优先级，所以如果你加入两个写者，就会看到两个写者往往先完成，读者随后才重新获得机会。"
 
 #: ../../src/guide/threads.rst:138
 msgid ""
 "We also use barriers in the above example so that the main thread can "
 "wait for all readers and writers to indicate they have ended."
-msgstr ""
+msgstr "在上面的示例中我们还使用了屏障，以便主线程可以等待所有读者和写者表明自己已经结束。"
 
 #: ../../src/guide/threads.rst:142
 msgid "Others"
-msgstr ""
+msgstr "其他"
 
 #: ../../src/guide/threads.rst:144
 msgid ""
 "libuv also supports semaphores_, `condition variables`_ and barriers_ "
 "with APIs very similar to their pthread counterparts."
-msgstr ""
+msgstr "libuv 还支持 semaphores_、`condition variables`_ 和 barriers_，它们各自的 API 都与 pthread 中的对应物非常相似。"
 
 #: ../../src/guide/threads.rst:151
 msgid ""
@@ -220,21 +220,21 @@ msgid ""
 "Multiple threads can attempt to call ``uv_once()`` with a given guard and"
 " a function pointer, **only the first one will win, the function will be "
 "called once and only once**::"
-msgstr ""
+msgstr "此外，libuv 提供了一个便利函数 ``uv_once()``。多个线程可以尝试用给定的守卫和函数指针调用 ``uv_once()``，**只有第一个会胜出，该函数将被调用一次且仅一次**："
 
 #: ../../src/guide/threads.rst:179
 msgid "After all threads are done, ``i == 1``."
-msgstr ""
+msgstr "所有线程结束后，``i == 1``。"
 
 #: ../../src/guide/threads.rst:183
 msgid ""
 "libuv v0.11.11 onwards also added a ``uv_key_t`` struct and api_ for "
 "thread-local storage."
-msgstr ""
+msgstr "从 libuv v0.11.11 起，还新增了用于线程局部存储的 ``uv_key_t`` 结构体和 api_。"
 
 #: ../../src/guide/threads.rst:189
 msgid "libuv work queue"
-msgstr ""
+msgstr "libuv 工作队列"
 
 #: ../../src/guide/threads.rst:191
 msgid ""
@@ -247,7 +247,7 @@ msgid ""
 "periodically in the loop thread blocks when performing I/O or is a "
 "serious CPU hog*, because this means that the loop slows down and events "
 "are not being handled at full capacity."
-msgstr ""
+msgstr "``uv_queue_work()`` 是一个便利函数，它允许应用程序在单独的线程中运行任务，并在任务完成时触发回调。作为一个看似简单的函数，``uv_queue_work()`` 的诱人之处在于，它使几乎任何第三方库都能与事件循环范式配合使用。使用事件循环时，*务必确保在循环线程中周期运行的任何函数在执行 I/O 时不会阻塞，也不会严重占用 CPU*，因为这意味着循环会变慢，事件无法全速得到处理。"
 
 #: ../../src/guide/threads.rst:200
 msgid ""
@@ -257,7 +257,7 @@ msgid ""
 "server model), and getting them to play with an event loop library "
 "generally involves rolling your own system of running the task in a "
 "separate thread.  libuv just provides a convenient abstraction for this."
-msgstr ""
+msgstr "然而，市面上大量现有代码都带有阻塞函数（例如在底层执行 I/O 的例程），如果想保持响应性（经典的“每客户端一线程”服务器模型），就得借助线程来使用它们；而要让它们与事件循环库配合工作，通常需要自己动手构建一套在单独线程中运行任务的系统。libuv 正是为此提供了一个便利的抽象。"
 
 #: ../../src/guide/threads.rst:207
 msgid ""
@@ -265,11 +265,11 @@ msgid ""
 "to calculate fibonacci numbers, sleeping a bit along the way, but run it "
 "in a separate thread so that the blocking and CPU bound task does not "
 "prevent the event loop from performing other activities."
-msgstr ""
+msgstr "下面是一个受 `node.js is cancer`_ 启发的简单示例。我们将计算斐波那契数，期间稍作睡眠，但把它放到单独的线程中运行，使这个阻塞且 CPU 密集型的任务不会妨碍事件循环执行其他活动。"
 
 #: ../../src/guide/threads.rst:212
 msgid "queue-work/main.c - lazy fibonacci"
-msgstr ""
+msgstr "queue-work/main.c - 惰性斐波那契"
 
 #: ../../src/guide/threads.rst:218
 msgid ""
@@ -279,15 +279,15 @@ msgid ""
 "use it to communicate to and from the thread. But be sure you are using "
 "proper locks if you are changing things while both threads may be "
 "running."
-msgstr ""
+msgstr "实际的任务函数很简单，没有任何迹象表明它将在单独的线程中运行。``uv_work_t`` 结构才是线索所在。你可以通过它使用 ``void* data`` 字段传递任意数据，并用它与线程进行双向通信。但如果在两个线程可能同时运行的情况下修改数据，请务必使用恰当的锁。"
 
 #: ../../src/guide/threads.rst:224
 msgid "The trigger is ``uv_queue_work``:"
-msgstr ""
+msgstr "触发它的是 ``uv_queue_work``："
 
 #: ../../src/guide/threads.rst:226
 msgid "queue-work/main.c"
-msgstr ""
+msgstr "queue-work/main.c"
 
 #: ../../src/guide/threads.rst:233
 msgid ""
@@ -295,13 +295,13 @@ msgid ""
 "``uv_work_t`` structure and once the function returns, the *after* "
 "function will be called on the thread the event loop is running in. It "
 "will be passed the same structure."
-msgstr ""
+msgstr "线程函数将在单独的线程中启动，``uv_work_t`` 结构会传入其中；函数一旦返回，*after* 函数就会在事件循环所运行的线程中被调用，并传入同一个结构。"
 
 #: ../../src/guide/threads.rst:238
 msgid ""
 "For writing wrappers to blocking libraries, a common :ref:`pattern "
 "<baton>` is to use a baton to exchange data."
-msgstr ""
+msgstr "在为阻塞库编写封装时，一种常见的 :ref:`pattern <baton>` 是使用 baton 交换数据。"
 
 #: ../../src/guide/threads.rst:241
 msgid ""
@@ -310,7 +310,7 @@ msgid ""
 "tasks that *are yet to be started* can be cancelled. If a task has "
 "*already started executing, or it has finished executing*, "
 "``uv_cancel()`` **will fail**."
-msgstr ""
+msgstr "自 libuv `0.9.4` 版起，提供了一个额外的函数 ``uv_cancel()``。它允许你取消 libuv 工作队列上的任务。只有 *尚未开始* 的任务才能被取消。如果任务 *已经开始执行，或者已经执行完毕*，``uv_cancel()`` **将会失败**。"
 
 #: ../../src/guide/threads.rst:246
 msgid ""
@@ -319,38 +319,38 @@ msgid ""
 "directories to be scanned for audio files. If the user terminates the "
 "program, it should quit quickly and not wait until all pending requests "
 "are run."
-msgstr ""
+msgstr "``uv_cancel()`` 适合在用户请求终止时清理待处理的任务。例如，音乐播放器可能将多个目录排入队列，等待扫描其中的音频文件。如果用户终止程序，它应当快速退出，而不是等待所有待处理的请求执行完毕。"
 
 #: ../../src/guide/threads.rst:251
 msgid ""
 "Let's modify the fibonacci example to demonstrate ``uv_cancel()``. We "
 "first set up a signal handler for termination."
-msgstr ""
+msgstr "我们来修改斐波那契示例，以演示 ``uv_cancel()``。首先为终止设置一个信号处理函数。"
 
 #: ../../src/guide/threads.rst:254 ../../src/guide/threads.rst:264
 #: ../../src/guide/threads.rst:274
 msgid "queue-cancel/main.c"
-msgstr ""
+msgstr "queue-cancel/main.c"
 
 #: ../../src/guide/threads.rst:260
 msgid ""
 "When the user triggers the signal by pressing ``Ctrl+C`` we send "
 "``uv_cancel()`` to all the workers. ``uv_cancel()`` will return ``0`` for"
 " those tasks that are pending execution and could be cancelled."
-msgstr ""
+msgstr "当用户按下 ``Ctrl+C`` 触发该信号时，我们向所有工作任务发出 ``uv_cancel()``。对于等待执行且能够取消的任务，``uv_cancel()`` 会返回 ``0``。"
 
 #: ../../src/guide/threads.rst:271
 msgid ""
 "For tasks that do get cancelled successfully, the *after* function is "
 "called with ``status`` set to ``UV_ECANCELED``."
-msgstr ""
+msgstr "对于确实被成功取消的任务，*after* 函数被调用，且 ``status`` 会被设为 ``UV_ECANCELED``。"
 
 #: ../../src/guide/threads.rst:281
 msgid ""
 "``uv_cancel()`` can also be used with ``uv_fs_t`` and "
 "``uv_getaddrinfo_t`` requests. For the filesystem family of functions, "
 "``uv_fs_t.errorno`` will be set to ``UV_ECANCELED``."
-msgstr ""
+msgstr "``uv_cancel()`` 也可以用于 ``uv_fs_t`` 和 ``uv_getaddrinfo_t`` 请求。对于文件系统系列的函数，``uv_fs_t.errorno`` 将被设为 ``UV_ECANCELED``。"
 
 #: ../../src/guide/threads.rst:287
 msgid ""
@@ -358,11 +358,11 @@ msgid ""
 "workers that have already started executing. Such a worker could "
 "periodically check for a variable that only the main process sets to "
 "signal termination."
-msgstr ""
+msgstr "设计良好的程序应当有办法终止那些已经开始执行的长时运行工作任务。这样的工作任务可以周期性地检查一个仅由主进程设置、用来发出终止信号的变量。"
 
 #: ../../src/guide/threads.rst:294
 msgid "Inter-thread communication"
-msgstr ""
+msgstr "线程间通信"
 
 #: ../../src/guide/threads.rst:296
 msgid ""
@@ -372,12 +372,12 @@ msgid ""
 "want to notify progress to the main thread. This is a simple example of "
 "having a download manager informing the user of the status of running "
 "downloads."
-msgstr ""
+msgstr "有时你会希望各个线程在运行 *期间* 真正地互发消息。例如，你可能正在单独的线程中运行某个长时间任务（也许使用了 ``uv_queue_work``），但希望向主线程通知进度。这是一个由下载管理器向用户通报正在进行的下载状态的简单示例。"
 
 #: ../../src/guide/threads.rst:302 ../../src/guide/threads.rst:328
 #: ../../src/guide/threads.rst:339 ../../src/guide/threads.rst:349
 msgid "progress/main.c"
-msgstr ""
+msgstr "progress/main.c"
 
 #: ../../src/guide/threads.rst:309
 msgid ""
@@ -386,7 +386,7 @@ msgid ""
 " (or rather the loop is the receiver). libuv will invoke the callback "
 "(``print_progress``) with the async watcher whenever it receives a "
 "message."
-msgstr ""
+msgstr "异步线程通信是 *基于循环* 工作的：尽管任何线程都可以是消息发送方，但只有拥有 libuv 循环的线程才能成为接收方（或者更确切地说，接收方是循环）。libuv 每当接收到消息，就会调用 async 监视器的回调（``print_progress``）。"
 
 #: ../../src/guide/threads.rst:316
 msgid ""
@@ -401,24 +401,24 @@ msgid ""
 "callback yet, it *may* invoke your callback *only once* for the multiple "
 "invocations of ``uv_async_send``. Your callback will never be called "
 "twice for just one event."
-msgstr ""
+msgstr "必须认识到：由于消息发送是 *异步* 的，回调可能在另一个线程调用 ``uv_async_send`` 之后立即被触发，也可能过一段时间才被触发。libuv 还可能合并对 ``uv_async_send`` 的多次调用，只调用你的回调一次。libuv 唯一能保证的是——在调用 ``uv_async_send`` 之后，回调函数会被调用 *至少一次*。如果没有待处理的 ``uv_async_send`` 调用，回调就不会被调用。如果你调用了两次或更多次，而 libuv 还没有机会运行回调，那么对于 ``uv_async_send`` 的多次调用，它 *可能* 只调用 *一次* 回调。你的回调绝不会因单个事件而被调用两次。"
 
 #: ../../src/guide/threads.rst:335
 msgid ""
 "In the download function, we modify the progress indicator and queue the "
 "message for delivery with ``uv_async_send``. Remember: ``uv_async_send`` "
 "is also non-blocking and will return immediately."
-msgstr ""
+msgstr "在下载函数中，我们更新进度指示器，并用 ``uv_async_send`` 将消息排入队列以待发送。记住：``uv_async_send`` 同样是非阻塞的，会立即返回。"
 
 #: ../../src/guide/threads.rst:345
 msgid ""
 "The callback is a standard libuv pattern, extracting the data from the "
 "watcher."
-msgstr ""
+msgstr "回调是标准的 libuv 模式——从监视器中提取数据。"
 
 #: ../../src/guide/threads.rst:347
 msgid "Finally it is important to remember to clean up the watcher."
-msgstr ""
+msgstr "最后，务必记得清理监视器。"
 
 #: ../../src/guide/threads.rst:356
 msgid ""
@@ -427,13 +427,13 @@ msgid ""
 " and ``uv_async_send()`` is actually only meant to wake up the event "
 "loop. Use a mutex or rwlock to ensure accesses are performed in the right"
 " order."
-msgstr ""
+msgstr "在这个展示了 ``data`` 字段被滥用的示例之后，bnoordhuis_ 指出：使用 ``data`` 字段并不是线程安全的，``uv_async_send()`` 实际上只是用来唤醒事件循环的。应使用互斥锁或读写锁来确保访问按正确的顺序进行。"
 
 #: ../../src/guide/threads.rst:363
 msgid ""
 "mutexes and rwlocks **DO NOT** work inside a signal handler, whereas "
 "``uv_async_send`` does."
-msgstr ""
+msgstr "互斥锁和读写锁 **不能** 在信号处理函数内部使用，而 ``uv_async_send`` 则可以。"
 
 #: ../../src/guide/threads.rst:366
 msgid ""
@@ -444,30 +444,30 @@ msgid ""
 " v8 data structures from another thread can lead to undefined results. "
 "Now consider some node.js module which binds a third party library. It "
 "may go something like this:"
-msgstr ""
+msgstr "需要 ``uv_async_send`` 的一个场景，是与那些功能依赖线程亲和性的库互操作。例如在 node.js 中，v8 引擎实例、上下文及其对象都绑定到 v8 实例启动时所在的线程。从另一个线程与 v8 数据结构交互可能导致未定义的结果。现在考虑某个绑定了第三方库的 node.js 模块，它大致会是这样："
 
 #: ../../src/guide/threads.rst:373
 msgid ""
 "In node, the third party library is set up with a JavaScript callback to "
 "be invoked for more information::"
-msgstr ""
+msgstr "在 node 中，设置第三方库时会传入一个 JavaScript 回调，以便需要更多信息时调用它："
 
 #: ../../src/guide/threads.rst:385
 msgid ""
 "``lib.do`` is supposed to be non-blocking but the third party lib is "
 "blocking, so the binding uses ``uv_queue_work``."
-msgstr ""
+msgstr "``lib.do`` 本应是非阻塞的，但这个第三方库是阻塞的，因此绑定层使用了 ``uv_queue_work``。"
 
 #: ../../src/guide/threads.rst:388
 msgid ""
 "The actual work being done in a separate thread wants to invoke the "
 "progress callback, but cannot directly call into v8 to interact with "
 "JavaScript. So it uses ``uv_async_send``."
-msgstr ""
+msgstr "在单独线程中执行的实际工作想要触发进度回调，但不能直接调用 v8 来与 JavaScript 交互，于是它使用了 ``uv_async_send``。"
 
 #: ../../src/guide/threads.rst:392
 msgid ""
 "The async callback, invoked in the main loop thread, which is the v8 "
 "thread, then interacts with v8 to invoke the JavaScript callback."
-msgstr ""
+msgstr "async 回调在主循环线程（即 v8 线程）中被调用，随后由它与 v8 交互以触发 JavaScript 回调。"
 

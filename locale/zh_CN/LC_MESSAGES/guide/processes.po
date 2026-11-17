@@ -23,14 +23,14 @@ msgstr ""
 
 #: ../../src/guide/processes.rst:2
 msgid "Processes"
-msgstr ""
+msgstr "进程"
 
 #: ../../src/guide/processes.rst:4
 msgid ""
 "libuv offers considerable child process management, abstracting the "
 "platform differences and allowing communication with the child process "
 "using streams or named pipes."
-msgstr ""
+msgstr "libuv 提供了相当完善的子进程管理，抽象了平台差异，并允许通过流或命名管道与子进程通信。"
 
 #: ../../src/guide/processes.rst:8
 msgid ""
@@ -39,7 +39,7 @@ msgid ""
 "achieve tasks (similar to using pipes in shells). A multi-process model "
 "with messages may also be easier to reason about compared to one with "
 "threads and shared memory."
-msgstr ""
+msgstr "Unix 中一个常见的惯用法是每个进程只做一件事，并且把它做好。在这种情况下，一个进程常常会使用多个子进程来完成任务（类似于在 shell 中使用管道）。与使用线程和共享内存的模型相比，基于消息的多进程模型也可能更容易理清逻辑。"
 
 #: ../../src/guide/processes.rst:14
 msgid ""
@@ -50,28 +50,28 @@ msgid ""
 "thread.  The workaround can be to launch multiple processes instead, with"
 " each process running an event loop, and each process getting assigned to"
 " a separate CPU core."
-msgstr ""
+msgstr "针对基于事件的程序，一种常见的反对意见是它们无法利用现代计算机的多个核心。在多线程程序中，内核可以进行调度，把不同的线程分配到不同的核心上，从而提升性能。但事件循环只有一个线程。变通办法可以是改为启动多个进程，让每个进程各自运行一个事件循环，并各自分配到一个独立的 CPU 核心上。"
 
 #: ../../src/guide/processes.rst:23
 msgid "Spawning child processes"
-msgstr ""
+msgstr "派生子进程"
 
 #: ../../src/guide/processes.rst:25
 msgid ""
 "The simplest case is when you simply want to launch a process and know "
 "when it exits. This is achieved using ``uv_spawn``."
-msgstr ""
+msgstr "最简单的情况是只想启动一个进程并知道它何时退出。这可以通过 ``uv_spawn`` 实现。"
 
 #: ../../src/guide/processes.rst:28 ../../src/guide/processes.rst:58
 msgid "spawn/main.c"
-msgstr ""
+msgstr "spawn/main.c"
 
 #: ../../src/guide/processes.rst:37
 msgid ""
 "``options`` is implicitly initialized with zeros since it is a global "
 "variable.  If you change ``options`` to a local variable, remember to "
 "initialize it to null out all unused fields::"
-msgstr ""
+msgstr "``options`` 是全局变量，因此会被隐式地初始化为零。如果你把 ``options`` 改为局部变量，请记得对它进行初始化，将所有未使用的字段清零::"
 
 #: ../../src/guide/processes.rst:43
 msgid ""
@@ -82,51 +82,51 @@ msgid ""
 " need to supply the full path. Finally as per underlying conventions, "
 "**the arguments array has to be one larger than the number of arguments, "
 "with the last element being NULL**."
-msgstr ""
+msgstr "``uv_process_t`` 结构体仅充当句柄，所有选项都通过 ``uv_process_options_t`` 设置。只是想简单地启动一个进程时，只需设置 ``file`` 和 ``args`` 字段即可。``file`` 是要执行的程序。由于 ``uv_spawn`` 内部使用 :man:`execvp(3)`，因此无需提供完整路径。最后，按照底层惯例，**参数数组必须比参数个数多一个元素，且最后一个元素为 NULL**。"
 
 #: ../../src/guide/processes.rst:50
 msgid ""
 "After the call to ``uv_spawn``, ``uv_process_t.pid`` will contain the "
 "process ID of the child process."
-msgstr ""
+msgstr "调用 ``uv_spawn`` 之后，``uv_process_t.pid`` 将包含子进程的进程 ID。"
 
 #: ../../src/guide/processes.rst:53
 msgid ""
 "The exit callback will be invoked with the *exit status* and the type of "
 "*signal* which caused the exit."
-msgstr ""
+msgstr "退出回调被调用时会传入 *退出状态* 以及导致退出的 *信号* 类型。"
 
 #: ../../src/guide/processes.rst:56
 msgid ""
 "Note that it is important **not** to call ``uv_close`` before the exit "
 "callback."
-msgstr ""
+msgstr "注意，在退出回调之前 **不要** 调用 ``uv_close``。"
 
 #: ../../src/guide/processes.rst:65
 msgid "It is **required** to close the process watcher after the process exits."
-msgstr ""
+msgstr "进程退出之后，**必须** 关闭 process 监视器。"
 
 #: ../../src/guide/processes.rst:68
 msgid "Changing process parameters"
-msgstr ""
+msgstr "更改进程参数"
 
 #: ../../src/guide/processes.rst:70
 msgid ""
 "Before the child process is launched you can control the execution "
 "environment using fields in ``uv_process_options_t``."
-msgstr ""
+msgstr "在子进程启动之前，可以使用 ``uv_process_options_t`` 中的字段来控制执行环境。"
 
 #: ../../src/guide/processes.rst:74
 msgid "Change execution directory"
-msgstr ""
+msgstr "更改执行目录"
 
 #: ../../src/guide/processes.rst:76
 msgid "Set ``uv_process_options_t.cwd`` to the corresponding directory."
-msgstr ""
+msgstr "将 ``uv_process_options_t.cwd`` 设置为相应的目录。"
 
 #: ../../src/guide/processes.rst:79
 msgid "Set environment variables"
-msgstr ""
+msgstr "设置环境变量"
 
 #: ../../src/guide/processes.rst:81
 msgid ""
@@ -134,74 +134,74 @@ msgid ""
 "of the form ``VAR=VALUE`` used to set up the environment variables for "
 "the process. Set this to ``NULL`` to inherit the environment from the "
 "parent (this) process."
-msgstr ""
+msgstr "``uv_process_options_t.env`` 是一个以空字符结尾的字符串数组，其中每个字符串形如 ``VAR=VALUE``，用于为该进程设置环境变量。将其设置为 ``NULL`` 表示继承父（当前）进程的环境。"
 
 #: ../../src/guide/processes.rst:86
 msgid "Option flags"
-msgstr ""
+msgstr "选项标志"
 
 #: ../../src/guide/processes.rst:88
 msgid ""
 "Setting ``uv_process_options_t.flags`` to a bitwise OR of the following "
 "flags, modifies the child process behaviour:"
-msgstr ""
+msgstr "将 ``uv_process_options_t.flags`` 设置为以下各标志的按位或，即可修改子进程的行为："
 
 #: ../../src/guide/processes.rst:91
 msgid ""
 "``UV_PROCESS_SETUID`` - sets the child's execution user ID to "
 "``uv_process_options_t.uid``."
-msgstr ""
+msgstr "``UV_PROCESS_SETUID`` - 将子进程执行时使用的用户 ID 设置为 ``uv_process_options_t.uid``。"
 
 #: ../../src/guide/processes.rst:92
 msgid ""
 "``UV_PROCESS_SETGID`` - sets the child's execution group ID to "
 "``uv_process_options_t.gid``."
-msgstr ""
+msgstr "``UV_PROCESS_SETGID`` - 将子进程执行时使用的组 ID 设置为 ``uv_process_options_t.gid``。"
 
 #: ../../src/guide/processes.rst:94
 msgid ""
 "Changing the UID/GID is only supported on Unix, ``uv_spawn`` will fail on"
 " Windows with ``UV_ENOTSUP``."
-msgstr ""
+msgstr "仅 Unix 支持更改 UID/GID，在 Windows 上 ``uv_spawn`` 将失败并返回 ``UV_ENOTSUP``。"
 
 #: ../../src/guide/processes.rst:97
 msgid ""
 "``UV_PROCESS_WINDOWS_VERBATIM_ARGUMENTS`` - No quoting or escaping of "
 "``uv_process_options_t.args`` is done on Windows. Ignored on Unix."
-msgstr ""
+msgstr "``UV_PROCESS_WINDOWS_VERBATIM_ARGUMENTS`` - 在 Windows 上不会对 ``uv_process_options_t.args`` 做任何加引号或转义处理。在 Unix 上被忽略。"
 
 #: ../../src/guide/processes.rst:99
 msgid ""
 "``UV_PROCESS_DETACHED`` - Starts the child process in a new session, "
 "which will keep running after the parent process exits. See example "
 "below."
-msgstr ""
+msgstr "``UV_PROCESS_DETACHED`` - 在新会话中启动子进程，父进程退出后子进程会继续运行。参见下面的示例。"
 
 #: ../../src/guide/processes.rst:103
 msgid "Detaching processes"
-msgstr ""
+msgstr "分离进程"
 
 #: ../../src/guide/processes.rst:105
 msgid ""
 "Passing the flag ``UV_PROCESS_DETACHED`` can be used to launch daemons, "
 "or child processes which are independent of the parent so that the parent"
 " exiting does not affect it."
-msgstr ""
+msgstr "传入标志 ``UV_PROCESS_DETACHED`` 可以用来启动守护进程，或者启动独立于父进程的子进程，这样父进程退出也不会影响它。"
 
 #: ../../src/guide/processes.rst:109
 msgid "detach/main.c"
-msgstr ""
+msgstr "detach/main.c"
 
 #: ../../src/guide/processes.rst:116
 msgid ""
 "Just remember that the handle is still monitoring the child, so your "
 "program won't exit. Use ``uv_unref()`` if you want to be more *fire-and-"
 "forget*."
-msgstr ""
+msgstr "只要记住，句柄仍在监视子进程，因此你的程序不会退出。如果想要更 *fire-and-forget* 一点，可以使用 ``uv_unref()``。"
 
 #: ../../src/guide/processes.rst:120
 msgid "Sending signals to processes"
-msgstr ""
+msgstr "向进程发送信号"
 
 #: ../../src/guide/processes.rst:122
 msgid ""
@@ -209,7 +209,7 @@ msgid ""
 "one with similar semantics on Windows, with *one caveat*: all of "
 "``SIGTERM``, ``SIGINT`` and ``SIGKILL``, lead to termination of the "
 "process. The signature of ``uv_kill`` is::"
-msgstr ""
+msgstr "libuv 在 Unix 上封装了标准的 ``kill(2)`` 系统调用，并在 Windows 上实现了一个语义类似的版本，但有 *一点* 需要注意：``SIGTERM``、``SIGINT`` 和 ``SIGKILL`` 都会导致进程终止。``uv_kill`` 的函数签名如下::"
 
 #: ../../src/guide/processes.rst:129
 msgid ""
@@ -217,17 +217,17 @@ msgid ""
 "instead, which accepts the ``uv_process_t`` watcher as the first "
 "argument, rather than the pid. In this case, **remember to call** "
 "``uv_close`` on the watcher _after_ the exit callback has been called."
-msgstr ""
+msgstr "对于使用 libuv 启动的进程，可以改用 ``uv_process_kill``，它接受 ``uv_process_t`` 监视器作为第一个参数，而不是 pid。在这种情况下，**记住要** 在退出回调被调用之后，再对监视器调用 ``uv_close``。"
 
 #: ../../src/guide/processes.rst:135
 msgid "Signals"
-msgstr ""
+msgstr "信号"
 
 #: ../../src/guide/processes.rst:137
 msgid ""
 "libuv provides wrappers around Unix signals with `some Windows support "
 "<https://docs.libuv.org/en/v1.x/signal.html#signal>`_ as well."
-msgstr ""
+msgstr "libuv 对 Unix 信号提供了封装，同时也提供 `部分 Windows 支持 <https://docs.libuv.org/en/v1.x/signal.html#signal>`_。"
 
 #: ../../src/guide/processes.rst:140
 msgid ""
@@ -238,11 +238,11 @@ msgid ""
 "``uv_signal_start()`` overwriting earlier associations. Use "
 "``uv_signal_stop()`` to stop watching. Here is a small example "
 "demonstrating the various possibilities:"
-msgstr ""
+msgstr "使用 ``uv_signal_init()`` 初始化一个句柄并将其与一个事件循环关联。要在该句柄上监听特定信号，可以使用 ``uv_signal_start()`` 并传入处理函数。每个句柄只能关联一个信号编号，后续对 ``uv_signal_start()`` 的调用会覆盖先前的关联。使用 ``uv_signal_stop()`` 停止监听。下面这个小示例展示了各种可能性："
 
 #: ../../src/guide/processes.rst:147
 msgid "signal/main.c"
-msgstr ""
+msgstr "signal/main.c"
 
 #: ../../src/guide/processes.rst:155
 msgid ""
@@ -251,7 +251,7 @@ msgid ""
 " if there are no pending events, while UV_RUN_NOWAIT will return "
 "immediately. We use NOWAIT so that one of the loops isn't starved because"
 " the other one has no pending activity."
-msgstr ""
+msgstr "``uv_run(loop, UV_RUN_NOWAIT)`` 与 ``uv_run(loop, UV_RUN_ONCE)`` 类似，都只处理一个事件。UV_RUN_ONCE 在没有待处理事件时会阻塞，而 UV_RUN_NOWAIT 会立即返回。我们使用 NOWAIT，这样其中一个事件循环就不会因为另一个事件循环没有待处理的活动而得不到运行机会。"
 
 #: ../../src/guide/processes.rst:161
 msgid ""
@@ -261,11 +261,11 @@ msgid ""
 "handlers is very useful. A server using multiple event loops could ensure"
 " that all data was safely saved before termination, simply by every loop "
 "adding a watcher for ``SIGINT``."
-msgstr ""
+msgstr "向进程发送 ``SIGUSR1``，你会发现处理函数被调用了 4 次，每个 ``uv_signal_t`` 各一次。该处理函数只是停止每个句柄，从而使程序退出。这种向所有处理函数分发的机制非常有用。使用多个事件循环的服务器只需让每个事件循环都为 ``SIGINT`` 添加一个监视器，就能确保在终止前所有数据都被安全保存。"
 
 #: ../../src/guide/processes.rst:169
 msgid "Child Process I/O"
-msgstr ""
+msgstr "子进程 I/O"
 
 #: ../../src/guide/processes.rst:171
 msgid ""
@@ -277,11 +277,11 @@ msgid ""
 "like to have ``stderr`` of the child be the same as the stderr of the "
 "parent. In this case, libuv supports *inheriting* file descriptors. In "
 "this sample, we invoke the test program, which is:"
-msgstr ""
+msgstr "一个普通的新派生进程拥有一套自己的文件描述符，其中 0、1 和 2 分别是 ``stdin``、``stdout`` 和 ``stderr``。有时你可能希望与子进程共享文件描述符。例如，也许你的应用程序会启动一个子命令，你希望任何错误都写入日志文件，但忽略 ``stdout``。为此，你会希望子进程的 ``stderr`` 与父进程的 stderr 相同。在这种情况下，libuv 支持 *继承* 文件描述符。在这个示例中，我们调用的测试程序如下："
 
 #: ../../src/guide/processes.rst:180
 msgid "proc-streams/test.c"
-msgstr ""
+msgstr "proc-streams/test.c"
 
 #: ../../src/guide/processes.rst:184
 msgid ""
@@ -291,31 +291,31 @@ msgid ""
 "``stdio_count`` field to the number of file descriptors being set. "
 "``uv_process_options_t.stdio`` is an array of ``uv_stdio_container_t``, "
 "which is:"
-msgstr ""
+msgstr "实际的程序 ``proc-streams`` 运行的就是上述代码，不过它只共享 ``stderr``。子进程的文件描述符通过 ``stdio`` 字段设置，该字段位于 ``uv_process_options_t`` 中。首先把 ``stdio_count`` 字段设置为要设置的文件描述符的数目。``uv_process_options_t.stdio`` 是一个 ``uv_stdio_container_t`` 数组，其结构如下："
 
 #: ../../src/guide/processes.rst:201
 msgid ""
 "where flags can have several values. Use ``UV_IGNORE`` if it isn't going "
 "to be used. If the first three ``stdio`` fields are marked as "
 "``UV_IGNORE`` they'll redirect to ``/dev/null``."
-msgstr ""
+msgstr "其中 flags 可以取多个值。如果不会用到它，就使用 ``UV_IGNORE``。如果前三个 ``stdio`` 字段被标记为 ``UV_IGNORE``，它们将被重定向到 ``/dev/null``。"
 
 #: ../../src/guide/processes.rst:205
 msgid ""
 "Since we want to pass on an existing descriptor, we'll use "
 "``UV_INHERIT_FD``. Then we set the ``fd`` to ``stderr``."
-msgstr ""
+msgstr "由于我们想传递一个已有的描述符，因此使用 ``UV_INHERIT_FD``。然后将 ``fd`` 设置为 ``stderr``。"
 
 #: ../../src/guide/processes.rst:208
 msgid "proc-streams/main.c"
-msgstr ""
+msgstr "proc-streams/main.c"
 
 #: ../../src/guide/processes.rst:215
 msgid ""
 "If you run ``proc-stream`` you'll see that only the line \"This is "
 "stderr\" will be displayed. Try marking ``stdout`` as being inherited and"
 " see the output."
-msgstr ""
+msgstr "如果运行 ``proc-stream``，你将看到只显示 \"This is stderr\" 这一行。试着把 ``stdout`` 标记为继承，然后查看输出。"
 
 #: ../../src/guide/processes.rst:218
 msgid ""
@@ -323,32 +323,32 @@ msgid ""
 "``flags`` to ``UV_INHERIT_STREAM`` and setting ``data.stream`` to the "
 "stream in the parent process, the child process can treat that stream as "
 "standard I/O. This can be used to implement something like CGI_."
-msgstr ""
+msgstr "把这种重定向应用到流上非常简单。将 ``flags`` 设置为 ``UV_INHERIT_STREAM``，并把 ``data.stream`` 设置为父进程中的流，子进程就可以把这个流当作标准 I/O。这可以用来实现类似 CGI_ 的功能。"
 
 #: ../../src/guide/processes.rst:225
 msgid "A sample CGI script/executable is:"
-msgstr ""
+msgstr "一个 CGI 脚本/可执行文件的示例如下："
 
 #: ../../src/guide/processes.rst:227
 msgid "cgi/tick.c"
-msgstr ""
+msgstr "cgi/tick.c"
 
 #: ../../src/guide/processes.rst:231
 msgid ""
 "The CGI server combines the concepts from this chapter and "
 ":doc:`networking` so that every client is sent ten ticks after which that"
 " connection is closed."
-msgstr ""
+msgstr "CGI 服务器结合了本章和 :doc:`networking` 中的概念，它会向每个客户端发送十个 tick，然后关闭该连接。"
 
 #: ../../src/guide/processes.rst:234 ../../src/guide/processes.rst:244
 msgid "cgi/main.c"
-msgstr ""
+msgstr "cgi/main.c"
 
 #: ../../src/guide/processes.rst:241
 msgid ""
 "Here we simply accept the TCP connection and pass on the socket "
 "(*stream*) to ``invoke_cgi_script``."
-msgstr ""
+msgstr "这里我们只是接受 TCP 连接，并把套接字（*流*）传递给 ``invoke_cgi_script``。"
 
 #: ../../src/guide/processes.rst:251
 msgid ""
@@ -357,11 +357,11 @@ msgid ""
 "can offload the read/write buffering to the operating system, so in terms"
 " of convenience this is great. Just be warned that creating processes is "
 "a costly task."
-msgstr ""
+msgstr "CGI 脚本的 ``stdout`` 被设置为此套接字，因此我们的 tick 脚本打印的任何内容都会被发送给客户端。通过使用进程，我们可以把读写缓冲的工作交给操作系统，就便利性而言这非常好。只是要注意，创建进程是一项开销很大的任务。"
 
 #: ../../src/guide/processes.rst:259
 msgid "Parent-child IPC"
-msgstr ""
+msgstr "父子进程 IPC"
 
 #: ../../src/guide/processes.rst:261
 msgid ""
@@ -371,11 +371,11 @@ msgid ""
 "``UV_WRITABLE_PIPE``. The read/write flag is from the perspective of the "
 "child process.  In this case, the ``uv_stream_t* stream`` field must be "
 "set to point to an initialized, unopened ``uv_pipe_t`` instance."
-msgstr ""
+msgstr "父进程和子进程可以通过管道进行单向或双向通信，方法是创建管道时把 ``uv_stdio_container_t.flags`` 设置为 ``UV_CREATE_PIPE`` 与 ``UV_READABLE_PIPE`` 或 ``UV_WRITABLE_PIPE`` 的按位组合。读/写标志是从子进程的视角来看的。在这种情况下，``uv_stream_t* stream`` 字段必须设置为指向一个已初始化但尚未打开的 ``uv_pipe_t`` 实例。"
 
 #: ../../src/guide/processes.rst:269
 msgid "New stdio Pipes"
-msgstr ""
+msgstr "新的 stdio 管道"
 
 #: ../../src/guide/processes.rst:271
 msgid ""
@@ -386,17 +386,17 @@ msgid ""
 "it could actually be a `pipe(7)`_.  When ``uv_spawn`` initializes a "
 "``uv_pipe_t`` due to the `UV_CREATE_PIPE` flag, it opts for creating a "
 "`socketpair(2)`_."
-msgstr ""
+msgstr "``uv_pipe_t`` 结构体所代表的不只是 `pipe(7)`_ （或 ``|``），它还支持任何类文件的流对象。在 Windows 上，符合这一描述的对象只有 `Named Pipe`_。在 Unix 上，它可以是 `Unix Domain Socket`_，也可以派生自 `mkfifo(1)`_，或者它实际上就是一个 `pipe(7)`_。当 ``uv_spawn`` 因 `UV_CREATE_PIPE` 标志而初始化 ``uv_pipe_t`` 时，它会选择创建一个 `socketpair(2)`_。"
 
 #: ../../src/guide/processes.rst:278
 msgid ""
 "This is intended for the purpose of allowing multiple libuv processes to "
 "communicate with IPC. This is discussed below."
-msgstr ""
+msgstr "这样做的目的是让多个 libuv 进程能够通过 IPC 进行通信。下文会讨论这一点。"
 
 #: ../../src/guide/processes.rst:289
 msgid "Arbitrary process IPC"
-msgstr ""
+msgstr "任意进程间的 IPC"
 
 #: ../../src/guide/processes.rst:291
 msgid ""
@@ -406,7 +406,7 @@ msgid ""
 "sockets for event notification. Various applications can then react when "
 "a contact comes online or new hardware is detected. The MySQL server also"
 " runs a domain socket on which clients can interact with it."
-msgstr ""
+msgstr "由于域套接字 [#]_ 可以拥有一个广为人知的名字以及文件系统中的位置，它们可以用于不相关进程之间的 IPC。开源桌面环境所使用的 D-BUS_ 系统就利用域套接字进行事件通知。这样一来，当联系人上线或检测到新硬件时，各种应用程序都可以做出反应。MySQL 服务器同样运行着一个域套接字，客户端可以通过它与服务器交互。"
 
 #: ../../src/guide/processes.rst:300
 msgid ""
@@ -414,11 +414,11 @@ msgid ""
 "with the creator/owner of the socket acting as the server. After the "
 "initial setup, messaging is no different from TCP, so we'll re-use the "
 "echo server example."
-msgstr ""
+msgstr "使用域套接字时，通常遵循客户端-服务器模式，由套接字的创建者/所有者充当服务器。完成初始设置之后，消息传递与 TCP 并无不同，因此我们将复用回显服务器的示例。"
 
 #: ../../src/guide/processes.rst:304
 msgid "pipe-echo-server/main.c"
-msgstr ""
+msgstr "pipe-echo-server/main.c"
 
 #: ../../src/guide/processes.rst:311
 msgid ""
@@ -426,22 +426,22 @@ msgid ""
 "local directory. This socket now behaves no different from TCP sockets as"
 " far as the stream API is concerned. You can test this server using "
 "`socat`_::"
-msgstr ""
+msgstr "我们把这个套接字命名为 ``echo.sock``，这意味着它将被创建在本地目录中。就流 API 而言，这个套接字现在的行为与 TCP 套接字并无区别。你可以使用 `socat`_ 来测试这个服务器::"
 
 #: ../../src/guide/processes.rst:317
 msgid "A client which wants to connect to a domain socket will use::"
-msgstr ""
+msgstr "想要连接到域套接字的客户端将使用::"
 
 #: ../../src/guide/processes.rst:321
 msgid ""
 "where ``name`` will be ``echo.sock`` or similar. On Unix systems, "
 "``name`` must point to a valid file (e.g. ``/tmp/echo.sock``). On "
 "Windows, ``name`` follows a ``\\\\?\\pipe\\echo.sock`` format."
-msgstr ""
+msgstr "其中 ``name`` 将是 ``echo.sock`` 或类似的值。在 Unix 系统上，``name`` 必须指向一个有效文件（例如 ``/tmp/echo.sock``）。在 Windows 上，``name`` 采用 ``\\\\?\\pipe\\echo.sock`` 这样的格式。"
 
 #: ../../src/guide/processes.rst:328
 msgid "Sending file descriptors over pipes"
-msgstr ""
+msgstr "通过管道发送文件描述符"
 
 #: ../../src/guide/processes.rst:330
 msgid ""
@@ -451,7 +451,7 @@ msgid ""
 "include load-balancing servers, worker processes and other ways to make "
 "optimum use of CPU. libuv only supports sending **TCP sockets or other "
 "pipes** over pipes for now."
-msgstr ""
+msgstr "域套接字的妙处在于，可以通过域套接字在进程之间交换文件描述符。这使得进程可以把 I/O 移交给其他进程。应用场景包括负载均衡服务器、工作进程以及其他充分利用 CPU 的方式。目前 libuv 只支持通过管道发送 **TCP 套接字或其他管道**。"
 
 #: ../../src/guide/processes.rst:336
 msgid ""
@@ -459,17 +459,17 @@ msgid ""
 "off clients to worker processes in a round-robin fashion. This program is"
 " a bit involved, and while only snippets are included in the book, it is "
 "recommended to read the full code to really understand it."
-msgstr ""
+msgstr "为了演示，我们来看一个回显服务器的实现，它以轮转的方式把客户端移交给各个工作进程。这个程序有点复杂，虽然书中只包含了一些代码片段，但建议阅读完整的代码来真正理解它。"
 
 #: ../../src/guide/processes.rst:341
 msgid ""
 "The worker process is quite simple, since the file-descriptor is handed "
 "over to it by the master."
-msgstr ""
+msgstr "工作进程本身相当简单，因为文件描述符是由主进程移交给它的。"
 
 #: ../../src/guide/processes.rst:344 ../../src/guide/processes.rst:358
 msgid "multi-echo-server/worker.c"
-msgstr ""
+msgstr "multi-echo-server/worker.c"
 
 #: ../../src/guide/processes.rst:351
 msgid ""
@@ -479,7 +479,7 @@ msgid ""
 "used for inter-process communication! Since the master will write the "
 "file handle to the standard input of the worker, we connect the pipe to "
 "``stdin`` using ``uv_pipe_open``."
-msgstr ""
+msgstr "``queue`` 是另一端连接到主进程的管道，新的文件描述符经由这条管道发送。重要的是把 ``ipc`` 参数设置为 1，该参数属于 ``uv_pipe_init``，以此表明这条管道将用于进程间通信！由于主进程会把文件句柄写入工作进程的标准输入，我们把管道连接到 ``stdin``，使用 ``uv_pipe_open``。"
 
 #: ../../src/guide/processes.rst:365
 msgid ""
@@ -491,24 +491,24 @@ msgid ""
 " another file descriptor (The listening socket). Which is exactly what we"
 " do here. Fetch the file descriptor (``client``) from ``queue``. From "
 "this point the worker does standard echo server stuff."
-msgstr ""
+msgstr "首先我们调用 ``uv_pipe_pending_count()`` 来确保有一个句柄可供读出。如果你的程序可能处理不同类型的句柄，可以使用 ``uv_pipe_pending_type()`` 来确定其类型。虽然 ``accept`` 在这段代码中看起来有些奇怪，但实际上是说得通的。``accept`` 传统上做的事情，就是从另一个文件描述符（监听套接字）中获取一个文件描述符（客户端）。这正是我们在这里做的事情：把文件描述符（``client``）从 ``queue`` 中取出。从这里开始，工作进程做的就是标准回显服务器的事情。"
 
 #: ../../src/guide/processes.rst:374
 msgid ""
 "Turning now to the master, let's take a look at how the workers are "
 "launched to allow load balancing."
-msgstr ""
+msgstr "现在转到主进程这一侧，来看看工作进程是如何被启动以实现负载均衡的。"
 
 #: ../../src/guide/processes.rst:377 ../../src/guide/processes.rst:386
 #: ../../src/guide/processes.rst:405
 msgid "multi-echo-server/main.c"
-msgstr ""
+msgstr "multi-echo-server/main.c"
 
 #: ../../src/guide/processes.rst:383
 msgid ""
 "The ``child_worker`` structure wraps the process, and the pipe between "
 "the master and the individual process."
-msgstr ""
+msgstr "``child_worker`` 结构体封装了进程本身，以及主进程与各个进程之间的管道。"
 
 #: ../../src/guide/processes.rst:393
 msgid ""
@@ -520,31 +520,31 @@ msgid ""
 " of the child). Everything is straightforward till here. The workers are "
 "launched and waiting for file descriptors to be written to their standard"
 " input."
-msgstr ""
+msgstr "在设置工作进程时，我们使用 libuv 中很好用的 ``uv_cpu_info`` 函数来获取 CPU 的数量，从而可以启动相同数量的工作进程。同样重要的是，初始化充当 IPC 通道的管道时要把第三个参数设为 1。接着我们指明子进程的 ``stdin`` 将是一个可读管道（从子进程的角度来看）。到这里为止，一切都简单直接。工作进程已经启动，正在等待文件描述符写入它们的标准输入。"
 
 #: ../../src/guide/processes.rst:401
 msgid ""
 "It is in ``on_new_connection`` (the TCP infrastructure is initialized in "
 "``main()``), that we accept the client socket and pass it along to the "
 "next worker in the round-robin."
-msgstr ""
+msgstr "正是在 ``on_new_connection`` （TCP 基础设施在 ``main()`` 中初始化）中，我们接受客户端套接字，并把它按轮转方式传递给下一个工作进程。"
 
 #: ../../src/guide/processes.rst:412
 msgid ""
 "The ``uv_write2`` call handles all the abstraction and it is simply a "
 "matter of passing in the handle (``client``) as the right argument. With "
 "this our multi-process echo server is operational."
-msgstr ""
+msgstr "``uv_write2`` 调用处理了全部的抽象，只需把句柄（``client``）作为正确的参数传入即可。有了这些，我们的多进程回显服务器就可以运行了。"
 
 #: ../../src/guide/processes.rst:416
 msgid ""
 "Thanks to Kyle for `pointing out`_ that ``uv_write2()`` requires a non-"
 "empty buffer even when sending handles."
-msgstr ""
+msgstr "感谢 Kyle `pointing out`_：``uv_write2()`` 即使在发送句柄时也需要一个非空缓冲区。"
 
 #: ../../src/guide/processes.rst:423
 msgid ""
 "In this section domain sockets stands in for named pipes on Windows as "
 "well."
-msgstr ""
+msgstr "在本节中，域套接字在 Windows 上也代指命名管道。"
 

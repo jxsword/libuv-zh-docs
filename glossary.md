@@ -59,6 +59,53 @@
 | Windows | Windows | design（平台名） | 视窗 |
 | Unix / Unix-like | Unix / 类 Unix | design（平台名） | 尤恩克斯 |
 | POSIX | POSIX | design（标准名） | 可移植操作系统接口 |
+| domain socket | 域套接字 | guide/processes | |
+| Unix domain socket | Unix 域套接字 | guide/introduction | |
+| named pipe | 命名管道 | guide/processes | |
+| echo server | 回显服务器 | guide/processes | |
+| daemon | 守护进程 | guide/processes | |
+| master / worker process | 主进程 / 工作进程 | guide/processes | |
+| round-robin | 轮转 | guide/processes | 禁用: 轮叫 |
+| fire-and-forget | 发后即忘 | guide/processes | P4 sweep 回改 P1 暂保留英文处 |
+| mutex | 互斥锁 | guide/threads | |
+| recursive mutex | 递归互斥锁 | guide/threads | |
+| read-write lock | 读写锁 | guide/threads | rwlock 同 |
+| barrier | 屏障 | guide/threads | |
+| condition variable | 条件变量 | guide/threads | |
+| synchronization primitives | 同步原语 | guide/threads | |
+| thread-local storage | 线程局部存储 | guide/threads | |
+| work queue | 工作队列 | guide/threads | |
+| thread affinity | 线程亲和性 | guide/threads | |
+| scheduler | 调度器 | guide/threads | |
+| signal handler | 信号处理函数 | guide/threads | |
+| CPU bound | CPU 密集型 | guide/threads | 禁用: 受 CPU 限制 |
+| garbage collector | 垃圾回收器 | guide/utilities | |
+| heartbeat | 心跳 | guide/utilities | |
+| events mask | 事件掩码 | guide/utilities | |
+| interval timer | 周期定时器 | guide/utilities | |
+| opaque struct | 不透明结构体 | guide/basics | |
+| long-lived / short-lived | 长寿命的 / 短寿命的 | guide/basics | |
+| de-initialize | 反初始化 | guide/basics | |
+| call site | 调用点 | guide/basics | |
+| Idling | 空转 | guide/basics | idle 句柄语境 |
+| multicast | 组播 | guide/networking | 禁用: 多播（统一术语） |
+| datagram | 数据报 | guide/networking | |
+| peer | 对端 | guide/networking | |
+| loopback | 环回 | guide/networking | 禁用: 回环（统一术语） |
+| time-to-live (TTL) | 生存时间（缩写 TTL 保留） | guide/networking | |
+| high resolution clock | 高分辨率时钟 | index | |
+| ANSI escape code | ANSI 转义码 | index | |
+| pull request | 拉取请求 | index | 禁用: 混用 PR/合并请求 |
+| file change notification | 文件变更通知 | guide/filesystem | 与 file system event 区分 |
+| file change event | 文件变更事件 | guide/filesystem | 与 file system event 区分 |
+| buffer pool | 缓冲区池 | guide/filesystem | |
+| evented I/O | 事件驱动 I/O | guide/filesystem | |
+| poller | 轮询器 | design | |
+| file I/O primitives | 文件 I/O 原语 | design | |
+| due timer | 到期的定时器 | design | 禁用: 超时的定时器 |
+| ref'd handles | 被引用的句柄 | design | |
+| loop *alive* | 存活（循环存活） | design | 禁用: 活着的、活跃的（此语境） |
+| handler | 处理函数 | guide（函数语境） | 与 handle→句柄 区分 |
 
 ## 3. 错误描述惯用译法（errors.rst 高频错误信息，R2-9）
 
@@ -123,8 +170,9 @@
 - 信号名: `SIGTERM`、`SIGINT`、`SIGPIPE` 等
 - 打开标志: `O_RDONLY`、`O_WRONLY`、`O_RDWR` 等
 - 文件名 / 路径 / 命令: `Makefile`、`CMakeLists.txt`、`gcc`、`make` 等
-- 平台 / 标准 / 协议名: Windows、Unix、POSIX、TCP、UDP、SCTP、inotify、kqueue、epoll、IOCP、POSIX
+- 平台 / 标准 / 协议名: Windows、Unix、POSIX、TCP、UDP、SCTP、inotify、kqueue、epoll、IOCP、event ports（Solaris 机制名）、POSIX
 - HTTP 头名、URL、许可证名: CC BY 4.0、MIT
+- 无通行译名或特有行话（P1 裁决）: IPC、backlog（listen(2) 参数名）、tee（Unix 工具）、slab（内核术语）、baton（libuv 指南行话）、Hello World（程序名）
 - 句柄/请求类型名: timer、prepare、check、idle、async、poll、signal、process、fs_event、fs_poll、tty、udp、tcp、pipe、stream（作为类型名出现时）
 
 > 例外提示: 上述名词作为**普通英文单词**出现在句子中时按上下文翻译（如 "signals and pipes" 一般句境 → 信号与管道；类型名语境 "the signal handle" → signal 句柄）。
@@ -175,3 +223,7 @@
 权限被拒绝
 连接被复位
 坏的文件描述符
+多播
+回环
+受 CPU 限制
+超时的定时器

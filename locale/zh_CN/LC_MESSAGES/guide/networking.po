@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../../src/guide/networking.rst:2
 msgid "Networking"
-msgstr ""
+msgstr "网络"
 
 #: ../../src/guide/networking.rst:4
 msgid ""
@@ -34,10 +34,14 @@ msgid ""
 "sockets using the BSD socket structures, DNS lookup, and tweaking various"
 " socket parameters."
 msgstr ""
+"libuv 中的网络编程与直接使用 BSD 套接字接口并没有太大不同，有些事情更容"
+"易了，一切都是非阻塞的，但概念保持不变。此外，libuv 还提供了一些实用函数，"
+"用来抽象那些烦人、重复且底层的任务，例如使用 BSD 套接字结构体设置套接字、"
+"DNS 查询以及调整各种套接字参数。"
 
 #: ../../src/guide/networking.rst:10
 msgid "The ``uv_tcp_t`` and ``uv_udp_t`` structures are used for network I/O."
-msgstr ""
+msgstr "``uv_tcp_t`` 和 ``uv_udp_t`` 结构体用于网络 I/O。"
 
 #: ../../src/guide/networking.rst:14
 msgid ""
@@ -45,56 +49,62 @@ msgid ""
 "are not examples of good quality code. They leak memory and don't always "
 "close connections properly."
 msgstr ""
+"本章中的代码示例只是为了展示某些 libuv API。它们并不是高质量代码的范例。"
+"它们会泄漏内存，而且不总是能正确关闭连接。"
 
 #: ../../src/guide/networking.rst:19
 msgid "TCP"
-msgstr ""
+msgstr "TCP"
 
 #: ../../src/guide/networking.rst:21
 msgid ""
 "TCP is a connection oriented, stream protocol and is therefore based on "
 "the libuv streams infrastructure."
 msgstr ""
+"TCP 是一种面向连接的流协议，因此建立在 libuv 流基础设施之上。"
 
 #: ../../src/guide/networking.rst:25
 msgid "Server"
-msgstr ""
+msgstr "服务器"
 
 #: ../../src/guide/networking.rst:27
 msgid "Server sockets proceed by:"
-msgstr ""
+msgstr "服务器套接字按以下步骤进行："
 
 #: ../../src/guide/networking.rst:29
 msgid "``uv_tcp_init`` the TCP handle."
-msgstr ""
+msgstr "用 ``uv_tcp_init`` 初始化 TCP 句柄。"
 
 #: ../../src/guide/networking.rst:30
 msgid "``uv_tcp_bind`` it."
-msgstr ""
+msgstr "用 ``uv_tcp_bind`` 绑定它。"
 
 #: ../../src/guide/networking.rst:31
 msgid ""
 "Call ``uv_listen`` on the handle to have a callback invoked whenever a "
 "new connection is established by a client."
 msgstr ""
+"在该句柄上调用 ``uv_listen``，每当有客户端建立新连接时，就会有一个回调被调"
+"用。"
 
 #: ../../src/guide/networking.rst:33
 msgid "Use ``uv_accept`` to accept the connection."
-msgstr ""
+msgstr "使用 ``uv_accept`` 接受连接。"
 
 #: ../../src/guide/networking.rst:34
 msgid ""
 "Use :ref:`stream operations <buffers-and-streams>` to communicate with "
 "the client."
 msgstr ""
+"使用 :ref:`stream operations <buffers-and-streams>` 与客户端通信。"
 
 #: ../../src/guide/networking.rst:37
 msgid "Here is a simple echo server"
-msgstr ""
+msgstr "下面是一个简单的回显服务器"
 
 #: ../../src/guide/networking.rst:39
 msgid "tcp-echo-server/main.c - The listen socket"
-msgstr ""
+msgstr "tcp-echo-server/main.c - 监听套接字"
 
 #: ../../src/guide/networking.rst:46
 msgid ""
@@ -103,10 +113,13 @@ msgid ""
 "required by the BSD socket APIs. The reverse can be obtained using "
 "``uv_ip4_name``."
 msgstr ""
+"可以看到，实用函数 ``uv_ip4_addr`` 用于把人类可读的 IP 地址与端口组成的二"
+"元组转换为 BSD 套接字 API 所需的 sockaddr_in 结构体。反向转换可以通过"
+" ``uv_ip4_name`` 得到。"
 
 #: ../../src/guide/networking.rst:52
 msgid "There are ``uv_ip6_*`` analogues for the ip4 functions."
-msgstr ""
+msgstr "这些 ip4 函数都有对应的 ``uv_ip6_*`` 类似函数。"
 
 #: ../../src/guide/networking.rst:54
 msgid ""
@@ -115,6 +128,9 @@ msgid ""
 "arguments is the backlog queue -- the maximum length of queued "
 "connections."
 msgstr ""
+"大多数设置函数都是同步的，因为它们是 CPU 密集型的。``uv_listen`` 是我们回"
+"归 libuv 回调风格的地方。第二个参数是 backlog 队列——即已排队连接的最大长"
+"度。"
 
 #: ../../src/guide/networking.rst:58
 msgid ""
@@ -123,10 +139,12 @@ msgid ""
 "``uv_accept``. In this case we also establish interest in reading from "
 "this stream."
 msgstr ""
+"当客户端发起连接时，回调必须为客户端套接字设置一个句柄，并使用"
+" ``uv_accept`` 关联该句柄。在本例中，我们还声明了希望从这个流读取数据。"
 
 #: ../../src/guide/networking.rst:62
 msgid "tcp-echo-server/main.c - Accepting the client"
-msgstr ""
+msgstr "tcp-echo-server/main.c - 接受客户端"
 
 #: ../../src/guide/networking.rst:69
 msgid ""
@@ -135,10 +153,13 @@ msgid ""
 "socket isn't required. This can be done even in the ``uv_listen`` "
 "callback if you are not interested in accepting the connection."
 msgstr ""
+"其余的函数与流示例非常相似，可以在代码中找到。只需记住，在不再需要套接字"
+"时调用 ``uv_close``。如果你不打算接受连接，甚至可以在 ``uv_listen`` 回调"
+"中这么做。"
 
 #: ../../src/guide/networking.rst:75
 msgid "Client"
-msgstr ""
+msgstr "客户端"
 
 #: ../../src/guide/networking.rst:77
 msgid ""
@@ -146,6 +167,9 @@ msgid ""
 "simply a matter of calling ``uv_tcp_connect``. The same ``uv_connect_cb``"
 " style callback of ``uv_listen`` is used by ``uv_tcp_connect``. Try::"
 msgstr ""
+"在服务器端要做的是 bind/listen/accept，而在客户端只需调用 ``uv_tcp_connect``"
+" 就可以了。``uv_connect_cb`` 风格的回调与 ``uv_listen`` 的相同，也由"
+" ``uv_tcp_connect`` 使用。试试看："
 
 #: ../../src/guide/networking.rst:91
 msgid ""
@@ -153,10 +177,12 @@ msgid ""
 "The callback receives the ``uv_connect_t`` struct, which has a member "
 "``.handle`` pointing to the socket."
 msgstr ""
+"其中 ``on_connect`` 会在连接建立之后被调用。回调会接收 ``uv_connect_t`` 结"
+"构体，其中有一个指向套接字的成员 ``.handle``。"
 
 #: ../../src/guide/networking.rst:96
 msgid "UDP"
-msgstr ""
+msgstr "UDP"
 
 #: ../../src/guide/networking.rst:98
 msgid ""
@@ -168,16 +194,23 @@ msgid ""
 "reads. To look at how UDP can be used, the example shows the first stage "
 "of obtaining an IP address from a `DHCP`_ server -- DHCP Discover."
 msgstr ""
+"`User Datagram Protocol`_ 提供的是无连接、不可靠的网络通信。因此 libuv 并"
+"不提供流。取而代之，libuv 通过 `uv_udp_t` 句柄（用于接收）和"
+" `uv_udp_send_t` 请求（用于发送）以及相关函数来提供非阻塞的 UDP 支持。话虽"
+"如此，实际的读写 API 与普通的流读取非常相似。为了看看 UDP 能怎么用，本示"
+"例展示了从 `DHCP`_ 服务器获取 IP 地址的第一个阶段——DHCP Discover。"
 
 #: ../../src/guide/networking.rst:108
 msgid ""
 "You will have to run `udp-dhcp` as **root** since it uses well known port"
 " numbers below 1024."
 msgstr ""
+"你必须以 **root** 身份运行 `udp-dhcp`，因为它使用了 1024 以下的知名端口"
+"号。"
 
 #: ../../src/guide/networking.rst:111
 msgid "udp-dhcp/main.c - Setup and send UDP packets"
-msgstr ""
+msgstr "udp-dhcp/main.c - 设置并发送 UDP 数据包"
 
 #: ../../src/guide/networking.rst:120
 msgid ""
@@ -186,6 +219,9 @@ msgid ""
 "will be sent to all interfaces on the subnet.  port ``0`` means that the "
 "OS randomly assigns a port."
 msgstr ""
+"IP 地址 ``0.0.0.0`` 用于绑定到所有接口。IP 地址 ``255.255.255.255`` 是广"
+"播地址，这意味着数据包会被发送到子网中的所有接口。端口 ``0`` 表示由操作系"
+"统随机分配一个端口。"
 
 #: ../../src/guide/networking.rst:125
 msgid ""
@@ -196,6 +232,11 @@ msgid ""
 " on the same port. Then we setup a similar send socket and use "
 "``uv_udp_send`` to send a *broadcast message* on port 67 (DHCP server)."
 msgstr ""
+"首先，我们把接收套接字设置为绑定到所有接口的 68 端口（DHCP 客户端），并在"
+"其上启动一次读取。这样就能读回任何作出回应的 DHCP 服务器的响应。我们使用"
+" UV_UDP_REUSEADDR 标志，以便与此计算机上运行在同一端口的其他系统 DHCP 客户"
+"端和平共处。然后我们设置一个类似的发送套接字，并使用 ``uv_udp_send`` 在 67"
+" 端口（DHCP 服务器）上发送一条 *广播消息*。"
 
 #: ../../src/guide/networking.rst:132
 msgid ""
@@ -205,12 +246,17 @@ msgid ""
 "read and write callbacks will receive a status code of < 0 if something "
 "went wrong."
 msgstr ""
+"**必须** 设置广播标志，否则你会得到一个 ``EACCES`` 错误 [#]_。实际发送的消"
+"息内容与本书无关，如果你感兴趣，可以研究一下代码。和往常一样，如果出了问"
+"题，读回调与写回调会收到一个 < 0 的状态码。"
 
 #: ../../src/guide/networking.rst:137
 msgid ""
 "Since UDP sockets are not connected to a particular peer, the read "
 "callback receives an extra parameter about the sender of the packet."
 msgstr ""
+"由于 UDP 套接字并不连接到特定的对端，读回调会收到一个额外的参数，说明数据"
+"包的发送方。"
 
 #: ../../src/guide/networking.rst:140
 msgid ""
@@ -222,28 +268,34 @@ msgid ""
 " enough to hold the data. *In this case the OS will discard the data that"
 " could not fit* (That's UDP for you!)."
 msgstr ""
+"如果没有更多数据可读，``nread`` 可能为零。如果 ``addr`` 为 NULL，表示没有"
+"内容可读（此时回调不应做任何事情）；如果不为 NULL，表示从 ``addr`` 处的主"
+"机收到了一个空数据报。如果你的分配器提供的缓冲区不足以容纳数据，``flags``"
+" 参数可能为 ``UV_UDP_PARTIAL``。*在这种情况下，操作系统会丢弃装不下的数据*"
+" （UDP 就是这样的！）。"
 
 #: ../../src/guide/networking.rst:147
 msgid "udp-dhcp/main.c - Reading packets"
-msgstr ""
+msgstr "udp-dhcp/main.c - 读取数据包"
 
 #: ../../src/guide/networking.rst:155
 msgid "UDP Options"
-msgstr ""
+msgstr "UDP 选项"
 
 #: ../../src/guide/networking.rst:158
 msgid "Time-to-live"
-msgstr ""
+msgstr "生存时间"
 
 #: ../../src/guide/networking.rst:160
 msgid ""
 "The TTL of packets sent on the socket can be changed using "
 "``uv_udp_set_ttl``."
 msgstr ""
+"套接字上所发送数据包的 TTL 可以用 ``uv_udp_set_ttl`` 更改。"
 
 #: ../../src/guide/networking.rst:163
 msgid "IPv6 stack only"
-msgstr ""
+msgstr "仅 IPv6 协议栈"
 
 #: ../../src/guide/networking.rst:165
 msgid ""
@@ -251,38 +303,43 @@ msgid ""
 "want to restrict the socket to IPv6 only, pass the ``UV_UDP_IPV6ONLY`` "
 "flag to ``uv_udp_bind``."
 msgstr ""
+"IPv6 套接字既可用于 IPv4 通信，也可用于 IPv6 通信。如果你想把套接字限制为"
+"仅 IPv6，请把 ``UV_UDP_IPV6ONLY`` 标志传给 ``uv_udp_bind``。"
 
 #: ../../src/guide/networking.rst:170
 msgid "Multicast"
-msgstr ""
+msgstr "组播"
 
 #: ../../src/guide/networking.rst:172
 msgid "A socket can (un)subscribe to a multicast group using:"
-msgstr ""
+msgstr "套接字可以通过以下方式（取消）订阅组播组："
 
 #: ../../src/guide/networking.rst:178
 msgid "where ``membership`` is ``UV_JOIN_GROUP`` or ``UV_LEAVE_GROUP``."
-msgstr ""
+msgstr "其中 ``membership`` 为 ``UV_JOIN_GROUP`` 或 ``UV_LEAVE_GROUP``。"
 
 #: ../../src/guide/networking.rst:180
 msgid "The concepts of multicasting are nicely explained in `this guide`_."
-msgstr ""
+msgstr "`this guide`_ 对组播的概念作了很好的讲解。"
 
 #: ../../src/guide/networking.rst:184
 msgid ""
 "Local loopback of multicast packets is enabled by default [#]_, use "
 "``uv_udp_set_multicast_loop`` to switch it off."
 msgstr ""
+"组播数据包的本地环回默认是启用的 [#]_，可以使用"
+" ``uv_udp_set_multicast_loop`` 将其关闭。"
 
 #: ../../src/guide/networking.rst:187
 msgid ""
 "The packet time-to-live for multicast packets can be changed using "
 "``uv_udp_set_multicast_ttl``."
 msgstr ""
+"组播数据包的生存时间可以用 ``uv_udp_set_multicast_ttl`` 更改。"
 
 #: ../../src/guide/networking.rst:191
 msgid "Querying DNS"
-msgstr ""
+msgstr "查询 DNS"
 
 #: ../../src/guide/networking.rst:193
 msgid ""
@@ -291,10 +348,13 @@ msgid ""
 "socket operations on the retrieved addresses. Let's connect to "
 "Libera.chat to see an example of DNS resolution."
 msgstr ""
+"libuv 提供异步 DNS 解析。为此，它提供了自己的 ``getaddrinfo`` 替代实现"
+" [#]_。在回调中，你可以对获取到的地址执行正常的套接字操作。让我们连接到"
+" Libera.chat，看一个 DNS 解析的示例。"
 
 #: ../../src/guide/networking.rst:198 ../../src/guide/networking.rst:215
 msgid "dns/main.c"
-msgstr ""
+msgstr "dns/main.c"
 
 #: ../../src/guide/networking.rst:205
 msgid ""
@@ -305,6 +365,10 @@ msgid ""
 "<getaddrinfo_>`_. The callback can be ``NULL`` in which case the function"
 " will run synchronously."
 msgstr ""
+"如果 ``uv_getaddrinfo`` 返回非零值，说明设置过程出了问题，你的回调根本不"
+"会被调用。所有参数都可以在 ``uv_getaddrinfo`` 返回之后立即释放。"
+"`hostname`、`servname` 和 `hints` 结构体在 `the getaddrinfo man page"
+" <getaddrinfo_>`_ 中有说明。回调可以为 ``NULL``，此时函数将同步运行。"
 
 #: ../../src/guide/networking.rst:211
 msgid ""
@@ -312,14 +376,16 @@ msgid ""
 "``struct addrinfo(s)``. This also demonstrates ``uv_tcp_connect``. It is "
 "necessary to call ``uv_freeaddrinfo`` in the callback."
 msgstr ""
+"在解析器回调中，你可以从 ``struct addrinfo(s)`` 链表中任选一个 IP。这里也"
+"演示了 ``uv_tcp_connect`` 的用法。必须在回调中调用 ``uv_freeaddrinfo``。"
 
 #: ../../src/guide/networking.rst:222
 msgid "libuv also provides the inverse `uv_getnameinfo`_."
-msgstr ""
+msgstr "libuv 还提供了其反向版本 `uv_getnameinfo`_。"
 
 #: ../../src/guide/networking.rst:227
 msgid "Network interfaces"
-msgstr ""
+msgstr "网络接口"
 
 #: ../../src/guide/networking.rst:229
 msgid ""
@@ -329,10 +395,13 @@ msgid ""
 "available. This is useful to allow your service to bind to IP addresses "
 "when it starts."
 msgstr ""
+"通过 libuv 使用 ``uv_interface_addresses`` 可以获取系统网络接口的信息。这"
+"个简单的程序只是打印出所有接口的细节，让你了解有哪些可用字段。这有助于让"
+"你的服务在启动时绑定到 IP 地址。"
 
 #: ../../src/guide/networking.rst:234
 msgid "interfaces/main.c"
-msgstr ""
+msgstr "interfaces/main.c"
 
 #: ../../src/guide/networking.rst:240
 msgid ""
@@ -340,14 +409,16 @@ msgid ""
 "interface has multiple IPv4/IPv6 addresses, the name will be reported "
 "multiple times, with each address being reported once."
 msgstr ""
+"对于环回接口，``is_internal`` 为 true。注意，如果一个物理接口拥有多个"
+" IPv4/IPv6 地址，其名称将被报告多次，每个地址报告一次。"
 
 #: ../../src/guide/networking.rst:252
 msgid "https://beej.us/guide/bgnet/html/#broadcast-packetshello-world"
-msgstr ""
+msgstr "https://beej.us/guide/bgnet/html/#broadcast-packetshello-world"
 
 #: ../../src/guide/networking.rst:253
 msgid "https://tldp.org/HOWTO/Multicast-HOWTO-6.html#ss6.1"
-msgstr ""
+msgstr "https://tldp.org/HOWTO/Multicast-HOWTO-6.html#ss6.1"
 
 #: ../../src/guide/networking.rst:254
 msgid ""
@@ -355,4 +426,6 @@ msgid ""
 "v0.8.0 and earlier also included c-ares_ as an alternative, but this has "
 "been removed in v0.9.0."
 msgstr ""
+"libuv 在 libuv 线程池中使用系统的 ``getaddrinfo``。libuv v0.8.0 及更早版本"
+"还包含 c-ares_ 作为替代方案，但这在 v0.9.0 中已被移除。"
 

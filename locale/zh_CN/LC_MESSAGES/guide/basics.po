@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../../src/guide/basics.rst:2
 msgid "Basics of libuv"
-msgstr ""
+msgstr "libuv 基础"
 
 #: ../../src/guide/basics.rst:4
 msgid ""
@@ -32,11 +32,11 @@ msgid ""
 " notifications of I/O and other activities.  libuv offers core utilities "
 "like timers, non-blocking networking support, asynchronous file system "
 "access, child processes and more."
-msgstr ""
+msgstr "libuv 强制采用 **异步**、**事件驱动** 的编程风格。其核心任务是提供事件循环，以及基于回调的 I/O 和其他活动的通知。libuv 提供定时器、非阻塞网络支持、异步文件系统访问、子进程等核心工具。"
 
 #: ../../src/guide/basics.rst:10
 msgid "Event loops"
-msgstr ""
+msgstr "事件循环"
 
 #: ../../src/guide/basics.rst:12
 msgid ""
@@ -46,29 +46,29 @@ msgid ""
 " events is handled by libuv, and the user can register callbacks to be "
 "invoked when an event occurs. The event-loop usually keeps running "
 "*forever*. In pseudocode:"
-msgstr ""
+msgstr "在事件驱动编程中，应用程序表达对某些事件的关注，并在事件发生时作出响应。从操作系统收集事件或监视其他事件来源的职责由 libuv 承担，用户可以注册回调，使其在事件发生时被调用。事件循环通常会 *永远* 运行下去。伪代码如下："
 
 #: ../../src/guide/basics.rst:25
 msgid "Some examples of events are:"
-msgstr ""
+msgstr "以下是一些事件的例子："
 
 #: ../../src/guide/basics.rst:27
 msgid "File is ready for writing"
-msgstr ""
+msgstr "文件已准备好写入"
 
 #: ../../src/guide/basics.rst:28
 msgid "A socket has data ready to be read"
-msgstr ""
+msgstr "套接字有数据可供读取"
 
 #: ../../src/guide/basics.rst:29
 msgid "A timer has timed out"
-msgstr ""
+msgstr "定时器已超时"
 
 #: ../../src/guide/basics.rst:31
 msgid ""
 "This event loop is encapsulated by ``uv_run()`` -- the end-all function "
 "when using libuv."
-msgstr ""
+msgstr "这个事件循环由 ``uv_run()`` 封装——它是使用 libuv 时最核心的函数。"
 
 #: ../../src/guide/basics.rst:34
 msgid ""
@@ -81,7 +81,7 @@ msgid ""
 " your program is doing nothing. For programs which require high "
 "performance this is a major roadblock as other activities and other I/O "
 "operations are kept waiting."
-msgstr ""
+msgstr "系统程序最常见的活动是处理输入输出，而不是做大量的数值计算。使用常规输入/输出函数（``read``、``fprintf`` 等）的问题在于它们是 **阻塞** 的。实际写入硬盘或从网络读取，与处理器的速度相比，耗时长得不成比例。这些函数在任务完成之前不会返回，期间你的程序无事可做。对于要求高性能的程序来说，这是一大障碍，因为其他活动和其他 I/O 操作都只能等待。"
 
 #: ../../src/guide/basics.rst:43
 msgid ""
@@ -89,7 +89,7 @@ msgid ""
 "operation is started in a separate thread (or in a thread pool). When the"
 " blocking function gets invoked in the thread, the operating system can "
 "schedule another thread to run, which actually needs the CPU."
-msgstr ""
+msgstr "标准解决方案之一是使用线程。每个阻塞式 I/O 操作都在单独的线程（或线程池）中启动。当阻塞函数在线程中被调用时，操作系统可以调度另一个线程来运行，这个线程才是真正需要 CPU 的。"
 
 #: ../../src/guide/basics.rst:48
 msgid ""
@@ -108,7 +108,7 @@ msgid ""
 "operating system events can be treated as just another libuv event. The "
 "non-blocking ensures that other events can continue to be handled as fast"
 " as they come in [#]_."
-msgstr ""
+msgstr "libuv 采用的是另一种风格，即 **异步、非阻塞** 风格。大多数现代操作系统都提供事件通知子系统。例如，对套接字进行普通的 ``read`` 调用会一直阻塞，直到发送方真正发送了数据。应用程序可以改为请求操作系统监视该套接字，并把事件通知放入队列。应用程序可以在方便的时候检查这些事件（也许事先做一些数值计算，把处理器用到极致），然后取走数据。说它是 **异步** 的，是因为应用程序在一个时点表达了关注，然后在另一个时点（时间和空间上）使用数据。说它是 **非阻塞** 的，是因为应用程序进程可以自由地执行其他任务。这与 libuv 的事件循环方式非常契合，因为操作系统事件可以看作只是又一种 libuv 事件。非阻塞确保其他事件可以在到达时持续得到尽快处理 [#]_。"
 
 #: ../../src/guide/basics.rst:64
 msgid ""
@@ -116,41 +116,41 @@ msgid ""
 "the way our computer hardware works, with the thread as the basic unit of"
 " the processor, libuv and OSes will usually run background/worker threads"
 " and/or polling to perform tasks in a non-blocking manner."
-msgstr ""
+msgstr "I/O 在后台如何运行并不是我们所关心的，但由于计算机硬件的工作方式——线程是处理器的基本单位——libuv 和各操作系统通常会运行后台/工作线程和/或进行轮询，以非阻塞的方式执行任务。"
 
 #: ../../src/guide/basics.rst:69
 msgid ""
 "Bert Belder, one of the libuv core developers, has a small video "
 "explaining the architecture of libuv and its background. If you have no "
 "prior experience with libuv, it is a quick, useful watch."
-msgstr ""
+msgstr "libuv 核心开发者之一 Bert Belder 有一个小视频，讲解了 libuv 的架构及其背景。如果你此前没有接触过 libuv，这个视频简短实用，值得一看。"
 
 #: ../../src/guide/basics.rst:73
 msgid ""
 "libuv's event loop is explained in more detail in the `documentation "
 "<https://docs.libuv.org/en/v1.x/design.html#the-i-o-loop>`_."
-msgstr ""
+msgstr "libuv 的事件循环在 `文档 <https://docs.libuv.org/en/v1.x/design.html#the-i-o-loop>`_ 中有更详细的讲解。"
 
 #: ../../src/guide/basics.rst:83
 msgid "Hello World"
-msgstr ""
+msgstr "Hello World"
 
 #: ../../src/guide/basics.rst:85
 msgid ""
 "With the basics out of the way, let's write our first libuv program. It "
 "does nothing, except start a loop which will exit immediately."
-msgstr ""
+msgstr "掌握了基础知识之后，我们来编写第一个 libuv 程序。它什么也不做，只是启动一个会立即退出的事件循环。"
 
 #: ../../src/guide/basics.rst:88
 msgid "helloworld/main.c"
-msgstr ""
+msgstr "helloworld/main.c"
 
 #: ../../src/guide/basics.rst:93
 msgid ""
 "This program quits immediately because it has no events to process. A "
 "libuv event loop has to be told to watch out for events using the various"
 " API functions."
-msgstr ""
+msgstr "这个程序会立即退出，因为它没有要处理的事件。必须通过各种各样的 API 函数告诉 libuv 事件循环去留意事件。"
 
 #: ../../src/guide/basics.rst:97
 msgid ""
@@ -162,32 +162,32 @@ msgid ""
 "ends and the system will reclaim memory. Production grade projects, "
 "especially long running systems programs, should take care to release "
 "correctly."
-msgstr ""
+msgstr "从 libuv v1.0 开始，用户应当先为事件循环分配内存，然后用 ``uv_loop_init(uv_loop_t *)`` 初始化它。这样你就可以接入自定义的内存管理。请记得使用 ``uv_loop_close(uv_loop_t *)`` 反初始化循环，然后再释放存储空间。这些示例从不关闭事件循环，因为程序在循环结束之后就退出了，系统会回收内存。生产级项目，尤其是长期运行的系统程序，应当注意正确地释放。"
 
 #: ../../src/guide/basics.rst:106
 msgid "Default loop"
-msgstr ""
+msgstr "默认事件循环"
 
 #: ../../src/guide/basics.rst:108
 msgid ""
 "A default loop is provided by libuv and can be accessed using "
 "``uv_default_loop()``. You should use this loop if you only want a single"
 " loop."
-msgstr ""
+msgstr "libuv 提供了一个默认事件循环，可以通过 ``uv_default_loop()`` 访问。如果你只需要单个事件循环，就应当使用这个循环。"
 
 #: ../../src/guide/basics.rst:112
 msgid "default-loop/main.c"
-msgstr ""
+msgstr "default-loop/main.c"
 
 #: ../../src/guide/basics.rst:119
 msgid ""
 "node.js uses the default loop as its main loop. If you are writing "
 "bindings you should be aware of this."
-msgstr ""
+msgstr "node.js 使用默认事件循环作为其主循环。如果你在编写绑定，应当注意这一点。"
 
 #: ../../src/guide/basics.rst:125
 msgid "Error handling"
-msgstr ""
+msgstr "错误处理"
 
 #: ../../src/guide/basics.rst:127
 msgid ""
@@ -195,25 +195,25 @@ msgid ""
 " negative number on error. Async functions that may fail will pass a "
 "status parameter to their callbacks. The error messages are defined as "
 "``UV_E*`` `constants`_."
-msgstr ""
+msgstr "可能失败的初始化函数或同步函数在出错时返回负数。可能失败的异步函数会向其回调传递一个状态参数。错误信息定义为 ``UV_E*`` `constants`_。"
 
 #: ../../src/guide/basics.rst:131
 msgid ""
 "You can use the ``uv_strerror(int)`` and ``uv_err_name(int)`` functions "
 "to get a ``const char *`` describing the error or the error name "
 "respectively."
-msgstr ""
+msgstr "你可以使用 ``uv_strerror(int)`` 和 ``uv_err_name(int)`` 函数，分别获取描述错误的 ``const char *`` 和错误名称。"
 
 #: ../../src/guide/basics.rst:134
 msgid ""
 "I/O read callbacks (such as for files and sockets) are passed a parameter"
 " ``nread``. If ``nread`` is less than 0, there was an error (UV_EOF is "
 "the end of file error, which you may want to handle differently)."
-msgstr ""
+msgstr "I/O 读取回调（例如针对文件和套接字的回调）会收到一个参数 ``nread``。如果 ``nread`` 小于 0，则说明发生了错误（UV_EOF 是文件结束错误，你可能需要以不同的方式处理它）。"
 
 #: ../../src/guide/basics.rst:137
 msgid "Handles and Requests"
-msgstr ""
+msgstr "句柄与请求"
 
 #: ../../src/guide/basics.rst:139
 msgid ""
@@ -221,11 +221,11 @@ msgid ""
 " usually done by creating a **handle** to an I/O device, timer or "
 "process. Handles are opaque structs named as ``uv_TYPE_t`` where type "
 "signifies what the handle is used for."
-msgstr ""
+msgstr "libuv 的工作方式是让用户表达对特定事件的关注。这通常通过为 I/O 设备、定时器或进程创建 **句柄** 来完成。句柄是命名为 ``uv_TYPE_t`` 的不透明结构体，其中的 type 表明该句柄的用途。"
 
 #: ../../src/guide/basics.rst:144
 msgid "libuv watchers"
-msgstr ""
+msgstr "libuv 监视器"
 
 #: ../../src/guide/basics.rst:189
 msgid ""
@@ -237,15 +237,15 @@ msgid ""
 "represented by a ``uv_udp_t``, while individual writes to the socket use "
 "a ``uv_udp_send_t`` structure that is passed to the callback after the "
 "write is done."
-msgstr ""
+msgstr "句柄代表长寿命的对象。此类句柄上的异步操作通过 **请求** 来标识。请求是短寿命的（通常只在单个回调中使用），通常表示对句柄的一次 I/O 操作。请求用于在各个动作的发起与回调之间保存上下文。例如，UDP 套接字由 ``uv_udp_t`` 表示，而对套接字的每次写入则使用 ``uv_udp_send_t`` 结构，写入完成后该结构会被传递给回调。"
 
 #: ../../src/guide/basics.rst:197
 msgid "Handles are setup by a corresponding::"
-msgstr ""
+msgstr "设置句柄用的是相应的："
 
 #: ../../src/guide/basics.rst:201
 msgid "function."
-msgstr ""
+msgstr "函数。"
 
 #: ../../src/guide/basics.rst:203
 msgid ""
@@ -254,11 +254,11 @@ msgid ""
 " usually be implemented in the callback. For example, an IO watcher's "
 "callback will receive the data read from a file, a timer callback will be"
 " triggered on timeout and so on."
-msgstr ""
+msgstr "回调是当监视器所关注的事件发生时由 libuv 调用的函数。应用特定的逻辑通常会在回调中实现。例如，IO 监视器的回调会接收从文件中读取的数据，定时器回调会在超时时被触发，诸如此类。"
 
 #: ../../src/guide/basics.rst:210
 msgid "Idling"
-msgstr ""
+msgstr "空转"
 
 #: ../../src/guide/basics.rst:212
 msgid ""
@@ -268,15 +268,15 @@ msgid ""
 "life cycle and see how ``uv_run()`` will now block because a watcher is "
 "present. The idle watcher is stopped when the count is reached and "
 "``uv_run()`` exits since no event watchers are active."
-msgstr ""
+msgstr "下面是使用 idle 句柄的一个例子。回调在事件循环的每一轮都会被调用一次。idle 句柄的一个用例在 :doc:`utilities` 中有讨论。让我们使用 idle 监视器来观察监视器的生命周期，看看由于存在监视器，``uv_run()`` 现在会如何阻塞。计数达到后，idle 监视器停止，``uv_run()`` 随之退出，因为此时已经没有处于活动状态的事件监视器了。"
 
 #: ../../src/guide/basics.rst:219
 msgid "idle-basic/main.c"
-msgstr ""
+msgstr "idle-basic/main.c"
 
 #: ../../src/guide/basics.rst:225
 msgid "Storing context"
-msgstr ""
+msgstr "保存上下文"
 
 #: ../../src/guide/basics.rst:227
 msgid ""
@@ -286,9 +286,9 @@ msgid ""
 "which you can set to the context and cast back in the callback. This is a"
 " common pattern used throughout the C library ecosystem. In addition "
 "``uv_loop_t`` also has a similar data member."
-msgstr ""
+msgstr "在基于回调的编程风格中，你常常需要在调用点与回调之间传递一些“上下文”——应用特定的信息。所有句柄和请求都有一个 ``void* data`` 成员，你可以把它设置为上下文，并在回调中把它转换回来。这是整个 C 库生态中常用的一种模式。此外，``uv_loop_t`` 也有一个类似的数据成员。"
 
 #: ../../src/guide/basics.rst:236
 msgid "Depending on the capacity of the hardware of course."
-msgstr ""
+msgstr "当然，这取决于硬件的能力。"
 

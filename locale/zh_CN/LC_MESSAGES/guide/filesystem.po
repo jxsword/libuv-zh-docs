@@ -23,13 +23,14 @@ msgstr ""
 
 #: ../../src/guide/filesystem.rst:2
 msgid "Filesystem"
-msgstr ""
+msgstr "文件系统"
 
 #: ../../src/guide/filesystem.rst:4
 msgid ""
 "Simple filesystem read/write is achieved using the ``uv_fs_*`` functions "
 "and the ``uv_fs_t`` struct."
 msgstr ""
+"使用 ``uv_fs_*`` 函数和 ``uv_fs_t`` 结构体即可实现简单的文件系统读写。"
 
 #: ../../src/guide/filesystem.rst:9
 msgid ""
@@ -40,12 +41,17 @@ msgid ""
 "pool`_ and notify watchers registered with the event loop when "
 "application interaction is required."
 msgstr ""
+"libuv 的文件系统操作与 :doc:`socket operations <networking>` 不同。套接字"
+"操作使用操作系统提供的非阻塞操作。文件系统操作内部使用阻塞函数，但会在 "
+"`thread pool`_ 中调用这些函数，并在需要应用程序交互时通知向事件循环注册的"
+"监视器。"
 
 #: ../../src/guide/filesystem.rst:18
 msgid ""
 "All filesystem functions have two forms - *synchronous* and "
 "*asynchronous*."
 msgstr ""
+"所有文件系统函数都有两种形式——*同步* 和 *异步*。"
 
 #: ../../src/guide/filesystem.rst:20
 msgid ""
@@ -55,14 +61,17 @@ msgid ""
 " calls. The *asynchronous* form is called when a callback is passed and "
 "the return value is 0."
 msgstr ""
+"如果回调为 null，*同步* 形式会被自动调用（并 **阻塞**）。函数的返回值是一个 "
+":ref:`libuv error code <libuv-error-handling>`。这通常只对同步调用有用。"
+"*异步* 形式在传入回调时被调用，此时返回值为 0。"
 
 #: ../../src/guide/filesystem.rst:27
 msgid "Reading/Writing files"
-msgstr ""
+msgstr "读/写文件"
 
 #: ../../src/guide/filesystem.rst:29
 msgid "A file descriptor is obtained using"
-msgstr ""
+msgstr "文件描述符通过以下方式获取"
 
 #: ../../src/guide/filesystem.rst:35
 msgid ""
@@ -70,24 +79,28 @@ msgid ""
 "/man-pages/man2/open.2.html>`_. libuv takes care of converting to the "
 "appropriate Windows flags."
 msgstr ""
+"``flags`` 与 ``mode`` 是标准的 `Unix 标志 "
+"<https://man7.org/linux/man-pages/man2/open.2.html>`_。libuv 会负责把它们"
+"转换为相应的 Windows 标志。"
 
 #: ../../src/guide/filesystem.rst:39
 msgid "File descriptors are closed using"
-msgstr ""
+msgstr "文件描述符通过以下方式关闭"
 
 #: ../../src/guide/filesystem.rst:46
 msgid "Filesystem operation callbacks have the signature:"
-msgstr ""
+msgstr "文件系统操作回调的签名如下："
 
 #: ../../src/guide/filesystem.rst:52
 msgid ""
 "Let's see a simple implementation of ``cat``. We start with registering a"
 " callback for when the file is opened:"
 msgstr ""
+"让我们来看一个 ``cat`` 的简单实现。我们先从注册一个文件打开时的回调开始："
 
 #: ../../src/guide/filesystem.rst:55
 msgid "uvcat/main.c - opening a file"
-msgstr ""
+msgstr "uvcat/main.c - 打开文件"
 
 #: ../../src/guide/filesystem.rst:62
 msgid ""
@@ -95,10 +108,12 @@ msgid ""
 "the ``uv_fs_open`` callback. If the file is successfully opened, we start"
 " reading it."
 msgstr ""
+"``result`` 字段属于 ``uv_fs_t``；在 ``uv_fs_open`` 回调的情形下，它就是文件"
+"描述符。如果文件成功打开，我们就开始读取它。"
 
 #: ../../src/guide/filesystem.rst:65
 msgid "uvcat/main.c - read callback"
-msgstr ""
+msgstr "uvcat/main.c - 读取回调"
 
 #: ../../src/guide/filesystem.rst:72
 msgid ""
@@ -109,6 +124,10 @@ msgid ""
 "streams or pipes, the ``UV_EOF`` constant would have been passed as a "
 "status instead."
 msgstr ""
+"在读取调用中，你应传入一个 *已初始化* 的缓冲区，它会在读取回调触发前被填入"
+"数据。``uv_fs_*`` 操作几乎直接对应某些 POSIX 函数，因此在这种情形下，EOF "
+"由 ``result`` 为 0 来表示。而在流或管道的情形下，则会以 ``UV_EOF`` 常量作"
+"为状态传入。"
 
 #: ../../src/guide/filesystem.rst:78
 msgid ""
@@ -120,6 +139,10 @@ msgid ""
 "sources*. For solo tasks the performance difference usually is negligible"
 " and may lead to simpler code."
 msgstr ""
+"这里你看到了编写异步程序时的一种常见模式。``uv_fs_close()`` 调用是同步执行"
+"的。*通常，一次性的任务，或属于启动、关闭阶段一部分的任务会同步执行，因为"
+"我们关心的是程序在执行主要任务、处理多个 I/O 源时的快速 I/O*。对于单独的"
+"任务，性能差异通常可以忽略不计，而且这样还可能使代码更简单。"
 
 #: ../../src/guide/filesystem.rst:85
 msgid ""
@@ -128,34 +151,41 @@ msgid ""
 " callback simply drives the next read. Thus read and write proceed in "
 "lockstep via callbacks."
 msgstr ""
+"使用 ``uv_fs_write()`` 进行文件系统写入同样简单。*写入完成后，你的回调会被"
+"触发*。在我们的例子中，回调只是驱动下一次读取。读和写就这样通过回调步调一"
+"致地交替进行。"
 
 #: ../../src/guide/filesystem.rst:90
 msgid "uvcat/main.c - write callback"
-msgstr ""
+msgstr "uvcat/main.c - 写入回调"
 
 #: ../../src/guide/filesystem.rst:99
 msgid ""
 "Due to the way filesystems and disk drives are configured for "
 "performance, a write that 'succeeds' may not be committed to disk yet."
 msgstr ""
+"由于文件系统和磁盘驱动器为提升性能而采用的配置方式，一次“成功”的写入可能"
+"尚未提交到磁盘。"
 
 #: ../../src/guide/filesystem.rst:102
 msgid "We set the dominos rolling in ``main()``:"
-msgstr ""
+msgstr "我们在 ``main()`` 中推倒第一块多米诺骨牌："
 
 #: ../../src/guide/filesystem.rst:104
 msgid "uvcat/main.c"
-msgstr ""
+msgstr "uvcat/main.c"
 
 #: ../../src/guide/filesystem.rst:113
 msgid ""
 "The ``uv_fs_req_cleanup()`` function must always be called on filesystem "
 "requests to free internal memory allocations in libuv."
 msgstr ""
+"必须始终对文件系统请求调用 ``uv_fs_req_cleanup()`` 函数，以释放 libuv 内部"
+"的内存分配。"
 
 #: ../../src/guide/filesystem.rst:117 ../../src/guide/filesystem.rst:124
 msgid "Filesystem operations"
-msgstr ""
+msgstr "文件系统操作"
 
 #: ../../src/guide/filesystem.rst:119
 msgid ""
@@ -164,10 +194,13 @@ msgid ""
 "They follow the same patterns as the read/write/open calls, returning the"
 " result in the ``uv_fs_t.result`` field. The full list:"
 msgstr ""
+"所有标准文件系统操作（如 ``unlink``、``rmdir``、``stat``）都以异步方式受支"
+"持，且参数顺序直观。它们遵循与读/写/打开调用相同的模式，在 ``uv_fs_t."
+"result`` 字段中返回结果。完整列表如下："
 
 #: ../../src/guide/filesystem.rst:169
 msgid "Buffers and Streams"
-msgstr ""
+msgstr "缓冲区与流"
 
 #: ../../src/guide/filesystem.rst:171
 msgid ""
@@ -175,12 +208,15 @@ msgid ""
 "sockets, TTYs, and pipes for file I/O and IPC are all treated as stream "
 "subclasses."
 msgstr ""
+"libuv 中基本的 I/O 句柄是流（``uv_stream_t``）。TCP 套接字、TTY 以及用于文"
+"件 I/O 和 IPC 的管道都被当作流的子类来对待。"
 
 #: ../../src/guide/filesystem.rst:174
 msgid ""
 "Streams are initialized using custom functions for each subclass, then "
 "operated upon using"
 msgstr ""
+"流使用为每个子类定制的函数进行初始化，然后使用以下函数进行操作"
 
 #: ../../src/guide/filesystem.rst:184
 msgid ""
@@ -188,6 +224,8 @@ msgid ""
 "and libuv will automatically keep reading from a stream when "
 "``uv_read_start()`` is called once, until ``uv_read_stop()`` is called."
 msgstr ""
+"基于流的函数比文件系统函数更易于使用，并且只要调用一次 ``uv_read_start()"
+"``，libuv 就会自动持续从流中读取，直到调用 ``uv_read_stop()`` 为止。"
 
 #: ../../src/guide/filesystem.rst:188
 msgid ""
@@ -197,10 +235,13 @@ msgid ""
 "value. What does require management is the actual bytes, which have to be"
 " allocated and freed by the application."
 msgstr ""
+"数据的离散单位是缓冲区——``uv_buf_t``。它只是一组字节指针（``uv_buf_t."
+"base``）与长度（``uv_buf_t.len``）的集合。``uv_buf_t`` 非常轻量，按值传递。"
+"真正需要管理的是实际的字节，它们必须由应用程序来分配和释放。"
 
 #: ../../src/guide/filesystem.rst:196
 msgid "**THIS PROGRAM DOES NOT ALWAYS WORK, NEED SOMETHING BETTER**"
-msgstr ""
+msgstr "**本程序并非总能正常工作，需要更好的方案**"
 
 #: ../../src/guide/filesystem.rst:198
 msgid ""
@@ -211,20 +252,25 @@ msgid ""
 " the buffer data to ensure we don't free a buffer until it has been "
 "written."
 msgstr ""
+"为了演示流，我们需要使用 ``uv_pipe_t``。它允许以流的方式处理本地文件 "
+"[#]_。下面是一个使用 libuv 实现的简单 tee 工具。所有操作都以异步方式执行，"
+"展现了事件驱动 I/O 的威力。两个写入不会互相阻塞，但我们必须小心地复制缓冲"
+"区数据，以确保在缓冲区被写入之前不会释放它。"
 
 #: ../../src/guide/filesystem.rst:204
 msgid "The program is to be executed as::"
-msgstr ""
+msgstr "该程序的执行方式如下："
 
 #: ../../src/guide/filesystem.rst:208
 msgid ""
 "We start off opening pipes on the files we require. libuv pipes to a file"
 " are opened as bidirectional by default."
 msgstr ""
+"我们先在所需的文件上打开管道。libuv 中指向文件的管道默认以双向方式打开。"
 
 #: ../../src/guide/filesystem.rst:211
 msgid "uvtee/main.c - read on pipes"
-msgstr ""
+msgstr "uvtee/main.c - 在管道上读取"
 
 #: ../../src/guide/filesystem.rst:218
 msgid ""
@@ -233,6 +279,9 @@ msgid ""
 " call associates the pipe with the file descriptor, in this case ``0`` "
 "(standard input)."
 msgstr ""
+"对于使用命名管道的 IPC，``uv_pipe_init()`` 的第三个参数应设为 1。相关内容"
+"在 :doc:`processes` 中有介绍。``uv_pipe_open()`` 调用将管道与文件描述符关"
+"联起来，在这里是 ``0`` （标准输入）。"
 
 #: ../../src/guide/filesystem.rst:223
 msgid ""
@@ -240,10 +289,12 @@ msgid ""
 "as new buffers are required to hold incoming data. ``read_stdin`` will be"
 " called with these buffers."
 msgstr ""
+"我们开始监视 ``stdin``。每当需要新的缓冲区来容纳传入的数据时，就会调用 "
+"``alloc_buffer`` 回调。``read_stdin`` 会带着这些缓冲区被调用。"
 
 #: ../../src/guide/filesystem.rst:227
 msgid "uvtee/main.c - reading buffers"
-msgstr ""
+msgstr "uvtee/main.c - 读取缓冲区"
 
 #: ../../src/guide/filesystem.rst:233
 msgid ""
@@ -251,6 +302,8 @@ msgid ""
 "allocation scheme. For example, node.js uses its own slab allocator which"
 " associates buffers with V8 objects."
 msgstr ""
+"标准的 ``malloc`` 在这里就够用了，但你可以使用任何内存分配方案。例如，"
+"node.js 使用自己的 slab 分配器，将缓冲区与 V8 对象关联起来。"
 
 #: ../../src/guide/filesystem.rst:237
 msgid ""
@@ -262,6 +315,11 @@ msgid ""
 "remember that buffer allocation and deallocation is application "
 "responsibility, so we free the data."
 msgstr ""
+"读取回调的 ``nread`` 参数在发生任何错误时都小于 0。这个错误可能是 EOF，此时"
+"我们会关闭所有流，使用通用的关闭函数 ``uv_close()``——它会根据句柄的内部"
+"类型进行相应处理。否则 ``nread`` 是非负数，我们可以尝试将相应数量的字节写"
+"入输出流。最后要记住，缓冲区的分配与释放是应用程序的责任，因此我们要释放"
+"数据。"
 
 #: ../../src/guide/filesystem.rst:244
 msgid ""
@@ -271,6 +329,9 @@ msgid ""
 " you must explicitly call ``uv_close()`` if you want to stop when "
 "allocation fails."
 msgstr ""
+"如果分配内存失败，分配回调可能返回长度为零的缓冲区。在这种情况下，读取回"
+"调会以错误 UV_ENOBUFS 被调用。不过 libuv 仍会继续尝试读取该流，因此如果想在"
+"分配失败时停止，就必须显式调用 ``uv_close()``。"
 
 #: ../../src/guide/filesystem.rst:249
 msgid ""
@@ -278,10 +339,12 @@ msgid ""
 "this point there is nothing to be read. Most applications will just "
 "ignore this."
 msgstr ""
+"读取回调也可能以 ``nread = 0`` 被调用，表示此时没有可读的数据。大多数应用"
+"程序会直接忽略这种情况。"
 
 #: ../../src/guide/filesystem.rst:252
 msgid "uvtee/main.c - Write to pipe"
-msgstr ""
+msgstr "uvtee/main.c - 写入管道"
 
 #: ../../src/guide/filesystem.rst:258
 msgid ""
@@ -294,6 +357,12 @@ msgid ""
 "probably want smarter memory management, like reference counted buffers "
 "or a pool of buffers in any major application."
 msgstr ""
+"``write_data()`` 会复制从读取中获得的缓冲区。这个缓冲区不会被传递给写入完"
+"成时触发的写入回调。为了解决这个问题，我们把一个写请求和一个缓冲区包装进 "
+"``write_req_t``，并在回调中将其解包。我们进行复制，是为了能把两次 "
+"``write_data`` 调用产生的两个缓冲区相互独立地释放。对于这样的演示程序来说"
+"可以接受，但在任何大型应用程序中，你很可能需要更智能的内存管理，比如引用计"
+"数缓冲区或缓冲区池。"
 
 #: ../../src/guide/filesystem.rst:268
 msgid ""
@@ -301,14 +370,17 @@ msgid ""
 "or unknowingly be writing to a pipe. This makes it susceptible to "
 "`aborting on receiving a SIGPIPE`_. It is a good idea to insert::"
 msgstr ""
+"如果你的程序会与其他程序配合使用，那么无论有意还是无意，它都可能正在向管道"
+"写入。这使其面临 `aborting on receiving a SIGPIPE`_ 的风险。最好插入以下"
+"内容："
 
 #: ../../src/guide/filesystem.rst:274
 msgid "in the initialization stages of your application."
-msgstr ""
+msgstr "到应用程序的初始化阶段中。"
 
 #: ../../src/guide/filesystem.rst:279
 msgid "File change events"
-msgstr ""
+msgstr "文件变更事件"
 
 #: ../../src/guide/filesystem.rst:281
 msgid ""
@@ -321,26 +393,34 @@ msgid ""
 "build a simple utility which runs a command whenever any of the watched "
 "files change::"
 msgstr ""
+"所有现代操作系统都提供了对单个文件或目录设置监视并在文件被修改时获得通知的"
+" API。libuv 封装了常见的文件变更通知库 [#fsnotify]_。这是 libuv 中一致性较"
+"差的部分之一。文件变更通知系统本身在各平台之间差异极大，因此要让所有功能在"
+"所有地方都能正常工作十分困难。为了演示，我将构建一个简单的实用工具，当任何"
+"一个被监视的文件发生变化时它就会运行一条命令："
 
 #: ../../src/guide/filesystem.rst:293
 msgid ""
 "Currently this example only works on OSX and Windows. Refer to the `notes"
 " of uv_fs_event_start`_ function."
 msgstr ""
+"目前这个示例只能在 OSX 和 Windows 上工作。请参阅 `notes of "
+"uv_fs_event_start`_ 函数。"
 
 #: ../../src/guide/filesystem.rst:298
 msgid "The file change notification is started using ``uv_fs_event_init()``:"
-msgstr ""
+msgstr "文件变更通知使用 ``uv_fs_event_init()`` 启动："
 
 #: ../../src/guide/filesystem.rst:300
 msgid "onchange/main.c - The setup"
-msgstr ""
+msgstr "onchange/main.c - 设置"
 
 #: ../../src/guide/filesystem.rst:307
 msgid ""
 "The third argument is the actual file or directory to monitor. The last "
 "argument, ``flags``, can be:"
 msgstr ""
+"第三个参数是要监视的实际文件或目录。最后一个参数 ``flags`` 的取值可以是："
 
 #: ../../src/guide/filesystem.rst:321
 msgid ""
@@ -348,16 +428,19 @@ msgid ""
 "(yet). ``UV_FS_EVENT_RECURSIVE`` will start watching subdirectories as "
 "well on supported platforms."
 msgstr ""
+"``UV_FS_EVENT_WATCH_ENTRY`` 和 ``UV_FS_EVENT_STAT`` 目前尚无任何作用。在支"
+"持的平台上，``UV_FS_EVENT_RECURSIVE`` 还会同时开始监视子目录。"
 
 #: ../../src/guide/filesystem.rst:325
 msgid "The callback will receive the following arguments:"
-msgstr ""
+msgstr "回调将接收以下参数："
 
 #: ../../src/guide/filesystem.rst:327
 msgid ""
 "``uv_fs_event_t *handle`` - The handle. The ``path`` field of the handle "
 "is the file on which the watch was set."
 msgstr ""
+"``uv_fs_event_t *handle`` - 句柄。句柄的 ``path`` 字段即设置了监视的文件。"
 
 #: ../../src/guide/filesystem.rst:329
 msgid ""
@@ -365,28 +448,34 @@ msgid ""
 " file which was changed. Only non-``null`` on Linux and Windows. May be "
 "``null`` even on those platforms."
 msgstr ""
+"``const char *filename`` - 如果监视的是目录，此参数是被更改的文件。仅在 "
+"Linux 和 Windows 上为非 ``null``。即使在这些平台上，它也可能为 ``null``。"
 
 #: ../../src/guide/filesystem.rst:332
 msgid ""
 "``int events`` - one of ``UV_RENAME`` or ``UV_CHANGE``, or a bitwise OR "
 "of both."
 msgstr ""
+"``int events`` - ``UV_RENAME`` 或 ``UV_CHANGE`` 之一，或两者的按位或。"
 
 #: ../../src/guide/filesystem.rst:334
 msgid ""
 "``int status`` - If ``status < 0``, there is an :ref:`libuv error<libuv-"
 "error-handling>`."
 msgstr ""
+"``int status`` - 如果 ``status < 0``，则存在 :ref:`libuv error<libuv-"
+"error-handling>`。"
 
 #: ../../src/guide/filesystem.rst:336
 msgid ""
 "In our example we simply print the arguments and run the command using "
 "``system()``."
 msgstr ""
+"在我们的示例中，我们只是打印这些参数，并使用 ``system()`` 运行命令。"
 
 #: ../../src/guide/filesystem.rst:339
 msgid "onchange/main.c - file change notification callback"
-msgstr ""
+msgstr "onchange/main.c - 文件变更通知回调"
 
 #: ../../src/guide/filesystem.rst:347
 msgid ""
@@ -394,8 +483,10 @@ msgid ""
 "ReadDirectoryChangesW on Windows, event ports on Solaris, unsupported on "
 "Cygwin"
 msgstr ""
+"Linux 上是 inotify，Darwin 上是 FSEvents，各 BSD 上是 kqueue，Windows 上是 "
+"ReadDirectoryChangesW，Solaris 上是 event ports，Cygwin 上不受支持"
 
 #: ../../src/guide/filesystem.rst:349
 msgid "see :ref:`pipes`"
-msgstr ""
+msgstr "参见 :ref:`pipes`"
 

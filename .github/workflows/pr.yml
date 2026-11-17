@@ -41,3 +41,6 @@ jobs:
           # 批次模式: 变更 po 必须完成翻译；全局 fuzzy=0 / markup / term + 构建冒烟
           # （sphinx-intl stat 全量硬门禁留给 v1.0 收官，见 validate_po.sh 头注）
           bash scripts/validate_po.sh $CHANGED
+
+      - name: Linkcheck (GitHub 网络权威判定；本机网络受限无法判定)
+        run: make -C workdir/docs linkcheck

@@ -23,42 +23,42 @@ msgstr ""
 
 #: ../../src/guide/introduction.rst:2
 msgid "Introduction"
-msgstr ""
+msgstr "介绍"
 
 #: ../../src/guide/introduction.rst:4
 msgid ""
 "This 'book' is a small set of tutorials about using libuv_ as a high "
 "performance evented I/O library which offers the same API on Windows and "
 "Unix."
-msgstr ""
+msgstr "这本“书”是一小组教程，讲解如何将 libuv_ 用作一个高性能的事件驱动 I/O 库，它在 Windows 和 Unix 上提供相同的 API。"
 
 #: ../../src/guide/introduction.rst:7
 msgid ""
 "It is meant to cover the main areas of libuv, but is not a comprehensive "
 "reference discussing every function and data structure. The `official "
 "libuv documentation`_ may be consulted for full details."
-msgstr ""
+msgstr "它旨在涵盖 libuv 的主要领域，但并不是一部讨论每个函数和数据结构的详尽参考手册。完整细节可查阅 `official libuv documentation`_。"
 
 #: ../../src/guide/introduction.rst:13
 msgid ""
 "This book is still a work in progress, so sections may be incomplete, but"
 " I hope you will enjoy it as it grows."
-msgstr ""
+msgstr "本书仍在编写之中，因此部分章节可能不完整，但希望随着它的成长，你会喜欢它。"
 
 #: ../../src/guide/introduction.rst:17
 msgid "Who this book is for"
-msgstr ""
+msgstr "本书的目标读者"
 
 #: ../../src/guide/introduction.rst:19
 msgid "If you are reading this book, you are either:"
-msgstr ""
+msgstr "如果你正在阅读本书，那么你属于以下二者之一："
 
 #: ../../src/guide/introduction.rst:21
 msgid ""
 "a systems programmer, creating low-level programs such as daemons or "
 "network services and clients. You have found that the event loop approach"
 " is well suited for your application and decided to use libuv."
-msgstr ""
+msgstr "系统程序员，编写守护进程或网络服务与客户端等底层程序。你已经发现事件循环的方式非常适合你的应用程序，并决定使用 libuv。"
 
 #: ../../src/guide/introduction.rst:25
 msgid ""
@@ -67,17 +67,17 @@ msgid ""
 " will use libuv purely in the context of node.js. For this you will "
 "require some other resources as the book does not cover parts specific to"
 " v8/node.js."
-msgstr ""
+msgstr "node.js 模块作者，希望用一组暴露给 JavaScript 的（非）同步 API 来包装以 C 或 C++ 编写的平台 API。你将纯粹在 node.js 的语境中使用 libuv。为此你还需要一些其他资源，因为本书不涵盖 v8/node.js 特有的内容。"
 
 #: ../../src/guide/introduction.rst:31
 msgid ""
 "This book assumes that you are comfortable with the C programming "
 "language."
-msgstr ""
+msgstr "本书假定你对 C 编程语言已经相当熟悉。"
 
 #: ../../src/guide/introduction.rst:34
 msgid "Background"
-msgstr ""
+msgstr "背景"
 
 #: ../../src/guide/introduction.rst:36
 msgid ""
@@ -91,7 +91,7 @@ msgid ""
 "an abstraction around libev or IOCP depending on the platform, providing "
 "users an API based on libev. In the node-v0.9.0 version of libuv `libev "
 "was removed`_."
-msgstr ""
+msgstr "node.js_ 项目始于 2009 年，最初是一个与浏览器解耦的 JavaScript 环境。借助 Google 的 V8_ 与 Marc Lehmann 的 libev_，node.js 将 I/O 模型——事件驱动——与一门非常适合这种编程风格的语言结合了起来；这得益于该语言此前被浏览器塑造的方式。随着 node.js 日渐流行，让它能在 Windows 上运行变得十分重要，但 libev 只能运行在 Unix 上。Windows 上与 kqueue 或 (e)poll 这类内核事件通知机制相对应的是 IOCP。libuv 在当时是对 libev 或 IOCP 的抽象，具体取决于所在平台，并为用户提供基于 libev 的 API。在 libuv 的 node-v0.9.0 版本中，`libev was removed`_。"
 
 #: ../../src/guide/introduction.rst:46
 msgid ""
@@ -99,25 +99,25 @@ msgid ""
 "standalone library for system programming. Users outside of node.js "
 "include Mozilla's Rust_ programming language, and a variety_ of language "
 "bindings."
-msgstr ""
+msgstr "从那以后，libuv 持续走向成熟，成为了一个用于系统编程的高质量独立库。node.js 之外的使用者包括 Mozilla 的 Rust_ 编程语言，以及 variety_ 的各种语言绑定。"
 
 #: ../../src/guide/introduction.rst:50
 msgid "This book and the code is based on libuv version `v1.42.0`_."
-msgstr ""
+msgstr "本书及书中的代码基于 libuv 的 `v1.42.0`_ 版本。"
 
 #: ../../src/guide/introduction.rst:53
 msgid "Code"
-msgstr ""
+msgstr "代码"
 
 #: ../../src/guide/introduction.rst:55
 msgid ""
 "All the example code and the source of the book is included as part of "
 "the libuv_ project on GitHub. Clone or Download libuv_, then build it::"
-msgstr ""
+msgstr "所有示例代码和本书的源码都包含在 GitHub 上的 libuv_ 项目中。克隆或下载 libuv_，然后构建它："
 
 #: ../../src/guide/introduction.rst:63
 msgid ""
 "There is no need to ``make install``. To build the examples run ``make`` "
 "in the ``docs/code/`` directory."
-msgstr ""
+msgstr "无需执行 ``make install``。要构建示例，请运行 ``make``，该命令需在 ``docs/code/`` 目录中执行。"
 

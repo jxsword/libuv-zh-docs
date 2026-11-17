@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../../src/guide/about.rst:2
 msgid "About"
-msgstr ""
+msgstr "关于"
 
 #: ../../src/guide/about.rst:4
 msgid ""
@@ -35,24 +35,24 @@ msgid ""
 " tutorials. This book is the output of that need and tries to be "
 "accurate. That said, the book may have mistakes. Pull requests are "
 "encouraged."
-msgstr ""
+msgstr "`Nikhil Marathe <https://nikhilism.com>`_ 在某个不想编程的下午（2012 年 6 月 16 日）开始编写本书。当时他正在开发 `node-taglib <https://github.com/nikhilm/node-taglib>`_，最近刚尝到 libuv 缺乏良好文档的苦头。尽管当时已有参考文档，却没有全面的教程。本书正是这种需求的产物，并力求准确。话虽如此，本书仍可能有错。欢迎提交 pull request。"
 
 #: ../../src/guide/about.rst:12
 msgid ""
 "Nikhil is indebted to Marc Lehmann's comprehensive `man page "
 "<http://pod.tst.eu/http://cvs.schmorp.de/libev/ev.pod>`_ about libev "
 "which describes much of the semantics of the two libraries."
-msgstr ""
+msgstr "Nikhil 十分感激 Marc Lehmann 那篇关于 libev 的详尽 `man page <http://pod.tst.eu/http://cvs.schmorp.de/libev/ev.pod>`_，其中描述了这两个库的许多语义。"
 
 #: ../../src/guide/about.rst:16
 msgid ""
 "This book was made using `Sphinx <https://www.sphinx-doc.org>`_ and `vim "
 "<https://www.vim.org>`_."
-msgstr ""
+msgstr "本书使用 `Sphinx <https://www.sphinx-doc.org>`_ 和 `vim <https://www.vim.org>`_ 编写而成。"
 
 #: ../../src/guide/about.rst:20
 msgid ""
 "In 2017 the libuv project incorporated the Nikhil's work into the "
 "official documentation and it's maintained there henceforth."
-msgstr ""
+msgstr "2017 年，libuv 项目将 Nikhil 的工作并入官方文档，此后便一直在官方文档中维护。"
 

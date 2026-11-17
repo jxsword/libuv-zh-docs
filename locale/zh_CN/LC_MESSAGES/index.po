@@ -23,98 +23,98 @@ msgstr ""
 
 #: ../../src/index.rst:3
 msgid "Welcome to the libuv documentation"
-msgstr ""
+msgstr "欢迎阅读 libuv 文档"
 
 #: ../../src/index.rst:6
 msgid "Overview"
-msgstr ""
+msgstr "概述"
 
 #: ../../src/index.rst:8
 msgid ""
 "libuv is a multi-platform support library with a focus on asynchronous "
 "I/O. It was primarily developed for use by `Node.js`_, but it's also used"
 " by `Luvit`_, `Julia`_, `uvloop`_, and `others`_."
-msgstr ""
+msgstr "libuv 是一个专注于异步 I/O 的多平台支持库。它最初主要为 `Node.js`_ 编写，但 `Luvit`_、`Julia`_、`uvloop`_ 以及 `others`_ 也在使用它。"
 
 #: ../../src/index.rst:13
 msgid ""
 "In case you find errors in this documentation you can help by sending "
 "`pull requests <https://github.com/libuv/libuv>`_!"
-msgstr ""
+msgstr "如果你发现本文档中有错误，可以通过提交 `拉取请求 <https://github.com/libuv/libuv>`_ 来提供帮助！"
 
 #: ../../src/index.rst:24
 msgid "Features"
-msgstr ""
+msgstr "特性"
 
 #: ../../src/index.rst:26
 msgid "Full-featured event loop backed by epoll, kqueue, IOCP, event ports."
-msgstr ""
+msgstr "功能完备的事件循环，由 epoll、kqueue、IOCP、event ports 支撑。"
 
 #: ../../src/index.rst:27
 msgid "Asynchronous TCP and UDP sockets"
-msgstr ""
+msgstr "异步 TCP 和 UDP 套接字"
 
 #: ../../src/index.rst:28
 msgid "Asynchronous DNS resolution"
-msgstr ""
+msgstr "异步 DNS 解析"
 
 #: ../../src/index.rst:29
 msgid "Asynchronous file and file system operations"
-msgstr ""
+msgstr "异步文件和文件系统操作"
 
 #: ../../src/index.rst:30
 msgid "File system events"
-msgstr ""
+msgstr "文件系统事件"
 
 #: ../../src/index.rst:31
 msgid "ANSI escape code controlled TTY"
-msgstr ""
+msgstr "由 ANSI 转义码控制的 TTY"
 
 #: ../../src/index.rst:32
 msgid ""
 "IPC with socket sharing, using Unix domain sockets or named pipes "
 "(Windows)"
-msgstr ""
+msgstr "支持套接字共享的 IPC，使用 Unix 域套接字或命名管道（Windows）"
 
 #: ../../src/index.rst:33
 msgid "Child processes"
-msgstr ""
+msgstr "子进程"
 
 #: ../../src/index.rst:34
 msgid "Thread pool"
-msgstr ""
+msgstr "线程池"
 
 #: ../../src/index.rst:35
 msgid "Signal handling"
-msgstr ""
+msgstr "信号处理"
 
 #: ../../src/index.rst:36
 msgid "High resolution clock"
-msgstr ""
+msgstr "高分辨率时钟"
 
 #: ../../src/index.rst:37
 msgid "Threading and synchronization primitives"
-msgstr ""
+msgstr "线程与同步原语"
 
 #: ../../src/index.rst:41
 msgid "Documentation"
-msgstr ""
+msgstr "文档"
 
 #: ../../src/index.rst:53
 msgid "Downloads"
-msgstr ""
+msgstr "下载"
 
 #: ../../src/index.rst:55
 msgid "libuv can be downloaded from `here <https://dist.libuv.org/dist/>`_."
-msgstr ""
+msgstr "libuv 可以从 `此处 <https://dist.libuv.org/dist/>`_ 下载。"
 
 #: ../../src/index.rst:59
 msgid "Installation"
-msgstr ""
+msgstr "安装"
 
 #: ../../src/index.rst:61
 msgid ""
 "Installation instructions can be found in the `README "
 "<https://github.com/libuv/libuv/blob/master/README.md>`_."
-msgstr ""
+msgstr "安装说明可在 `README <https://github.com/libuv/libuv/blob/master/README.md>`_ 中找到。"
 

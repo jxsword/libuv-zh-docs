@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../../src/guide/eventloops.rst:2
 msgid "Advanced event loops"
-msgstr ""
+msgstr "高级事件循环"
 
 #: ../../src/guide/eventloops.rst:4
 msgid ""
@@ -32,11 +32,11 @@ msgid ""
 "embed libuv's event loop into another event loop based library -- imagine"
 " a Qt based UI, and Qt's event loop driving a libuv backend which does "
 "intensive system level tasks."
-msgstr ""
+msgstr "libuv 为用户提供了对事件循环相当可观的控制能力，通过同时驾驭多个循环可以获得有趣的效果。你还可以把 libuv 的事件循环嵌入另一个基于事件循环的库——想象一个基于 Qt 的 UI，由 Qt 的事件循环驱动一个 libuv 后端去完成繁重的系统级任务。"
 
 #: ../../src/guide/eventloops.rst:11
 msgid "Stopping an event loop"
-msgstr ""
+msgstr "停止事件循环"
 
 #: ../../src/guide/eventloops.rst:13
 msgid ""
@@ -48,11 +48,11 @@ msgid ""
 "iteration. The semantics of these things can be a bit difficult to "
 "understand, so let's look at ``uv_run()`` where all the control flow "
 "occurs."
-msgstr ""
+msgstr "``uv_stop()`` 可用于停止事件循环。循环最早会在 *下一次迭代* 停止运行，也可能更晚。这意味着本轮循环迭代中已经就绪待处理的事件仍会得到处理，因此 ``uv_stop()`` 不能用作强制终止的开关。当 ``uv_stop()`` 被调用时，循环在这一轮迭代中 **不会** 在 I/O 上阻塞。这些行为的语义可能有点难以理解，我们来看看 ``uv_run()``，所有控制流都发生在其中。"
 
 #: ../../src/guide/eventloops.rst:21
 msgid "src/unix/core.c - uv_run"
-msgstr ""
+msgstr "src/unix/core.c - uv_run"
 
 #: ../../src/guide/eventloops.rst:28
 msgid ""
@@ -65,22 +65,22 @@ msgid ""
 "``uv_backend_timeout()`` to return ``0``, which is why the loop does not "
 "block on I/O. If on the other hand, you called ``uv_stop()`` in one of "
 "the check handlers, I/O has already finished and is not affected."
-msgstr ""
+msgstr "``stop_flag`` 由 ``uv_stop()`` 设置。如今所有 libuv 回调都在事件循环之内被调用，这就是为什么在其中调用 ``uv_stop()`` 仍会导致本轮循环迭代发生。libuv 首先更新定时器，然后运行待处理的 timer、idle 和 prepare 回调，并调用任何待处理的 I/O 回调。如果你在其中任何一个回调里调用 ``uv_stop()``，``stop_flag`` 就会被置位。这会使 ``uv_backend_timeout()`` 返回 ``0``，这就是循环不在 I/O 上阻塞的原因。而另一方面，如果你是在某个 check 处理函数中调用 ``uv_stop()``，那么 I/O 已经完成，不会受到影响。"
 
 #: ../../src/guide/eventloops.rst:38
 msgid ""
 "``uv_stop()`` is useful to shutdown a loop when a result has been "
 "computed or there is an error, without having to ensure that all handlers"
 " are stopped one by one."
-msgstr ""
+msgstr "当已经计算出结果或发生错误时，``uv_stop()`` 很适合用来关闭循环，而不必确保把所有句柄逐一停止。"
 
 #: ../../src/guide/eventloops.rst:42
 msgid ""
 "Here is a simple example that stops the loop and demonstrates how the "
 "current iteration of the loop still takes places."
-msgstr ""
+msgstr "下面是一个停止循环的简单示例，它演示了循环的当前迭代仍然会执行。"
 
 #: ../../src/guide/eventloops.rst:45
 msgid "uvstop/main.c"
-msgstr ""
+msgstr "uvstop/main.c"
 

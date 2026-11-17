@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../../src/guide/utilities.rst:2
 msgid "Utilities"
-msgstr ""
+msgstr "实用工具"
 
 #: ../../src/guide/utilities.rst:4
 msgid ""
@@ -31,64 +31,64 @@ msgid ""
 "tasks. The `libev man page`_ already covers some patterns which can be "
 "adopted to libuv through simple API changes. It also covers parts of the "
 "libuv API that don't require entire chapters dedicated to them."
-msgstr ""
+msgstr "本章收录了对常见任务有用的工具与技巧。`libev man page`_ 已经涵盖了一些模式，只需对 API 稍作改动即可将其运用于 libuv。本章还会介绍 libuv API 中那些无需整章专门讲述的部分。"
 
 #: ../../src/guide/utilities.rst:10
 msgid "Timers"
-msgstr ""
+msgstr "定时器"
 
 #: ../../src/guide/utilities.rst:12
 msgid ""
 "Timers invoke the callback after a certain time has elapsed since the "
 "timer was started. libuv timers can also be set to invoke at regular "
 "intervals instead of just once."
-msgstr ""
+msgstr "定时器会在启动后经过一定时间时调用回调。libuv 定时器还可以设置为按固定时间间隔调用，而不只是调用一次。"
 
 #: ../../src/guide/utilities.rst:16
 msgid ""
 "Simple use is to init a watcher and start it with a ``timeout``, and "
 "optional ``repeat``. Timers can be stopped at any time."
-msgstr ""
+msgstr "最简单的用法是初始化一个监视器，并以 ``timeout`` 和可选的 ``repeat`` 启动它。定时器可以在任何时候停止。"
 
 #: ../../src/guide/utilities.rst:26
 msgid ""
 "will start a repeating timer, which first starts 5 seconds (the "
 "``timeout``) after the execution of ``uv_timer_start``, then repeats "
 "every 2 seconds (the ``repeat``). Use:"
-msgstr ""
+msgstr "将启动一个重复定时器：``timeout`` 为 5 秒，也就是 ``uv_timer_start`` 执行 5 秒后首次触发，然后每 2 秒（即 ``repeat``）重复一次。使用："
 
 #: ../../src/guide/utilities.rst:33
 msgid ""
 "to stop the timer. This can be used safely from within the callback as "
 "well."
-msgstr ""
+msgstr "来停止定时器。在回调内部使用它也是安全的。"
 
 #: ../../src/guide/utilities.rst:35
 msgid "The repeat interval can be modified at any time with::"
-msgstr ""
+msgstr "重复间隔可以随时通过以下方式修改："
 
 #: ../../src/guide/utilities.rst:39
 msgid ""
 "which will take effect **when possible**. If this function is called from"
 " a timer callback, it means:"
-msgstr ""
+msgstr "修改会 **在可能时** 生效。如果此函数是在定时器回调中被调用的，则意味着："
 
 #: ../../src/guide/utilities.rst:42
 msgid ""
 "If the timer was non-repeating, the timer has already been stopped. Use "
 "``uv_timer_start`` again."
-msgstr ""
+msgstr "如果定时器原本不是重复定时器，那么它已经被停止了。请再次调用 ``uv_timer_start``。"
 
 #: ../../src/guide/utilities.rst:44
 msgid ""
 "If the timer is repeating, the next timeout has already been scheduled, "
 "so the old repeat interval will be used once more before the timer "
 "switches to the new interval."
-msgstr ""
+msgstr "如果定时器是重复定时器，下一次超时已经被调度，因此在定时器切换到新间隔之前，旧的重复间隔还会再被使用一次。"
 
 #: ../../src/guide/utilities.rst:48
 msgid "The utility function::"
-msgstr ""
+msgstr "以下实用函数："
 
 #: ../../src/guide/utilities.rst:52
 msgid ""
@@ -96,17 +96,17 @@ msgid ""
 "timer and then starting it with both initial ``timeout`` and ``repeat`` "
 "set to the old ``repeat`` value. If the timer hasn't been started it "
 "fails (error code ``UV_EINVAL``) and returns -1."
-msgstr ""
+msgstr "仅适用于 **重复定时器**，它等价于先停止定时器，然后再以初始 ``timeout`` 和 ``repeat`` 都设为旧 ``repeat`` 值的方式启动它。如果定时器尚未启动，该函数会失败（错误码 ``UV_EINVAL``）并返回 -1。"
 
 #: ../../src/guide/utilities.rst:57
 msgid ""
 "An actual timer example is in the :ref:`reference count section "
 "<reference-count>`."
-msgstr ""
+msgstr "实际的定时器示例见 :ref:`reference count section <reference-count>`。"
 
 #: ../../src/guide/utilities.rst:63
 msgid "Event loop reference count"
-msgstr ""
+msgstr "事件循环引用计数"
 
 #: ../../src/guide/utilities.rst:65
 msgid ""
@@ -115,13 +115,13 @@ msgid ""
 "loop when it is started and decreasing the reference count when stopped. "
 "It is also possible to manually change the reference count of handles "
 "using::"
-msgstr ""
+msgstr "只要还有活动的句柄，事件循环就会一直运行。这一机制的原理是：每个句柄在启动时增加事件循环的引用计数，停止时减少引用计数。也可以通过以下方式手动更改句柄的引用计数："
 
 #: ../../src/guide/utilities.rst:73
 msgid ""
 "These functions can be used to allow a loop to exit even when a watcher "
 "is active or to use custom objects to keep the loop alive."
-msgstr ""
+msgstr "这些函数可用于让循环在监视器仍处于活动状态时也能退出，或者用自定义对象来保持循环存活。"
 
 #: ../../src/guide/utilities.rst:76
 msgid ""
@@ -132,29 +132,29 @@ msgid ""
 "program to exit when all your other watchers are done. In that case just "
 "unref the timer immediately after creation so that if it is the only "
 "watcher running then ``uv_run`` will still exit."
-msgstr ""
+msgstr "后者可用于周期定时器。你可能有一个每隔 X 秒运行一次的垃圾回收器，或者你的网络服务会周期性地向其他方发送心跳，但你不想在所有正常退出路径或错误场景中都得先把它们停掉。或者你希望程序在所有其他监视器都结束后退出。在这种情况下，只需在创建定时器后立即对其执行 unref，这样即使它是唯一仍在运行的监视器，``uv_run`` 也依然会退出。"
 
 #: ../../src/guide/utilities.rst:84
 msgid ""
 "This is also used in node.js where some libuv methods are being bubbled "
 "up to the JS API. A ``uv_handle_t`` (the superclass of all watchers) is "
 "created per JS object and can be ref/unrefed."
-msgstr ""
+msgstr "node.js 中也使用了这一机制，libuv 的一些方法借此被提升到 JS API。每个 JS 对象都会创建一个 ``uv_handle_t`` （所有监视器的超类），并可以对其进行 ref/unref。"
 
 #: ../../src/guide/utilities.rst:88
 msgid "ref-timer/main.c"
-msgstr ""
+msgstr "ref-timer/main.c"
 
 #: ../../src/guide/utilities.rst:95
 msgid ""
 "We initialize the garbage collector timer, then immediately ``unref`` it."
 " Observe how after 9 seconds, when the fake job is done, the program "
 "automatically exits, even though the garbage collector is still running."
-msgstr ""
+msgstr "我们初始化垃圾回收器定时器，然后立即 ``unref`` 它。观察一下 9 秒后模拟任务完成时程序是如何自动退出的，尽管那时垃圾回收器仍在运行。"
 
 #: ../../src/guide/utilities.rst:100
 msgid "Idler pattern"
-msgstr ""
+msgstr "Idler 模式"
 
 #: ../../src/guide/utilities.rst:102
 msgid ""
@@ -169,11 +169,11 @@ msgid ""
 "which means your progress bar will freeze and the user will face an "
 "unresponsive application. In such a case queue up and idle watcher to "
 "keep the UI operational."
-msgstr ""
+msgstr "idle 句柄的回调在每个事件循环中都会被调用一次。idle 回调可用于执行一些优先级极低的活动。例如，你可以在空闲期间向开发者分发一份应用程序当日性能摘要供其分析，或者利用应用程序的 CPU 时间来进行 SETI 计算 :) 在 GUI 应用程序中，idle 监视器也很有用。假设你正在用一个事件循环进行文件下载。如果 TCP 套接字仍在建立中，又没有其他事件，你的事件循环就会暂停（**阻塞**），这意味着进度条会冻结，用户将面对一个无响应的应用程序。在这种情况下，可以排入一个 idle 监视器来保持 UI 正常运作。"
 
 #: ../../src/guide/utilities.rst:113 ../../src/guide/utilities.rst:126
 msgid "idle-compute/main.c"
-msgstr ""
+msgstr "idle-compute/main.c"
 
 #: ../../src/guide/utilities.rst:120
 msgid ""
@@ -182,11 +182,11 @@ msgid ""
 "repeatedly until the user types something and presses Return. Then it "
 "will be interrupted for a brief amount as the loop deals with the input "
 "data, after which it will keep calling the idle callback again."
-msgstr ""
+msgstr "这里我们初始化 idle 监视器，并将它与我们所真正感兴趣的事件一起排入队列。此后 ``crunch_away`` 会被反复调用，直到用户输入一些内容并按下回车键。然后，在循环处理输入数据的那一小段时间里它会被中断，之后循环又会继续不断调用 idle 回调。"
 
 #: ../../src/guide/utilities.rst:135
 msgid "Passing data to worker thread"
-msgstr ""
+msgstr "向工作线程传递数据"
 
 #: ../../src/guide/utilities.rst:137
 msgid ""
@@ -196,23 +196,23 @@ msgid ""
 "``uv_work_t`` itself as the first member of this struct (called a baton "
 "[#]_). This allows cleaning up the work request and all the data in one "
 "free call."
-msgstr ""
+msgstr "使用 ``uv_queue_work`` 时，通常需要把复杂的数据传递给工作线程。解决办法是使用一个 ``struct``，并把 ``uv_work_t.data`` 设置为指向它。一个小的变体做法是让 ``uv_work_t`` 本身作为该 struct 的第一个成员（称为 baton [#]_）。这样可以只通过一次 free 调用就清理掉工作请求和所有数据。"
 
 #: ../../src/guide/utilities.rst:167
 msgid "Here we create the baton and queue the task."
-msgstr ""
+msgstr "这里我们创建 baton 并将任务排入队列。"
 
 #: ../../src/guide/utilities.rst:169
 msgid "Now the task function can extract the data it needs:"
-msgstr ""
+msgstr "现在任务函数就可以提取它所需的数据："
 
 #: ../../src/guide/utilities.rst:189
 msgid "We then free the baton which also frees the watcher."
-msgstr ""
+msgstr "然后我们释放 baton，这也同时释放了监视器。"
 
 #: ../../src/guide/utilities.rst:192
 msgid "External I/O with polling"
-msgstr ""
+msgstr "利用轮询进行外部 I/O"
 
 #: ../../src/guide/utilities.rst:194
 msgid ""
@@ -227,7 +227,7 @@ msgid ""
 " I/O transaction and only then return. It is unwise to use these in the "
 "event loop thread, use the :ref:`threadpool` instead. Of course, this "
 "will also mean losing granular control on the library."
-msgstr ""
+msgstr "第三方库通常自行处理 I/O，并在内部管理自己的套接字和其他文件。在这种情况下，无法使用标准的流 I/O 操作，但仍然可以把该库集成到 libuv 事件循环中。所需的只是：该库允许你访问底层的文件描述符，并提供按你的应用程序的决定以小步增量处理任务的函数。不过，有些库不允许这样的访问，只提供一个标准的阻塞函数，它会执行完整的 I/O 事务然后才返回。在事件循环线程中使用这类函数是不明智的，应改用 :ref:`threadpool`。当然，这也意味着失去对该库的细粒度控制。"
 
 #: ../../src/guide/utilities.rst:205
 msgid ""
@@ -236,7 +236,7 @@ msgid ""
 "operations that libuv implements itself are also backed by ``uv_poll`` "
 "like code. Whenever the OS notices a change of state in file descriptors "
 "being polled, libuv will invoke the associated callback."
-msgstr ""
+msgstr "libuv 的 ``uv_poll`` 部分就是利用操作系统的通知机制来监视文件描述符。从某种意义上说，libuv 自身实现的所有 I/O 操作背后也都有类似 ``uv_poll`` 的代码支撑。每当操作系统注意到被轮询的文件描述符发生状态变化，libuv 就会调用相应的回调。"
 
 #: ../../src/guide/utilities.rst:211
 msgid ""
@@ -245,11 +245,11 @@ msgid ""
 "we'll instead be using the libuv event loop, and use the non-blocking, "
 "async multi_ interface to progress with the download whenever libuv "
 "notifies of I/O readiness."
-msgstr ""
+msgstr "这里我们将逐步讲解一个简单的下载管理器，它使用 libcurl_ 来下载文件。我们不会把全部控制权都交给 libcurl，而是使用 libuv 事件循环，并利用非阻塞、异步的 multi_ 接口，在 libuv 通知 I/O 就绪时推进下载。"
 
 #: ../../src/guide/utilities.rst:219
 msgid "uvwget/main.c - The setup"
-msgstr ""
+msgstr "uvwget/main.c - 初始设置"
 
 #: ../../src/guide/utilities.rst:226
 msgid ""
@@ -260,25 +260,25 @@ msgid ""
 "notify us of the next timeout interval, after which we should drive "
 "libcurl forward regardless of I/O status. This is so that libcurl can "
 "handle errors or do whatever else is required to get the download moving."
-msgstr ""
+msgstr "每个库与 libuv 集成的方式各不相同。就 libcurl 而言，我们可以注册两个回调。套接字回调 ``handle_socket`` 会在套接字状态发生变化、需要开始对其轮询时被调用。``start_timeout`` 由 libcurl 调用，用于通知我们下一个超时时间间隔，在此之后无论 I/O 状态如何，我们都应当驱动 libcurl 向前推进。这样 libcurl 才能处理错误，或者执行让下载继续推进所需的其他操作。"
 
 #: ../../src/guide/utilities.rst:234
 msgid "Our downloader is to be invoked as::"
-msgstr ""
+msgstr "我们的下载器按如下方式调用："
 
 #: ../../src/guide/utilities.rst:238
 msgid "So we add each argument as a URL"
-msgstr ""
+msgstr "因此我们把每个参数都作为一个 URL 加入"
 
 #: ../../src/guide/utilities.rst:240
 msgid "uvwget/main.c - Adding urls"
-msgstr ""
+msgstr "uvwget/main.c - 添加 URL"
 
 #: ../../src/guide/utilities.rst:247
 msgid ""
 "We let libcurl directly write the data to a file, but much more is "
 "possible if you so desire."
-msgstr ""
+msgstr "我们让 libcurl 直接把数据写入文件，但如果你愿意，还可以做得更多。"
 
 #: ../../src/guide/utilities.rst:250
 msgid ""
@@ -289,11 +289,11 @@ msgid ""
 "``curl_multi_socket_action`` is what drives libcurl, and what we call "
 "whenever sockets change state. But before we go into that, we need to "
 "poll on sockets whenever ``handle_socket`` is called."
-msgstr ""
+msgstr "libcurl 会在第一次立即调用 ``start_timeout``，于是整个流程开始运转。它只是启动一个 libuv `timer <#timers>`_，每当定时器超时，就驱动一次 ``curl_multi_socket_action`` 并传入 ``CURL_SOCKET_TIMEOUT``。``curl_multi_socket_action`` 是驱动 libcurl 的函数，也是我们在套接字状态变化时调用的函数。但在深入讨论之前，我们需要在 ``handle_socket`` 被调用时对套接字进行轮询。"
 
 #: ../../src/guide/utilities.rst:257
 msgid "uvwget/main.c - Setting up polling"
-msgstr ""
+msgstr "uvwget/main.c - 设置轮询"
 
 #: ../../src/guide/utilities.rst:264
 msgid ""
@@ -301,13 +301,13 @@ msgid ""
 "socket we create a ``uv_poll_t`` handle if it doesn't exist, and "
 "associate it with the socket using ``curl_multi_assign``. This way "
 "``socketp`` points to it whenever the callback is invoked."
-msgstr ""
+msgstr "我们关心的是套接字 fd ``s`` 和 ``action``。对每个套接字，如果相应的 ``uv_poll_t`` 句柄还不存在，我们就创建一个，并用 ``curl_multi_assign`` 把它与该套接字关联起来。这样，无论何时回调被调用，``socketp`` 都指向它。"
 
 #: ../../src/guide/utilities.rst:269
 msgid ""
 "In the case that the download is done or fails, libcurl requests removal "
 "of the poll. So we stop and free the poll handle."
-msgstr ""
+msgstr "当下载完成或失败时，libcurl 会请求移除轮询。因此我们停止并释放 poll 句柄。"
 
 #: ../../src/guide/utilities.rst:272
 msgid ""
@@ -317,11 +317,11 @@ msgid ""
 "``uv_poll_start`` multiple times on the same handle is acceptable, it "
 "will just update the events mask with the new value. ``curl_perform`` is "
 "the crux of this program."
-msgstr ""
+msgstr "根据 libcurl 希望监视哪些事件，我们以 ``UV_READABLE`` 或 ``UV_WRITABLE`` 开始轮询。此后，只要套接字可读或可写，libuv 就会调用 poll 回调。在同一个句柄上多次调用 ``uv_poll_start`` 是可以接受的，它只会用新值更新事件掩码。``curl_perform`` 是这个程序的核心。"
 
 #: ../../src/guide/utilities.rst:278
 msgid "uvwget/main.c - Driving libcurl."
-msgstr ""
+msgstr "uvwget/main.c - 驱动 libcurl。"
 
 #: ../../src/guide/utilities.rst:285
 msgid ""
@@ -336,23 +336,23 @@ msgid ""
 " transfer progress. In our case we are only interested in transfers that "
 "are completed. So we extract these messages, and clean up handles whose "
 "transfers are done."
-msgstr ""
+msgstr "我们做的第一件事是停止定时器，因为在这段间隔内已经有了一些进展。然后，根据触发回调的事件，我们设置正确的标志。接着，我们用发生进展的套接字以及告知发生了哪些事件的标志来调用 ``curl_multi_socket_action``。此时，libcurl 会以小步增量完成它的所有内部任务，并尽可能快地返回，这正是事件驱动程序在主线程中所希望的。libcurl 会不断把有关传输进度的消息排入它自己的队列。在我们的例子中，我们只关心已完成的传输。因此我们提取这些消息，并清理传输已完成的句柄。"
 
 #: ../../src/guide/utilities.rst:296
 msgid "uvwget/main.c - Reading transfer status."
-msgstr ""
+msgstr "uvwget/main.c - 读取传输状态。"
 
 #: ../../src/guide/utilities.rst:304
 msgid "Check & Prepare watchers"
-msgstr ""
+msgstr "Check & Prepare 监视器"
 
 #: ../../src/guide/utilities.rst:306
 msgid "TODO"
-msgstr ""
+msgstr "TODO"
 
 #: ../../src/guide/utilities.rst:309
 msgid "Loading libraries"
-msgstr ""
+msgstr "加载库"
 
 #: ../../src/guide/utilities.rst:311
 msgid ""
@@ -364,68 +364,68 @@ msgid ""
 "security checks when loading third party code, otherwise your program "
 "will behave unpredictably. This example implements a very simple plugin "
 "system which does nothing except print the name of the plugin."
-msgstr ""
+msgstr "libuv 提供了一个跨平台 API，用于动态加载 `shared libraries`_。这可以用来实现你自己的插件/扩展/模块系统，node.js 就是用它来实现绑定的 ``require()`` 支持的。只要你的库导出了正确的符号，用法就相当简单。加载第三方代码时，要小心做好合理性与安全性检查，否则你的程序会出现不可预测的行为。本例实现了一个非常简单的插件系统，它除了打印插件的名字之外什么都不做。"
 
 #: ../../src/guide/utilities.rst:319
 msgid "Let us first look at the interface provided to plugin authors."
-msgstr ""
+msgstr "我们先来看一看提供给插件作者的接口。"
 
 #: ../../src/guide/utilities.rst:321
 msgid "plugin/plugin.h"
-msgstr ""
+msgstr "plugin/plugin.h"
 
 #: ../../src/guide/utilities.rst:326
 msgid ""
 "You can similarly add more functions that plugin authors can use to do "
 "useful things in your application [#]_. A sample plugin using this API "
 "is:"
-msgstr ""
+msgstr "同样地，你可以添加更多函数，供插件作者在你的应用程序中用来做有用的事情 [#]_。一个使用此 API 的示例插件如下："
 
 #: ../../src/guide/utilities.rst:329
 msgid "plugin/hello.c"
-msgstr ""
+msgstr "plugin/hello.c"
 
 #: ../../src/guide/utilities.rst:334
 msgid ""
 "Our interface defines that all plugins should have an ``initialize`` "
 "function which will be called by the application. This plugin is compiled"
 " as a shared library and can be loaded by running our application::"
-msgstr ""
+msgstr "我们的接口规定，所有插件都应有一个 ``initialize`` 函数，应用程序会调用它。这个插件被编译为共享库，可以通过运行我们的应用程序来加载："
 
 #: ../../src/guide/utilities.rst:344
 msgid ""
 "The shared library filename will be different depending on platforms. On "
 "Linux it is ``libhello.so``."
-msgstr ""
+msgstr "共享库的文件名会因平台而异。在 Linux 上是 ``libhello.so``。"
 
 #: ../../src/guide/utilities.rst:347
 msgid ""
 "This is done by using ``uv_dlopen`` to first load the shared library "
 "``libhello.dylib``. Then we get access to the ``initialize`` function "
 "using ``uv_dlsym`` and invoke it."
-msgstr ""
+msgstr "这是先用 ``uv_dlopen`` 加载共享库 ``libhello.dylib`` 来完成的。然后我们获取 ``initialize`` 函数（借助 ``uv_dlsym``）并调用它。"
 
 #: ../../src/guide/utilities.rst:351
 msgid "plugin/main.c"
-msgstr ""
+msgstr "plugin/main.c"
 
 #: ../../src/guide/utilities.rst:358
 msgid ""
 "``uv_dlopen`` expects a path to the shared library and sets the opaque "
 "``uv_lib_t`` pointer. It returns 0 on success, -1 on error. Use "
 "``uv_dlerror`` to get the error message."
-msgstr ""
+msgstr "``uv_dlopen`` 接受一个共享库路径，并会设置不透明的 ``uv_lib_t`` 指针。成功时返回 0，出错时返回 -1。可使用 ``uv_dlerror`` 获取错误信息。"
 
 #: ../../src/guide/utilities.rst:362
 msgid ""
 "``uv_dlsym`` stores a pointer to the symbol in the second argument in the"
 " third argument. ``init_plugin_function`` is a function pointer to the "
 "sort of function we are looking for in the application's plugins."
-msgstr ""
+msgstr "``uv_dlsym`` 会把指向第二个参数所指定符号的指针存入第三个参数。``init_plugin_function`` 是一个函数指针，指向我们在应用程序的插件中要寻找的那类函数。"
 
 #: ../../src/guide/utilities.rst:369
 msgid "TTY"
-msgstr ""
+msgstr "TTY"
 
 #: ../../src/guide/utilities.rst:371
 msgid ""
@@ -436,26 +436,26 @@ msgid ""
 " and related functions to implement the ANSI escape codes across all "
 "platforms. By this I mean that libuv converts ANSI codes to the Windows "
 "equivalent, and provides functions to get terminal information."
-msgstr ""
+msgstr "文本终端早就支持基本格式化，拥有一套 `pretty standardised`_ 的命令集。这种格式化常被程序用来提高终端输出的可读性。例如 ``grep --colour``。libuv 提供了 ``uv_tty_t`` 抽象（一种流）和相关函数，用于在所有平台上实现 ANSI 转义码。我的意思是，libuv 会把 ANSI 码转换为 Windows 上的等价物，并提供获取终端信息的函数。"
 
 #: ../../src/guide/utilities.rst:381
 msgid ""
 "The first thing to do is to initialize a ``uv_tty_t`` with the file "
 "descriptor it reads/writes from. This is achieved with::"
-msgstr ""
+msgstr "首先要做的，是用其读/写所用的文件描述符来初始化一个 ``uv_tty_t``。这通过以下方式实现："
 
 #: ../../src/guide/utilities.rst:386
 msgid ""
 "The ``unused`` parameter is now auto-detected and ignored. It previously "
 "needed to be set to use ``uv_read_start()`` on the stream."
-msgstr ""
+msgstr "``unused`` 参数现在会被自动检测并忽略。以前需要设置它，才能在该流上使用 ``uv_read_start()``。"
 
 #: ../../src/guide/utilities.rst:389
 msgid ""
 "It is then best to use ``uv_tty_set_mode`` to set the mode to *normal* "
 "which enables most TTY formatting, flow-control and other settings. "
 "Other_ modes are also available."
-msgstr ""
+msgstr "接下来最好使用 ``uv_tty_set_mode`` 把模式设为 *normal*，这将启用大多数 TTY 格式化、流控制和其他设置。Other_ 模式也可用。"
 
 #: ../../src/guide/utilities.rst:395
 msgid ""
@@ -466,15 +466,15 @@ msgid ""
 "they impede readability and ``grep``. To check if the file descriptor is "
 "indeed a TTY, call ``uv_guess_handle`` with the file descriptor and "
 "compare the return value with ``UV_TTY``."
-msgstr ""
+msgstr "程序退出时，记得调用 ``uv_tty_reset_mode`` 来恢复终端的状态。这只是出于礼貌。另一项礼貌的做法是留意重定向。如果用户把你的命令的输出重定向到了文件，就不应写入控制序列，因为它们会妨碍可读性，也会妨碍 ``grep``。要检查某个文件描述符是否确实是 TTY，可以用该文件描述符调用 ``uv_guess_handle``，并把返回值与 ``UV_TTY`` 比较。"
 
 #: ../../src/guide/utilities.rst:403
 msgid "Here is a simple example which prints white text on a red background:"
-msgstr ""
+msgstr "下面是一个在红色背景上打印白色文本的简单示例："
 
 #: ../../src/guide/utilities.rst:405
 msgid "tty/main.c"
-msgstr ""
+msgstr "tty/main.c"
 
 #: ../../src/guide/utilities.rst:411
 msgid ""
@@ -482,78 +482,78 @@ msgid ""
 " width and height of the terminal and returns ``0`` on success. Here is a"
 " small program which does some animation using the function and character"
 " position escape codes."
-msgstr ""
+msgstr "最后一个 TTY 辅助函数是 ``uv_tty_get_winsize()``，它用于获取终端的宽度和高度，成功时返回 ``0``。下面是一个小程序，它利用该函数和字符定位转义码实现了一些动画。"
 
 #: ../../src/guide/utilities.rst:416
 msgid "tty-gravity/main.c"
-msgstr ""
+msgstr "tty-gravity/main.c"
 
 #: ../../src/guide/utilities.rst:422
 msgid "The escape codes are:"
-msgstr ""
+msgstr "转义码如下："
 
 #: ../../src/guide/utilities.rst:425
 msgid "Code"
-msgstr ""
+msgstr "代码"
 
 #: ../../src/guide/utilities.rst:425
 msgid "Meaning"
-msgstr ""
+msgstr "含义"
 
 #: ../../src/guide/utilities.rst:427
 msgid "*2* J"
-msgstr ""
+msgstr "*2* J"
 
 #: ../../src/guide/utilities.rst:427
 msgid "Clear part of the screen, 2 is entire screen"
-msgstr ""
+msgstr "清除部分屏幕，2 为整个屏幕"
 
 #: ../../src/guide/utilities.rst:428
 msgid "H"
-msgstr ""
+msgstr "H"
 
 #: ../../src/guide/utilities.rst:428
 msgid "Moves cursor to certain position, default top-left"
-msgstr ""
+msgstr "将光标移动到某一位置，默认为左上角"
 
 #: ../../src/guide/utilities.rst:429
 msgid "*n* B"
-msgstr ""
+msgstr "*n* B"
 
 #: ../../src/guide/utilities.rst:429
 msgid "Moves cursor down by n lines"
-msgstr ""
+msgstr "将光标下移 n 行"
 
 #: ../../src/guide/utilities.rst:430
 msgid "*n* C"
-msgstr ""
+msgstr "*n* C"
 
 #: ../../src/guide/utilities.rst:430
 msgid "Moves cursor right by n columns"
-msgstr ""
+msgstr "将光标右移 n 列"
 
 #: ../../src/guide/utilities.rst:431
 msgid "m"
-msgstr ""
+msgstr "m"
 
 #: ../../src/guide/utilities.rst:431
 msgid ""
 "Obeys string of display settings, in this case green background (40+2), "
 "white text (30+7)"
-msgstr ""
+msgstr "遵循一串显示设置，此处为绿色背景（40+2）、白色文本（30+7）"
 
 #: ../../src/guide/utilities.rst:434
 msgid ""
 "As you can see this is very useful to produce nicely formatted output, or"
 " even console based arcade games if that tickles your fancy. For fancier "
 "control you can try `ncurses`_."
-msgstr ""
+msgstr "如你所见，这对生成格式美观的输出非常有用，如果你有兴趣，甚至可以用来制作基于控制台的街机游戏。想要更高级的控制，可以试试 `ncurses`_。"
 
 #: ../../src/guide/utilities.rst:440
 msgid ""
 "the `readable` parameter is now unused and ignored. The appropriate value"
 " will now be auto-detected from the kernel."
-msgstr ""
+msgstr "`readable` 参数现在已不再使用，会被忽略。合适的值现在将由内核自动检测。"
 
 #: ../../src/guide/utilities.rst:445
 msgid ""
@@ -561,9 +561,9 @@ msgid ""
 "Käfer's excellent slides on writing node.js bindings -- "
 "https://kkaefer.github.io/node-cpp-modules/#baton (`video "
 "<https://youtu.be/GajiVsJwSkY?list=PL37ZVnwpeshEVYiRemhMII6ORJmsJuqP7&t=1009>`_)"
-msgstr ""
+msgstr "我最早是在 Konstantin Käfer 关于编写 node.js 绑定的精彩幻灯片中接触到 baton 这一术语的—— https://kkaefer.github.io/node-cpp-modules/#baton （`video <https://youtu.be/GajiVsJwSkY?list=PL37ZVnwpeshEVYiRemhMII6ORJmsJuqP7&t=1009>`_）"
 
 #: ../../src/guide/utilities.rst:449
 msgid "mfp is My Fancy Plugin"
-msgstr ""
+msgstr "mfp 即 My Fancy Plugin"
 
