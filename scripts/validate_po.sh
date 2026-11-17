@@ -55,31 +55,19 @@ for f in "${targets[@]}"; do
 done
 echo "   ${#targets[@]} 个 po 校验完成"
 
-# --- 2. fuzzy 硬门禁 ---
-echo "-- 2/6 fuzzy 硬门禁 --"
-if [ ${#FILES[@]} -gt 0 ]; then
-    fuzzy_total=$(grep -c '^#, fuzzy' "${FILES[@]}" 2>/dev/null || true)
-else
-    fuzzy_total=$(grep -rc '^#, fuzzy' "$REPO_ROOT/locale" 2>/dev/null | awk -F: '{s+=$2} END {print s+0}')
-fi
+# --- 2. fuzzy 硬门禁（全局：全库 fuzzy=0 是常驻纪律，PR 引入任何 fuzzy 都不通过）---
+echo "-- 2/6 fuzzy 硬门禁（全局）--"
+fuzzy_total=$(grep -rc '^#, fuzzy' "$REPO_ROOT/locale" 2>/dev/null | awk -F: '{s+=$2} END {print s+0}')
 echo "   fuzzy 条目数: $fuzzy_total（必须为 0）"
 [ "$fuzzy_total" -ne 0 ] && { echo "FAIL: 存在 fuzzy 条目——比对 #| 旧原文修订并清除标志后再验"; rc=1; }
 
-# --- 3. check_markup ---
+# --- 3. check_markup（全局：标记破坏可能落在任何文件）---
 echo "-- 3/6 check_markup --"
-if [ ${#FILES[@]} -gt 0 ]; then
-    "$PY" "$REPO_ROOT/scripts/check_markup.py" "${FILES[@]}" || rc=1
-else
-    "$PY" "$REPO_ROOT/scripts/check_markup.py" || rc=1
-fi
+"$PY" "$REPO_ROOT/scripts/check_markup.py" || rc=1
 
-# --- 4. term_check ---
+# --- 4. term_check（全局：术语一致性跨文件生效）---
 echo "-- 4/6 term_check --"
-if [ ${#FILES[@]} -gt 0 ]; then
-    "$PY" "$REPO_ROOT/scripts/term_check.py" "${FILES[@]}" || rc=1
-else
-    "$PY" "$REPO_ROOT/scripts/term_check.py" || rc=1
-fi
+"$PY" "$REPO_ROOT/scripts/term_check.py" || rc=1
 
 # --- 5. sphinx-intl stat ---
 echo "-- 5/6 sphinx-intl stat --"

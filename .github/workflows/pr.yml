@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # 变更文件检测需要 base 分支历史
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -32,5 +34,10 @@ jobs:
       - name: Generate workdir
         run: bash scripts/gen_workdir.sh
 
-      - name: Validate po (msgfmt -c / fuzzy=0 / markup / terms / build smoke)
-        run: bash scripts/validate_po.sh
+      - name: Validate po (batch gate on changed files + global fuzzy/markup/term + build smoke)
+        run: |
+          CHANGED=$(git diff --name-only origin/main...HEAD -- 'locale/' | grep '\.po$' || true)
+          echo "变更 po 文件: ${CHANGED:-（无）}"
+          # 批次模式: 变更 po 必须完成翻译；全局 fuzzy=0 / markup / term + 构建冒烟
+          # （sphinx-intl stat 全量硬门禁留给 v1.0 收官，见 validate_po.sh 头注）
+          bash scripts/validate_po.sh $CHANGED
