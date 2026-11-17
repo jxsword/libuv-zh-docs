@@ -1,0 +1,19 @@
+# 派生物与构建产物（可确定性重建，不入库）
+workdir/
+build/
+dist/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+
+# 本地工具目录
+.mimosa/
