@@ -23,351 +23,351 @@ msgstr ""
 
 #: ../../src/errors.rst:5
 msgid "Error handling"
-msgstr ""
+msgstr "错误处理"
 
 #: ../../src/errors.rst:7
 msgid ""
 "In libuv errors are negative numbered constants. As a rule of thumb, "
 "whenever there is a status parameter, or an API functions returns an "
 "integer, a negative number will imply an error."
-msgstr ""
+msgstr "在 libuv 中，错误是以负数编号的常量。根据经验，凡是有状态参数或 API 函数返回整数的地方，负数即意味着发生错误。"
 
 #: ../../src/errors.rst:11
 msgid ""
 "When a function which takes a callback returns an error, the callback "
 "will never be called."
-msgstr ""
+msgstr "当接受回调的函数返回错误时，该回调将永远不会被调用。"
 
 #: ../../src/errors.rst:15
 msgid ""
 "Implementation detail: on Unix error codes are the negated `errno` (or "
 "`-errno`), while on Windows they are defined by libuv to arbitrary "
 "negative numbers."
-msgstr ""
+msgstr "实现细节：在 Unix 上，错误码是对 `errno` 取负得到的值（即 `-errno`）；而在 Windows 上，错误码由 libuv 定义为任意的负数。"
 
 #: ../../src/errors.rst:20
 msgid "Error constants"
-msgstr ""
+msgstr "错误码常量"
 
 #: ../../src/errors.rst:24
 msgid "argument list too long"
-msgstr ""
+msgstr "参数列表过长"
 
 #: ../../src/errors.rst:28
 msgid "permission denied"
-msgstr ""
+msgstr "权限不足"
 
 #: ../../src/errors.rst:32
 msgid "address already in use"
-msgstr ""
+msgstr "地址已被占用"
 
 #: ../../src/errors.rst:36
 msgid "address not available"
-msgstr ""
+msgstr "地址不可用"
 
 #: ../../src/errors.rst:40 ../../src/errors.rst:48
 msgid "address family not supported"
-msgstr ""
+msgstr "不支持的地址族"
 
 #: ../../src/errors.rst:44
 msgid "resource temporarily unavailable"
-msgstr ""
+msgstr "资源暂时不可用"
 
 #: ../../src/errors.rst:52
 msgid "temporary failure"
-msgstr ""
+msgstr "暂时性失败"
 
 #: ../../src/errors.rst:56
 msgid "bad ai_flags value"
-msgstr ""
+msgstr "ai_flags 值无效"
 
 #: ../../src/errors.rst:60
 msgid "invalid value for hints"
-msgstr ""
+msgstr "hints 的值无效"
 
 #: ../../src/errors.rst:64
 msgid "request canceled"
-msgstr ""
+msgstr "请求已取消"
 
 #: ../../src/errors.rst:68
 msgid "permanent failure"
-msgstr ""
+msgstr "永久性失败"
 
 #: ../../src/errors.rst:72
 msgid "ai_family not supported"
-msgstr ""
+msgstr "ai_family 不受支持"
 
 #: ../../src/errors.rst:76
 msgid "out of memory"
-msgstr ""
+msgstr "内存不足"
 
 #: ../../src/errors.rst:80
 msgid "no address"
-msgstr ""
+msgstr "无地址"
 
 #: ../../src/errors.rst:84
 msgid "unknown node or service"
-msgstr ""
+msgstr "未知的节点或服务"
 
 #: ../../src/errors.rst:88
 msgid "argument buffer overflow"
-msgstr ""
+msgstr "参数缓冲区溢出"
 
 #: ../../src/errors.rst:92
 msgid "resolved protocol is unknown"
-msgstr ""
+msgstr "解析出的协议未知"
 
 #: ../../src/errors.rst:96
 msgid "service not available for socket type"
-msgstr ""
+msgstr "服务对该套接字类型不可用"
 
 #: ../../src/errors.rst:100 ../../src/errors.rst:340
 msgid "socket type not supported"
-msgstr ""
+msgstr "不支持的套接字类型"
 
 #: ../../src/errors.rst:104
 msgid "connection already in progress"
-msgstr ""
+msgstr "连接已在进行中"
 
 #: ../../src/errors.rst:108
 msgid "bad file descriptor"
-msgstr ""
+msgstr "文件描述符无效"
 
 #: ../../src/errors.rst:112
 msgid "resource busy or locked"
-msgstr ""
+msgstr "资源忙或被锁定"
 
 #: ../../src/errors.rst:116
 msgid "operation canceled"
-msgstr ""
+msgstr "操作已取消"
 
 #: ../../src/errors.rst:120
 msgid "invalid Unicode character"
-msgstr ""
+msgstr "无效的 Unicode 字符"
 
 #: ../../src/errors.rst:124
 msgid "software caused connection abort"
-msgstr ""
+msgstr "软件导致的连接中止"
 
 #: ../../src/errors.rst:128
 msgid "connection refused"
-msgstr ""
+msgstr "连接被拒绝"
 
 #: ../../src/errors.rst:132
 msgid "connection reset by peer"
-msgstr ""
+msgstr "对端重置了连接"
 
 #: ../../src/errors.rst:136
 msgid "destination address required"
-msgstr ""
+msgstr "需要目标地址"
 
 #: ../../src/errors.rst:140
 msgid "file already exists"
-msgstr ""
+msgstr "文件已存在"
 
 #: ../../src/errors.rst:144
 msgid "bad address in system call argument"
-msgstr ""
+msgstr "系统调用参数中的地址无效"
 
 #: ../../src/errors.rst:148
 msgid "file too large"
-msgstr ""
+msgstr "文件过大"
 
 #: ../../src/errors.rst:152
 msgid "host is unreachable"
-msgstr ""
+msgstr "主机不可达"
 
 #: ../../src/errors.rst:156
 msgid "interrupted system call"
-msgstr ""
+msgstr "系统调用被中断"
 
 #: ../../src/errors.rst:160
 msgid "invalid argument"
-msgstr ""
+msgstr "无效参数"
 
 #: ../../src/errors.rst:164
 msgid "i/o error"
-msgstr ""
+msgstr "I/O 错误"
 
 #: ../../src/errors.rst:168
 msgid "socket is already connected"
-msgstr ""
+msgstr "套接字已连接"
 
 #: ../../src/errors.rst:172
 msgid "illegal operation on a directory"
-msgstr ""
+msgstr "对目录的非法操作"
 
 #: ../../src/errors.rst:176
 msgid "too many symbolic links encountered"
-msgstr ""
+msgstr "遇到过多的符号链接"
 
 #: ../../src/errors.rst:180
 msgid "too many open files"
-msgstr ""
+msgstr "打开的文件过多"
 
 #: ../../src/errors.rst:184
 msgid "message too long"
-msgstr ""
+msgstr "消息过长"
 
 #: ../../src/errors.rst:188
 msgid "name too long"
-msgstr ""
+msgstr "名称过长"
 
 #: ../../src/errors.rst:192
 msgid "network is down"
-msgstr ""
+msgstr "网络已断开"
 
 #: ../../src/errors.rst:196
 msgid "network is unreachable"
-msgstr ""
+msgstr "网络不可达"
 
 #: ../../src/errors.rst:200
 msgid "file table overflow"
-msgstr ""
+msgstr "文件表溢出"
 
 #: ../../src/errors.rst:204
 msgid "no buffer space available"
-msgstr ""
+msgstr "没有可用的缓冲区空间"
 
 #: ../../src/errors.rst:208
 msgid "no such device"
-msgstr ""
+msgstr "无此设备"
 
 #: ../../src/errors.rst:212
 msgid "no such file or directory"
-msgstr ""
+msgstr "无此文件或目录"
 
 #: ../../src/errors.rst:216
 msgid "not enough memory"
-msgstr ""
+msgstr "内存不足"
 
 #: ../../src/errors.rst:220
 msgid "machine is not on the network"
-msgstr ""
+msgstr "机器不在网络上"
 
 #: ../../src/errors.rst:224
 msgid "protocol not available"
-msgstr ""
+msgstr "协议不可用"
 
 #: ../../src/errors.rst:228
 msgid "no space left on device"
-msgstr ""
+msgstr "设备上没有剩余空间"
 
 #: ../../src/errors.rst:232
 msgid "function not implemented"
-msgstr ""
+msgstr "函数未实现"
 
 #: ../../src/errors.rst:236
 msgid "socket is not connected"
-msgstr ""
+msgstr "套接字未连接"
 
 #: ../../src/errors.rst:240
 msgid "not a directory"
-msgstr ""
+msgstr "不是一个目录"
 
 #: ../../src/errors.rst:244
 msgid "directory not empty"
-msgstr ""
+msgstr "目录非空"
 
 #: ../../src/errors.rst:248
 msgid "socket operation on non-socket"
-msgstr ""
+msgstr "对非套接字执行套接字操作"
 
 #: ../../src/errors.rst:252
 msgid "operation not supported on socket"
-msgstr ""
+msgstr "套接字上不支持该操作"
 
 #: ../../src/errors.rst:256
 msgid "value too large for defined data type"
-msgstr ""
+msgstr "值超出所定义数据类型的范围"
 
 #: ../../src/errors.rst:260
 msgid "operation not permitted"
-msgstr ""
+msgstr "不允许的操作"
 
 #: ../../src/errors.rst:264
 msgid "broken pipe"
-msgstr ""
+msgstr "管道破裂"
 
 #: ../../src/errors.rst:268
 msgid "protocol error"
-msgstr ""
+msgstr "协议错误"
 
 #: ../../src/errors.rst:272
 msgid "protocol not supported"
-msgstr ""
+msgstr "不支持的协议"
 
 #: ../../src/errors.rst:276
 msgid "protocol wrong type for socket"
-msgstr ""
+msgstr "套接字的协议类型错误"
 
 #: ../../src/errors.rst:280
 msgid "result too large"
-msgstr ""
+msgstr "结果过大"
 
 #: ../../src/errors.rst:284
 msgid "read-only file system"
-msgstr ""
+msgstr "只读文件系统"
 
 #: ../../src/errors.rst:288
 msgid "cannot send after transport endpoint shutdown"
-msgstr ""
+msgstr "传输端点关闭后无法发送"
 
 #: ../../src/errors.rst:292
 msgid "invalid seek"
-msgstr ""
+msgstr "无效的查找操作"
 
 #: ../../src/errors.rst:296
 msgid "no such process"
-msgstr ""
+msgstr "无此进程"
 
 #: ../../src/errors.rst:300
 msgid "connection timed out"
-msgstr ""
+msgstr "连接超时"
 
 #: ../../src/errors.rst:304
 msgid "text file is busy"
-msgstr ""
+msgstr "文本文件正忙"
 
 #: ../../src/errors.rst:308
 msgid "cross-device link not permitted"
-msgstr ""
+msgstr "不允许跨设备链接"
 
 #: ../../src/errors.rst:312
 msgid "unknown error"
-msgstr ""
+msgstr "未知错误"
 
 #: ../../src/errors.rst:316
 msgid "end of file"
-msgstr ""
+msgstr "文件结束"
 
 #: ../../src/errors.rst:320
 msgid "no such device or address"
-msgstr ""
+msgstr "无此设备或地址"
 
 #: ../../src/errors.rst:324
 msgid "too many links"
-msgstr ""
+msgstr "链接过多"
 
 #: ../../src/errors.rst:328
 msgid "inappropriate ioctl for device"
-msgstr ""
+msgstr "对设备使用了不适当的 ioctl"
 
 #: ../../src/errors.rst:332
 msgid "inappropriate file type or format"
-msgstr ""
+msgstr "文件类型或格式不当"
 
 #: ../../src/errors.rst:336
 msgid "illegal byte sequence"
-msgstr ""
+msgstr "非法字节序列"
 
 #: ../../src/errors.rst:344
 msgid "protocol driver not attached"
-msgstr ""
+msgstr "协议驱动程序未接入"
 
 #: ../../src/errors.rst:347
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/errors.rst:351
 msgid ""
@@ -375,32 +375,32 @@ msgid ""
 " the error constants above. `iter_macro` is invoked with two arguments: "
 "the name of the error constant without the `UV_` prefix, and the error "
 "message string literal."
-msgstr ""
+msgstr "该宏会针对上述每一个错误码常量展开为一系列对 `iter_macro` 的调用。`iter_macro` 调用时传入两个参数：不带 `UV_` 前缀的错误码常量名，以及错误信息字符串字面量。"
 
 #: ../../src/errors.rst:358
 msgid ""
 "Returns the error message for the given error code.  Leaks a few bytes of"
 " memory when you call it with an unknown error code."
-msgstr ""
+msgstr "返回给定错误码对应的错误信息。以未知的错误码调用该函数时，会泄漏几个字节的内存。"
 
 #: ../../src/errors.rst:363
 msgid ""
 "Returns the error message for the given error code. The zero-terminated "
 "message is stored in the user-supplied buffer `buf` of at most `buflen` "
 "bytes."
-msgstr ""
+msgstr "返回给定错误码对应的错误信息。以空字符结尾的错误信息存储在用户提供的缓冲区 `buf` 中，该缓冲区最多为 `buflen` 字节。"
 
 #: ../../src/errors.rst:370
 msgid ""
 "Returns the error name for the given error code.  Leaks a few bytes of "
 "memory when you call it with an unknown error code."
-msgstr ""
+msgstr "返回给定错误码对应的错误名称。以未知的错误码调用该函数时，会泄漏几个字节的内存。"
 
 #: ../../src/errors.rst:375
 msgid ""
 "Returns the error name for the given error code. The zero-terminated name"
 " is stored in the user-supplied buffer `buf` of at most `buflen` bytes."
-msgstr ""
+msgstr "返回给定错误码对应的错误名称。以空字符结尾的名称存储在用户提供的缓冲区 `buf` 中，该缓冲区最多为 `buflen` 字节。"
 
 #: ../../src/errors.rst:382
 msgid ""
@@ -408,13 +408,13 @@ msgid ""
 "error code: POSIX error codes on Unix (the ones stored in `errno`), and "
 "Win32 error codes on Windows (those returned by `GetLastError()` or "
 "`WSAGetLastError()`)."
-msgstr ""
+msgstr "返回与给定平台相关错误码等价的 libuv 错误码：在 Unix 上为 POSIX 错误码（即存储在 `errno` 中的那些），在 Windows 上为 Win32 错误码（即 `GetLastError()` 或 `WSAGetLastError()` 返回的那些）。"
 
 #: ../../src/errors.rst:386
 msgid "If `sys_errno` is already a libuv error, it is simply returned."
-msgstr ""
+msgstr "如果 `sys_errno` 已经是 libuv 错误码，则直接返回该值。"
 
 #: ../../src/errors.rst:388
 msgid "function declared public."
-msgstr ""
+msgstr "函数声明为公开。"
 

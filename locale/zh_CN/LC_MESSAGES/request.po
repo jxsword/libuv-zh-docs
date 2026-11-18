@@ -23,49 +23,51 @@ msgstr ""
 
 #: ../../src/request.rst:5
 msgid ":c:type:`uv_req_t` --- Base request"
-msgstr ""
+msgstr ":c:type:`uv_req_t` —— 基础请求"
 
 #: ../../src/request.rst:7
 msgid "`uv_req_t` is the base type for all libuv request types."
-msgstr ""
+msgstr "`uv_req_t` 是所有 libuv 请求类型的基础类型。"
 
 #: ../../src/request.rst:9
 msgid ""
 "Structures are aligned so that any libuv request can be cast to "
 "`uv_req_t`. All API functions defined here work with any request type."
 msgstr ""
+"结构体经过对齐处理，任何 libuv 请求都可以强制转换为 `uv_req_t`。此处定义"
+"的所有 API 函数都适用于任何请求类型。"
 
 #: ../../src/request.rst:14
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/request.rst:18
 msgid "The base libuv request structure."
-msgstr ""
+msgstr "libuv 基础请求结构体。"
 
 #: ../../src/request.rst:22
 msgid "Union of all request types."
-msgstr ""
+msgstr "所有请求类型的联合体。"
 
 #: ../../src/request.rst:26
 msgid "The kind of the libuv request."
-msgstr ""
+msgstr "libuv 请求的种类。"
 
 #: ../../src/request.rst:46
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/request.rst:50
 msgid "Space for user-defined arbitrary data. libuv does not use this field."
-msgstr ""
+msgstr "用于存放用户自定义任意数据的空间。libuv 不使用此字段。"
 
 #: ../../src/request.rst:54
 msgid "The :c:enum:`uv_req_type`, indicating the type of the request. Readonly."
-msgstr ""
+msgstr ":c:enum:`uv_req_type`，指示请求的类型。只读。"
 
 #: ../../src/request.rst:58
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/request.rst:62
 msgid ""
@@ -75,6 +77,9 @@ msgid ""
 "the corresponding structure type without the `uv_` prefix and `_t` "
 "suffix."
 msgstr ""
+"该宏会针对每种请求类型展开为对 `iter_macro` 的一系列调用。`iter_macro` "
+"调用时接收两个参数：一个是 `uv_req_type` 元素去掉 `UV_` 前缀后的名称，另"
+"一个是相应结构体类型去掉 `uv_` 前缀和 `_t` 后缀后的名称。"
 
 #: ../../src/request.rst:70
 msgid ""
@@ -84,10 +89,13 @@ msgid ""
 "callback may report a partial write), and cancellation of an already-"
 "completed write is a successful no-op."
 msgstr ""
+"取消一个尚未完成的请求。若请求正在执行或已执行完毕，则取消失败。写请求是"
+"一个例外：取消一个正在进行中的写操作会尝试中断它（回调可能报告部分写入），"
+"而取消一个已完成的写操作则是一次成功的空操作。"
 
 #: ../../src/request.rst:76
 msgid "Returns 0 on success, or an error code < 0 on failure."
-msgstr ""
+msgstr "成功时返回 0，失败时返回小于 0 的错误码。"
 
 #: ../../src/request.rst:78
 msgid ""
@@ -96,6 +104,9 @@ msgid ""
 ":c:type:`uv_random_t` and :c:type:`uv_work_t` requests is currently "
 "supported."
 msgstr ""
+"目前仅支持取消 :c:type:`uv_write_t`、:c:type:`uv_fs_t`、"
+":c:type:`uv_getaddrinfo_t`、:c:type:`uv_getnameinfo_t`、"
+":c:type:`uv_random_t` 和 :c:type:`uv_work_t` 请求。"
 
 #: ../../src/request.rst:83
 msgid ""
@@ -103,16 +114,18 @@ msgid ""
 "It's **not** safe to free the memory associated with the request until "
 "the callback is called."
 msgstr ""
+"被取消的请求，其回调会在未来的某个时刻被调用。在回调被调用之前，释放与该"
+"请求关联的内存是 **不** 安全的。"
 
 #: ../../src/request.rst:87
 msgid "Here is how cancellation is reported to the callback:"
-msgstr ""
+msgstr "取消操作通过以下方式报告给回调："
 
 #: ../../src/request.rst:89
 msgid ""
 "A :c:type:`uv_fs_t` request has its req->result field set to "
 "`UV_ECANCELED`."
-msgstr ""
+msgstr ":c:type:`uv_fs_t` 请求的 req->result 字段会被设置为 `UV_ECANCELED`。"
 
 #: ../../src/request.rst:91
 msgid ""
@@ -120,6 +133,9 @@ msgid ""
 ":c:type:`uv_getnameinfo_t` or :c:type:`uv_random_t` request has its "
 "callback invoked with status == `UV_ECANCELED`."
 msgstr ""
+":c:type:`uv_work_t`、:c:type:`uv_getaddrinfo_t`、"
+":c:type:`uv_getnameinfo_t` 或 :c:type:`uv_random_t` 请求的回调会以 "
+"status == `UV_ECANCELED` 被调用。"
 
 #: ../../src/request.rst:95
 msgid ""
@@ -132,32 +148,39 @@ msgid ""
 " kernel finished processing the write before the cancellation took "
 "effect."
 msgstr ""
+":c:type:`uv_write_t` 请求的回调会以 status == `UV_ECANCELED` 被调用。可在"
+"回调中使用 :c:func:`uv_write_nwritten` 来确定在取消发生之前写入了多少字"
+"节。完全被取消的写操作（未写入任何字节）的回调，相对于同一流上的其他写操"
+"作可能乱序调用。注意，如果内核在取消生效之前已完成对该写操作的处理，被取"
+"消的写操作仍可能成功，或因其他错误而失败。"
 
 #: ../../src/request.rst:106
 msgid ""
 "Returns the size of the given request type. Useful for FFI binding "
 "writers who don't want to know the structure layout."
 msgstr ""
+"返回给定请求类型的大小。对于不想了解结构体布局的 FFI 绑定编写者很有用。"
 
 #: ../../src/request.rst:111
 msgid "Returns `req->data`."
-msgstr ""
+msgstr "返回 `req->data`。"
 
 #: ../../src/request.rst:117
 msgid "Sets `req->data` to `data`."
-msgstr ""
+msgstr "将 `req->data` 设置为 `data`。"
 
 #: ../../src/request.rst:123
 msgid "Returns `req->type`."
-msgstr ""
+msgstr "返回 `req->type`。"
 
 #: ../../src/request.rst:129
 msgid ""
 "Returns the name for the equivalent struct for a given request type, e.g."
 " `\"connect\"` (as in :c:type:`uv_connect_t`) for `UV_CONNECT`."
 msgstr ""
+"返回与给定请求类型相对应的结构体的名称，例如 `\"connect\"` （即 "
+":c:type:`uv_connect_t` 中的名称）对应 `UV_CONNECT`。"
 
 #: ../../src/request.rst:132
 msgid "If no such request type exists, this returns `NULL`."
-msgstr ""
-
+msgstr "如果不存在这样的请求类型，则返回 `NULL`。"

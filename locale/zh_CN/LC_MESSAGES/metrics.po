@@ -23,68 +23,68 @@ msgstr ""
 
 #: ../../src/metrics.rst:5
 msgid "Metrics operations"
-msgstr ""
+msgstr "指标操作"
 
 #: ../../src/metrics.rst:7
 msgid ""
 "libuv provides a metrics API to track various internal operations of the "
 "event loop."
-msgstr ""
+msgstr "libuv 提供指标 API，用于跟踪事件循环的各种内部操作。"
 
 #: ../../src/metrics.rst:12
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/metrics.rst:16
 msgid ""
 "The struct that contains event loop metrics. It is recommended to "
 "retrieve these metrics in a :c:type:`uv_prepare_cb` in order to make sure"
 " there are no inconsistencies with the metrics counters."
-msgstr ""
+msgstr "包含事件循环指标的结构体。建议在 :c:type:`uv_prepare_cb` 中获取这些指标，以确保指标计数器不会出现不一致。"
 
 #: ../../src/metrics.rst:32
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/metrics.rst:36
 msgid "Number of event loop iterations."
-msgstr ""
+msgstr "事件循环迭代次数。"
 
 #: ../../src/metrics.rst:40
 msgid "Number of events that have been processed by the event handler."
-msgstr ""
+msgstr "事件处理器已处理的事件数量。"
 
 #: ../../src/metrics.rst:44
 msgid ""
 "Number of events that were waiting to be processed when the event "
 "provider was called."
-msgstr ""
+msgstr "事件提供程序被调用时正在等待处理的事件数量。"
 
 #: ../../src/metrics.rst:49
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/metrics.rst:53
 msgid ""
 "Retrieve the amount of time the event loop has been idle in the kernel's "
 "event provider (e.g. ``epoll_wait``). The call is thread safe."
-msgstr ""
+msgstr "获取事件循环在内核的事件提供程序（例如 ``epoll_wait``）中处于空闲状态的时长。该调用是线程安全的。"
 
 #: ../../src/metrics.rst:56
 msgid ""
 "The return value is the accumulated time spent idle in the kernel's event"
 " provider starting from when the :c:type:`uv_loop_t` was configured to "
 "collect the idle time."
-msgstr ""
+msgstr "返回值是从 :c:type:`uv_loop_t` 被配置为收集空闲时间起，在内核的事件提供程序中累计的空闲时间。"
 
 #: ../../src/metrics.rst:61
 msgid ""
 "The event loop will not begin accumulating the event provider's idle time"
 " until calling :c:type:`uv_loop_configure` with "
 ":c:type:`UV_METRICS_IDLE_TIME`."
-msgstr ""
+msgstr "在调用 :c:type:`uv_loop_configure` 并传入 :c:type:`UV_METRICS_IDLE_TIME` 之前，事件循环不会开始累计事件提供程序的空闲时间。"
 
 #: ../../src/metrics.rst:69
 msgid "Copy the current set of event loop metrics to the ``metrics`` pointer."
-msgstr ""
+msgstr "将当前的事件循环指标集合复制到 ``metrics`` 指针。"
 

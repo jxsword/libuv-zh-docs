@@ -23,135 +23,135 @@ msgstr ""
 
 #: ../../src/dns.rst:5
 msgid "DNS utility functions"
-msgstr ""
+msgstr "DNS 工具函数"
 
 #: ../../src/dns.rst:7
 msgid "libuv provides asynchronous variants of `getaddrinfo` and `getnameinfo`."
-msgstr ""
+msgstr "libuv 提供了 `getaddrinfo` 和 `getnameinfo` 的异步版本。"
 
 #: ../../src/dns.rst:11
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/dns.rst:15
 msgid "`getaddrinfo` request type."
-msgstr ""
+msgstr "`getaddrinfo` 请求类型。"
 
 #: ../../src/dns.rst:19
 msgid ""
 "Callback which will be called with the getaddrinfo request result once "
 "complete. In case it was cancelled, `status` will have a value of "
 "``UV_ECANCELED``."
-msgstr ""
+msgstr "在 getaddrinfo 请求完成时，会携带该请求的结果被调用的回调。如果请求被取消，`status` 的值将为 ``UV_ECANCELED``。"
 
 #: ../../src/dns.rst:25
 msgid "`getnameinfo` request type."
-msgstr ""
+msgstr "`getnameinfo` 请求类型。"
 
 #: ../../src/dns.rst:29
 msgid ""
 "Callback which will be called with the getnameinfo request result once "
 "complete. In case it was cancelled, `status` will have a value of "
 "``UV_ECANCELED``."
-msgstr ""
+msgstr "在 getnameinfo 请求完成时，会携带该请求的结果被调用的回调。如果请求被取消，`status` 的值将为 ``UV_ECANCELED``。"
 
 #: ../../src/dns.rst:35
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/dns.rst:39
 msgid ""
 "Loop that started this getaddrinfo request and where completion will be "
 "reported. Readonly."
-msgstr ""
+msgstr "启动该 getaddrinfo 请求的事件循环，完成情况也将报告到该事件循环。只读。"
 
 #: ../../src/dns.rst:44
 msgid ""
 "Pointer to a `struct addrinfo` containing the result. Must be freed by "
 "the user with :c:func:`uv_freeaddrinfo`."
-msgstr ""
+msgstr "指向包含结果的 `struct addrinfo` 的指针。必须由用户通过 :c:func:`uv_freeaddrinfo` 释放。"
 
 #: ../../src/dns.rst:47 ../../src/dns.rst:58 ../../src/dns.rst:64
 msgid "the field is declared as public."
-msgstr ""
+msgstr "该字段被声明为公开字段。"
 
 #: ../../src/dns.rst:51
 msgid ""
 "Loop that started this getnameinfo request and where completion will be "
 "reported. Readonly."
-msgstr ""
+msgstr "启动该 getnameinfo 请求的事件循环，完成情况也将报告到该事件循环。只读。"
 
 #: ../../src/dns.rst:56
 msgid "Char array containing the resulting host. It's null terminated."
-msgstr ""
+msgstr "包含所得主机名的字符数组。以空字节结尾。"
 
 #: ../../src/dns.rst:62
 msgid "Char array containing the resulting service. It's null terminated."
-msgstr ""
+msgstr "包含所得服务名的字符数组。以空字节结尾。"
 
 #: ../../src/dns.rst:66
 msgid "The :c:type:`uv_req_t` members also apply."
-msgstr ""
+msgstr ":c:type:`uv_req_t` 的成员也同样适用。"
 
 #: ../../src/dns.rst:70
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/dns.rst:74
 msgid "Asynchronous :man:`getaddrinfo(3)`."
-msgstr ""
+msgstr "异步版的 :man:`getaddrinfo(3)`。"
 
 #: ../../src/dns.rst:76
 msgid "Either node or service may be NULL but not both."
-msgstr ""
+msgstr "node 和 service 可以有一个为 NULL，但不能两者都为 NULL。"
 
 #: ../../src/dns.rst:78
 msgid ""
 "`hints` is a pointer to a struct addrinfo with additional address type "
 "constraints, or NULL. Consult `man -s 3 getaddrinfo` for more details."
-msgstr ""
+msgstr "`hints` 是指向带有额外地址类型约束的 struct addrinfo 的指针，或为 NULL。更多细节请查阅 `man -s 3 getaddrinfo`。"
 
 #: ../../src/dns.rst:81
 msgid ""
 "Returns 0 on success or an error code < 0 on failure. If successful, the "
 "callback will get called sometime in the future with the lookup result, "
 "which is either:"
-msgstr ""
+msgstr "成功时返回 0，失败时返回小于 0 的错误码。如果成功，回调将在将来某个时刻携带查找结果被调用，查找结果为以下两者之一："
 
 #: ../../src/dns.rst:85
 msgid "status == 0, the res argument points to a valid `struct addrinfo`, or"
-msgstr ""
+msgstr "status == 0，res 参数指向一个有效的 `struct addrinfo`，或"
 
 #: ../../src/dns.rst:86
 msgid "status < 0, the res argument is NULL. See the UV_EAI_* constants."
-msgstr ""
+msgstr "status < 0，res 参数为 NULL。参见 UV_EAI_* 常量。"
 
 #: ../../src/dns.rst:88
 msgid "Call :c:func:`uv_freeaddrinfo` to free the addrinfo structure."
-msgstr ""
+msgstr "调用 :c:func:`uv_freeaddrinfo` 来释放 addrinfo 结构体。"
 
 #: ../../src/dns.rst:90 ../../src/dns.rst:105
 msgid ""
 "the callback parameter is now allowed to be NULL, in which case the "
 "request will run **synchronously**."
-msgstr ""
+msgstr "回调参数现在允许为 NULL，此时请求将 **同步** 运行。"
 
 #: ../../src/dns.rst:95
 msgid "Free the struct addrinfo. Passing NULL is allowed and is a no-op."
-msgstr ""
+msgstr "释放 struct addrinfo。允许传入 NULL，此时为空操作。"
 
 #: ../../src/dns.rst:99
 msgid "Asynchronous :man:`getnameinfo(3)`."
-msgstr ""
+msgstr "异步版的 :man:`getnameinfo(3)`。"
 
 #: ../../src/dns.rst:101
 msgid ""
 "Returns 0 on success or an error code < 0 on failure. If successful, the "
 "callback will get called sometime in the future with the lookup result. "
 "Consult `man -s 3 getnameinfo` for more details."
-msgstr ""
+msgstr "成功时返回 0，失败时返回小于 0 的错误码。如果成功，回调将在将来某个时刻携带查找结果被调用。更多细节请查阅 `man -s 3 getnameinfo`。"
 
 #: ../../src/dns.rst:108
 msgid "The :c:type:`uv_req_t` API functions also apply."
-msgstr ""
+msgstr ":c:type:`uv_req_t` 的 API 函数也同样适用。"
 
