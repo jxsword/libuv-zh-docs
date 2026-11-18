@@ -23,43 +23,43 @@ msgstr ""
 
 #: ../../src/udp.rst:5
 msgid ":c:type:`uv_udp_t` --- UDP handle"
-msgstr ""
+msgstr ":c:type:`uv_udp_t` —— UDP 句柄"
 
 #: ../../src/udp.rst:7
 msgid "UDP handles encapsulate UDP communication for both clients and servers."
-msgstr ""
+msgstr "UDP 句柄为客户端和服务器封装 UDP 通信。"
 
 #: ../../src/udp.rst:11
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/udp.rst:15
 msgid "UDP handle type."
-msgstr ""
+msgstr "UDP 句柄类型。"
 
 #: ../../src/udp.rst:19
 msgid "UDP send request type."
-msgstr ""
+msgstr "UDP 发送请求类型。"
 
 #: ../../src/udp.rst:23
 msgid "Flags used in :c:func:`uv_udp_bind` and :c:type:`uv_udp_recv_cb`.."
-msgstr ""
+msgstr ":c:func:`uv_udp_bind` 与 :c:type:`uv_udp_recv_cb` 中使用的标志。"
 
 #: ../../src/udp.rst:87
 msgid ""
 "Type definition for callback passed to :c:func:`uv_udp_send`, which is "
 "called after the data was sent."
-msgstr ""
+msgstr "传递给 :c:func:`uv_udp_send` 的回调的类型定义，该回调在数据发送完成后被调用。"
 
 #: ../../src/udp.rst:92
 msgid ""
 "Type definition for callback passed to :c:func:`uv_udp_recv_start`, which"
 " is called when the endpoint receives data."
-msgstr ""
+msgstr "传递给 :c:func:`uv_udp_recv_start` 的回调的类型定义，该回调在端点接收到数据时被调用。"
 
 #: ../../src/udp.rst:95
 msgid "`handle`: UDP handle"
-msgstr ""
+msgstr "`handle`：UDP 句柄"
 
 #: ../../src/udp.rst:96
 msgid ""
@@ -68,28 +68,28 @@ msgid ""
 "received (in this case `addr` is not NULL). < 0 if a transmission error "
 "was detected; if using :man:`recvmmsg(2)` no more chunks will be received"
 " and the buffer can be freed safely."
-msgstr ""
+msgstr "`nread`：已接收的字节数。没有更多数据可读时为 0。注意 0 也可能表示收到了一个空数据报（此时 `addr` 不为 NULL）。若检测到传输错误则 < 0；若使用 :man:`recvmmsg(2)`，将不会再收到更多分块，且缓冲区可以被安全释放。"
 
 #: ../../src/udp.rst:101
 msgid "`buf`: :c:type:`uv_buf_t` with the received data."
-msgstr ""
+msgstr "`buf`：带有接收数据的 :c:type:`uv_buf_t`。"
 
 #: ../../src/udp.rst:102
 msgid ""
 "`addr`: ``struct sockaddr*`` containing the address of the sender. Can be"
 " NULL. Valid for the duration of the callback only."
-msgstr ""
+msgstr "`addr`：包含发送方地址的 ``struct sockaddr*``。可以为 NULL。仅在回调持续期间有效。"
 
 #: ../../src/udp.rst:104
 msgid "`flags`: One or more or'ed UV_UDP_* constants."
-msgstr ""
+msgstr "`flags`：一个或多个按位或组合的 UV_UDP_* 常量。"
 
 #: ../../src/udp.rst:106
 msgid ""
 "The callee is responsible for freeing the buffer, libuv does not reuse "
 "it. The buffer may be a null buffer (where `buf->base` == NULL and "
 "`buf->len` == 0) on error."
-msgstr ""
+msgstr "被调用方负责释放缓冲区，libuv 不会复用它。出错时缓冲区可能是 null 缓冲区（即 `buf->base` == NULL 且 `buf->len` == 0）。"
 
 #: ../../src/udp.rst:110
 msgid ""
@@ -100,54 +100,54 @@ msgid ""
 "flag cleared and the `UV_UDP_MMSG_FREE` flag set. If a UDP socket error "
 "occurs, `nread` will be < 0. In either scenario, the callee can now "
 "safely free the provided buffer."
-msgstr ""
+msgstr "使用 :man:`recvmmsg(2)` 时，各分块会带有 `UV_UDP_MMSG_CHUNK` 标志，这些分块不得释放。若未发生错误，最后还会有一次回调，其中 `nread` 置为 0、`addr` 置为 NULL，缓冲区指向最初分配的数据，且 `UV_UDP_MMSG_CHUNK` 标志被清除、`UV_UDP_MMSG_FREE` 标志被置位。若发生 UDP 套接字错误，则 `nread` 将 < 0。无论哪种情形，被调用方此时都可以安全释放所提供的缓冲区。"
 
 #: ../../src/udp.rst:117
 msgid "added the `UV_UDP_MMSG_FREE` flag."
-msgstr ""
+msgstr "新增了 `UV_UDP_MMSG_FREE` 标志。"
 
 #: ../../src/udp.rst:120
 msgid ""
 "The receive callback will be called with `nread` == 0 and `addr` == NULL "
 "when there is nothing to read, and with `nread` == 0 and `addr` != NULL "
 "when an empty UDP packet is received."
-msgstr ""
+msgstr "当没有数据可读时，接收回调会以 `nread` == 0 且 `addr` == NULL 被调用；当收到空的 UDP 数据包时，会以 `nread` == 0 且 `addr` != NULL 被调用。"
 
 #: ../../src/udp.rst:126
 msgid "Membership type for a multicast address."
-msgstr ""
+msgstr "组播地址的成员关系类型。"
 
 #: ../../src/udp.rst:137
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/udp.rst:141
 msgid ""
 "Number of bytes queued for sending. This field strictly shows how much "
 "information is currently queued."
-msgstr ""
+msgstr "已排队等待发送的字节数。此字段严格显示当前已排队的信息量。"
 
 #: ../../src/udp.rst:146
 msgid "Number of send requests currently in the queue awaiting to be processed."
-msgstr ""
+msgstr "当前在队列中等待处理的发送请求数量。"
 
 #: ../../src/udp.rst:150
 msgid "UDP handle where this send request is taking place."
-msgstr ""
+msgstr "发生此发送请求的 UDP 句柄。"
 
 #: ../../src/udp.rst:152
 msgid "The :c:type:`uv_handle_t` members also apply."
-msgstr ""
+msgstr ":c:type:`uv_handle_t` 的成员也同样适用。"
 
 #: ../../src/udp.rst:156
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/udp.rst:160
 msgid ""
 "Initialize a new UDP handle. The actual socket is created lazily. Returns"
 " 0 on success."
-msgstr ""
+msgstr "初始化一个新的 UDP 句柄。实际的套接字会被延迟创建。成功时返回 0。"
 
 #: ../../src/udp.rst:165
 msgid ""
@@ -155,50 +155,50 @@ msgid ""
 "`flags` parameter are used as the socket domain. A socket will be created"
 " for the given domain. If the specified domain is ``AF_UNSPEC`` no socket"
 " is created, just like :c:func:`uv_udp_init`."
-msgstr ""
+msgstr "以指定的标志初始化句柄。`flags` 参数的低 8 位用作套接字域。将会为给定的域创建一个套接字。若指定的域为 ``AF_UNSPEC``，则不会创建套接字，与 :c:func:`uv_udp_init` 一样。"
 
 #: ../../src/udp.rst:169
 msgid "The remaining bits can be used to set one of these flags:"
-msgstr ""
+msgstr "其余的位可用于设置以下标志之一："
 
 #: ../../src/udp.rst:171
 msgid ""
 "`UV_UDP_RECVMMSG`: if set, and the platform supports it, "
 ":man:`recvmmsg(2)` will be used. The :c:type:`uv_alloc_cb` for this "
 "handle should create buffers that are multiples of 64 KiB."
-msgstr ""
+msgstr "`UV_UDP_RECVMMSG`：若设置了该标志且平台支持，则会使用 :man:`recvmmsg(2)`。此句柄的 :c:type:`uv_alloc_cb` 应创建 64 KiB 倍数大小的缓冲区。"
 
 #: ../../src/udp.rst:176
 msgid "added the `UV_UDP_RECVMMSG` flag."
-msgstr ""
+msgstr "新增了 `UV_UDP_RECVMMSG` 标志。"
 
 #: ../../src/udp.rst:180 ../../src/udp.rst:196
 msgid "Opens an existing file descriptor or Windows SOCKET as a UDP handle."
-msgstr ""
+msgstr "将已有的文件描述符或 Windows SOCKET 作为 UDP 句柄打开。"
 
 #: ../../src/udp.rst
 msgid "参数"
-msgstr ""
+msgstr "参数"
 
 #: ../../src/udp.rst:182 ../../src/udp.rst:218 ../../src/udp.rst:252
 #: ../../src/udp.rst:301 ../../src/udp.rst:316 ../../src/udp.rst:415
 #: ../../src/udp.rst:471 ../../src/udp.rst:506
 msgid "UDP handle. Should have been initialized with :c:func:`uv_udp_init`."
-msgstr ""
+msgstr "UDP 句柄。应已通过 :c:func:`uv_udp_init` 初始化。"
 
 #: ../../src/udp.rst:185
 msgid "An existing socket to associate with the handle."
-msgstr ""
+msgstr "要与句柄相关联的已有套接字。"
 
 #: ../../src/udp.rst:187
 msgid ""
 "Flags that control socket behavior, ``UV_UDP_REUSEADDR``, and "
 "``UV_UDP_REUSEPORT`` are supported."
-msgstr ""
+msgstr "控制套接字行为的标志，支持 ``UV_UDP_REUSEADDR`` 与 ``UV_UDP_REUSEPORT``。"
 
 #: ../../src/udp.rst
 msgid "返回"
-msgstr ""
+msgstr "返回"
 
 #: ../../src/udp.rst:190 ../../src/udp.rst:228 ../../src/udp.rst:258
 #: ../../src/udp.rst:295 ../../src/udp.rst:310 ../../src/udp.rst:327
@@ -206,7 +206,7 @@ msgstr ""
 #: ../../src/udp.rst:382 ../../src/udp.rst:395 ../../src/udp.rst:427
 #: ../../src/udp.rst:478 ../../src/udp.rst:509
 msgid "0 on success, or an error code < 0 on failure."
-msgstr ""
+msgstr "成功时返回 0，失败时返回小于 0 的错误码。"
 
 #: ../../src/udp.rst:198
 msgid ""
@@ -214,45 +214,45 @@ msgid ""
 " the datagram contract (works in unconnected mode, supports "
 "sendmsg()/recvmsg(), etc). In other words, other datagram-type sockets "
 "like raw sockets or netlink sockets can also be passed to this function."
-msgstr ""
+msgstr "仅限 Unix：对 `sock` 参数的唯一要求是它遵循数据报契约（可在未连接模式下工作、支持 sendmsg()/recvmsg() 等）。换句话说，其他数据报类型的套接字（如原始套接字或 netlink 套接字）也可以传给该函数。"
 
 #: ../../src/udp.rst:204
 msgid "the file descriptor is set to non-blocking mode."
-msgstr ""
+msgstr "文件描述符被设置为非阻塞模式。"
 
 #: ../../src/udp.rst:207
 msgid ""
 "The passed file descriptor or SOCKET is not checked for its type, but "
 "it's required that it represents a valid datagram socket."
-msgstr ""
+msgstr "不会检查传入的文件描述符或 SOCKET 的类型，但要求它是一个有效的数据报套接字。"
 
 #: ../../src/udp.rst:210
 msgid ""
 "Internally sets the SO_REUSEADDR socket option unconditionally. This "
 "means the reuse flag is always enabled, regardless of user intent. For "
 "more control use :c:func:`uv_udp_open_ex`."
-msgstr ""
+msgstr "内部会无条件设置 SO_REUSEADDR 套接字选项。这意味着无论用户意图如何，重用标志始终处于启用状态。如需更多控制，请使用 :c:func:`uv_udp_open_ex`。"
 
 #: ../../src/udp.rst:216
 msgid "Bind the UDP handle to an IP address and port."
-msgstr ""
+msgstr "将 UDP 句柄绑定到 IP 地址和端口。"
 
 #: ../../src/udp.rst:221
 msgid ""
 "`struct sockaddr_in` or `struct sockaddr_in6` with the address and port "
 "to bind to."
-msgstr ""
+msgstr "`struct sockaddr_in` 或 `struct sockaddr_in6`，包含要绑定的地址和端口。"
 
 #: ../../src/udp.rst:224
 msgid ""
 "Indicate how the socket will be bound, ``UV_UDP_IPV6ONLY``, "
 "``UV_UDP_REUSEADDR``, ``UV_UDP_REUSEPORT``, and ``UV_UDP_RECVERR`` are "
 "supported."
-msgstr ""
+msgstr "指示套接字将以何种方式绑定，支持 ``UV_UDP_IPV6ONLY``、``UV_UDP_REUSEADDR``、``UV_UDP_REUSEPORT`` 与 ``UV_UDP_RECVERR``。"
 
 #: ../../src/udp.rst:230
 msgid "added the ``UV_UDP_REUSEPORT`` flag."
-msgstr ""
+msgstr "新增了 ``UV_UDP_REUSEPORT`` 标志。"
 
 #: ../../src/udp.rst:233
 msgid ""
@@ -265,7 +265,7 @@ msgid ""
 "For platforms where `SO_REUSEPORT`s don't have the capability of load "
 "balancing, specifying both ``UV_UDP_REUSEADDR`` and ``UV_UDP_REUSEPORT`` "
 "in flags will fail, returning an UV_ENOTSUP error."
-msgstr ""
+msgstr "``UV_UDP_REUSEPORT`` 标志目前仅在 Linux 3.9+、DragonFlyBSD 3.6+、FreeBSD 12.0+、Solaris 11.4 和 AIX 7.2.5+ 上可用。在其他平台上，该函数将返回 UV_ENOTSUP 错误。对于 `SO_REUSEPORT` 具备负载均衡能力的平台，允许在 flags 中同时指定 ``UV_UDP_REUSEADDR`` 与 ``UV_UDP_REUSEPORT``，且 `SO_REUSEPORT` 将始终覆盖 `SO_REUSEADDR` 的行为。对于 `SO_REUSEPORT` 不具备负载均衡能力的平台，在 flags 中同时指定 ``UV_UDP_REUSEADDR`` 与 ``UV_UDP_REUSEPORT`` 将会失败，并返回 UV_ENOTSUP 错误。"
 
 #: ../../src/udp.rst:245
 msgid ""
@@ -275,75 +275,75 @@ msgid ""
 " `uv_udp_connect()` on an already connected handle will result in an "
 "`UV_EISCONN` error. Trying to disconnect a handle that is not connected "
 "will return an `UV_ENOTCONN` error."
-msgstr ""
+msgstr "将 UDP 句柄关联到远端地址和端口，此后该句柄发送的每条消息都会自动发送到该目的地。以 `NULL` 作为 `addr` 调用此函数会断开句柄的连接。对已连接的句柄调用 `uv_udp_connect()` 将导致 `UV_EISCONN` 错误。尝试断开未连接的句柄将返回 `UV_ENOTCONN` 错误。"
 
 #: ../../src/udp.rst:255
 msgid ""
 "`struct sockaddr_in` or `struct sockaddr_in6` with the address and port "
 "to associate to."
-msgstr ""
+msgstr "`struct sockaddr_in` 或 `struct sockaddr_in6`，包含要关联的地址和端口。"
 
 #: ../../src/udp.rst:264
 msgid ""
 "Get the remote IP and port of the UDP handle on connected UDP handles. On"
 " unconnected handles, it returns `UV_ENOTCONN`."
-msgstr ""
+msgstr "获取已连接的 UDP 句柄的远端 IP 和端口。对未连接的句柄，返回 `UV_ENOTCONN`。"
 
 #: ../../src/udp.rst:267 ../../src/udp.rst:285
 msgid ""
 "UDP handle. Should have been initialized with :c:func:`uv_udp_init` and "
 "bound."
-msgstr ""
+msgstr "UDP 句柄。应已通过 :c:func:`uv_udp_init` 初始化并绑定。"
 
 #: ../../src/udp.rst:270 ../../src/udp.rst:288
 msgid ""
 "Pointer to the structure to be filled with the address data. In order to "
 "support IPv4 and IPv6 `struct sockaddr_storage` should be used."
-msgstr ""
+msgstr "指向将被填入地址数据的结构的指针。为了同时支持 IPv4 和 IPv6，应使用 `struct sockaddr_storage`。"
 
 #: ../../src/udp.rst:274 ../../src/udp.rst:292
 msgid ""
 "On input it indicates the data of the `name` field. On output it "
 "indicates how much of it was filled."
-msgstr ""
+msgstr "输入时它表示 `name` 字段的数据，输出时它表示其中被填充了多少。"
 
 #: ../../src/udp.rst:277
 msgid "0 on success, or an error code < 0 on failure"
-msgstr ""
+msgstr "成功时返回 0，失败时返回小于 0 的错误码"
 
 #: ../../src/udp.rst:283
 msgid "Get the local IP and port of the UDP handle."
-msgstr ""
+msgstr "获取 UDP 句柄的本地 IP 和端口。"
 
 #: ../../src/udp.rst:299
 msgid "Set membership for a multicast address"
-msgstr ""
+msgstr "为组播地址设置成员关系"
 
 #: ../../src/udp.rst:304 ../../src/udp.rst:319
 msgid "Multicast address to set membership for."
-msgstr ""
+msgstr "要设置成员关系的组播地址。"
 
 #: ../../src/udp.rst:306 ../../src/udp.rst:321
 msgid "Interface address."
-msgstr ""
+msgstr "接口地址。"
 
 #: ../../src/udp.rst:308 ../../src/udp.rst:325
 msgid "Should be ``UV_JOIN_GROUP`` or ``UV_LEAVE_GROUP``."
-msgstr ""
+msgstr "应为 ``UV_JOIN_GROUP`` 或 ``UV_LEAVE_GROUP``。"
 
 #: ../../src/udp.rst:314
 msgid "Set membership for a source-specific multicast group."
-msgstr ""
+msgstr "为特定源组播组设置成员关系。"
 
 #: ../../src/udp.rst:323
 msgid "Source address."
-msgstr ""
+msgstr "源地址。"
 
 #: ../../src/udp.rst:333
 msgid ""
 "Set IP multicast loop flag. Makes multicast packets loop back to local "
 "sockets."
-msgstr ""
+msgstr "设置 IP 组播环回标志。使组播数据包环回到本地套接字。"
 
 #: ../../src/udp.rst:336 ../../src/udp.rst:349 ../../src/udp.rst:362
 #: ../../src/udp.rst:375 ../../src/udp.rst:388
@@ -352,104 +352,104 @@ msgid ""
 " either ``AF_INET`` or ``AF_INET6``, or have been bound to an address "
 "explicitly with :c:func:`uv_udp_bind`, or implicitly with "
 ":c:func:`uv_udp_send` or :c:func:`uv_udp_recv_start`."
-msgstr ""
+msgstr "UDP 句柄。应已通过 :c:func:`uv_udp_init_ex` 以 ``AF_INET`` 或 ``AF_INET6`` 之一初始化，或已通过 :c:func:`uv_udp_bind` 显式绑定到某个地址，或已通过 :c:func:`uv_udp_send` 或 :c:func:`uv_udp_recv_start` 隐式绑定。"
 
 #: ../../src/udp.rst:341 ../../src/udp.rst:380
 msgid "1 for on, 0 for off."
-msgstr ""
+msgstr "1 表示开启，0 表示关闭。"
 
 #: ../../src/udp.rst:347
 msgid "Set the multicast ttl."
-msgstr ""
+msgstr "设置组播 TTL。"
 
 #: ../../src/udp.rst:354 ../../src/udp.rst:393
 msgid "1 through 255."
-msgstr ""
+msgstr "1 到 255。"
 
 #: ../../src/udp.rst:360
 msgid "Set the multicast interface to send or receive data on."
-msgstr ""
+msgstr "设置用于发送或接收数据的组播接口。"
 
 #: ../../src/udp.rst:367
 msgid "interface address."
-msgstr ""
+msgstr "接口地址。"
 
 #: ../../src/udp.rst:373
 msgid "Set broadcast on or off."
-msgstr ""
+msgstr "开启或关闭广播。"
 
 #: ../../src/udp.rst:386
 msgid "Set the time to live."
-msgstr ""
+msgstr "设置生存时间。"
 
 #: ../../src/udp.rst:399
 msgid ""
 "Send data over the UDP socket. If the socket has not previously been "
 "bound with :c:func:`uv_udp_bind` it will be bound to 0.0.0.0 (the \"all "
 "interfaces\" IPv4 address) and a random port number."
-msgstr ""
+msgstr "通过 UDP 套接字发送数据。若套接字此前尚未用 :c:func:`uv_udp_bind` 绑定，它将被绑定到 0.0.0.0（“所有接口”的 IPv4 地址）和一个随机端口号。"
 
 #: ../../src/udp.rst:403
 msgid ""
 "On Windows if the `addr` is initialized to point to an unspecified "
 "address (``0.0.0.0`` or ``::``) it will be changed to point to "
 "``localhost``. This is done to match the behavior of Linux systems."
-msgstr ""
+msgstr "在 Windows 上，如果 `addr` 被初始化为指向未指定地址（``0.0.0.0`` 或 ``::``），它将被改为指向 ``localhost``。这样做是为了与 Linux 系统的行为保持一致。"
 
 #: ../../src/udp.rst:407 ../../src/udp.rst:439
 msgid ""
 "For connected UDP handles, `addr` must be set to `NULL`, otherwise it "
 "will return `UV_EISCONN` error."
-msgstr ""
+msgstr "对已连接的 UDP 句柄，`addr` 必须设为 `NULL`，否则将返回 `UV_EISCONN` 错误。"
 
 #: ../../src/udp.rst:410 ../../src/udp.rst:442
 msgid ""
 "For connectionless UDP handles, `addr` cannot be `NULL`, otherwise it "
 "will return `UV_EDESTADDRREQ` error."
-msgstr ""
+msgstr "对无连接的 UDP 句柄，`addr` 不能为 `NULL`，否则将返回 `UV_EDESTADDRREQ` 错误。"
 
 #: ../../src/udp.rst:413
 msgid "UDP request handle. Need not be initialized."
-msgstr ""
+msgstr "UDP 请求句柄。无需初始化。"
 
 #: ../../src/udp.rst:418
 msgid "List of buffers to send."
-msgstr ""
+msgstr "要发送的缓冲区列表。"
 
 #: ../../src/udp.rst:420
 msgid "Number of buffers in `bufs`."
-msgstr ""
+msgstr "`bufs` 中缓冲区的数量。"
 
 #: ../../src/udp.rst:422
 msgid ""
 "`struct sockaddr_in` or `struct sockaddr_in6` with the address and port "
 "of the remote peer."
-msgstr ""
+msgstr "`struct sockaddr_in` 或 `struct sockaddr_in6`，包含对端的地址和端口。"
 
 #: ../../src/udp.rst:425
 msgid "Callback to invoke when the data has been sent out."
-msgstr ""
+msgstr "数据发送完成后要调用的回调。"
 
 #: ../../src/udp.rst:429
 msgid "added ``0.0.0.0`` and ``::`` to ``localhost`` mapping"
-msgstr ""
+msgstr "新增了 ``0.0.0.0`` 和 ``::`` 到 ``localhost`` 的映射"
 
 #: ../../src/udp.rst:432 ../../src/udp.rst:449
 msgid "added support for connected sockets"
-msgstr ""
+msgstr "新增了对已连接套接字的支持"
 
 #: ../../src/udp.rst:436
 msgid ""
 "Same as :c:func:`uv_udp_send`, but won't queue a send request if it can't"
 " be completed immediately."
-msgstr ""
+msgstr "与 :c:func:`uv_udp_send` 相同，但在无法立即完成时不会将发送请求加入队列。"
 
 #: ../../src/udp.rst:445
 msgid ""
 ">= 0: number of bytes sent (it matches the given buffer size). < 0: "
 "negative error code (``UV_EAGAIN`` is returned when the message can't be "
 "sent immediately)."
-msgstr ""
+msgstr ">= 0：已发送的字节数（与给定的缓冲区大小一致）。< 0：负的错误码（当消息无法立即发送时返回 ``UV_EAGAIN``）。"
 
 #: ../../src/udp.rst:453
 msgid ""
@@ -458,7 +458,7 @@ msgid ""
 ":man:`sendmsg(2)` fallback loop for platforms that do not support the "
 "former. The handle must be fully initialized; call c:func:`uv_udp_bind` "
 "first."
-msgstr ""
+msgstr "与 :c:func:`uv_udp_try_send` 类似，但可以发送多个数据报。围绕 :man:`sendmmsg(2)` 的轻量抽象，对不支持前者的平台提供 :man:`sendmsg(2)` 回退循环。句柄必须已完全初始化；请先调用 c:func:`uv_udp_bind`。"
 
 #: ../../src/udp.rst:458
 msgid ""
@@ -466,22 +466,22 @@ msgid ""
 "negative error code. Only if sending the first datagram fails, otherwise "
 "returns a positive send count. ``UV_EAGAIN`` when datagrams cannot be "
 "sent right now; fall back to :c:func:`uv_udp_send`."
-msgstr ""
+msgstr ">= 0：已发送的数据报数量。仅当 `count` 为零时才为零。< 0：负的错误码。仅在发送第一个数据报失败时才出现，否则返回正的发送数量。数据报当前无法发送时为 ``UV_EAGAIN``；此时应回退到 :c:func:`uv_udp_send`。"
 
 #: ../../src/udp.rst:467
 msgid ""
 "Prepare for receiving data. If the socket has not previously been bound "
 "with :c:func:`uv_udp_bind` it is bound to 0.0.0.0 (the \"all interfaces\""
 " IPv4 address) and a random port number."
-msgstr ""
+msgstr "准备接收数据。若套接字此前尚未用 :c:func:`uv_udp_bind` 绑定，它会被绑定到 0.0.0.0（“所有接口”的 IPv4 地址）和一个随机端口号。"
 
 #: ../../src/udp.rst:474
 msgid "Callback to invoke when temporary storage is needed."
-msgstr ""
+msgstr "需要临时存储时调用的回调。"
 
 #: ../../src/udp.rst:476
 msgid "Callback to invoke with received data."
-msgstr ""
+msgstr "收到数据时要调用的回调。"
 
 #: ../../src/udp.rst:481
 msgid ""
@@ -489,48 +489,48 @@ msgid ""
 "is limited by the number of max size dgrams that will fit into the buffer"
 " allocated in `alloc_cb`, and `suggested_size` in `alloc_cb` for udp_recv"
 " is always set to the size of 1 max size dgram."
-msgstr ""
+msgstr "使用 :man:`recvmmsg(2)` 时，一次可接收的消息数量受限于在 `alloc_cb` 中分配的缓冲区能容纳的最大尺寸数据报个数；并且 `suggested_size` 在 udp_recv 的 `alloc_cb` 中总是被设置为单个最大尺寸数据报的大小。"
 
 #: ../../src/udp.rst:485
 msgid ""
 "added support for :man:`recvmmsg(2)` on supported platforms). The "
 ":c:type:`uv_alloc_cb` for this handle should create buffers that are "
 "multiples of 64 KiB."
-msgstr ""
+msgstr "在受支持的平台上新增了对 :man:`recvmmsg(2)` 的支持。此句柄的 :c:type:`uv_alloc_cb` 应创建 64 KiB 倍数大小的缓冲区。"
 
 #: ../../src/udp.rst:488
 msgid ""
 ":man:`recvmmsg(2)` support is no longer enabled implicitly, it must be "
 "explicitly requested by passing the `UV_UDP_RECVMMSG` flag to "
 ":c:func:`uv_udp_init_ex`."
-msgstr ""
+msgstr ":man:`recvmmsg(2)` 支持不再被隐式启用，必须通过向 :c:func:`uv_udp_init_ex` 传递 `UV_UDP_RECVMMSG` 标志来显式请求。"
 
 #: ../../src/udp.rst:491
 msgid ""
 ":c:func:`uv_udp_using_recvmmsg` can be used in `alloc_cb` to determine if"
 " a buffer sized for use with :man:`recvmmsg(2)` should be allocated for "
 "the current handle/platform."
-msgstr ""
+msgstr "可在 `alloc_cb` 中使用 :c:func:`uv_udp_using_recvmmsg` 来判断是否应为当前句柄/平台分配大小适用于 :man:`recvmmsg(2)` 的缓冲区。"
 
 #: ../../src/udp.rst:497
 msgid ""
 "Returns 1 if the UDP handle was created with the `UV_UDP_RECVMMSG` flag "
 "and the platform supports :man:`recvmmsg(2)`, 0 otherwise."
-msgstr ""
+msgstr "若 UDP 句柄创建时带有 `UV_UDP_RECVMMSG` 标志且平台支持 :man:`recvmmsg(2)`，则返回 1，否则返回 0。"
 
 #: ../../src/udp.rst:504
 msgid "Stop listening for incoming datagrams."
-msgstr ""
+msgstr "停止监听传入的数据报。"
 
 #: ../../src/udp.rst:513
 msgid "Returns `handle->send_queue_size`."
-msgstr ""
+msgstr "返回 `handle->send_queue_size`。"
 
 #: ../../src/udp.rst:519
 msgid "Returns `handle->send_queue_count`."
-msgstr ""
+msgstr "返回 `handle->send_queue_count`。"
 
 #: ../../src/udp.rst:523
 msgid "The :c:type:`uv_handle_t` API functions also apply."
-msgstr ""
+msgstr ":c:type:`uv_handle_t` 的 API 函数也同样适用。"
 

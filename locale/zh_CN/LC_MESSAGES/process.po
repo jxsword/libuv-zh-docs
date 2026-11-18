@@ -23,48 +23,48 @@ msgstr ""
 
 #: ../../src/process.rst:5
 msgid ":c:type:`uv_process_t` --- Process handle"
-msgstr ""
+msgstr ":c:type:`uv_process_t` —— Process 句柄"
 
 #: ../../src/process.rst:7
 msgid ""
 "Process handles will spawn a new process and allow the user to control it"
 " and establish communication channels with it using streams."
-msgstr ""
+msgstr "Process 句柄会派生一个新进程，并允许用户控制该进程以及使用流与之建立通信通道。"
 
 #: ../../src/process.rst:12
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/process.rst:16
 msgid "Process handle type."
-msgstr ""
+msgstr "Process 句柄类型。"
 
 #: ../../src/process.rst:20
 msgid "Options for spawning the process (passed to :c:func:`uv_spawn`."
-msgstr ""
+msgstr "派生进程的选项（传递给 :c:func:`uv_spawn`。"
 
 #: ../../src/process.rst:39
 msgid ""
 "Type definition for callback passed in :c:type:`uv_process_options_t` "
 "which will indicate the exit status and the signal that caused the "
 "process to terminate, if any."
-msgstr ""
+msgstr "传入 :c:type:`uv_process_options_t` 的回调的类型定义，该回调将指示退出状态以及导致进程终止的信号（如有）。"
 
 #: ../../src/process.rst:45
 msgid "Flags to be set on the flags field of :c:type:`uv_process_options_t`."
-msgstr ""
+msgstr "要设置到 :c:type:`uv_process_options_t` 的 flags 字段上的标志。"
 
 #: ../../src/process.rst:100
 msgid "Container for each stdio handle or fd passed to a child process."
-msgstr ""
+msgstr "传递给子进程的每个 stdio 句柄或 fd 的容器。"
 
 #: ../../src/process.rst:114
 msgid "Flags specifying how a stdio should be transmitted to the child process."
-msgstr ""
+msgstr "指定 stdio 应如何传输给子进程的标志。"
 
 #: ../../src/process.rst:171
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/process.rst:175
 msgid ""
@@ -72,19 +72,19 @@ msgid ""
 ":c:func:`uv_spawn` and retains the value even after the process exits. "
 "The value is only unique while the process is alive; after exit, another "
 "process may be reassigned the same PID."
-msgstr ""
+msgstr "被派生进程的 PID。它在调用 :c:func:`uv_spawn` 之后被设置，并且即使进程退出后仍保留该值。该值仅在进程存活期间是唯一的；退出后，另一个进程可能被重新分配同一个 PID。"
 
 #: ../../src/process.rst:181
 msgid "The :c:type:`uv_handle_t` members also apply."
-msgstr ""
+msgstr ":c:type:`uv_handle_t` 的成员也同样适用。"
 
 #: ../../src/process.rst:185
 msgid "Callback called after the process exits."
-msgstr ""
+msgstr "进程退出后调用的回调。"
 
 #: ../../src/process.rst:189
 msgid "Path pointing to the program to be executed."
-msgstr ""
+msgstr "指向要执行的程序的路径。"
 
 #: ../../src/process.rst:193
 msgid ""
@@ -93,21 +93,21 @@ msgid ""
 " string this can cause some strange errors. See the "
 "``UV_PROCESS_WINDOWS_VERBATIM_ARGUMENTS`` flag on "
 ":c:enum:`uv_process_flags`."
-msgstr ""
+msgstr "命令行参数。args[0] 应为程序的路径。在 Windows 上，这里会使用 `CreateProcess` 将参数拼接成一个字符串，这可能引发一些奇怪的错误。参见 :c:enum:`uv_process_flags` 中的 ``UV_PROCESS_WINDOWS_VERBATIM_ARGUMENTS`` 标志。"
 
 #: ../../src/process.rst:200
 msgid "Environment for the new process. If NULL the parents environment is used."
-msgstr ""
+msgstr "新进程的环境。若为 NULL，则使用父进程的环境。"
 
 #: ../../src/process.rst:204
 msgid "Current working directory for the subprocess."
-msgstr ""
+msgstr "子进程的当前工作目录。"
 
 #: ../../src/process.rst:208
 msgid ""
 "Various flags that control how :c:func:`uv_spawn` behaves. See "
 ":c:enum:`uv_process_flags`."
-msgstr ""
+msgstr "控制 :c:func:`uv_spawn` 行为的各种标志。参见 :c:enum:`uv_process_flags`。"
 
 #: ../../src/process.rst:214
 msgid ""
@@ -115,60 +115,60 @@ msgid ""
 "structs that describe the file descriptors that will be made available to"
 " the child process. The convention is that stdio[0] points to stdin, fd 1"
 " is used for stdout, and fd 2 is stderr."
-msgstr ""
+msgstr "`stdio` 字段指向一个由 :c:type:`uv_stdio_container_t` 结构体组成的数组，这些结构体描述了将提供给子进程的文件描述符。按惯例，stdio[0] 指向 stdin，fd 1 用于 stdout，fd 2 用于 stderr。"
 
 #: ../../src/process.rst:220
 msgid ""
 "On Windows file descriptors greater than 2 are available to the child "
 "process only if the child processes uses the MSVCRT runtime."
-msgstr ""
+msgstr "在 Windows 上，只有当子进程使用 MSVCRT 运行时时，大于 2 的文件描述符才对子进程可用。"
 
 #: ../../src/process.rst:226
 msgid ""
 "Libuv can change the child process' user/group id. This happens only when"
 " the appropriate bits are set in the flags fields."
-msgstr ""
+msgstr "Libuv 可以更改子进程的用户/组 id。这只在 flags 字段中设置了相应位时才会发生。"
 
 #: ../../src/process.rst:230
 msgid ""
 "This is not supported on Windows, :c:func:`uv_spawn` will fail and set "
 "the error to ``UV_ENOTSUP``."
-msgstr ""
+msgstr "Windows 不支持此功能，:c:func:`uv_spawn` 将失败并把错误设置为 ``UV_ENOTSUP``。"
 
 #: ../../src/process.rst:235
 msgid "Flags specifying how the stdio container should be passed to the child."
-msgstr ""
+msgstr "指定 stdio 容器应如何传递给子进程的标志。"
 
 #: ../../src/process.rst:239
 msgid ""
 "Union containing either the `stream` or `fd` to be passed on to the child"
 " process."
-msgstr ""
+msgstr "包含要传递给子进程的 `stream` 或 `fd` 的联合体。"
 
 #: ../../src/process.rst:244
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/process.rst:248
 msgid ""
 "Disables inheritance for file descriptors / handles that this process "
 "inherited from its parent. The effect is that child processes spawned by "
 "this process don't accidentally inherit these handles."
-msgstr ""
+msgstr "对本进程从其父进程继承的文件描述符/句柄禁用继承。其效果是，由本进程派生的子进程不会意外继承这些句柄。"
 
 #: ../../src/process.rst:252
 msgid ""
 "It is recommended to call this function as early in your program as "
 "possible, before the inherited file descriptors can be closed or "
 "duplicated."
-msgstr ""
+msgstr "建议在程序中尽可能早地、在继承的文件描述符可能被关闭或复制之前调用此函数。"
 
 #: ../../src/process.rst:256
 msgid ""
 "This function works on a best-effort basis: there is no guarantee that "
 "libuv can discover all file descriptors that were inherited. In general "
 "it does a better job on Windows than it does on Unix."
-msgstr ""
+msgstr "此函数以尽力而为的方式工作：无法保证 libuv 能发现所有被继承的文件描述符。总体而言，它在 Windows 上比在 Unix 上做得更好。"
 
 #: ../../src/process.rst:262
 msgid ""
@@ -178,7 +178,7 @@ msgid ""
 "returned. Note that either way-success or failure--you must eventually "
 "call :c:func:`uv_close` to close the handle again before freeing the "
 "memory of the handle, unlike other the other init functions in libuv."
-msgstr ""
+msgstr "初始化 Process 句柄并启动进程。如果进程成功派生，此函数将返回 0。否则，返回与无法派生的原因相对应的负数错误码。注意，无论成功还是失败——最终都必须调用 :c:func:`uv_close` 在释放句柄内存之前再次关闭句柄，这与 libuv 中的其他 init 函数不同。"
 
 #: ../../src/process.rst:269
 msgid ""
@@ -186,31 +186,31 @@ msgid ""
 "to) the file to execute not existing, not having permissions to use the "
 "setuid or setgid specified, or not having enough memory to allocate for "
 "the new process."
-msgstr ""
+msgstr "派生失败的可能原因包括（但不限于）：要执行的文件不存在、没有权限使用所指定的 setuid 或 setgid，或者没有足够的内存供新进程分配。"
 
 #: ../../src/process.rst:275
 msgid ""
 "On unix, if the process has not yet exited when you call `uv_close`, you "
 "will create a zombie that libuv cannot reap. You are responsible for "
 "calling `waitpid` later. This is not relevant on Windows."
-msgstr ""
+msgstr "在 Unix 上，如果调用 `uv_close` 时进程尚未退出，就会产生一个 libuv 无法回收的僵尸进程。你需要负责稍后调用 `waitpid`。这在 Windows 上并不适用。"
 
 #: ../../src/process.rst:279
 msgid ""
 "Added `UV_PROCESS_WINDOWS_HIDE_CONSOLE` and `UV_PROCESS_WINDOWS_HIDE_GUI`"
 " flags."
-msgstr ""
+msgstr "新增 `UV_PROCESS_WINDOWS_HIDE_CONSOLE` 和 `UV_PROCESS_WINDOWS_HIDE_GUI` 标志。"
 
 #: ../../src/process.rst:282
 msgid "Added the `UV_PROCESS_WINDOWS_FILE_PATH_EXACT_NAME` flag."
-msgstr ""
+msgstr "新增 `UV_PROCESS_WINDOWS_FILE_PATH_EXACT_NAME` 标志。"
 
 #: ../../src/process.rst:287
 msgid ""
 "Sends the specified signal to the given process handle. Check the "
 "documentation on :c:ref:`signal` for signal support, specially on "
 "Windows."
-msgstr ""
+msgstr "向给定的 Process 句柄发送指定的信号。信号的支持情况请查阅 :c:ref:`signal` 的文档，尤其是在 Windows 上。"
 
 #: ../../src/process.rst:290
 msgid ""
@@ -218,19 +218,19 @@ msgid ""
 "process which happened to reuse the same pid. By contrast, `uv_kill` may "
 "kill an arbitrary other process if you use a cached value of "
 ":c:func:`uv_process_get_pid`."
-msgstr ""
+msgstr "如果指定的进程已经死亡，这不会杀死碰巧复用了同一 pid 的另一个进程。相比之下，`uv_kill` 可能会杀死任意另一个进程——如果你使用的是 :c:func:`uv_process_get_pid` 的缓存值。"
 
 #: ../../src/process.rst:297
 msgid ""
 "Sends the specified signal to the given PID. Check the documentation on "
 ":c:ref:`signal` for signal support, specially on Windows."
-msgstr ""
+msgstr "向给定的 PID 发送指定的信号。信号的支持情况请查阅 :c:ref:`signal` 的文档，尤其是在 Windows 上。"
 
 #: ../../src/process.rst:302
 msgid "Returns `handle->pid`."
-msgstr ""
+msgstr "返回 `handle->pid`。"
 
 #: ../../src/process.rst:306
 msgid "The :c:type:`uv_handle_t` API functions also apply."
-msgstr ""
+msgstr ":c:type:`uv_handle_t` 的 API 函数也同样适用。"
 

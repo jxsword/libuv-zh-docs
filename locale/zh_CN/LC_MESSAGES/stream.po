@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../../src/stream.rst:5
 msgid ":c:type:`uv_stream_t` --- Stream handle"
-msgstr ""
+msgstr ":c:type:`uv_stream_t` —— Stream 句柄"
 
 #: ../../src/stream.rst:7
 msgid ""
@@ -31,23 +31,23 @@ msgid ""
 ":c:type:`uv_stream_t` is an abstract type, libuv provides 3 stream "
 "implementations in the form of :c:type:`uv_tcp_t`, :c:type:`uv_pipe_t` "
 "and :c:type:`uv_tty_t`."
-msgstr ""
+msgstr "Stream 句柄为双工通信通道提供了一层抽象。:c:type:`uv_stream_t` 是一个抽象类型，libuv 以 :c:type:`uv_tcp_t`、:c:type:`uv_pipe_t` 和 :c:type:`uv_tty_t` 的形式提供了 3 种流的实现。"
 
 #: ../../src/stream.rst:13
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/stream.rst:17
 msgid "Stream handle type."
-msgstr ""
+msgstr "Stream 句柄类型。"
 
 #: ../../src/stream.rst:21
 msgid "Connect request type."
-msgstr ""
+msgstr "连接请求类型。"
 
 #: ../../src/stream.rst:25
 msgid "Shutdown request type."
-msgstr ""
+msgstr "关闭请求类型。"
 
 #: ../../src/stream.rst:29
 msgid ""
@@ -56,11 +56,11 @@ msgid ""
 "with ``uv_write`` will be queued. Reusing objects at this point is "
 "undefined behaviour. It is safe to reuse the ``uv_write_t`` object only "
 "after the callback passed to ``uv_write`` is fired."
-msgstr ""
+msgstr "写入请求类型。复用此类型的对象时必须格外小心。当流处于非阻塞模式时，通过 ``uv_write`` 发送的写入请求会被加入队列。此时复用对象属于未定义行为。复用 ``uv_write_t`` 对象只有在传给 ``uv_write`` 的回调被触发之后才是安全的。"
 
 #: ../../src/stream.rst:37
 msgid "Callback called when data was read on a stream."
-msgstr ""
+msgstr "在流上读取到数据时调用的回调。"
 
 #: ../../src/stream.rst:39
 msgid ""
@@ -68,84 +68,84 @@ msgid ""
 "reached EOF, `nread` will be set to ``UV_EOF``. When `nread` < 0, the "
 "`buf` parameter might not point to a valid buffer; in that case `buf.len`"
 " and `buf.base` are both set to 0."
-msgstr ""
+msgstr "若有数据可用则 `nread` > 0，出错时则 < 0。当到达 EOF 时，`nread` 会被设为 ``UV_EOF``。当 `nread` < 0 时，`buf` 参数可能不指向有效的缓冲区；此时 `buf.len` 和 `buf.base` 都会被置为 0。"
 
 #: ../../src/stream.rst:45
 msgid ""
 "`nread` might be 0, which does *not* indicate an error or EOF. This is "
 "equivalent to ``EAGAIN`` or ``EWOULDBLOCK`` under ``read(2)``."
-msgstr ""
+msgstr "`nread` 可能为 0，这 *并不* 表示出现错误或 EOF。这等价于 ``EAGAIN`` 或 ``EWOULDBLOCK`` 在 ``read(2)`` 下的情形。"
 
 #: ../../src/stream.rst:48
 msgid ""
 "The callee is responsible for stopping/closing the stream when an error "
 "happens by calling :c:func:`uv_read_stop` or :c:func:`uv_close`. Trying "
 "to read from the stream again is undefined."
-msgstr ""
+msgstr "发生错误时，被调用方负责调用 :c:func:`uv_read_stop` 或 :c:func:`uv_close` 来停止/关闭流。再次尝试从该流读取数据是未定义的。"
 
 #: ../../src/stream.rst:52
 msgid ""
 "The callee is responsible for freeing the buffer, libuv does not reuse "
 "it. The buffer may be a null buffer (where `buf->base` == NULL and "
 "`buf->len` == 0) on error."
-msgstr ""
+msgstr "被调用方负责释放缓冲区，libuv 不会复用它。出错时缓冲区可能是 null 缓冲区（即 `buf->base` == NULL 且 `buf->len` == 0）。"
 
 #: ../../src/stream.rst:58
 msgid ""
 "Callback called after data was written on a stream. `status` will be 0 in"
 " case of success, < 0 otherwise."
-msgstr ""
+msgstr "在流上写入数据后调用的回调。`status` 成功时为 0，否则 < 0。"
 
 #: ../../src/stream.rst:63
 msgid ""
 "Callback called after a connection started by :c:func:`uv_connect` is "
 "done. `status` will be 0 in case of success, < 0 otherwise."
-msgstr ""
+msgstr "由 :c:func:`uv_connect` 发起的连接完成后调用的回调。`status` 成功时为 0，否则 < 0。"
 
 #: ../../src/stream.rst:68
 msgid ""
 "Callback called after a shutdown request has been completed. `status` "
 "will be 0 in case of success, < 0 otherwise."
-msgstr ""
+msgstr "关闭请求完成后调用的回调。`status` 成功时为 0，否则 < 0。"
 
 #: ../../src/stream.rst:73
 msgid ""
 "Callback called when a stream server has received an incoming connection."
 " The user can accept the connection by calling :c:func:`uv_accept`. "
 "`status` will be 0 in case of success, < 0 otherwise."
-msgstr ""
+msgstr "流服务器收到传入连接时调用的回调。用户可以通过调用 :c:func:`uv_accept` 来接受该连接。`status` 成功时为 0，否则 < 0。"
 
 #: ../../src/stream.rst:79
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/stream.rst:83
 msgid "Contains the amount of queued bytes waiting to be sent. Readonly."
-msgstr ""
+msgstr "包含等待发送的已排队字节数。只读。"
 
 #: ../../src/stream.rst:87
 msgid "Pointer to the stream where this connection request is running."
-msgstr ""
+msgstr "指向运行此连接请求的流的指针。"
 
 #: ../../src/stream.rst:91
 msgid "Pointer to the stream where this shutdown request is running."
-msgstr ""
+msgstr "指向运行此关闭请求的流的指针。"
 
 #: ../../src/stream.rst:95
 msgid "Pointer to the stream where this write request is running."
-msgstr ""
+msgstr "指向运行此写入请求的流的指针。"
 
 #: ../../src/stream.rst:99
 msgid "Pointer to the stream being sent using this write request."
-msgstr ""
+msgstr "指向通过此写入请求发送的流的指针。"
 
 #: ../../src/stream.rst:101
 msgid "The :c:type:`uv_handle_t` members also apply."
-msgstr ""
+msgstr ":c:type:`uv_handle_t` 的成员也同样适用。"
 
 #: ../../src/stream.rst:105
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/stream.rst:109
 msgid ""
@@ -153,7 +153,7 @@ msgid ""
 "pending write requests to complete. The `handle` should refer to a "
 "initialized stream. `req` should be an uninitialized shutdown request "
 "struct. The `cb` is called after shutdown is complete."
-msgstr ""
+msgstr "关闭双工流的输出（写）端。它会等待尚未完成的写入请求执行完毕。`handle` 应引用一个已初始化的流。`req` 应是一个未初始化的关闭请求结构体。`cb` 会在关闭完成后被调用。"
 
 #: ../../src/stream.rst:116
 msgid ""
@@ -161,7 +161,7 @@ msgid ""
 "of connections the kernel might queue, same as :man:`listen(2)`. When a "
 "new incoming connection is received the :c:type:`uv_connection_cb` "
 "callback is called."
-msgstr ""
+msgstr "开始监听传入连接。`backlog` 表示内核可能排队的连接数，与 :man:`listen(2)` 相同。当收到新的传入连接时，会调用 :c:type:`uv_connection_cb` 回调。"
 
 #: ../../src/stream.rst:123
 msgid ""
@@ -170,7 +170,7 @@ msgid ""
 ":c:type:`uv_connection_cb` to accept the connection. Before calling this "
 "function the client handle must be initialized. < 0 return value "
 "indicates an error."
-msgstr ""
+msgstr "此调用与 :c:func:`uv_listen` 配合使用，用于接受传入连接。在收到 :c:type:`uv_connection_cb` 之后调用此函数以接受连接。调用此函数前，client 句柄必须已初始化。返回值 < 0 表示出错。"
 
 #: ../../src/stream.rst:128
 msgid ""
@@ -178,18 +178,18 @@ msgid ""
 "that this function will complete successfully the first time. If you "
 "attempt to use it more than once, it may fail. It is suggested to only "
 "call this function once per :c:type:`uv_connection_cb` call."
-msgstr ""
+msgstr "当 :c:type:`uv_connection_cb` 回调被调用时，保证此函数第一次会成功完成。若尝试多次使用它，则可能失败。建议每次 :c:type:`uv_connection_cb` 调用只调用一次此函数。"
 
 #: ../../src/stream.rst:134
 msgid "`server` and `client` must be handles running on the same loop."
-msgstr ""
+msgstr "`server` 和 `client` 必须是运行在同一个事件循环上的句柄。"
 
 #: ../../src/stream.rst:138
 msgid ""
 "Read data from an incoming stream. The :c:type:`uv_read_cb` callback will"
 " be made several times until there is no more data to read or "
 ":c:func:`uv_read_stop` is called."
-msgstr ""
+msgstr "从传入流中读取数据。:c:type:`uv_read_cb` 回调会被调用多次，直到没有更多数据可读或调用了 :c:func:`uv_read_stop` 为止。"
 
 #: ../../src/stream.rst:142
 msgid ""
@@ -197,17 +197,17 @@ msgid ""
 "called twice, and `UV_EINVAL` when the stream is closing. With older "
 "libuv versions, it returns `UV_EALREADY` on Windows but not UNIX, and "
 "`UV_EINVAL` on UNIX but not Windows."
-msgstr ""
+msgstr ":c:func:`uv_read_start` 现在在被调用两次时会一致地返回 `UV_EALREADY`，在流正在关闭时返回 `UV_EINVAL`。在较旧的 libuv 版本中，它在 Windows 上返回 `UV_EALREADY` 而 UNIX 上不返回，在 UNIX 上返回 `UV_EINVAL` 而 Windows 上不返回。"
 
 #: ../../src/stream.rst:149
 msgid ""
 "Stop reading data from the stream. The :c:type:`uv_read_cb` callback will"
 " no longer be called."
-msgstr ""
+msgstr "停止从流中读取数据。:c:type:`uv_read_cb` 回调将不再被调用。"
 
 #: ../../src/stream.rst:152
 msgid "This function is idempotent and may be safely called on a stopped stream."
-msgstr ""
+msgstr "此函数是幂等的，可以安全地在已停止的流上调用。"
 
 #: ../../src/stream.rst:154
 msgid ""
@@ -215,68 +215,68 @@ msgid ""
 "unnecessary. A non-zero return indicates that finishing releasing "
 "resources may be pending on the next input event on that TTY on Windows, "
 "and does not indicate failure."
-msgstr ""
+msgstr "此函数总是成功；因此，无需检查其返回值。非零返回值表示资源释放的收尾可能要等待 Windows 上该 TTY 的下一个输入事件，并不表示失败。"
 
 #: ../../src/stream.rst:161
 msgid "Write data to stream. Buffers are written in order. Example:"
-msgstr ""
+msgstr "向流中写入数据。缓冲区按顺序写入。示例："
 
 #: ../../src/stream.rst:187
 msgid ""
 "The memory pointed to by the buffers must remain valid until the callback"
 " gets called. This also holds for :c:func:`uv_write2`."
-msgstr ""
+msgstr "缓冲区所指向的内存必须保持有效，直到回调被调用为止。:c:func:`uv_write2` 也同样如此。"
 
 #: ../../src/stream.rst:192
 msgid ""
 "Extended write function for sending handles over a pipe. The pipe must be"
 " initialized with `ipc` == 1."
-msgstr ""
+msgstr "通过管道发送句柄的扩展写入函数。该管道必须以 `ipc` == 1 初始化。"
 
 #: ../../src/stream.rst:196
 msgid ""
 "`send_handle` must be a TCP, pipe and UDP handle on Unix, or a TCP handle"
 " on Windows, which is a server or a connection (listening or connected "
 "state). Bound sockets or pipes will be assumed to be servers."
-msgstr ""
+msgstr "`send_handle` 在 Unix 上必须是 TCP、pipe 或 UDP 句柄，在 Windows 上必须是 TCP 句柄，且必须是服务器或连接（处于监听或已连接状态）。已绑定的套接字或管道将被视为服务器。"
 
 #: ../../src/stream.rst:202
 msgid ""
 "Same as :c:func:`uv_write`, but won't queue a write request if it can't "
 "be completed immediately."
-msgstr ""
+msgstr "与 :c:func:`uv_write` 相同，但如果写入请求无法立即完成，则不会将其加入队列。"
 
 #: ../../src/stream.rst:205
 msgid "Will return either:"
-msgstr ""
+msgstr "将返回以下二者之一："
 
 #: ../../src/stream.rst:207
 msgid "> 0: number of bytes written (can be less than the supplied buffer size)."
-msgstr ""
+msgstr "> 0：写入的字节数（可能小于所提供的缓冲区大小）。"
 
 #: ../../src/stream.rst:208
 msgid ""
 "< 0: negative error code (``UV_EAGAIN`` is returned if no data can be "
 "sent immediately)."
-msgstr ""
+msgstr "< 0：负的错误码（若无法立即发送任何数据，则返回 ``UV_EAGAIN``）。"
 
 #: ../../src/stream.rst:213
 msgid ""
 "Same as :c:func:`uv_try_write` and extended write function for sending "
 "handles over a pipe like c:func:`uv_write2`."
-msgstr ""
+msgstr "与 :c:func:`uv_try_write` 相同，也是通过管道发送句柄的扩展写入函数，类似 c:func:`uv_write2`。"
 
 #: ../../src/stream.rst:216
 msgid ""
 "Try to send a handle is not supported on Windows, where it returns "
 "``UV_EAGAIN``."
-msgstr ""
+msgstr "在 Windows 上不支持尝试发送句柄，此时会返回 ``UV_EAGAIN``。"
 
 #: ../../src/stream.rst:223
 msgid ""
 "Returns the number of bytes written by a write request. Only valid when "
 "called from within the write callback (:c:type:`uv_write_cb`)."
-msgstr ""
+msgstr "返回写入请求已写入的字节数。仅在写入回调（:c:type:`uv_write_cb`）内调用时有效。"
 
 #: ../../src/stream.rst:226
 msgid ""
@@ -286,19 +286,19 @@ msgid ""
 " that cancelled writes may still succeed or fail with other errors if the"
 " kernel finished processing the write before the cancellation took "
 "effect."
-msgstr ""
+msgstr "这主要用于写入已通过 :c:func:`uv_cancel` 被取消且回调接收到 ``UV_ECANCELED`` 状态的情况，用于确定在取消之前实际写入了多少字节。注意，若内核在取消生效之前已完成对该写入的处理，被取消的写入仍可能成功或因其他错误而失败。"
 
 #: ../../src/stream.rst:237
 msgid "Returns 1 if the stream is readable, 0 otherwise."
-msgstr ""
+msgstr "若流可读则返回 1，否则返回 0。"
 
 #: ../../src/stream.rst:241
 msgid "Returns 1 if the stream is writable, 0 otherwise."
-msgstr ""
+msgstr "若流可写则返回 1，否则返回 0。"
 
 #: ../../src/stream.rst:245
 msgid "Enable or disable blocking mode for a stream."
-msgstr ""
+msgstr "为流启用或禁用阻塞模式。"
 
 #: ../../src/stream.rst:247
 msgid ""
@@ -306,19 +306,19 @@ msgid ""
 "interface remains unchanged otherwise, e.g. completion or failure of the "
 "operation will still be reported through a callback which is made "
 "asynchronously."
-msgstr ""
+msgstr "启用阻塞模式后，所有写入都会同步完成。除此之外，接口保持不变，例如操作的完成或失败仍将通过异步调用的回调来报告。"
 
 #: ../../src/stream.rst:253
 msgid ""
 "Relying too much on this API is not recommended. It is likely to change "
 "significantly in the future."
-msgstr ""
+msgstr "不建议过度依赖此 API。它在未来很可能发生重大变化。"
 
 #: ../../src/stream.rst:256
 msgid ""
 "Currently only works on Windows for :c:type:`uv_pipe_t` handles. On UNIX "
 "platforms, all :c:type:`uv_stream_t` handles are supported."
-msgstr ""
+msgstr "目前在 Windows 上仅对 :c:type:`uv_pipe_t` 句柄有效。在 UNIX 平台上，所有 :c:type:`uv_stream_t` 句柄均受支持。"
 
 #: ../../src/stream.rst:259
 msgid ""
@@ -326,17 +326,17 @@ msgid ""
 "is changed after write requests have already been submitted. Therefore it"
 " is recommended to set the blocking mode immediately after opening or "
 "creating the stream."
-msgstr ""
+msgstr "此外，若在写入请求已提交之后才更改阻塞模式，libuv 目前不提供任何顺序保证。因此建议在打开或创建流之后立即设置阻塞模式。"
 
 #: ../../src/stream.rst:264
 msgid "UNIX implementation added."
-msgstr ""
+msgstr "新增了 UNIX 实现。"
 
 #: ../../src/stream.rst:268
 msgid "Returns `stream->write_queue_size`."
-msgstr ""
+msgstr "返回 `stream->write_queue_size`。"
 
 #: ../../src/stream.rst:272
 msgid "The :c:type:`uv_handle_t` API functions also apply."
-msgstr ""
+msgstr ":c:type:`uv_handle_t` 的 API 函数也同样适用。"
 
