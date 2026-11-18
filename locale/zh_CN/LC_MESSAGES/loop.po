@@ -23,106 +23,106 @@ msgstr ""
 
 #: ../../src/loop.rst:5
 msgid ":c:type:`uv_loop_t` --- Event loop"
-msgstr ""
+msgstr ":c:type:`uv_loop_t` —— 事件循环"
 
 #: ../../src/loop.rst:7
 msgid ""
 "The event loop is the central part of libuv's functionality. It takes "
 "care of polling for i/o and scheduling callbacks to be run based on "
 "different sources of events."
-msgstr ""
+msgstr "事件循环是 libuv 功能的核心部分。它负责对 I/O 进行轮询，并根据不同的事件来源调度回调的运行。"
 
 #: ../../src/loop.rst:13
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/loop.rst:17
 msgid "Loop data type."
-msgstr ""
+msgstr "循环数据类型。"
 
 #: ../../src/loop.rst:21
 msgid "Additional loop options. See :c:func:`uv_loop_configure`."
-msgstr ""
+msgstr "附加的循环选项。参见 :c:func:`uv_loop_configure`。"
 
 #: ../../src/loop.rst:34
 msgid "Mode used to run the loop with :c:func:`uv_run`."
-msgstr ""
+msgstr "通过 :c:func:`uv_run` 运行循环时使用的模式。"
 
 #: ../../src/loop.rst:46
 msgid "Type definition for callback passed to :c:func:`uv_walk`."
-msgstr ""
+msgstr "传递给 :c:func:`uv_walk` 的回调的类型定义。"
 
 #: ../../src/loop.rst:50
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/loop.rst:54
 msgid ""
 "Space for user-defined arbitrary data. libuv does not use and does not "
 "touch this field."
-msgstr ""
+msgstr "用于存放用户自定义任意数据的空间。libuv 不使用也不触及此字段。"
 
 #: ../../src/loop.rst:59
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/loop.rst:63
 msgid "Initializes the given `uv_loop_t` structure."
-msgstr ""
+msgstr "初始化给定的 `uv_loop_t` 结构体。"
 
 #: ../../src/loop.rst:69
 msgid ""
 "Set additional loop options.  You should normally call this before the "
 "first call to :c:func:`uv_run` unless mentioned otherwise."
-msgstr ""
+msgstr "设置附加的循环选项。除非另有说明，通常应在首次调用 :c:func:`uv_run` 之前调用此函数。"
 
 #: ../../src/loop.rst:72
 msgid ""
 "Returns 0 on success or a UV_E* error code on failure.  Be prepared to "
 "handle UV_ENOSYS; it means the loop option is not supported by the "
 "platform."
-msgstr ""
+msgstr "成功时返回 0，失败时返回一个 UV_E* 错误码。请准备好处理 UV_ENOSYS；它表示平台不支持该循环选项。"
 
 #: ../../src/loop.rst:75
 msgid "Supported options:"
-msgstr ""
+msgstr "支持的选项："
 
 #: ../../src/loop.rst:77
 msgid ""
 "UV_LOOP_BLOCK_SIGNAL: Block a signal when polling for new events.  The "
 "second argument to :c:func:`uv_loop_configure` is the signal number."
-msgstr ""
+msgstr "UV_LOOP_BLOCK_SIGNAL：在轮询新事件时阻塞某个信号。传递给 :c:func:`uv_loop_configure` 的第二个参数是信号编号。"
 
 #: ../../src/loop.rst:80
 msgid ""
 "This operation is currently only implemented for SIGPROF signals, to "
 "suppress unnecessary wakeups when using a sampling profiler. Requesting "
 "other signals will fail with UV_EINVAL."
-msgstr ""
+msgstr "此操作目前仅针对 SIGPROF 信号实现，用于在使用采样式性能分析器时抑制不必要的唤醒。请求其他信号将以 UV_EINVAL 失败。"
 
 #: ../../src/loop.rst:84
 msgid ""
 "UV_METRICS_IDLE_TIME: Accumulate the amount of idle time the event loop "
 "spends in the event provider."
-msgstr ""
+msgstr "UV_METRICS_IDLE_TIME：累计事件循环在事件提供程序中耗费的空闲时间。"
 
 #: ../../src/loop.rst:87
 msgid "This option is necessary to use :c:func:`uv_metrics_idle_time`."
-msgstr ""
+msgstr "使用 :c:func:`uv_metrics_idle_time` 时必须启用此选项。"
 
 #: ../../src/loop.rst:89
 msgid ""
 "UV_LOOP_USE_IO_URING_SQPOLL: Enable SQPOLL io_uring instance to handle "
 "asynchronous file system operations."
-msgstr ""
+msgstr "UV_LOOP_USE_IO_URING_SQPOLL：启用 SQPOLL io_uring 实例来处理异步文件系统操作。"
 
 #: ../../src/loop.rst:92
 msgid "added the UV_METRICS_IDLE_TIME option."
-msgstr ""
+msgstr "新增了 UV_METRICS_IDLE_TIME 选项。"
 
 #: ../../src/loop.rst:94
 msgid "added the UV_LOOP_USE_IO_URING_SQPOLL option."
-msgstr ""
+msgstr "新增了 UV_LOOP_USE_IO_URING_SQPOLL 选项。"
 
 #: ../../src/loop.rst:98
 msgid ""
@@ -130,13 +130,13 @@ msgid ""
 "loop has finished executing and all open handles and requests have been "
 "closed, or it will return UV_EBUSY. After this function returns, the user"
 " can free the memory allocated for the loop."
-msgstr ""
+msgstr "释放所有内部循环资源。只有当循环已执行完毕且所有打开的句柄和请求均已关闭时才可调用此函数，否则它将返回 UV_EBUSY。此函数返回之后，用户即可释放为循环分配的内存。"
 
 #: ../../src/loop.rst:105
 msgid ""
 "Returns the initialized default loop. It may return NULL in case of "
 "allocation failure."
-msgstr ""
+msgstr "返回已初始化的默认事件循环。分配失败时可能返回 NULL。"
 
 #: ../../src/loop.rst:108
 msgid ""
@@ -145,17 +145,17 @@ msgid ""
 "the ones initialized with :c:func:`uv_loop_init`. As such, the default "
 "loop can (and should) be closed with :c:func:`uv_loop_close` so the "
 "resources associated with it are freed."
-msgstr ""
+msgstr "此函数只是在应用程序中拥有一个全局循环的便捷方式，默认事件循环与用 :c:func:`uv_loop_init` 初始化的那些循环没有任何区别。因此，默认事件循环可以（也应该）用 :c:func:`uv_loop_close` 关闭，从而释放与之关联的资源。"
 
 #: ../../src/loop.rst:115
 msgid "This function is not thread safe."
-msgstr ""
+msgstr "此函数不是线程安全的。"
 
 #: ../../src/loop.rst:119
 msgid ""
 "This function runs the event loop. It will act differently depending on "
 "the specified mode:"
-msgstr ""
+msgstr "此函数运行事件循环。它会根据指定的模式表现出不同的行为："
 
 #: ../../src/loop.rst:122
 msgid ""
@@ -163,7 +163,7 @@ msgid ""
 "referenced handles or requests. Returns non-zero if :c:func:`uv_stop` was"
 " called and there are still active handles or requests.  Returns zero in "
 "all other cases."
-msgstr ""
+msgstr "UV_RUN_DEFAULT：运行事件循环，直到不再有处于活动状态且被引用的句柄或请求。如果已调用 :c:func:`uv_stop` 且仍存在处于活动状态的句柄或请求，则返回非零值。在所有其他情况下返回零。"
 
 #: ../../src/loop.rst:126
 msgid ""
@@ -171,7 +171,7 @@ msgid ""
 "are no pending callbacks. Returns zero when done (no active handles or "
 "requests left), or non-zero if more callbacks are expected (meaning you "
 "should run the event loop again sometime in the future)."
-msgstr ""
+msgstr "UV_RUN_ONCE：轮询一次 I/O。注意，如果没有待处理的回调，此函数会阻塞。完成时返回零（没有剩余的处于活动状态的句柄或请求），若预计还有更多回调则返回非零值（这意味着你应当在之后的某个时刻再次运行事件循环）。"
 
 #: ../../src/loop.rst:130
 msgid ""
@@ -179,17 +179,17 @@ msgid ""
 "callbacks. Returns zero if done (no active handles or requests left), or "
 "non-zero if more callbacks are expected (meaning you should run the event"
 " loop again sometime in the future)."
-msgstr ""
+msgstr "UV_RUN_NOWAIT：轮询一次 I/O，但在没有待处理回调时不阻塞。完成时返回零（没有剩余的处于活动状态的句柄或请求），若预计还有更多回调则返回非零值（这意味着你应当在之后的某个时刻再次运行事件循环）。"
 
 #: ../../src/loop.rst:135
 msgid ":c:func:`uv_run` is not reentrant. It must not be called from a callback."
-msgstr ""
+msgstr ":c:func:`uv_run` 不可重入。不得从回调中调用它。"
 
 #: ../../src/loop.rst:139
 msgid ""
 "Returns non-zero if there are referenced active handles, active requests "
 "or closing handles in the loop."
-msgstr ""
+msgstr "如果循环中存在被引用的活动句柄、活动请求或正在关闭的句柄，则返回非零值。"
 
 #: ../../src/loop.rst:144
 msgid ""
@@ -197,86 +197,86 @@ msgid ""
 " This will happen not sooner than the next loop iteration. If this "
 "function was called before blocking for i/o, the loop won't block for i/o"
 " on this iteration."
-msgstr ""
+msgstr "停止事件循环，使 :c:func:`uv_run` 尽快结束。这最早也要到下一次循环迭代才会发生。如果此函数在为 I/O 阻塞之前被调用，则循环在此轮迭代中不会为 I/O 阻塞。"
 
 #: ../../src/loop.rst:151
 msgid ""
 "Returns the size of the `uv_loop_t` structure. Useful for FFI binding "
 "writers who don't want to know the structure layout."
-msgstr ""
+msgstr "返回 `uv_loop_t` 结构体的大小。对不想了解结构体布局的 FFI 绑定编写者很有用。"
 
 #: ../../src/loop.rst:156
 msgid ""
 "Get backend file descriptor. Only kqueue, epoll and event ports are "
 "supported."
-msgstr ""
+msgstr "获取后端文件描述符。仅支持 kqueue、epoll 和 event ports。"
 
 #: ../../src/loop.rst:159
 msgid ""
 "This can be used in conjunction with `uv_run(loop, UV_RUN_NOWAIT)` to "
 "poll in one thread and run the event loop's callbacks in another see test"
 "/test-embed.c for an example."
-msgstr ""
+msgstr "此函数可与 `uv_run(loop, UV_RUN_NOWAIT)` 结合使用，在一个线程中轮询，在另一个线程中运行事件循环的回调，示例参见 test/test-embed.c。"
 
 #: ../../src/loop.rst:164
 msgid ""
 "Embedding a kqueue fd in another kqueue pollset doesn't work on all "
 "platforms. It's not an error to add the fd but it never generates events."
-msgstr ""
+msgstr "将 kqueue fd 嵌入另一个 kqueue pollset 并非在所有平台上都有效。添加该 fd 不算错误，但它永远不会生成事件。"
 
 #: ../../src/loop.rst:169
 msgid ""
 "Get the poll timeout. The return value is in milliseconds, or -1 for no "
 "timeout."
-msgstr ""
+msgstr "获取轮询超时值。返回值以毫秒为单位，-1 表示无超时。"
 
 #: ../../src/loop.rst:174
 msgid ""
 "Return the current timestamp in milliseconds. The timestamp is cached at "
 "the start of the event loop tick, see :c:func:`uv_update_time` for "
 "details and rationale."
-msgstr ""
+msgstr "返回以毫秒为单位的当前时间戳。该时间戳在事件循环 tick 开始时被缓存，详情与设计缘由参见 :c:func:`uv_update_time`。"
 
 #: ../../src/loop.rst:178
 msgid ""
 "The timestamp increases monotonically from some arbitrary point in time. "
 "Don't make assumptions about the starting point, you will only get "
 "disappointed."
-msgstr ""
+msgstr "该时间戳从某个任意的时间起点开始单调递增。不要对起点做任何假设，否则你只会失望。"
 
 #: ../../src/loop.rst:183
 msgid "Use :c:func:`uv_hrtime` if you need sub-millisecond granularity."
-msgstr ""
+msgstr "如果需要亚毫秒级的时间精度，请使用 :c:func:`uv_hrtime`。"
 
 #: ../../src/loop.rst:187
 msgid ""
 "Update the event loop's concept of \"now\". Libuv caches the current time"
 " at the start of the event loop tick in order to reduce the number of "
 "time-related system calls."
-msgstr ""
+msgstr "更新事件循环对“现在”的认知。libuv 在事件循环 tick 开始时缓存当前时间，以减少与时间相关的系统调用次数。"
 
 #: ../../src/loop.rst:191
 msgid ""
 "You won't normally need to call this function unless you have callbacks "
 "that block the event loop for longer periods of time, where \"longer\" is"
 " somewhat subjective but probably on the order of a millisecond or more."
-msgstr ""
+msgstr "通常你不需要调用此函数，除非你有会较长时间阻塞事件循环的回调——“较长”是个偏主观的标准，但大概在 1 毫秒或更长的量级。"
 
 #: ../../src/loop.rst:197
 msgid "Walk the list of handles: `walk_cb` will be executed with the given `arg`."
-msgstr ""
+msgstr "遍历句柄列表：`walk_cb` 会以给定的 `arg` 被执行。"
 
 #: ../../src/loop.rst:203
 msgid ""
 "Reinitialize any kernel state necessary in the child process after a "
 ":man:`fork(2)` system call."
-msgstr ""
+msgstr "在 :man:`fork(2)` 系统调用之后，重新初始化子进程中所需的所有内核状态。"
 
 #: ../../src/loop.rst:206
 msgid ""
 "Previously started watchers will continue to be started in the child "
 "process."
-msgstr ""
+msgstr "此前已启动的监视器在子进程中将继续处于启动状态。"
 
 #: ../../src/loop.rst:209
 msgid ""
@@ -288,26 +288,26 @@ msgid ""
 "Failure to do so will result in undefined behaviour, possibly including "
 "duplicate events delivered to both parent and child or aborting the child"
 " process."
-msgstr ""
+msgstr "必须对在父进程中创建、且你计划在子进程中继续使用的每一个事件循环显式调用此函数，包括默认事件循环（即使你在父进程中不再继续使用它）。在子进程中调用 :c:func:`uv_run` 或任何其他使用该循环的 API 函数之前，必须先调用此函数。否则将导致未定义行为，可能包括向父进程和子进程都交付重复事件，或导致子进程中止。"
 
 #: ../../src/loop.rst:218
 msgid ""
 "When possible, it is preferred to create a new loop in the child process "
 "instead of reusing a loop created in the parent. New loops created in the"
 " child process after the fork should not use this function."
-msgstr ""
+msgstr "如果可能，首选在子进程中创建新的循环，而不是复用在父进程中创建的循环。fork 之后在子进程中创建的新循环不应使用此函数。"
 
 #: ../../src/loop.rst:223
 msgid ""
 "This function is not implemented on Windows, where it returns "
 "``UV_ENOSYS``."
-msgstr ""
+msgstr "在 Windows 上此函数未实现，并返回 ``UV_ENOSYS``。"
 
 #: ../../src/loop.rst:227
 msgid ""
 "This function is experimental. It may contain bugs, and is subject to "
 "change or removal. API and ABI stability is not guaranteed."
-msgstr ""
+msgstr "此函数是实验性的。它可能存在缺陷，并且可能被更改或移除。不保证 API 和 ABI 的稳定性。"
 
 #: ../../src/loop.rst:232
 msgid ""
@@ -316,7 +316,7 @@ msgid ""
 " use the most efficient FSEvent implementation. Instead, uses of "
 "directory FS event handles in the child will fall back to the same "
 "implementation used for files and on other kqueue-based systems."
-msgstr ""
+msgstr "在 Mac OS X 上，如果父进程中 *任意事件循环* 使用了目录 FS Event 句柄，子进程将无法再使用最高效的 FSEvent 实现。取而代之的是，子进程中对目录 FS Event 句柄的使用将退回到与文件以及其他基于 kqueue 的系统所用的相同实现。"
 
 #: ../../src/loop.rst:241
 msgid ""
@@ -324,20 +324,20 @@ msgid ""
 "parent process at the time of forking will *not* deliver events in the "
 "child process; they must be closed and restarted. On all other platforms,"
 " they will continue to work normally without any further intervention."
-msgstr ""
+msgstr "在 AIX 和 SunOS 上，fork 时已在父进程中启动的 FS Event 句柄 *不会* 在子进程中交付事件；必须将它们关闭并重新启动。在所有其他平台上，它们无需任何进一步干预即可继续正常工作。"
 
 #: ../../src/loop.rst:249
 msgid ""
 "Any previous value returned from :c:func:`uv_backend_fd` is now invalid. "
 "That function must be called again to determine the correct backend file "
 "descriptor."
-msgstr ""
+msgstr "此前从 :c:func:`uv_backend_fd` 返回的任何值现在均已失效。必须重新调用该函数来确定正确的后端文件描述符。"
 
 #: ../../src/loop.rst:255
 msgid "Returns `loop->data`."
-msgstr ""
+msgstr "返回 `loop->data`。"
 
 #: ../../src/loop.rst:261
 msgid "Sets `loop->data` to `data`."
-msgstr ""
+msgstr "将 `loop->data` 设置为 `data`。"
 

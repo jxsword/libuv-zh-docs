@@ -23,13 +23,13 @@ msgstr ""
 
 #: ../../src/poll.rst:5
 msgid ":c:type:`uv_poll_t` --- Poll handle"
-msgstr ""
+msgstr ":c:type:`uv_poll_t` —— Poll 句柄"
 
 #: ../../src/poll.rst:7
 msgid ""
 "Poll handles are used to watch file descriptors for readability, "
 "writability and disconnection similar to the purpose of :man:`poll(2)`."
-msgstr ""
+msgstr "Poll 句柄用于监视文件描述符的可读、可写与断开状态，其用途与 :man:`poll(2)` 类似。"
 
 #: ../../src/poll.rst:10
 msgid ""
@@ -39,7 +39,7 @@ msgid ""
 "recommended; :c:type:`uv_tcp_t`, :c:type:`uv_udp_t`, etc. provide an "
 "implementation that is faster and more scalable than what can be achieved"
 " with :c:type:`uv_poll_t`, especially on Windows."
-msgstr ""
+msgstr "Poll 句柄的用途是支持集成依赖事件循环、并在套接字状态变化时向其发出通知的外部库，例如 c-ares 或 libssh2。不建议将 uv_poll_t 用于任何其他用途；:c:type:`uv_tcp_t`、:c:type:`uv_udp_t` 等类型提供的实现比 :c:type:`uv_poll_t` 所能达到的更快、更具可伸缩性，尤其是在 Windows 上。"
 
 #: ../../src/poll.rst:17
 msgid ""
@@ -47,13 +47,13 @@ msgid ""
 "descriptor is readable or writable even when it isn't. The user should "
 "therefore always be prepared to handle EAGAIN or equivalent when it "
 "attempts to read from or write to the fd."
-msgstr ""
+msgstr "Poll 句柄偶尔可能在文件描述符实际并不可读或不可写时，也发出其可读或可写的信号。因此，用户在尝试对该 fd 进行读或写操作时，应始终准备好处理 EAGAIN 或等效情况。"
 
 #: ../../src/poll.rst:22
 msgid ""
 "It is not okay to have multiple active poll handles for the same socket, "
 "this can cause libuv to busyloop or otherwise malfunction."
-msgstr ""
+msgstr "不允许对同一个套接字存在多个活动的 Poll 句柄，否则可能导致 libuv 忙循环或出现其他故障。"
 
 #: ../../src/poll.rst:25
 msgid ""
@@ -62,67 +62,67 @@ msgid ""
 "it might also start polling another socket. However the fd can be safely "
 "closed immediately after a call to :c:func:`uv_poll_stop` or "
 ":c:func:`uv_close`."
-msgstr ""
+msgstr "在文件描述符正被某个活动的 Poll 句柄轮询时，用户不应将其关闭。这可能导致该句柄报告错误，但也可能使其开始轮询另一个套接字。不过，在调用 :c:func:`uv_poll_stop` 或 :c:func:`uv_close` 之后，可以立即安全地关闭该 fd。"
 
 #: ../../src/poll.rst:31
 msgid ""
 "On windows only sockets can be polled with poll handles. On Unix any file"
 " descriptor that would be accepted by :man:`poll(2)` can be used."
-msgstr ""
+msgstr "在 Windows 上，只有套接字能用 Poll 句柄进行轮询。在 Unix 上，任何 :man:`poll(2)` 可接受的文件描述符均可使用。"
 
 #: ../../src/poll.rst:35
 msgid "On AIX, watching for disconnection is not supported."
-msgstr ""
+msgstr "在 AIX 上，不支持对断开的监视。"
 
 #: ../../src/poll.rst:38
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/poll.rst:42
 msgid "Poll handle type."
-msgstr ""
+msgstr "Poll 句柄类型。"
 
 #: ../../src/poll.rst:46
 msgid "Type definition for callback passed to :c:func:`uv_poll_start`."
-msgstr ""
+msgstr "传递给 :c:func:`uv_poll_start` 的回调的类型定义。"
 
 #: ../../src/poll.rst:50
 msgid "Poll event types"
-msgstr ""
+msgstr "Poll 事件类型"
 
 #: ../../src/poll.rst:63
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/poll.rst:65
 msgid "N/A"
-msgstr ""
+msgstr "无"
 
 #: ../../src/poll.rst:67
 msgid "The :c:type:`uv_handle_t` members also apply."
-msgstr ""
+msgstr ":c:type:`uv_handle_t` 的成员也同样适用。"
 
 #: ../../src/poll.rst:71
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/poll.rst:75
 msgid "Initialize the handle using a file descriptor."
-msgstr ""
+msgstr "使用文件描述符初始化句柄。"
 
 #: ../../src/poll.rst:77
 msgid "the file descriptor is set to non-blocking mode."
-msgstr ""
+msgstr "文件描述符被设置为非阻塞模式。"
 
 #: ../../src/poll.rst:81
 msgid ""
 "Initialize the handle using a socket descriptor. On Unix this is "
 "identical to :c:func:`uv_poll_init`. On windows it takes a SOCKET handle."
-msgstr ""
+msgstr "使用套接字描述符初始化句柄。在 Unix 上这与 :c:func:`uv_poll_init` 完全相同。在 Windows 上它接受一个 SOCKET 句柄。"
 
 #: ../../src/poll.rst:84
 msgid "the socket is set to non-blocking mode."
-msgstr ""
+msgstr "套接字被设置为非阻塞模式。"
 
 #: ../../src/poll.rst:88
 msgid ""
@@ -130,20 +130,20 @@ msgid ""
 "`UV_READABLE`, `UV_WRITABLE`, `UV_PRIORITIZED` and `UV_DISCONNECT`. As "
 "soon as an event is detected the callback will be called with `status` "
 "set to 0, and the detected events set on the `events` field."
-msgstr ""
+msgstr "开始对文件描述符进行轮询。`events` 是一个由 `UV_READABLE`、`UV_WRITABLE`、`UV_PRIORITIZED` 和 `UV_DISCONNECT` 组成的位掩码。一旦检测到事件，回调就会被调用，`status` 被置为 0，且检测到的事件设置在 `events` 字段上。"
 
 #: ../../src/poll.rst:93
 msgid ""
 "The `UV_PRIORITIZED` event is used to watch for sysfs interrupts or TCP "
 "out-of-band messages."
-msgstr ""
+msgstr "`UV_PRIORITIZED` 事件用于监视 sysfs 中断或 TCP 带外消息。"
 
 #: ../../src/poll.rst:96
 msgid ""
 "The `UV_DISCONNECT` event is optional in the sense that it may not be "
 "reported and the user is free to ignore it, but it can help optimize the "
 "shutdown path because an extra read or write call might be avoided."
-msgstr ""
+msgstr "`UV_DISCONNECT` 事件是可选的，它可能不会被报告，用户也可以随意忽略它；但它有助于优化关闭路径，因为可以避免一次额外的读或写调用。"
 
 #: ../../src/poll.rst:100
 msgid ""
@@ -154,79 +154,79 @@ msgid ""
 "is **not** guaranteed. If `status == UV_EBADF` polling is discontinued "
 "for the file handle and no further events will be reported. The user "
 "should then call :c:func:`uv_close` on the handle."
-msgstr ""
+msgstr "如果在轮询期间发生错误，`status` 将小于 0，并对应 `UV_E*` 错误码之一（参见 :ref:`errors`）。在句柄处于活动状态期间，用户不应关闭套接字。如果用户仍然这样做了，回调 *可能* 会以错误状态被调用，但这 **不** 是有保证的。如果 `status == UV_EBADF`，对该文件句柄的轮询将停止，并且不会再报告任何事件。此时用户应对该句柄调用 :c:func:`uv_close`。"
 
 #: ../../src/poll.rst:109
 msgid ""
 "Calling :c:func:`uv_poll_start` on a handle that is already active is "
 "fine. Doing so will update the events mask that is being watched for."
-msgstr ""
+msgstr "对已经处于活动状态的句柄调用 :c:func:`uv_poll_start` 是没有问题的。这样做会更新正在被监视的事件掩码。"
 
 #: ../../src/poll.rst:113
 msgid ""
 "Though `UV_DISCONNECT` can be set, it is unsupported on AIX and as such "
 "will not be set on the `events` field in the callback."
-msgstr ""
+msgstr "虽然可以设置 `UV_DISCONNECT`，但 AIX 并不支持它，因此回调的 `events` 字段中不会设置该事件。"
 
 #: ../../src/poll.rst:117
 msgid ""
 "If one of the events `UV_READABLE` or `UV_WRITABLE` are set, the callback"
 " will be called again, as long as the given fd/socket remains readable or"
 " writable accordingly. Particularly in each of the following scenarios:"
-msgstr ""
+msgstr "如果设置了 `UV_READABLE` 或 `UV_WRITABLE` 中的某个事件，那么只要给定的 fd/套接字相应地保持可读或可写，回调就会被再次调用。特别是在以下每一种情形中："
 
 #: ../../src/poll.rst:122
 msgid ""
 "The callback has been called because the socket became readable/writable "
 "and the callback did not conduct a read/write on this socket at all."
-msgstr ""
+msgstr "套接字变为可读/可写，回调因此被调用，而回调完全没有对该套接字执行过读/写操作。"
 
 #: ../../src/poll.rst:125
 msgid ""
 "The callback committed a read on the socket, and has not read all the "
 "available data (when `UV_READABLE` is set)."
-msgstr ""
+msgstr "回调对该套接字执行了一次读操作，但尚未读完所有可用数据（在设置了 `UV_READABLE` 的情况下）。"
 
 #: ../../src/poll.rst:127
 msgid ""
 "The callback committed a write on the socket, but it remained writable "
 "afterwards (when `UV_WRITABLE` is set)."
-msgstr ""
+msgstr "回调对该套接字执行了一次写操作，但该套接字此后仍保持可写（在设置了 `UV_WRITABLE` 的情况下）。"
 
 #: ../../src/poll.rst:129
 msgid ""
 "The socket has already became readable/writable before calling "
 ":c:func:`uv_poll_start` on a poll handle associated with this socket, and"
 " since then the state of the socket did not changed."
-msgstr ""
+msgstr "在对与该套接字关联的 Poll 句柄调用 :c:func:`uv_poll_start` 之前，套接字就已经变为可读/可写，并且从那时起套接字的状态一直没有变化。"
 
 #: ../../src/poll.rst:133
 msgid ""
 "In all of the above listed scenarios, the socket remains readable or "
 "writable and hence the callback will be called again (depending on the "
 "events set in the bitmask). This behaviour is known as level triggering."
-msgstr ""
+msgstr "在上面列出的所有情形中，套接字都保持可读或可写，因此回调会被再次调用（取决于位掩码中设置的事件）。这种行为称为电平触发。"
 
 #: ../../src/poll.rst:138
 msgid "Added the `UV_DISCONNECT` event."
-msgstr ""
+msgstr "新增了 `UV_DISCONNECT` 事件。"
 
 #: ../../src/poll.rst:139
 msgid "Added the `UV_PRIORITIZED` event."
-msgstr ""
+msgstr "新增了 `UV_PRIORITIZED` 事件。"
 
 #: ../../src/poll.rst:143
 msgid "Stop polling the file descriptor, the callback will no longer be called."
-msgstr ""
+msgstr "停止对文件描述符的轮询，回调将不再被调用。"
 
 #: ../../src/poll.rst:146
 msgid ""
 "Calling :c:func:`uv_poll_stop` is effective immediately: any pending "
 "callback is also canceled, even if the socket state change notification "
 "was already pending."
-msgstr ""
+msgstr "调用 :c:func:`uv_poll_stop` 会立即生效：任何待处理的回调也会被取消，即使套接字状态变化通知已经处于待处理状态。"
 
 #: ../../src/poll.rst:150
 msgid "The :c:type:`uv_handle_t` API functions also apply."
-msgstr ""
+msgstr ":c:type:`uv_handle_t` 的 API 函数也同样适用。"
 

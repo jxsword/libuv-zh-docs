@@ -23,13 +23,15 @@ msgstr ""
 
 #: ../../src/idle.rst:5
 msgid ":c:type:`uv_idle_t` --- Idle handle"
-msgstr ""
+msgstr ":c:type:`uv_idle_t` —— Idle 句柄"
 
 #: ../../src/idle.rst:7
 msgid ""
 "Idle handles will run the given callback once per loop iteration, right "
 "before the :c:type:`uv_prepare_t` handles."
 msgstr ""
+"Idle 句柄会在每轮循环迭代中运行给定的回调一次，恰好在 :c:type:"
+"`uv_prepare_t` 句柄之前。"
 
 #: ../../src/idle.rst:11
 msgid ""
@@ -37,70 +39,73 @@ msgid ""
 " idle handles, the loop will perform a zero timeout poll instead of "
 "blocking for i/o."
 msgstr ""
+"与 prepare 句柄的显著区别在于：当存在活动的 idle 句柄时，循环会执行一次"
+"零超时的轮询，而不是阻塞等待 I/O。"
 
 #: ../../src/idle.rst:15
 msgid ""
 "Despite the name, idle handles will get their callbacks called on every "
 "loop iteration, not when the loop is actually \"idle\"."
 msgstr ""
+"尽管名字如此，idle 句柄的回调会在每轮循环迭代中都被调用，而不是在循环真"
+"正“空转”时才被调用。"
 
 #: ../../src/idle.rst:20
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/idle.rst:24
 msgid "Idle handle type."
-msgstr ""
+msgstr "Idle 句柄类型。"
 
 #: ../../src/idle.rst:28
 msgid "Type definition for callback passed to :c:func:`uv_idle_start`."
-msgstr ""
+msgstr "传递给 :c:func:`uv_idle_start` 的回调的类型定义。"
 
 #: ../../src/idle.rst:32
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/idle.rst:34
 msgid "N/A"
-msgstr ""
+msgstr "无"
 
 #: ../../src/idle.rst:36
 msgid "The :c:type:`uv_handle_t` members also apply."
-msgstr ""
+msgstr ":c:type:`uv_handle_t` 的成员也同样适用。"
 
 #: ../../src/idle.rst:40
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/idle.rst:44
 msgid "Initialize the handle. This function always succeeds."
-msgstr ""
+msgstr "初始化句柄。此函数总是成功。"
 
 #: ../../src/idle.rst
 msgid "返回"
-msgstr ""
+msgstr "返回"
 
 #: ../../src/idle.rst:46 ../../src/idle.rst:60
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: ../../src/idle.rst:50
 msgid ""
 "Start the handle with the given callback. This function always succeeds, "
 "except when `cb` is `NULL`."
-msgstr ""
+msgstr "以给定的回调启动句柄。此函数总是成功，除非 `cb` 为 `NULL`。"
 
 #: ../../src/idle.rst:53
 msgid "0 on success, or `UV_EINVAL` when `cb == NULL`."
-msgstr ""
+msgstr "成功时为 0，否则为 `UV_EINVAL` （`cb == NULL` 时）。"
 
 #: ../../src/idle.rst:57
 msgid ""
 "Stop the handle, the callback will no longer be called. This function "
 "always succeeds."
-msgstr ""
+msgstr "停止该句柄，回调将不再被调用。此函数总是成功。"
 
 #: ../../src/idle.rst:62
 msgid "The :c:type:`uv_handle_t` API functions also apply."
-msgstr ""
-
+msgstr ":c:type:`uv_handle_t` 的 API 函数也同样适用。"

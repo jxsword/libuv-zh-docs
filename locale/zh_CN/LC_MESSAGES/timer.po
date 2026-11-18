@@ -23,11 +23,11 @@ msgstr ""
 
 #: ../../src/timer.rst:5
 msgid ":c:type:`uv_timer_t` --- Timer handle"
-msgstr ""
+msgstr ":c:type:`uv_timer_t` —— Timer 句柄"
 
 #: ../../src/timer.rst:7
 msgid "Timer handles are used to schedule callbacks to be called in the future."
-msgstr ""
+msgstr "Timer 句柄用于安排回调在将来被调用。"
 
 #: ../../src/timer.rst:9
 msgid ""
@@ -35,6 +35,8 @@ msgid ""
 "adjust for overhead but are rearmed relative to the event loop's idea of "
 "\"now\"."
 msgstr ""
+"定时器要么是一次性的，要么是重复的。重复定时器不会根据开销进行调整，而是"
+"相对于事件循环所认定的“现在”重新装载。"
 
 #: ../../src/timer.rst:12
 msgid ""
@@ -42,6 +44,8 @@ msgid ""
 " and right after waking up from waiting for I/O. See also "
 ":c:func:`uv_update_time`."
 msgstr ""
+"libuv 会在执行定时器回调之前、以及从 I/O 等待中唤醒之后，立即更新它对"
+"“现在”的认知。另请参阅 :c:func:`uv_update_time`。"
 
 #: ../../src/timer.rst:15
 msgid ""
@@ -49,42 +53,44 @@ msgid ""
 "ms to complete, runs again 33 ms later. If other tasks take longer than "
 "33 ms, the timer callback runs as soon as possible."
 msgstr ""
+"示例：一个间隔为 50 ms 的重复定时器，其回调需要 17 ms 才能完成，会在 "
+"33 ms 后再次运行。如果其他任务耗时超过 33 ms，定时器回调会尽快运行。"
 
 #: ../../src/timer.rst:20
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/timer.rst:24
 msgid "Timer handle type."
-msgstr ""
+msgstr "Timer 句柄类型。"
 
 #: ../../src/timer.rst:28
 msgid "Type definition for callback passed to :c:func:`uv_timer_start`."
-msgstr ""
+msgstr "传递给 :c:func:`uv_timer_start` 的回调的类型定义。"
 
 #: ../../src/timer.rst:32
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/timer.rst:34
 msgid "N/A"
-msgstr ""
+msgstr "无"
 
 #: ../../src/timer.rst:36
 msgid "The :c:type:`uv_handle_t` members also apply."
-msgstr ""
+msgstr ":c:type:`uv_handle_t` 的成员也同样适用。"
 
 #: ../../src/timer.rst:40
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/timer.rst:44
 msgid "Initialize the handle."
-msgstr ""
+msgstr "初始化句柄。"
 
 #: ../../src/timer.rst:48
 msgid "Start the timer. `timeout` and `repeat` are in milliseconds."
-msgstr ""
+msgstr "启动定时器。`timeout` 和 `repeat` 以毫秒为单位。"
 
 #: ../../src/timer.rst:50
 msgid ""
@@ -92,20 +98,23 @@ msgid ""
 "iteration. If `repeat` is non-zero, the callback fires first after "
 "`timeout` milliseconds and then repeatedly after `repeat` milliseconds."
 msgstr ""
+"如果 `timeout` 为零，回调会在下一次事件循环迭代时触发。如果 `repeat` 非"
+"零，回调会先在 `timeout` 毫秒后触发，然后每隔 `repeat` 毫秒重复触发。"
 
 #: ../../src/timer.rst:55
 msgid ""
 "Does not update the event loop's concept of \"now\". See "
 ":c:func:`uv_update_time` for more information."
 msgstr ""
+"不会更新事件循环对“现在”的概念。更多信息参见 :c:func:`uv_update_time`。"
 
 #: ../../src/timer.rst:57
 msgid "If the timer is already active, it is simply updated."
-msgstr ""
+msgstr "如果定时器已经处于活动状态，则只是对其进行更新。"
 
 #: ../../src/timer.rst:61
 msgid "Stop the timer, the callback will not be called anymore."
-msgstr ""
+msgstr "停止定时器，回调将不再被调用。"
 
 #: ../../src/timer.rst:65
 msgid ""
@@ -113,6 +122,8 @@ msgid ""
 "as the timeout. If the timer has never been started before it returns "
 "UV_EINVAL."
 msgstr ""
+"停止定时器，如果它是重复定时器，则以 repeat 值作为超时值重新启动它。如果"
+"该定时器从未被启动过，则返回 UV_EINVAL。"
 
 #: ../../src/timer.rst:71
 msgid ""
@@ -121,6 +132,8 @@ msgid ""
 "execution duration, and will follow normal timer semantics in the case of"
 " a time-slice overrun."
 msgstr ""
+"以毫秒为单位设置重复间隔值。无论回调执行时长如何，定时器都会按给定间隔被"
+"调度运行；在发生时间片超限的情况下，将遵循正常的定时器语义。"
 
 #: ../../src/timer.rst:77
 msgid ""
@@ -129,18 +142,20 @@ msgid ""
 "stopped. If it was repeating, then the old repeat value will have been "
 "used to schedule the next timeout."
 msgstr ""
+"如果在定时器回调中设置 repeat 值，它不会立即生效。如果该定时器之前不是重"
+"复定时器，那么它已被停止。如果之前是重复定时器，那么下一次超时会按旧的 "
+"repeat 值来调度。"
 
 #: ../../src/timer.rst:83
 msgid "Get the timer repeat value."
-msgstr ""
+msgstr "获取定时器的 repeat 值。"
 
 #: ../../src/timer.rst:87
 msgid ""
 "Get the timer due value or 0 if it has expired. The time is relative to "
 ":c:func:`uv_now`."
-msgstr ""
+msgstr "获取定时器的到期值，若已到期则为 0。该时间相对于 :c:func:`uv_now`。"
 
 #: ../../src/timer.rst:92
 msgid "The :c:type:`uv_handle_t` API functions also apply."
-msgstr ""
-
+msgstr ":c:type:`uv_handle_t` 的 API 函数也同样适用。"

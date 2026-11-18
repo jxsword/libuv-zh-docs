@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../../src/fs.rst:5
 msgid "File system operations"
-msgstr ""
+msgstr "文件系统操作"
 
 #: ../../src/fs.rst:7
 msgid ""
@@ -33,12 +33,14 @@ msgid ""
 "request is completed synchronously, otherwise it will be performed "
 "asynchronously."
 msgstr ""
+"libuv 提供了各种各样的跨平台同步与异步文件系统操作。本文档定义的所有函数都接受一"
+"个回调，该回调允许为 NULL。如果回调为 NULL，请求将同步完成，否则将以异步方式执行。"
 
 #: ../../src/fs.rst:12
 msgid ""
 "All file operations are run on the threadpool. See :ref:`threadpool` for "
 "information on the threadpool size."
-msgstr ""
+msgstr "所有文件操作都在线程池上运行。有关线程池大小的信息，参见 :ref:`threadpool`。"
 
 #: ../../src/fs.rst:15
 msgid ""
@@ -52,44 +54,52 @@ msgid ""
 " enable io_uring the :c:type:`uv_loop_t` instance must be configured with"
 " the :c:type:`UV_LOOP_USE_IO_URING_SQPOLL` option."
 msgstr ""
+"从 libuv v1.45.0 开始，Linux 上的一些文件操作会在可能时交给 `io_uring"
+" <https://en.wikipedia.org/wiki/Io_uring>` 处理。除了吞吐量会有（有时是显著的）提"
+"升之外，可观察到的行为应无任何变化。当所需的内核特性不可用或不适用时，libuv 会回"
+"退为使用其线程池。从 libuv v1.49.0 开始，此行为被回退，Linux 上的 libuv 默认将重"
+"新使用线程池。要启用 io_uring，必须为 :c:type:`uv_loop_t` 实例配置"
+" :c:type:`UV_LOOP_USE_IO_URING_SQPOLL` 选项。"
 
 #: ../../src/fs.rst:25
 msgid "On Windows `uv_fs_*` functions use utf-8 encoding."
-msgstr ""
+msgstr "在 Windows 上，`uv_fs_*` 函数使用 utf-8 编码。"
 
 #: ../../src/fs.rst:28
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/fs.rst:32 ../../src/fs.rst:73
 msgid "File system request type."
-msgstr ""
+msgstr "文件系统请求类型。"
 
 #: ../../src/fs.rst:36
 msgid ""
 "Y2K38-unsafe data type for storing times with nanosecond resolution. Will"
 " be replaced with :c:type:`uv_timespec64_t` in libuv v2.0."
 msgstr ""
+"用于以纳秒精度存储时间的数据类型，不具备 Y2K38 安全性。将在 libuv v2.0 中被"
+" :c:type:`uv_timespec64_t` 取代。"
 
 #: ../../src/fs.rst:48
 msgid "Portable equivalent of ``struct stat``."
-msgstr ""
+msgstr "``struct stat`` 的可移植等价物。"
 
 #: ../../src/fs.rst:119
 msgid ""
 "Reduced cross platform equivalent of ``struct statfs``. Used in "
 ":c:func:`uv_fs_statfs`."
-msgstr ""
+msgstr "``struct statfs`` 的精简跨平台等价物。用于 :c:func:`uv_fs_statfs`。"
 
 #: ../../src/fs.rst:138
 msgid "Type of dirent."
-msgstr ""
+msgstr "目录项类型。"
 
 #: ../../src/fs.rst:156
 msgid ""
 "Cross platform (reduced) equivalent of ``struct dirent``. Used in "
 ":c:func:`uv_fs_scandir_next`."
-msgstr ""
+msgstr "``struct dirent`` 的跨平台（精简）等价物。用于 :c:func:`uv_fs_scandir_next`。"
 
 #: ../../src/fs.rst:168
 msgid ""
@@ -99,28 +109,32 @@ msgid ""
 "`uv_dirent_t`s used to hold results. `nentries` is the user provided "
 "maximum array size of `dirents`."
 msgstr ""
+"用于以流方式遍历目录的数据类型。由 :c:func:`uv_fs_opendir`、"
+":c:func:`uv_fs_readdir` 和 :c:func:`uv_fs_closedir` 使用。`dirents` 表示用户提供"
+"的一个用于存放结果的 `uv_dirent_t` 数组。`nentries` 是用户提供的 `dirents` 数组的"
+"大小上限。"
 
 #: ../../src/fs.rst:183
 msgid "Callback called when a request is completed asynchronously."
-msgstr ""
+msgstr "请求以异步方式完成时调用的回调。"
 
 #: ../../src/fs.rst:187
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/fs.rst:191
 msgid ""
 "Loop that started this request and where completion will be reported. "
 "Readonly."
-msgstr ""
+msgstr "发起此请求并在其中报告完成情况的事件循环。只读。"
 
 #: ../../src/fs.rst:196
 msgid "FS request type."
-msgstr ""
+msgstr "文件系统请求类型。"
 
 #: ../../src/fs.rst:200
 msgid "Path affecting the request."
-msgstr ""
+msgstr "影响该请求的路径。"
 
 #: ../../src/fs.rst:204
 msgid ""
@@ -128,38 +142,42 @@ msgid ""
 "such as :c:func:`uv_fs_read` or :c:func:`uv_fs_write` it indicates the "
 "amount of data that was read or written, respectively."
 msgstr ""
+"请求的结果。< 0 表示错误，否则表示成功。对于 :c:func:`uv_fs_read`"
+" 或 :c:func:`uv_fs_write` 等请求，它分别表示已读取或已写入的数据量。"
 
 #: ../../src/fs.rst:210
 msgid "Stores the result of :c:func:`uv_fs_stat` and other stat requests."
-msgstr ""
+msgstr "存储 :c:func:`uv_fs_stat` 及其他 stat 请求的结果。"
 
 #: ../../src/fs.rst:214
 msgid ""
 "Stores the result of :c:func:`uv_fs_readlink` and "
 ":c:func:`uv_fs_realpath` and serves as an alias to `statbuf`."
 msgstr ""
+"存储 :c:func:`uv_fs_readlink` 和 :c:func:`uv_fs_realpath` 的结果，并充当"
+" `statbuf` 的别名。"
 
 #: ../../src/fs.rst:217
 msgid "The :c:type:`uv_req_t` members also apply."
-msgstr ""
+msgstr ":c:type:`uv_req_t` 的成员同样适用。"
 
 #: ../../src/fs.rst:221
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/fs.rst:225
 msgid ""
 "Cleanup request. Must be called after a request is finished to deallocate"
 " any memory libuv might have allocated."
-msgstr ""
+msgstr "清理请求。请求结束后必须调用此函数，以释放 libuv 可能已分配的任何内存。"
 
 #: ../../src/fs.rst:230
 msgid "Equivalent to :man:`close(2)`."
-msgstr ""
+msgstr "等价于 :man:`close(2)`。"
 
 #: ../../src/fs.rst:234
 msgid "Equivalent to :man:`open(2)`."
-msgstr ""
+msgstr "等价于 :man:`open(2)`。"
 
 #: ../../src/fs.rst:237
 msgid ""
@@ -167,12 +185,14 @@ msgid ""
 " binary mode. Because of this the O_BINARY and O_TEXT flags are not "
 "supported."
 msgstr ""
+"在 Windows 上，libuv 使用 `CreateFileW`，因此文件总是以二进制模式打开。因此不支持"
+" O_BINARY 和 O_TEXT 标志。"
 
 #: ../../src/fs.rst:243
 msgid ""
 "Equivalent to :man:`preadv(2)`. If the `offset` argument is `-1`, then "
 "the current file offset is used and updated."
-msgstr ""
+msgstr "等价于 :man:`preadv(2)`。如果 `offset` 参数为 `-1`，则使用并更新当前文件偏移量。"
 
 #: ../../src/fs.rst:247
 msgid ""
@@ -180,16 +200,18 @@ msgid ""
 "to build libuv), files opened using ``UV_FS_O_FILEMAP`` may cause a fatal"
 " crash if the memory mapped read operation fails."
 msgstr ""
+"在 Windows 上，在非 MSVC 环境（例如使用 GCC 或 Clang 构建 libuv 时）下，使用"
+" ``UV_FS_O_FILEMAP`` 打开的文件在内存映射读取操作失败时可能导致致命崩溃。"
 
 #: ../../src/fs.rst:253
 msgid "Equivalent to :man:`unlink(2)`."
-msgstr ""
+msgstr "等价于 :man:`unlink(2)`。"
 
 #: ../../src/fs.rst:257
 msgid ""
 "Equivalent to :man:`pwritev(2)`. If the `offset` argument is `-1`, then "
 "the current file offset is used and updated."
-msgstr ""
+msgstr "等价于 :man:`pwritev(2)`。如果 `offset` 参数为 `-1`，则使用并更新当前文件偏移量。"
 
 #: ../../src/fs.rst:261
 msgid ""
@@ -197,20 +219,22 @@ msgid ""
 "to build libuv), files opened using ``UV_FS_O_FILEMAP`` may cause a fatal"
 " crash if the memory mapped write operation fails."
 msgstr ""
+"在 Windows 上，在非 MSVC 环境（例如使用 GCC 或 Clang 构建 libuv 时）下，使用"
+" ``UV_FS_O_FILEMAP`` 打开的文件在内存映射写入操作失败时可能导致致命崩溃。"
 
 #: ../../src/fs.rst:267
 msgid "Equivalent to :man:`mkdir(2)`."
-msgstr ""
+msgstr "等价于 :man:`mkdir(2)`。"
 
 #: ../../src/fs.rst:270
 msgid "`mode` is currently not implemented on Windows."
-msgstr ""
+msgstr "`mode` 目前在 Windows 上尚未实现。"
 
 #: ../../src/fs.rst:274
 msgid ""
 "Equivalent to :man:`mkdtemp(3)`. The result can be found as a null "
 "terminated string at `req->path`."
-msgstr ""
+msgstr "等价于 :man:`mkdtemp(3)`。结果以空字符结尾的字符串形式存放在 `req->path` 处。"
 
 #: ../../src/fs.rst:278
 msgid ""
@@ -218,10 +242,12 @@ msgid ""
 "null terminated string at `req->path`. The file descriptor can be found "
 "as an integer at `req->result`."
 msgstr ""
+"等价于 :man:`mkstemp(3)`。所创建文件的路径以空字符结尾的字符串形式存放在"
+" `req->path` 处。文件描述符以整数形式存放在 `req->result` 处。"
 
 #: ../../src/fs.rst:285
 msgid "Equivalent to :man:`rmdir(2)`."
-msgstr ""
+msgstr "等价于 :man:`rmdir(2)`。"
 
 #: ../../src/fs.rst:289
 msgid ""
@@ -231,18 +257,21 @@ msgid ""
 "allocated memory must be freed by calling `uv_fs_closedir()`. On failure,"
 " no memory is allocated."
 msgstr ""
+"将 `path` 作为目录流打开。成功时，会分配一个 `uv_dir_t` 并通过 `req->ptr` 返回。"
+"此内存不会由 `uv_fs_req_cleanup()` 释放，尽管 `req->ptr` 会被设置为 `NULL`。已分"
+"配的内存必须通过调用 `uv_fs_closedir()` 来释放。失败时，不分配任何内存。"
 
 #: ../../src/fs.rst:295
 msgid ""
 "The contents of the directory can be iterated over by passing the "
 "resulting `uv_dir_t` to `uv_fs_readdir()`."
-msgstr ""
+msgstr "将得到的 `uv_dir_t` 传给 `uv_fs_readdir()`，即可遍历该目录的内容。"
 
 #: ../../src/fs.rst:302
 msgid ""
 "Closes the directory stream represented by `dir` and frees the memory "
 "allocated by `uv_fs_opendir()`."
-msgstr ""
+msgstr "关闭 `dir` 所表示的目录流，并释放由 `uv_fs_opendir()` 分配的内存。"
 
 #: ../../src/fs.rst:309
 msgid ""
@@ -252,20 +281,23 @@ msgid ""
 ":c:type:`uv_dirent_t` elements used to hold the read directory entries "
 "and its size."
 msgstr ""
+"遍历由一次成功的 `uv_fs_opendir()` 调用返回的目录流 `dir`。在调用 `uv_fs_readdir()`"
+" 之前，调用者必须设置 `dir->dirents` 和 `dir->nentries`，它们表示用于存放所读取目"
+"录项的 :c:type:`uv_dirent_t` 元素数组及其大小。"
 
 #: ../../src/fs.rst:315
 msgid ""
 "On success, the result is an integer >= 0 representing the number of "
 "entries read from the stream."
-msgstr ""
+msgstr "成功时，结果是一个 >= 0 的整数，表示从该流中读取的目录项数量。"
 
 #: ../../src/fs.rst:321
 msgid "`uv_fs_readdir()` is not thread safe."
-msgstr ""
+msgstr "`uv_fs_readdir()` 不是线程安全的。"
 
 #: ../../src/fs.rst:324
 msgid "This function does not return the \".\" and \"..\" entries."
-msgstr ""
+msgstr "此函数不返回“.”和“..”目录项。"
 
 #: ../../src/fs.rst:327
 msgid ""
@@ -273,6 +305,8 @@ msgid ""
 "`uv_fs_req_cleanup()`. `uv_fs_req_cleanup()` must be called before "
 "closing the directory with `uv_fs_closedir()`."
 msgstr ""
+"成功时此函数会分配内存，必须使用 `uv_fs_req_cleanup()` 释放。`uv_fs_req_cleanup()`"
+" 必须在用 `uv_fs_closedir()` 关闭目录之前调用。"
 
 #: ../../src/fs.rst:334
 msgid ""
@@ -282,12 +316,15 @@ msgid ""
 "directory entry data. When there are no more entries ``UV_EOF`` will be "
 "returned."
 msgstr ""
+"等价于 :man:`scandir(3)`，但 API 略有不同。请求的回调一旦被调用，用户即可使用"
+" :c:func:`uv_fs_scandir_next` 获取填充了下一个目录项数据的 `ent`。当没有更多目录"
+"项时，将返回 ``UV_EOF``。"
 
 #: ../../src/fs.rst:340
 msgid ""
 "Unlike `scandir(3)`, this function does not return the \".\" and \"..\" "
 "entries."
-msgstr ""
+msgstr "与 `scandir(3)` 不同，此函数不返回“.”和“..”目录项。"
 
 #: ../../src/fs.rst:343
 msgid ""
@@ -295,12 +332,14 @@ msgid ""
 "systems (btrfs, ext2, ext3 and ext4 at the time of this writing), check "
 "the :man:`getdents(2)` man page."
 msgstr ""
+"在 Linux 上，仅部分文件系统支持获取目录项的类型（撰写本文时为 btrfs、ext2、ext3"
+" 和 ext4），请查阅 :man:`getdents(2)` 手册页。"
 
 #: ../../src/fs.rst:350
 msgid ""
 "Equivalent to :man:`stat(2)`, :man:`fstat(2)` and :man:`lstat(2)` "
 "respectively."
-msgstr ""
+msgstr "分别等价于 :man:`stat(2)`、:man:`fstat(2)` 和 :man:`lstat(2)`。"
 
 #: ../../src/fs.rst:354
 msgid ""
@@ -308,40 +347,42 @@ msgid ""
 "and returned via `req->ptr`. This memory is freed by "
 "`uv_fs_req_cleanup()`."
 msgstr ""
+"等价于 :man:`statfs(2)`。成功时，会分配一个 `uv_statfs_t` 并通过 `req->ptr` 返回。"
+"此内存由 `uv_fs_req_cleanup()` 释放。"
 
 #: ../../src/fs.rst:358
 msgid ""
 "Any fields in the resulting `uv_statfs_t` that are not supported by the "
 "underlying operating system are set to zero."
-msgstr ""
+msgstr "所得 `uv_statfs_t` 中底层操作系统不支持的字段都会被设置为零。"
 
 #: ../../src/fs.rst:365
 msgid "Equivalent to :man:`rename(2)`."
-msgstr ""
+msgstr "等价于 :man:`rename(2)`。"
 
 #: ../../src/fs.rst:369
 msgid "Equivalent to :man:`fsync(2)`."
-msgstr ""
+msgstr "等价于 :man:`fsync(2)`。"
 
 #: ../../src/fs.rst:372
 msgid ""
 "For AIX, `uv_fs_fsync` returns `UV_EBADF` on file descriptors referencing"
 " non regular files."
-msgstr ""
+msgstr "对于 AIX，当文件描述符引用的是非普通文件时，`uv_fs_fsync` 返回 `UV_EBADF`。"
 
 #: ../../src/fs.rst:377
 msgid "Equivalent to :man:`fdatasync(2)`."
-msgstr ""
+msgstr "等价于 :man:`fdatasync(2)`。"
 
 #: ../../src/fs.rst:381
 msgid "Equivalent to :man:`ftruncate(2)`."
-msgstr ""
+msgstr "等价于 :man:`ftruncate(2)`。"
 
 #: ../../src/fs.rst:385
 msgid ""
 "Copies a file from `path` to `new_path`. Supported `flags` are described "
 "below."
-msgstr ""
+msgstr "将文件从 `path` 复制到 `new_path`。受支持的 `flags` 如下所述。"
 
 #: ../../src/fs.rst:387
 msgid ""
@@ -349,6 +390,8 @@ msgid ""
 "`UV_EEXIST` if the destination path already exists. The default behavior "
 "is to overwrite the destination if it exists."
 msgstr ""
+"`UV_FS_COPYFILE_EXCL`：如果设置了此标志，当目标路径已存在时，`uv_fs_copyfile()`"
+" 将以 `UV_EEXIST` 失败。默认行为是：如果目标已存在，则覆盖目标。"
 
 #: ../../src/fs.rst:390
 msgid ""
@@ -358,6 +401,9 @@ msgid ""
 "on-write, a fallback copy mechanism based on :c:func:`uv_fs_sendfile` is "
 "used."
 msgstr ""
+"`UV_FS_COPYFILE_FICLONE`：如果设置了此标志，`uv_fs_copyfile()` 将尝试创建写时复制"
+"的 reflink。如果底层平台不支持写时复制，或者尝试使用写时复制时发生错误，则使用基"
+"于 :c:func:`uv_fs_sendfile` 的回退复制机制。"
 
 #: ../../src/fs.rst:395
 msgid ""
@@ -366,6 +412,9 @@ msgid ""
 "does not support copy-on-write, or an error occurs while attempting to "
 "use copy-on-write, then an error is returned."
 msgstr ""
+"`UV_FS_COPYFILE_FICLONE_FORCE`：如果设置了此标志，`uv_fs_copyfile()` 将尝试创建写"
+"时复制的 reflink。如果底层平台不支持写时复制，或者尝试使用写时复制时发生错误，则"
+"返回错误。"
 
 #: ../../src/fs.rst:401
 msgid ""
@@ -374,54 +423,58 @@ msgid ""
 "time between closing and removing the file where another process could "
 "access the file."
 msgstr ""
+"如果已创建目标路径，但在复制数据时发生错误，则目标路径会被移除。在关闭文件与移除"
+"文件之间有一段短暂的时间窗口，在此期间其他进程可能访问该文件。"
 
 #: ../../src/fs.rst:408
 msgid "`UV_FS_COPYFILE_FICLONE` and `UV_FS_COPYFILE_FICLONE_FORCE` are supported."
-msgstr ""
+msgstr "支持 `UV_FS_COPYFILE_FICLONE` 和 `UV_FS_COPYFILE_FICLONE_FORCE`。"
 
 #: ../../src/fs.rst:411
 msgid ""
 "If an error occurs while using `UV_FS_COPYFILE_FICLONE_FORCE`, that error"
 " is returned. Previously, all errors were mapped to `UV_ENOTSUP`."
 msgstr ""
+"使用 `UV_FS_COPYFILE_FICLONE_FORCE` 时如果发生错误，将返回该错误。此前，所有错误"
+"都被映射为 `UV_ENOTSUP`。"
 
 #: ../../src/fs.rst:417
 msgid "Limited equivalent to :man:`sendfile(2)`."
-msgstr ""
+msgstr "等价于 :man:`sendfile(2)`，但功能受限。"
 
 #: ../../src/fs.rst:421
 msgid ""
 "Equivalent to :man:`access(2)` on Unix. Windows uses "
 "``GetFileAttributesW()``."
-msgstr ""
+msgstr "在 Unix 上等价于 :man:`access(2)`。Windows 使用 ``GetFileAttributesW()``。"
 
 #: ../../src/fs.rst:426
 msgid "Equivalent to :man:`chmod(2)` and :man:`fchmod(2)` respectively."
-msgstr ""
+msgstr "分别等价于 :man:`chmod(2)` 和 :man:`fchmod(2)`。"
 
 #: ../../src/fs.rst:432
 msgid ""
 "Equivalent to :man:`utime(2)`, :man:`futimes(3)` and :man:`lutimes(3)` "
 "respectively."
-msgstr ""
+msgstr "分别等价于 :man:`utime(2)`、:man:`futimes(3)` 和 :man:`lutimes(3)`。"
 
 #: ../../src/fs.rst:434
 msgid ""
 "Passing `UV_FS_UTIME_NOW` as the atime or mtime sets the timestamp to the"
 " current time."
-msgstr ""
+msgstr "将 `UV_FS_UTIME_NOW` 作为 atime 或 mtime 传入时，时间戳会被设置为当前时间。"
 
 #: ../../src/fs.rst:437
 msgid ""
 "Passing `UV_FS_UTIME_OMIT` as the atime or mtime leaves the timestamp "
 "untouched."
-msgstr ""
+msgstr "将 `UV_FS_UTIME_OMIT` 作为 atime 或 mtime 传入时，时间戳保持不变。"
 
 #: ../../src/fs.rst:441
 msgid ""
 "z/OS: `uv_fs_lutime()` is not implemented for z/OS. It can still be "
 "called but will return ``UV_ENOSYS``."
-msgstr ""
+msgstr "z/OS：`uv_fs_lutime()` 未在 z/OS 上实现。仍然可以调用，但将返回 ``UV_ENOSYS``。"
 
 #: ../../src/fs.rst:445
 msgid ""
@@ -429,40 +482,42 @@ msgid ""
 "7.1 and newer. They can still be called on older versions but will return"
 " ``UV_ENOSYS``."
 msgstr ""
+"AIX：`uv_fs_futime()` 和 `uv_fs_lutime()` 函数仅在 AIX 7.1 及更新版本上可用。在更"
+"旧的版本上仍然可以调用，但将返回 ``UV_ENOSYS``。"
 
 #: ../../src/fs.rst:448
 msgid "sub-second precission is supported on Windows"
-msgstr ""
+msgstr "Windows 上支持亚秒精度。"
 
 #: ../../src/fs.rst:452
 msgid "Equivalent to :man:`link(2)`."
-msgstr ""
+msgstr "等价于 :man:`link(2)`。"
 
 #: ../../src/fs.rst:456
 msgid "Equivalent to :man:`symlink(2)`."
-msgstr ""
+msgstr "等价于 :man:`symlink(2)`。"
 
 #: ../../src/fs.rst:459
 msgid ""
 "On Windows the `flags` parameter can be specified to control how the "
 "symlink will be created:"
-msgstr ""
+msgstr "在 Windows 上，可以指定 `flags` 参数来控制符号链接的创建方式："
 
 #: ../../src/fs.rst:462
 msgid "``UV_FS_SYMLINK_DIR``: indicates that `path` points to a directory."
-msgstr ""
+msgstr "``UV_FS_SYMLINK_DIR``：表示 `path` 指向一个目录。"
 
 #: ../../src/fs.rst:464
 msgid ""
 "``UV_FS_SYMLINK_JUNCTION``: request that the symlink is created using "
 "junction points."
-msgstr ""
+msgstr "``UV_FS_SYMLINK_JUNCTION``：请求使用联接点创建符号链接。"
 
 #: ../../src/fs.rst:469
 msgid ""
 "Equivalent to :man:`readlink(2)`. The resulting string is stored in "
 "`req->ptr`."
-msgstr ""
+msgstr "等价于 :man:`readlink(2)`。结果字符串存储在 `req->ptr` 中。"
 
 #: ../../src/fs.rst:474
 msgid ""
@@ -471,12 +526,15 @@ msgid ""
 "us/windows/win32/api/fileapi/nf-fileapi-getfinalpathnamebyhandlew>`_. The"
 " resulting string is stored in `req->ptr`."
 msgstr ""
+"在 Unix 上等价于 :man:`realpath(3)`。Windows 使用 `GetFinalPathNameByHandleW"
+" <https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-getfinalpathnamebyhandlew>`_。"
+"结果字符串存储在 `req->ptr` 中。"
 
 #: ../../src/fs.rst:478
 msgid ""
 "This function has certain platform-specific caveats that were discovered "
 "when used in Node."
-msgstr ""
+msgstr "此函数存在一些在 Node 中使用时发现的平台相关注意事项。"
 
 #: ../../src/fs.rst:480
 msgid ""
@@ -484,86 +542,92 @@ msgid ""
 "32 symlinks are found while resolving the given path.  This limit is "
 "hardcoded and cannot be sidestepped."
 msgstr ""
+"macOS 及其他 BSD：在解析给定路径时，如果发现超过 32 个符号链接，此函数将以"
+" UV_ELOOP 失败。该限制是硬编码的，无法规避。"
 
 #: ../../src/fs.rst:482
 msgid ""
 "Windows: while this function works in the common case, there are a number"
 " of corner cases where it doesn't:"
-msgstr ""
+msgstr "Windows：虽然此函数在常见情况下可以正常工作，但在若干边缘情况下却不行："
 
 #: ../../src/fs.rst:485
 msgid ""
 "Paths in ramdisk volumes created by tools which sidestep the Volume "
 "Manager (such as ImDisk) cannot be resolved."
-msgstr ""
+msgstr "由绕过卷管理器的工具（例如 ImDisk）创建的 ramdisk 卷中的路径无法解析。"
 
 #: ../../src/fs.rst:487
 msgid "Inconsistent casing when using drive letters."
-msgstr ""
+msgstr "使用盘符时大小写不一致。"
 
 #: ../../src/fs.rst:488
 msgid "Resolved path bypasses subst'd drives."
-msgstr ""
+msgstr "解析出的路径会绕过经 subst 映射的驱动器。"
 
 #: ../../src/fs.rst:490
 msgid ""
 "While this function can still be used, it's not recommended if scenarios "
 "such as the above need to be supported."
-msgstr ""
+msgstr "此函数仍然可以使用，但如果需要支持上述场景，则不推荐使用。"
 
 #: ../../src/fs.rst:493
 msgid ""
 "The background story and some more details on these issues can be checked"
 " `here <https://github.com/nodejs/node/issues/7726>`_."
 msgstr ""
+"这些问题的来龙去脉及更多细节可在 `此处 <https://github.com/nodejs/node/issues/7726>`_"
+" 查看。"
 
 #: ../../src/fs.rst:502
 msgid ""
 "Equivalent to :man:`chown(2)`, :man:`fchown(2)` and :man:`lchown(2)` "
 "respectively."
-msgstr ""
+msgstr "分别等价于 :man:`chown(2)`、:man:`fchown(2)` 和 :man:`lchown(2)`。"
 
 #: ../../src/fs.rst:505
 msgid "These functions are not implemented on Windows."
-msgstr ""
+msgstr "这些函数在 Windows 上未实现。"
 
 #: ../../src/fs.rst:507
 msgid "implemented uv_fs_lchown"
-msgstr ""
+msgstr "实现了 uv_fs_lchown"
 
 #: ../../src/fs.rst:511
 msgid "Returns `req->fs_type`."
-msgstr ""
+msgstr "返回 `req->fs_type`。"
 
 #: ../../src/fs.rst:517
 msgid "Returns `req->result`."
-msgstr ""
+msgstr "返回 `req->result`。"
 
 #: ../../src/fs.rst:523
 msgid ""
 "Returns the platform specific error code - `GetLastError()` value on "
 "Windows and `-(req->result)` on other platforms."
 msgstr ""
+"返回平台特定的错误码——Windows 上为 `GetLastError()` 的值，其他平台上为"
+" `-(req->result)`。"
 
 #: ../../src/fs.rst:530
 msgid "Returns `req->ptr`."
-msgstr ""
+msgstr "返回 `req->ptr`。"
 
 #: ../../src/fs.rst:536
 msgid "Returns `req->path`."
-msgstr ""
+msgstr "返回 `req->path`。"
 
 #: ../../src/fs.rst:542
 msgid "Returns `&req->statbuf`."
-msgstr ""
+msgstr "返回 `&req->statbuf`。"
 
 #: ../../src/fs.rst:546
 msgid "The :c:type:`uv_req_t` API functions also apply."
-msgstr ""
+msgstr ":c:type:`uv_req_t` 的 API 函数同样适用。"
 
 #: ../../src/fs.rst:549
 msgid "Helper functions"
-msgstr ""
+msgstr "辅助函数"
 
 #: ../../src/fs.rst:553
 msgid ""
@@ -574,6 +638,10 @@ msgid ""
 "the C runtime, any attempts to close it or to use it after closing the fd"
 " may lead to malfunction."
 msgstr ""
+"对于 C 运行时中的文件描述符，获取与操作系统相关的句柄。在 UNIX 上，原样返回"
+" ``fd``。在 Windows 上，此函数调用 `_get_osfhandle <https://learn.microsoft.com/en-"
+"us/cpp/c-runtime-library/reference/get-osfhandle?view=vs-2019>`_。注意，返回值仍"
+"归 C 运行时所有，在关闭 fd 之后关闭它或使用它的任何尝试都可能导致功能异常。"
 
 #: ../../src/fs.rst:562
 msgid ""
@@ -584,20 +652,24 @@ msgid ""
 " the argument, any attempts to close it or to use it after closing the "
 "return value may lead to malfunction."
 msgstr ""
+"对于与操作系统相关的句柄，获取 C 运行时中的文件描述符。在 UNIX 上，原样返回"
+" ``os_fd``。在 Windows 上，此函数调用 `_open_osfhandle <https://learn.microsoft.com/en-"
+"us/cpp/c-runtime-library/reference/open-osfhandle?view=vs-2019>`_。注意，此函数"
+"会消耗传入的参数，在关闭返回值之后关闭它或使用它的任何尝试都可能导致功能异常。"
 
 #: ../../src/fs.rst:570
 msgid "File open constants"
-msgstr ""
+msgstr "文件打开常量"
 
 #: ../../src/fs.rst:574
 msgid ""
 "The file is opened in append mode. Before each write, the file offset is "
 "positioned at the end of the file."
-msgstr ""
+msgstr "以追加模式打开文件。每次写入之前，文件偏移量都会被定位到文件末尾。"
 
 #: ../../src/fs.rst:579
 msgid "The file is created if it does not already exist."
-msgstr ""
+msgstr "如果文件尚不存在，则创建该文件。"
 
 #: ../../src/fs.rst:583
 msgid ""
@@ -605,6 +677,8 @@ msgid ""
 "aligned. Buffer size and address should be a multiple of the physical "
 "sector size of the block device."
 msgstr ""
+"文件 I/O 直接在用户空间缓冲区与文件之间进行，这些缓冲区必须对齐。缓冲区大小和地"
+"址应为块设备物理扇区大小的倍数。"
 
 #: ../../src/fs.rst:588
 msgid ""
@@ -613,20 +687,25 @@ msgid ""
 "us/windows/win32/fileio/file-buffering>`_. `UV_FS_O_DIRECT` is not "
 "supported on macOS."
 msgstr ""
+"`UV_FS_O_DIRECT` 在 Linux 上受支持，在 Windows 上通过 `FILE_FLAG_NO_BUFFERING"
+" <https://learn.microsoft.com/en-us/windows/win32/fileio/file-buffering>`_ 实现。"
+"`UV_FS_O_DIRECT` 在 macOS 上不受支持。"
 
 #: ../../src/fs.rst:594
 msgid "If the path is not a directory, fail the open."
-msgstr ""
+msgstr "如果路径不是目录，则打开失败。"
 
 #: ../../src/fs.rst:597
 msgid "`UV_FS_O_DIRECTORY` is not supported on Windows."
-msgstr ""
+msgstr "`UV_FS_O_DIRECTORY` 在 Windows 上不受支持。"
 
 #: ../../src/fs.rst:601
 msgid ""
 "The file is opened for synchronous I/O. Write operations will complete "
 "once all data and a minimum of metadata are flushed to disk."
 msgstr ""
+"以同步 I/O 方式打开文件。一旦所有数据及最少量元数据被刷新到磁盘，写入操作即告完"
+"成。"
 
 #: ../../src/fs.rst:605
 msgid ""
@@ -634,10 +713,12 @@ msgid ""
 "<https://learn.microsoft.com/en-us/windows/win32/fileio/file-"
 "buffering>`_."
 msgstr ""
+"`UV_FS_O_DSYNC` 在 Windows 上通过 `FILE_FLAG_WRITE_THROUGH"
+" <https://learn.microsoft.com/en-us/windows/win32/fileio/file-buffering>`_ 实现。"
 
 #: ../../src/fs.rst:610
 msgid "If the `O_CREAT` flag is set and the file already exists, fail the open."
-msgstr ""
+msgstr "如果设置了 `O_CREAT` 标志且文件已存在，则打开失败。"
 
 #: ../../src/fs.rst:613
 msgid ""
@@ -647,36 +728,39 @@ msgid ""
 "block device is in use by the system (e.g., mounted), the open will fail "
 "with the error `EBUSY`."
 msgstr ""
+"一般来说，如果 `O_EXCL` 不与 `O_CREAT` 一起使用，其行为是未定义的。有一个例外：在"
+" Linux 2.6 及更高版本上，如果 pathname 指向块设备，`O_EXCL` 可以脱离 `O_CREAT` 单"
+"独使用。如果该块设备正被系统占用（例如已挂载），打开将失败并报 `EBUSY` 错误。"
 
 #: ../../src/fs.rst:621
 msgid "Atomically obtain an exclusive lock."
-msgstr ""
+msgstr "以原子方式获取独占锁。"
 
 #: ../../src/fs.rst:624
 msgid "`UV_FS_O_EXLOCK` is only supported on macOS and Windows."
-msgstr ""
+msgstr "`UV_FS_O_EXLOCK` 仅在 macOS 和 Windows 上受支持。"
 
 #: ../../src/fs.rst:626
 msgid "support is added for Windows."
-msgstr ""
+msgstr "增加了对 Windows 的支持。"
 
 #: ../../src/fs.rst:630
 msgid ""
 "Use a memory file mapping to access the file. When using this flag, the "
 "file cannot be open multiple times concurrently."
-msgstr ""
+msgstr "使用内存文件映射来访问文件。使用此标志时，该文件不能被并发打开多次。"
 
 #: ../../src/fs.rst:634
 msgid "`UV_FS_O_FILEMAP` is only supported on Windows."
-msgstr ""
+msgstr "`UV_FS_O_FILEMAP` 仅在 Windows 上受支持。"
 
 #: ../../src/fs.rst:638
 msgid "Do not update the file access time when the file is read."
-msgstr ""
+msgstr "读取文件时不更新文件访问时间。"
 
 #: ../../src/fs.rst:641
 msgid "`UV_FS_O_NOATIME` is not supported on Windows."
-msgstr ""
+msgstr "`UV_FS_O_NOATIME` 在 Windows 上不受支持。"
 
 #: ../../src/fs.rst:645
 msgid ""
@@ -684,32 +768,34 @@ msgid ""
 " that terminal to become the controlling terminal for the process (if the"
 " process does not already have one)."
 msgstr ""
+"如果路径标识的是一个终端设备，打开该路径不会使该终端成为该进程的控制终端（如果该"
+"进程尚未拥有控制终端）。"
 
 #: ../../src/fs.rst:650
 msgid "`UV_FS_O_NOCTTY` is not supported on Windows."
-msgstr ""
+msgstr "`UV_FS_O_NOCTTY` 在 Windows 上不受支持。"
 
 #: ../../src/fs.rst:654
 msgid "If the path is a symbolic link, fail the open."
-msgstr ""
+msgstr "如果路径是符号链接，则打开失败。"
 
 #: ../../src/fs.rst:657
 msgid "`UV_FS_O_NOFOLLOW` is not supported on Windows."
-msgstr ""
+msgstr "`UV_FS_O_NOFOLLOW` 在 Windows 上不受支持。"
 
 #: ../../src/fs.rst:661
 msgid "Open the file in nonblocking mode if possible."
-msgstr ""
+msgstr "尽可能以非阻塞模式打开文件。"
 
 #: ../../src/fs.rst:664
 msgid "`UV_FS_O_NONBLOCK` is not supported on Windows."
-msgstr ""
+msgstr "`UV_FS_O_NONBLOCK` 在 Windows 上不受支持。"
 
 #: ../../src/fs.rst:668
 msgid ""
 "Access is intended to be random. The system can use this as a hint to "
 "optimize file caching."
-msgstr ""
+msgstr "访问预期是随机的。系统可将此用作优化文件缓存的提示。"
 
 #: ../../src/fs.rst:672
 msgid ""
@@ -717,20 +803,23 @@ msgid ""
 "`FILE_FLAG_RANDOM_ACCESS <https://learn.microsoft.com/en-"
 "us/windows/win32/api/fileapi/nf-fileapi-createfilew>`_."
 msgstr ""
+"`UV_FS_O_RANDOM` 仅在 Windows 上通过 `FILE_FLAG_RANDOM_ACCESS"
+" <https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew>`_"
+" 实现。"
 
 #: ../../src/fs.rst:677
 msgid "Open the file for read-only access."
-msgstr ""
+msgstr "以只读方式打开文件。"
 
 #: ../../src/fs.rst:681
 msgid "Open the file for read-write access."
-msgstr ""
+msgstr "以读写方式打开文件。"
 
 #: ../../src/fs.rst:685
 msgid ""
 "Access is intended to be sequential from beginning to end. The system can"
 " use this as a hint to optimize file caching."
-msgstr ""
+msgstr "访问预期是从头到尾顺序进行的。系统可将此用作优化文件缓存的提示。"
 
 #: ../../src/fs.rst:689
 msgid ""
@@ -738,10 +827,13 @@ msgid ""
 "`FILE_FLAG_SEQUENTIAL_SCAN <https://learn.microsoft.com/en-"
 "us/windows/win32/api/fileapi/nf-fileapi-createfilew>`_."
 msgstr ""
+"`UV_FS_O_SEQUENTIAL` 仅在 Windows 上通过 `FILE_FLAG_SEQUENTIAL_SCAN"
+" <https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew>`_"
+" 实现。"
 
 #: ../../src/fs.rst:694 ../../src/fs.rst:715
 msgid "The file is temporary and should not be flushed to disk if possible."
-msgstr ""
+msgstr "该文件是临时的，应尽可能不将其刷新到磁盘。"
 
 #: ../../src/fs.rst:697
 msgid ""
@@ -749,16 +841,21 @@ msgid ""
 "`FILE_ATTRIBUTE_TEMPORARY <https://learn.microsoft.com/en-"
 "us/windows/win32/api/fileapi/nf-fileapi-createfilew>`_."
 msgstr ""
+"`UV_FS_O_SHORT_LIVED` 仅在 Windows 上通过 `FILE_ATTRIBUTE_TEMPORARY"
+" <https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew>`_"
+" 实现。"
 
 #: ../../src/fs.rst:702
 msgid "Open the symbolic link itself rather than the resource it points to."
-msgstr ""
+msgstr "打开符号链接本身，而不是它所指向的资源。"
 
 #: ../../src/fs.rst:706
 msgid ""
 "The file is opened for synchronous I/O. Write operations will complete "
 "once all data and all metadata are flushed to disk."
 msgstr ""
+"以同步 I/O 方式打开文件。一旦所有数据及所有元数据被刷新到磁盘，写入操作即告完"
+"成。"
 
 #: ../../src/fs.rst:710
 msgid ""
@@ -766,6 +863,8 @@ msgid ""
 "<https://learn.microsoft.com/en-us/windows/win32/fileio/file-"
 "buffering>`_."
 msgstr ""
+"`UV_FS_O_SYNC` 在 Windows 上通过 `FILE_FLAG_WRITE_THROUGH"
+" <https://learn.microsoft.com/en-us/windows/win32/fileio/file-buffering>`_ 实现。"
 
 #: ../../src/fs.rst:718
 msgid ""
@@ -773,14 +872,17 @@ msgid ""
 "`FILE_ATTRIBUTE_TEMPORARY <https://learn.microsoft.com/en-"
 "us/windows/win32/api/fileapi/nf-fileapi-createfilew>`_."
 msgstr ""
+"`UV_FS_O_TEMPORARY` 仅在 Windows 上通过 `FILE_ATTRIBUTE_TEMPORARY"
+" <https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew>`_"
+" 实现。"
 
 #: ../../src/fs.rst:723
 msgid ""
 "If the file exists and is a regular file, and the file is opened "
 "successfully for write access, its length shall be truncated to zero."
-msgstr ""
+msgstr "如果文件存在且是普通文件，并且以写访问权限成功打开，则其长度将被截断为零。"
 
 #: ../../src/fs.rst:728
 msgid "Open the file for write-only access."
-msgstr ""
+msgstr "以只写方式打开文件。"
 

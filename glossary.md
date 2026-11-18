@@ -107,6 +107,94 @@
 | loop *alive* | 存活（循环存活） | design | 禁用: 活着的、活跃的（此语境） |
 | handler | 处理函数 | guide（函数语境） | 与 handle→句柄 区分 |
 
+### 2.1 P2 批次新增（2026-11-18 裁决，81 条）
+
+| 英文术语 | 统一译名 | 首次出现章节 | 禁用译名 / 备注 |
+|---|---|---|---|
+| metrics | 指标 | metrics | |
+| event handler | 事件处理器 | metrics | 此处指事件处理机制，与 handler→处理函数（函数语境）区分 |
+| event provider | 事件提供程序 | metrics/loop | 禁用: 事件提供者 |
+| idle time | 空闲时间 | loop/metrics | 与 Idling→空转（idle 句柄语境）区分 |
+| sampling profiler | 采样式性能分析器 | loop | |
+| backend | 后端 | loop/fs_event | |
+| backend file descriptor | 后端文件描述符 | loop | |
+| poll timeout | 轮询超时 | loop | |
+| freelist | 空闲链表 | handle | |
+| allocation pool | 分配池 | handle | |
+| memory chunk | 内存块 | handle | |
+| rule of thumb | 经验法则 | handle | |
+| undefined behaviour / behavior | 未定义行为 | handle/async/signal | |
+| experimental | 实验性的 | loop | |
+| cast | 强制转换 | handle | C 类型转换语境 |
+| union | 联合体 | handle/request | 类型语境；普通词「联合使用」不受限 |
+| base handle | 基础句柄 | handle | |
+| shared library | 共享库 | dll | |
+| dynamic library | 动态库 | dll | |
+| Release Candidate | 候选发布版 | version | |
+| development snapshot | 开发快照 | version | |
+| transport endpoint | 传输端点 | errors | |
+| protocol driver | 协议驱动程序 | errors | |
+| seek | 查找 | errors | UV_ESPIPE 语境 |
+| null-terminated / zero-terminated | 以空字符结尾 | errors/fs | 统一裁决：含「以零结尾」「以 null 结尾」变体（NUL 字面常量语境除外） |
+| null terminator / NUL terminator | 空终止符 | misc/fs_event | NUL 作为字面常量名保留 |
+| terminating null byte | 空终止字节 | fs_event/fs_poll | |
+| process title | 进程标题 | misc | |
+| resident set size (RSS) | 常驻集大小 | misc | 缩写 RSS 保留 |
+| uptime | 运行时间 | misc | |
+| load average | 负载均值 | misc | |
+| CPU affinity mask | CPU 亲和性掩码 | misc | |
+| parallelism | 并行度 | misc | |
+| interface identifier | 接口标识符 | misc | |
+| IPv6 scoped address | IPv6 作用域地址 | misc | |
+| allocator | 分配器 | misc | |
+| high-resolution timestamp | 高分辨率时间戳 | misc | 与高分辨率时钟配套 |
+| clock source | 时钟源 | misc | |
+| real-time clock | 实时时钟 | misc | |
+| monotonic clock | 单调时钟 | misc | |
+| UNIX epoch | UNIX 纪元 | misc | |
+| clock drift | 时钟漂移 | misc | |
+| entropy | 熵 | misc | |
+| short read | 短读 | misc | |
+| elevated user | 已提权的用户 | misc | |
+| priority class | 优先级类 | misc | |
+| scheduling priority | 调度优先级 | misc | |
+| effective uid / real uid | 有效 uid / 真实 uid | misc | uid 保留 |
+| home directory / temp directory | 主目录 / 临时目录 | misc | |
+| man page | 手册页 | fs | |
+| C runtime | C 运行时 | fs | |
+| exclusive lock | 独占锁 | fs | 与 mutex→互斥锁 区分 |
+| metadata | 元数据 | fs | |
+| append mode | 追加模式 | fs | |
+| file caching | 文件缓存 | fs | 与 buffer→缓冲区 区分 |
+| corner case | 边缘情况 | fs | |
+| fallback | 回退 | fs | |
+| nanosecond resolution | 纳秒精度 | fs | |
+| sub-second precision | 亚秒精度 | fs | |
+| directory stream | 目录流 | fs | |
+| directory entry | 目录项 | fs | |
+| junction point | 联接点 | fs | Windows NTFS 术语 |
+| copy-on-write reflink | 写时复制的 reflink | fs | reflink 保留 |
+| controlling terminal | 控制终端 | fs | P3 tty 复用 |
+| drive letter | 盘符 | fs | |
+| Volume Manager | 卷管理器 | fs | |
+| no-op | 空操作 | request/dns | |
+| single-shot | 一次性的 | timer | |
+| rearm | 重新装载 | timer | 禁用: 重新装填（P2 裁决） |
+| time-slice overrun | 时间片超限 | timer | |
+| timer due value | 到期值 | timer | 与 due timer→到期的定时器 同族 |
+| sequential consistency | 顺序一致性 | async | 缩写 seq_cst 保留 |
+| coalesce | 合并 | async | 调用合并语境 |
+| fence / memory fence | 栅栏 / 内存栅栏 | async | 与 barrier→屏障 区分 |
+| loop thread | 循环线程 | async | |
+| level triggering | 电平触发 | poll | 与 edge triggering（边沿触发）相对 |
+| out-of-band messages | 带外消息 | poll | P3 tcp 复用 |
+| busyloop | 忙循环 | poll | |
+| signal handling | 信号处理 | signal | 与 signal handler→信号处理函数 配套 |
+| deliver | 递送 | signal | 信号递送语境 |
+| raw mode | 原始模式 | signal | P3 tty 复用 |
+| console emulator | 控制台模拟器 | signal | |
+| console window | 控制台窗口 | signal | |
+
 ## 3. 错误描述惯用译法（errors.rst 高频错误信息，R2-9）
 
 > 适用: `UV_E*` 常量后的英文描述、错误返回说明文本。错误码常量本身不译（通则 3）。
@@ -173,6 +261,8 @@
 - 平台 / 标准 / 协议名: Windows、Unix、POSIX、TCP、UDP、SCTP、inotify、kqueue、epoll、IOCP、event ports（Solaris 机制名）、POSIX
 - HTTP 头名、URL、许可证名: CC BY 4.0、MIT
 - 无通行译名或特有行话（P1 裁决）: IPC、backlog（listen(2) 参数名）、tee（Unix 工具）、slab（内核术语）、baton（libuv 指南行话）、Hello World（程序名）
+- 无通行译名或特有行话（P2 裁决）: tick（事件循环 tick 语境）、CSPRNG、async-signal-safe、sysfs、ramdisk、reflink、WTF-8、NUL（字面常量）、Y2K38、Unicies（上游笔误词）
+- 编码名: UTF-16、UCS-2、WTF-8 等
 - 句柄/请求类型名: timer、prepare、check、idle、async、poll、signal、process、fs_event、fs_poll、tty、udp、tcp、pipe、stream（作为类型名出现时）
 
 > 例外提示: 上述名词作为**普通英文单词**出现在句子中时按上下文翻译（如 "signals and pipes" 一般句境 → 信号与管道；类型名语境 "the signal handle" → signal 句柄）。
@@ -227,3 +317,10 @@
 回环
 受 CPU 限制
 超时的定时器
+事件提供者
+重新装填
+null 终止符
+NUL 终止符
+以 null 结尾
+以零结尾
+null 字节

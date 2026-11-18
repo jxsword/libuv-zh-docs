@@ -23,125 +23,125 @@ msgstr ""
 
 #: ../../src/fs_event.rst:5
 msgid ":c:type:`uv_fs_event_t` --- FS Event handle"
-msgstr ""
+msgstr ":c:type:`uv_fs_event_t` —— FS Event 句柄"
 
 #: ../../src/fs_event.rst:7
 msgid ""
 "FS Event handles allow the user to monitor a given path for changes, for "
 "example, if the file was renamed or there was a generic change in it. "
 "This handle uses the best backend for the job on each platform."
-msgstr ""
+msgstr "FS Event 句柄允许用户监视给定路径的变化，例如文件是否被重命名或文件内部发生了某种一般性变更。该句柄会在每个平台上为该项工作选用最佳后端。"
 
 #: ../../src/fs_event.rst:12
 msgid ""
 "For AIX, the non default IBM bos.ahafs package has to be installed. The "
 "AIX Event Infrastructure file system (ahafs) has some limitations:"
-msgstr ""
+msgstr "对于 AIX，必须安装非默认的 IBM bos.ahafs 包。AIX Event Infrastructure 文件系统（ahafs）有一些限制："
 
 #: ../../src/fs_event.rst:15
 msgid ""
 "ahafs tracks monitoring per process and is not thread safe. A separate "
 "process must be spawned for each monitor for the same event."
-msgstr ""
+msgstr "ahafs 按进程跟踪监视，并且不是线程安全的。对于同一事件，必须为每个监视器派生一个单独的进程。"
 
 #: ../../src/fs_event.rst:17
 msgid ""
 "Events for file modification (writing to a file) are not received if only"
 " the containing folder is watched."
-msgstr ""
+msgstr "如果只监视包含该文件的目录，则不会收到文件修改（向文件写入）事件。"
 
 #: ../../src/fs_event.rst:20
 msgid "See documentation_ for more details."
-msgstr ""
+msgstr "更多详情请参见 documentation_。"
 
 #: ../../src/fs_event.rst:22
 msgid ""
 "The z/OS file system events monitoring infrastructure does not notify of "
 "file creation/deletion within a directory that is being monitored. See "
 "the `IBM Knowledge centre`_ for more details."
-msgstr ""
+msgstr "z/OS 的文件系统事件监视基础设施不会就正在被监视的目录内的文件创建/删除发出通知。更多详情请参见 `IBM Knowledge centre`_。"
 
 #: ../../src/fs_event.rst:33
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/fs_event.rst:37
 msgid "FS Event handle type."
-msgstr ""
+msgstr "FS Event 句柄类型。"
 
 #: ../../src/fs_event.rst:41
 msgid ""
 "Callback passed to :c:func:`uv_fs_event_start` which will be called "
 "repeatedly after the handle is started."
-msgstr ""
+msgstr "传递给 :c:func:`uv_fs_event_start` 的回调，在句柄启动之后会被反复调用。"
 
 #: ../../src/fs_event.rst:44
 msgid ""
 "If the handle was started with a directory the `filename` parameter will "
 "be a relative path to a file contained in the directory, or `NULL` if the"
 " file name cannot be determined."
-msgstr ""
+msgstr "如果句柄以某个目录启动，`filename` 参数将是该目录中所含文件的相对路径；在无法确定文件名时则为 `NULL`。"
 
 #: ../../src/fs_event.rst:48
 msgid "The `events` parameter is an ORed mask of :c:enum:`uv_fs_event` elements."
-msgstr ""
+msgstr "`events` 参数是由 :c:enum:`uv_fs_event` 各元素组成的按位或掩码。"
 
 #: ../../src/fs_event.rst:51
 msgid "For FreeBSD path could sometimes be `NULL` due to a kernel bug."
-msgstr ""
+msgstr "在 FreeBSD 上，由于内核缺陷，path 有时可能是 `NULL`。"
 
 #: ../../src/fs_event.rst:57
 msgid "Event types that :c:type:`uv_fs_event_t` handles monitor."
-msgstr ""
+msgstr ":c:type:`uv_fs_event_t` 句柄监视的事件类型。"
 
 #: ../../src/fs_event.rst:68
 msgid ""
 "Flags that can be passed to :c:func:`uv_fs_event_start` to control its "
 "behavior."
-msgstr ""
+msgstr "可传递给 :c:func:`uv_fs_event_start` 以控制其行为的标志。"
 
 #: ../../src/fs_event.rst:100
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/fs_event.rst:102
 msgid "N/A"
-msgstr ""
+msgstr "无"
 
 #: ../../src/fs_event.rst:104
 msgid "The :c:type:`uv_handle_t` members also apply."
-msgstr ""
+msgstr ":c:type:`uv_handle_t` 的成员也同样适用。"
 
 #: ../../src/fs_event.rst:108
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/fs_event.rst:112
 msgid "Initialize the handle."
-msgstr ""
+msgstr "初始化句柄。"
 
 #: ../../src/fs_event.rst:116
 msgid ""
 "Start the handle with the given callback, which will watch the specified "
 "`path` for changes. `flags` can be an ORed mask of "
 ":c:enum:`uv_fs_event_flags`."
-msgstr ""
+msgstr "以给定的回调启动句柄，它将监视指定 `path` 的变化。`flags` 可以是 :c:enum:`uv_fs_event_flags` 的按位或掩码。"
 
 #: ../../src/fs_event.rst:119
 msgid ""
 "Currently the only supported flag is ``UV_FS_EVENT_RECURSIVE`` and only "
 "on OSX and Windows."
-msgstr ""
+msgstr "目前唯一受支持的标志是 ``UV_FS_EVENT_RECURSIVE``，且仅在 OSX 和 Windows 上受支持。"
 
 #: ../../src/fs_event.rst:121
 msgid ""
 "On macOS, events collected by the OS immediately before calling "
 "``uv_fs_event_start`` might be reported to the `uv_fs_event_cb` callback."
-msgstr ""
+msgstr "在 macOS 上，在调用 ``uv_fs_event_start`` 之前一刻由操作系统收集到的事件，可能会报告给 `uv_fs_event_cb` 回调。"
 
 #: ../../src/fs_event.rst:127
 msgid "Stop the handle, the callback will no longer be called."
-msgstr ""
+msgstr "停止句柄，回调将不再被调用。"
 
 #: ../../src/fs_event.rst:131
 msgid ""
@@ -151,21 +151,21 @@ msgid ""
 "its length. If the buffer is not big enough `UV_ENOBUFS` will be returned"
 " and `size` will be set to the required size, including the null "
 "terminator."
-msgstr ""
+msgstr "获取该句柄正在监视的路径。缓冲区必须由用户预先分配。成功时返回 0，失败时返回小于 0 的错误码。成功时，`buffer` 将包含该路径，`size` 为其长度。如果缓冲区不够大，将返回 `UV_ENOBUFS`，并且 `size` 会被设置为所需的大小，包括空终止符。"
 
 #: ../../src/fs_event.rst:137
 msgid ""
 "the returned length no longer includes the terminating null byte, and the"
 " buffer is not null terminated."
-msgstr ""
+msgstr "返回的长度不再包含结尾的空终止字节，且缓冲区不会以空字节结尾。"
 
 #: ../../src/fs_event.rst:140
 msgid ""
 "the returned length includes the terminating null byte on `UV_ENOBUFS`, "
 "and the buffer is null terminated on success."
-msgstr ""
+msgstr "在 `UV_ENOBUFS` 时返回的长度包含结尾的空终止字节，成功时缓冲区会以空字节结尾。"
 
 #: ../../src/fs_event.rst:144
 msgid "The :c:type:`uv_handle_t` API functions also apply."
-msgstr ""
+msgstr ":c:type:`uv_handle_t` 的 API 函数也同样适用。"
 

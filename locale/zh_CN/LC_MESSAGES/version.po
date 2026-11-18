@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../../src/version.rst:5
 msgid "Version-checking macros and functions"
-msgstr ""
+msgstr "版本检查宏与函数"
 
 #: ../../src/version.rst:7
 msgid ""
@@ -32,54 +32,54 @@ msgid ""
 "lifetime of a major release. In this section you'll find all macros and "
 "functions that will allow you to write or compile code conditionally, in "
 "order to work with multiple libuv versions."
-msgstr ""
+msgstr "从 1.0.0 版本开始，libuv 遵循 `semantic versioning`_ 方案。这意味着在一个大版本的生命周期内都可以引入新 API。本节列出了所有宏与函数，借助它们可以按条件编写或编译代码，从而适配多个 libuv 版本。"
 
 #: ../../src/version.rst:17
 msgid "Macros"
-msgstr ""
+msgstr "宏"
 
 #: ../../src/version.rst:21
 msgid "libuv version's major number."
-msgstr ""
+msgstr "libuv 版本的主版本号。"
 
 #: ../../src/version.rst:25
 msgid "libuv version's minor number."
-msgstr ""
+msgstr "libuv 版本的次版本号。"
 
 #: ../../src/version.rst:29
 msgid "libuv version's patch number."
-msgstr ""
+msgstr "libuv 版本的补丁号。"
 
 #: ../../src/version.rst:33
 msgid ""
 "Set to 1 to indicate a release version of libuv, 0 for a development "
 "snapshot."
-msgstr ""
+msgstr "设为 1 表示 libuv 的发布版本，设为 0 表示开发快照。"
 
 #: ../../src/version.rst:38
 msgid ""
 "libuv version suffix. Certain development releases such as Release "
 "Candidates might have a suffix such as \"rc\"."
-msgstr ""
+msgstr "libuv 版本后缀。某些开发性质的发布版本（例如候选发布版）可能带有诸如 “rc” 的后缀。"
 
 #: ../../src/version.rst:43
 msgid ""
 "Returns the libuv version packed into a single integer. 8 bits are used "
 "for each component, with the patch number stored in the 8 least "
 "significant bits. E.g. for libuv 1.2.3 this would be 0x010203."
-msgstr ""
+msgstr "返回打包成单个整数的 libuv 版本号。每个组成部分占用 8 位，补丁号存储在最低的 8 个有效位中。例如 libuv 1.2.3 对应的值为 0x010203。"
 
 #: ../../src/version.rst:51
 msgid "Functions"
-msgstr ""
+msgstr "函数"
 
 #: ../../src/version.rst:55
 msgid "Returns :c:macro:`UV_VERSION_HEX`."
-msgstr ""
+msgstr "返回 :c:macro:`UV_VERSION_HEX`。"
 
 #: ../../src/version.rst:59
 msgid ""
 "Returns the libuv version number as a string. For non-release versions "
 "the version suffix is included."
-msgstr ""
+msgstr "以字符串形式返回 libuv 版本号。对于非发布版本，会包含版本后缀。"
 

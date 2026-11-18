@@ -23,40 +23,40 @@ msgstr ""
 
 #: ../../src/handle.rst:5
 msgid ":c:type:`uv_handle_t` --- Base handle"
-msgstr ""
+msgstr ":c:type:`uv_handle_t` —— 基础句柄"
 
 #: ../../src/handle.rst:7
 msgid "`uv_handle_t` is the base type for all libuv handle types."
-msgstr ""
+msgstr "`uv_handle_t` 是所有 libuv 句柄类型的基础类型。"
 
 #: ../../src/handle.rst:9
 msgid ""
 "Structures are aligned so that any libuv handle can be cast to "
 "`uv_handle_t`. All API functions defined here work with any handle type."
-msgstr ""
+msgstr "结构体经过对齐，因此任何 libuv 句柄都可以强制转换为 `uv_handle_t`。这里定义的所有 API 函数都适用于任何句柄类型。"
 
 #: ../../src/handle.rst:12
 msgid ""
 "Libuv handles are not movable. Pointers to handle structures passed to "
 "functions must remain valid for the duration of the requested operation. "
 "Take care when using stack allocated handles."
-msgstr ""
+msgstr "libuv 句柄不可移动。传递给函数的句柄结构体指针必须在所请求操作的持续期间保持有效。使用在栈上分配的句柄时要小心。"
 
 #: ../../src/handle.rst:17
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/handle.rst:21
 msgid "The base libuv handle type."
-msgstr ""
+msgstr "libuv 基础句柄类型。"
 
 #: ../../src/handle.rst:25
 msgid "The kind of the libuv handle."
-msgstr ""
+msgstr "libuv 句柄的种类。"
 
 #: ../../src/handle.rst:53
 msgid "Union of all handle types."
-msgstr ""
+msgstr "所有句柄类型的联合体。"
 
 #: ../../src/handle.rst:57
 msgid ""
@@ -66,57 +66,57 @@ msgid ""
 "buffer's base or 0 as its length, a ``UV_ENOBUFS`` error will be "
 "triggered in the :c:type:`uv_udp_recv_cb` or the :c:type:`uv_read_cb` "
 "callback."
-msgstr ""
+msgstr "传递给 :c:func:`uv_read_start` 和 :c:func:`uv_udp_recv_start` 的回调的类型定义。用户必须分配内存并填充所提供的 :c:type:`uv_buf_t` 结构体。如果将 NULL 赋为缓冲区的 base，或将 0 赋为其长度，则会在 :c:type:`uv_udp_recv_cb` 或 :c:type:`uv_read_cb` 回调中触发 ``UV_ENOBUFS`` 错误。"
 
 #: ../../src/handle.rst:63
 msgid ""
 "Each buffer is used only once and the user is responsible for freeing it "
 "in the :c:type:`uv_udp_recv_cb` or the :c:type:`uv_read_cb` callback."
-msgstr ""
+msgstr "每个缓冲区只使用一次，用户负责在 :c:type:`uv_udp_recv_cb` 或 :c:type:`uv_read_cb` 回调中释放它。"
 
 #: ../../src/handle.rst:66
 msgid ""
 "A suggested size (65536 at the moment in most cases) is provided, but "
 "it's just an indication, not related in any way to the pending data to be"
 " read. The user is free to allocate the amount of memory they decide."
-msgstr ""
+msgstr "会提供一个建议大小（当前大多数情况下为 65536），但这只是一个指示值，与待读取的数据量没有任何关系。用户可以自行决定分配多少内存。"
 
 #: ../../src/handle.rst:70
 msgid ""
 "As an example, applications with custom allocation schemes such as using "
 "freelists, allocation pools or slab based allocators may decide to use a "
 "different size which matches the memory chunks they already have."
-msgstr ""
+msgstr "例如，具有自定义分配方案（如使用空闲链表、分配池或基于 slab 的分配器）的应用程序，可能会决定使用与其已有内存块相匹配的其他大小。"
 
 #: ../../src/handle.rst:74
 msgid "Example:"
-msgstr ""
+msgstr "示例："
 
 #: ../../src/handle.rst:85
 msgid "Type definition for callback passed to :c:func:`uv_close`."
-msgstr ""
+msgstr "传递给 :c:func:`uv_close` 的回调的类型定义。"
 
 #: ../../src/handle.rst:89
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/handle.rst:93
 msgid "Pointer to the :c:type:`uv_loop_t` the handle is running on. Readonly."
-msgstr ""
+msgstr "指向运行该句柄的 :c:type:`uv_loop_t` 的指针。只读。"
 
 #: ../../src/handle.rst:97
 msgid ""
 "The :c:enum:`uv_handle_type`, indicating the type of the underlying "
 "handle. Readonly."
-msgstr ""
+msgstr ":c:enum:`uv_handle_type`，指示底层句柄的类型。只读。"
 
 #: ../../src/handle.rst:101
 msgid "Space for user-defined arbitrary data. libuv does not use this field."
-msgstr ""
+msgstr "用于存放用户自定义任意数据的空间。libuv 不使用此字段。"
 
 #: ../../src/handle.rst:105
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/handle.rst:109
 msgid ""
@@ -125,49 +125,49 @@ msgid ""
 "of the `uv_handle_type` element without the `UV_` prefix, and the name of"
 " the corresponding structure type without the `uv_` prefix and `_t` "
 "suffix."
-msgstr ""
+msgstr "展开后会对每种句柄类型生成一系列 `iter_macro` 调用的宏。`iter_macro` 被调用时接受两个参数：一个是 `uv_handle_type` 元素去掉 `UV_` 前缀后的名称，另一个是对应结构体类型去掉 `uv_` 前缀和 `_t` 后缀后的名称。"
 
 #: ../../src/handle.rst:117
 msgid ""
 "Returns non-zero if the handle is active, zero if it's inactive. What "
 "\"active\" means depends on the type of handle:"
-msgstr ""
+msgstr "如果句柄处于活动状态则返回非零值，若处于非活动状态则返回零。“活动”的含义取决于句柄的类型："
 
 #: ../../src/handle.rst:120
 msgid ""
 "A uv_async_t handle is always active and cannot be deactivated, except by"
 " closing it with uv_close()."
-msgstr ""
+msgstr "uv_async_t 句柄始终处于活动状态，无法被停用，除非通过 uv_close() 将其关闭。"
 
 #: ../../src/handle.rst:123
 msgid ""
 "A uv_pipe_t, uv_tcp_t, uv_udp_t, etc. handle - basically any handle that "
 "deals with i/o - is active when it is doing something that involves i/o, "
 "like reading, writing, connecting, accepting new connections, etc."
-msgstr ""
+msgstr "uv_pipe_t、uv_tcp_t、uv_udp_t 等句柄——基本上是任何涉及 I/O 的句柄——在执行涉及 I/O 的操作时处于活动状态，例如读取、写入、建立连接、接受新连接等。"
 
 #: ../../src/handle.rst:127
 msgid ""
 "A uv_check_t, uv_idle_t, uv_timer_t, etc. handle is active when it has "
 "been started with a call to uv_check_start(), uv_idle_start(), etc."
-msgstr ""
+msgstr "uv_check_t、uv_idle_t、uv_timer_t 等句柄在通过调用 uv_check_start()、uv_idle_start() 等函数启动后处于活动状态。"
 
 #: ../../src/handle.rst:130
 msgid ""
 "Rule of thumb: if a handle of type `uv_foo_t` has a `uv_foo_start()` "
 "function, then it's active from the moment that function is called. "
 "Likewise, `uv_foo_stop()` deactivates the handle again."
-msgstr ""
+msgstr "经验法则：如果 `uv_foo_t` 类型的句柄拥有 `uv_foo_start()` 函数，那么从该函数被调用之时起它就处于活动状态。同样地，`uv_foo_stop()` 会再次停用该句柄。"
 
 #: ../../src/handle.rst:136
 msgid "Returns non-zero if the handle is closing or closed, zero otherwise."
-msgstr ""
+msgstr "如果句柄正在关闭或已关闭，则返回非零值，否则返回零。"
 
 #: ../../src/handle.rst:139
 msgid ""
 "This function should only be used between the initialization of the "
 "handle and the arrival of the close callback."
-msgstr ""
+msgstr "此函数只应在句柄初始化之后、关闭回调到来之前使用。"
 
 #: ../../src/handle.rst:144
 msgid ""
@@ -175,157 +175,157 @@ msgid ""
 "after this call. This MUST be called on each handle before memory is "
 "released. Moreover, the memory can only be released in `close_cb` or "
 "after it has returned."
-msgstr ""
+msgstr "请求关闭句柄。此调用之后，`close_cb` 将被异步调用。在释放内存之前，必须对每个句柄调用此函数。此外，内存只能在 `close_cb` 中或在其返回之后才能被释放。"
 
 #: ../../src/handle.rst:149
 msgid ""
 "Handles that wrap file descriptors are closed immediately but `close_cb` "
 "will still be deferred to the next iteration of the event loop. It gives "
 "you a chance to free up any resources associated with the handle."
-msgstr ""
+msgstr "包装文件描述符的句柄会被立即关闭，但 `close_cb` 仍会被推迟到事件循环的下一次迭代中调用。这让你有机会释放与该句柄关联的所有资源。"
 
 #: ../../src/handle.rst:153
 msgid ""
 "In-progress requests, like uv_connect_t or uv_write_t, are cancelled and "
 "have their callbacks called asynchronously with status=UV_ECANCELED."
-msgstr ""
+msgstr "进行中的请求（如 uv_connect_t 或 uv_write_t）会被取消，其回调将以 status=UV_ECANCELED 被异步调用。"
 
 #: ../../src/handle.rst:156
 msgid ""
 "`close_cb` can be `NULL` in cases where no cleanup or deallocation is "
 "necessary."
-msgstr ""
+msgstr "在无需清理或释放的情况下，`close_cb` 可以为 `NULL`。"
 
 #: ../../src/handle.rst:161
 msgid ""
 "Reference the given handle. References are idempotent, that is, if a "
 "handle is already referenced calling this function again will have no "
 "effect."
-msgstr ""
+msgstr "引用给定的句柄。引用是幂等的，也就是说，如果句柄已被引用，再次调用此函数不会有任何效果。"
 
 #: ../../src/handle.rst:164 ../../src/handle.rst:171 ../../src/handle.rst:177
 msgid "See :ref:`refcount`."
-msgstr ""
+msgstr "参见 :ref:`refcount`。"
 
 #: ../../src/handle.rst:168
 msgid ""
 "Un-reference the given handle. References are idempotent, that is, if a "
 "handle is not referenced calling this function again will have no effect."
-msgstr ""
+msgstr "取消对给定句柄的引用。引用是幂等的，也就是说，如果句柄未被引用，再次调用此函数不会有任何效果。"
 
 #: ../../src/handle.rst:175
 msgid "Returns non-zero if the handle referenced, zero otherwise."
-msgstr ""
+msgstr "如果句柄已被引用，则返回非零值，否则返回零。"
 
 #: ../../src/handle.rst:181
 msgid ""
 "Returns the size of the given handle type. Useful for FFI binding writers"
 " who don't want to know the structure layout."
-msgstr ""
+msgstr "返回给定句柄类型的大小。对不想了解结构体布局的 FFI 绑定编写者很有用。"
 
 #: ../../src/handle.rst:186
 msgid "Miscellaneous API functions"
-msgstr ""
+msgstr "杂项 API 函数"
 
 #: ../../src/handle.rst:188
 msgid ""
 "The following API functions take a :c:type:`uv_handle_t` argument but "
 "they work just for some handle types."
-msgstr ""
+msgstr "以下 API 函数接受一个 :c:type:`uv_handle_t` 参数，但它们只对部分句柄类型有效。"
 
 #: ../../src/handle.rst:193
 msgid ""
 "Gets or sets the size of the send buffer that the operating system uses "
 "for the socket."
-msgstr ""
+msgstr "获取或设置操作系统用于该套接字的发送缓冲区大小。"
 
 #: ../../src/handle.rst:196
 msgid ""
 "If `*value` == 0, then it will set `*value` to the current send buffer "
 "size. If `*value` > 0 then it will use `*value` to set the new send "
 "buffer size."
-msgstr ""
+msgstr "若 `*value` == 0，则会将 `*value` 设置为当前的发送缓冲区大小。若 `*value` > 0，则会使用 `*value` 来设置新的发送缓冲区大小。"
 
 #: ../../src/handle.rst:199 ../../src/handle.rst:216
 msgid "On success, zero is returned. On error, a negative result is returned."
-msgstr ""
+msgstr "成功时返回零，出错时返回负值。"
 
 #: ../../src/handle.rst:202 ../../src/handle.rst:219
 msgid ""
 "This function works for TCP, pipe and UDP handles on Unix and for TCP and"
 " UDP handles on Windows."
-msgstr ""
+msgstr "此函数适用于 Unix 上的 TCP、pipe 和 UDP 句柄，以及 Windows 上的 TCP 和 UDP 句柄。"
 
 #: ../../src/handle.rst:206 ../../src/handle.rst:223
 msgid ""
 "Linux will set double the size and return double the size of the original"
 " set value."
-msgstr ""
+msgstr "Linux 会将大小设置为两倍，并返回原设定值两倍的大小。"
 
 #: ../../src/handle.rst:210
 msgid ""
 "Gets or sets the size of the receive buffer that the operating system "
 "uses for the socket."
-msgstr ""
+msgstr "获取或设置操作系统用于该套接字的接收缓冲区大小。"
 
 #: ../../src/handle.rst:213
 msgid ""
 "If `*value` == 0, then it will set `*value` to the current receive buffer"
 " size. If `*value` > 0 then it will use `*value` to set the new receive "
 "buffer size."
-msgstr ""
+msgstr "若 `*value` == 0，则会将 `*value` 设置为当前的接收缓冲区大小。若 `*value` > 0，则会使用 `*value` 来设置新的接收缓冲区大小。"
 
 #: ../../src/handle.rst:227
 msgid "Gets the platform dependent file descriptor equivalent."
-msgstr ""
+msgstr "获取与平台相关的等效文件描述符。"
 
 #: ../../src/handle.rst:229
 msgid ""
 "The following handles are supported: TCP, pipes, TTY, UDP and poll. "
 "Passing any other handle type will fail with `UV_EINVAL`."
-msgstr ""
+msgstr "支持以下句柄：TCP、pipe、TTY、UDP 和 poll。传入任何其他句柄类型都会以 `UV_EINVAL` 失败。"
 
 #: ../../src/handle.rst:232
 msgid ""
 "If a handle doesn't have an attached file descriptor yet or the handle "
 "itself has been closed, this function will return `UV_EBADF`."
-msgstr ""
+msgstr "如果句柄尚未关联文件描述符，或句柄本身已被关闭，此函数将返回 `UV_EBADF`。"
 
 #: ../../src/handle.rst:236
 msgid ""
 "Be very careful when using this function. libuv assumes it's in control "
 "of the file descriptor so any change to it may lead to malfunction."
-msgstr ""
+msgstr "使用此函数时要格外小心。libuv 假定文件描述符由它掌控，因此对它的任何更改都可能导致功能失常。"
 
 #: ../../src/handle.rst:241
 msgid "Returns `handle->loop`."
-msgstr ""
+msgstr "返回 `handle->loop`。"
 
 #: ../../src/handle.rst:247
 msgid "Returns `handle->data`."
-msgstr ""
+msgstr "返回 `handle->data`。"
 
 #: ../../src/handle.rst:253
 msgid "Sets `handle->data` to `data`."
-msgstr ""
+msgstr "将 `handle->data` 设置为 `data`。"
 
 #: ../../src/handle.rst:259
 msgid "Returns `handle->type`."
-msgstr ""
+msgstr "返回 `handle->type`。"
 
 #: ../../src/handle.rst:265
 msgid ""
 "Returns the name for the equivalent struct for a given handle type, e.g. "
 "`\"pipe\"` (as in :c:type:`uv_pipe_t`) for `UV_NAMED_PIPE`."
-msgstr ""
+msgstr "返回给定句柄类型所对应的等效结构体名称，例如 :c:type:`uv_pipe_t` 中的 `\"pipe\"` 即对应 `UV_NAMED_PIPE`。"
 
 #: ../../src/handle.rst:268
 msgid "If no such handle type exists, this returns `NULL`."
-msgstr ""
+msgstr "如果不存在这样的句柄类型，则返回 `NULL`。"
 
 #: ../../src/handle.rst:275
 msgid "Reference counting"
-msgstr ""
+msgstr "引用计数"
 
 #: ../../src/handle.rst:277
 msgid ""
@@ -333,18 +333,18 @@ msgid ""
 "are no active `and` referenced handles left. The user can force the loop "
 "to exit early by unreferencing handles which are active, for example by "
 "calling :c:func:`uv_unref` after calling :c:func:`uv_timer_start`."
-msgstr ""
+msgstr "libuv 事件循环（若以默认模式运行）会一直运行，直到不再有处于活动状态 `and` 被引用的句柄为止。用户可以通过取消引用处于活动状态的句柄来迫使循环提前退出，例如在调用 :c:func:`uv_unref` 之前先调用了 :c:func:`uv_timer_start`。"
 
 #: ../../src/handle.rst:282
 msgid ""
 "A handle can be referenced or unreferenced, the refcounting scheme "
 "doesn't use a counter, so both operations are idempotent."
-msgstr ""
+msgstr "句柄可以被引用或取消引用，引用计数机制并不使用计数器，因此这两种操作都是幂等的。"
 
 #: ../../src/handle.rst:285
 msgid ""
 "All handles are referenced when active by default, see "
 ":c:func:`uv_is_active` for a more detailed explanation on what being "
 "`active` involves."
-msgstr ""
+msgstr "默认情况下，所有句柄在活动时都会被引用，有关处于 `active` 状态意味着什么，参见 :c:func:`uv_is_active` 中的更详细说明。"
 

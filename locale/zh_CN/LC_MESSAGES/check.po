@@ -23,71 +23,70 @@ msgstr ""
 
 #: ../../src/check.rst:5
 msgid ":c:type:`uv_check_t` --- Check handle"
-msgstr ""
+msgstr ":c:type:`uv_check_t` —— Check 句柄"
 
 #: ../../src/check.rst:7
 msgid ""
 "Check handles will run the given callback once per loop iteration, right "
 "after polling for i/o."
-msgstr ""
+msgstr "Check 句柄会在每轮循环迭代中运行给定的回调一次，恰好在轮询 I/O 之后。"
 
 #: ../../src/check.rst:12
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/check.rst:16
 msgid "Check handle type."
-msgstr ""
+msgstr "Check 句柄类型。"
 
 #: ../../src/check.rst:20
 msgid "Type definition for callback passed to :c:func:`uv_check_start`."
-msgstr ""
+msgstr "传递给 :c:func:`uv_check_start` 的回调的类型定义。"
 
 #: ../../src/check.rst:24
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/check.rst:26
 msgid "N/A"
-msgstr ""
+msgstr "无"
 
 #: ../../src/check.rst:28
 msgid "The :c:type:`uv_handle_t` members also apply."
-msgstr ""
+msgstr ":c:type:`uv_handle_t` 的成员也同样适用。"
 
 #: ../../src/check.rst:32
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/check.rst:36
 msgid "Initialize the handle. This function always succeeds."
-msgstr ""
+msgstr "初始化句柄。此函数总是成功。"
 
 #: ../../src/check.rst
 msgid "返回"
-msgstr ""
+msgstr "返回"
 
 #: ../../src/check.rst:38 ../../src/check.rst:52
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: ../../src/check.rst:42
 msgid ""
 "Start the handle with the given callback. This function always succeeds, "
 "except when `cb` is `NULL`."
-msgstr ""
+msgstr "以给定的回调启动句柄。此函数总是成功，除非 `cb` 为 `NULL`。"
 
 #: ../../src/check.rst:45
 msgid "0 on success, or `UV_EINVAL` when `cb == NULL`."
-msgstr ""
+msgstr "成功时为 0，否则为 `UV_EINVAL` （`cb == NULL` 时）。"
 
 #: ../../src/check.rst:49
 msgid ""
 "Stop the handle, the callback will no longer be called. This function "
 "always succeeds."
-msgstr ""
+msgstr "停止该句柄，回调将不再被调用。此函数总是成功。"
 
 #: ../../src/check.rst:54
 msgid "The :c:type:`uv_handle_t` API functions also apply."
-msgstr ""
-
+msgstr ":c:type:`uv_handle_t` 的 API 函数也同样适用。"

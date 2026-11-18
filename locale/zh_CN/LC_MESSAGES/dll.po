@@ -23,51 +23,51 @@ msgstr ""
 
 #: ../../src/dll.rst:5
 msgid "Shared library handling"
-msgstr ""
+msgstr "共享库处理"
 
 #: ../../src/dll.rst:7
 msgid ""
 "libuv provides cross platform utilities for loading shared libraries and "
 "retrieving symbols from them, using the following API."
-msgstr ""
+msgstr "libuv 通过以下 API 提供跨平台的实用工具，用于加载共享库并从中检索符号。"
 
 #: ../../src/dll.rst:12
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/dll.rst:16
 msgid "Shared library data type."
-msgstr ""
+msgstr "共享库数据类型。"
 
 #: ../../src/dll.rst:20
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/dll.rst:22
 msgid "N/A"
-msgstr ""
+msgstr "无"
 
 #: ../../src/dll.rst:26
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/dll.rst:30
 msgid ""
 "Opens a shared library. The filename is in utf-8. Returns 0 on success "
 "and -1 on error. Call :c:func:`uv_dlerror` to get the error message."
-msgstr ""
+msgstr "打开共享库。文件名采用 utf-8 编码。成功时返回 0，出错时返回 -1。调用 :c:func:`uv_dlerror` 获取错误信息。"
 
 #: ../../src/dll.rst:35
 msgid "Close the shared library."
-msgstr ""
+msgstr "关闭共享库。"
 
 #: ../../src/dll.rst:39
 msgid ""
 "Retrieves a data pointer from a dynamic library. It is legal for a symbol"
 " to map to NULL. Returns 0 on success and -1 if the symbol was not found."
-msgstr ""
+msgstr "从动态库中检索数据指针。符号映射为 NULL 是合法的。成功时返回 0，若未找到符号则返回 -1。"
 
 #: ../../src/dll.rst:44
 msgid "Returns the last uv_dlopen() or uv_dlsym() error message."
-msgstr ""
+msgstr "返回上一次 uv_dlopen() 或 uv_dlsym() 的错误信息。"
 
