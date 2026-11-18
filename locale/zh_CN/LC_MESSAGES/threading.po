@@ -23,92 +23,92 @@ msgstr ""
 
 #: ../../src/threading.rst:5
 msgid "Threading and synchronization utilities"
-msgstr ""
+msgstr "线程与同步实用工具"
 
 #: ../../src/threading.rst:7
 msgid ""
 "libuv provides cross-platform implementations for multiple threading and "
 "synchronization primitives. The API largely follows the pthreads API."
-msgstr ""
+msgstr "libuv 为多种线程与同步原语提供了跨平台实现。该 API 在很大程度上遵循 pthreads API。"
 
 #: ../../src/threading.rst:12
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/threading.rst:16
 msgid "Thread data type."
-msgstr ""
+msgstr "线程数据类型。"
 
 #: ../../src/threading.rst:20
 msgid ""
 "Callback that is invoked to initialize thread execution. `arg` is the "
 "same value that was passed to :c:func:`uv_thread_create`."
-msgstr ""
+msgstr "为初始化线程执行而被调用的回调。`arg` 是传递给 :c:func:`uv_thread_create` 的同一个值。"
 
 #: ../../src/threading.rst:25
 msgid "Thread-local key data type."
-msgstr ""
+msgstr "线程局部键数据类型。"
 
 #: ../../src/threading.rst:29
 msgid "Once-only initializer data type."
-msgstr ""
+msgstr "一次性初始化器数据类型。"
 
 #: ../../src/threading.rst:33
 msgid "Mutex data type."
-msgstr ""
+msgstr "互斥锁数据类型。"
 
 #: ../../src/threading.rst:37
 msgid "Read-write lock data type."
-msgstr ""
+msgstr "读写锁数据类型。"
 
 #: ../../src/threading.rst:41
 msgid "Semaphore data type."
-msgstr ""
+msgstr "信号量数据类型。"
 
 #: ../../src/threading.rst:45
 msgid "Condition data type."
-msgstr ""
+msgstr "条件变量数据类型。"
 
 #: ../../src/threading.rst:49
 msgid "Barrier data type."
-msgstr ""
+msgstr "屏障数据类型。"
 
 #: ../../src/threading.rst:53
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/threading.rst:56
 msgid "Threads"
-msgstr ""
+msgstr "线程"
 
 #: ../../src/threading.rst:60
 msgid ""
 "Options for spawning a new thread (passed to "
 ":c:func:`uv_thread_create_ex`)."
-msgstr ""
+msgstr "派生新线程的选项（传递给 :c:func:`uv_thread_create_ex`）。"
 
 #: ../../src/threading.rst:72
 msgid ""
 "More fields may be added to this struct at any time, so its exact layout "
 "and size should not be relied upon."
-msgstr ""
+msgstr "随时可能向该结构体中添加更多字段，因此不应依赖其确切的布局和大小。"
 
 #: ../../src/threading.rst:79
 msgid "returns a UV_E* error code on failure"
-msgstr ""
+msgstr "失败时返回 UV_E* 错误码。"
 
 #: ../../src/threading.rst:83
 msgid ""
 "Detaches a thread. Detached threads automatically release their resources"
 " upon termination, eliminating the need for the application to call "
 "`uv_thread_join`."
-msgstr ""
+msgstr "分离一个线程。已分离的线程在终止时会自动释放其资源，从而免去应用程序调用 `uv_thread_join` 的必要。"
 
 #: ../../src/threading.rst:91
 msgid ""
 "Like :c:func:`uv_thread_create`, but additionally specifies options for "
 "creating a new thread."
-msgstr ""
+msgstr "与 :c:func:`uv_thread_create` 类似，但额外指定创建新线程的选项。"
 
 #: ../../src/threading.rst:93
 msgid ""
@@ -116,7 +116,7 @@ msgid ""
 " for the new thread. `0` indicates that the default value should be used,"
 " i.e. behaves as if the flag was not set. Other values will be rounded up"
 " to the nearest page boundary."
-msgstr ""
+msgstr "若设置了 `UV_THREAD_HAS_STACK_SIZE`，`stack_size` 会为新线程指定栈大小。`0` 表示应使用默认值，即行为如同未设置该标志。其他值将被向上取整到最近的页边界。"
 
 #: ../../src/threading.rst:101
 msgid ""
@@ -127,42 +127,42 @@ msgid ""
 "cpumask to a cpu_set_t and uses :man:`pthread_setaffinity_np(3)`. On "
 "Windows, maps the bytes in cpumask to a bitmask and uses "
 "SetThreadAffinityMask() which returns the previous affinity setting."
-msgstr ""
+msgstr "将指定线程的亲和性设置为 cpumask，cpumask 以字节为单位指定。可选地在 oldmask 中返回先前的亲和性设置。在 Unix 上，使用 :man:`pthread_getaffinity_np(3)` 获取亲和性设置，并将 cpu_set_t 映射为 oldmask 中的字节；然后将 cpumask 中的字节映射为一个 cpu_set_t，再使用 :man:`pthread_setaffinity_np(3)`。在 Windows 上，将 cpumask 中的字节映射为一个位掩码并使用 SetThreadAffinityMask()，该函数会返回先前的亲和性设置。"
 
 #: ../../src/threading.rst:109
 msgid ""
 "The mask_size specifies the number of entries (bytes) in cpumask / "
 "oldmask, and must be greater-than-or-equal-to :c:func:`uv_cpumask_size`."
-msgstr ""
+msgstr "mask_size 指定 cpumask / oldmask 中条目（字节）的数量，且必须大于或等于 :c:func:`uv_cpumask_size`。"
 
 #: ../../src/threading.rst:113
 msgid "Thread affinity setting is not atomic on Windows. Unsupported on macOS."
-msgstr ""
+msgstr "在 Windows 上，线程亲和性设置不是原子的。macOS 上不受支持。"
 
 #: ../../src/threading.rst:119
 msgid ""
 "Gets the specified thread's affinity setting. On Unix, this maps the "
 "cpu_set_t returned by :man:`pthread_getaffinity_np(3)` to bytes in "
 "cpumask."
-msgstr ""
+msgstr "获取指定线程的亲和性设置。在 Unix 上，这会把 :man:`pthread_getaffinity_np(3)` 返回的 cpu_set_t 映射为 cpumask 中的字节。"
 
 #: ../../src/threading.rst:122
 msgid ""
 "The mask_size specifies the number of entries (bytes) in cpumask, and "
 "must be greater-than-or-equal-to :c:func:`uv_cpumask_size`."
-msgstr ""
+msgstr "mask_size 指定 cpumask 中条目（字节）的数量，且必须大于或等于 :c:func:`uv_cpumask_size`。"
 
 #: ../../src/threading.rst:126
 msgid "Thread affinity getting is not atomic on Windows. Unsupported on macOS."
-msgstr ""
+msgstr "在 Windows 上，线程亲和性获取不是原子的。macOS 上不受支持。"
 
 #: ../../src/threading.rst:132
 msgid "Gets the CPU number on which the calling thread is running."
-msgstr ""
+msgstr "获取调用线程当前运行所在的 CPU 编号。"
 
 #: ../../src/threading.rst:135
 msgid "Currently only implemented on Windows, Linux and FreeBSD."
-msgstr ""
+msgstr "目前仅在 Windows、Linux 和 FreeBSD 上实现。"
 
 #: ../../src/threading.rst:145
 msgid ""
@@ -171,11 +171,11 @@ msgid ""
 "i (16), macOS (64), Windows (32767), and NetBSD (32), etc. "
 "`uv_thread_setname()` will truncate it in case `name` is larger than the "
 "limit of the platform."
-msgstr ""
+msgstr "设置当前线程的名称。不同平台对线程名称的最大字符数定义了不同的限制：Linux、IBM i（16）、macOS（64）、Windows（32767）以及 NetBSD（32）等。`uv_thread_setname()` 会在 `name` 超过平台限制时将其截断。"
 
 #: ../../src/threading.rst:149 ../../src/threading.rst:162
 msgid "Not supported on Windows Server 2016, returns `UV_ENOSYS`."
-msgstr ""
+msgstr "Windows Server 2016 上不受支持，返回 `UV_ENOSYS`。"
 
 #: ../../src/threading.rst:155
 msgid ""
@@ -184,12 +184,12 @@ msgid ""
 "`size` parameter specifies the size of the buffer pointed to by `name`. "
 "The buffer should be large enough to hold the name of the thread plus the"
 " trailing NUL, or it will be truncated to fit with the trailing NUL."
-msgstr ""
+msgstr "获取 `tid` 所指定线程的名称。线程名称会连同结尾的 NUL 一起复制到 `name` 所指向的缓冲区中。`size` 参数指定 `name` 所指向缓冲区的大小。缓冲区应大到足以容纳线程名称加上结尾的 NUL，否则名称将被截断以适配缓冲区并保留结尾的 NUL。"
 
 #: ../../src/threading.rst:160 ../../src/threading.rst:176
 #: ../../src/threading.rst:188
 msgid "It's undefined behavior to call this after the thread has terminated."
-msgstr ""
+msgstr "线程终止后再调用此函数属于未定义行为。"
 
 #: ../../src/threading.rst:168
 msgid ""
@@ -200,7 +200,7 @@ msgid ""
 "constants. UV_THREAD_PRIORITY_HIGHEST, UV_THREAD_PRIORITY_ABOVE_NORMAL, "
 "UV_THREAD_PRIORITY_NORMAL, UV_THREAD_PRIORITY_BELOW_NORMAL, "
 "UV_THREAD_PRIORITY_LOWEST."
-msgstr ""
+msgstr "若函数成功，返回值为 0。若函数失败，返回值小于零。设置 tid 所指定线程的调度优先级。在某些平台上，设置特定优先级需要提升的特权。优先级可设置为以下常量：UV_THREAD_PRIORITY_HIGHEST、UV_THREAD_PRIORITY_ABOVE_NORMAL、UV_THREAD_PRIORITY_NORMAL、UV_THREAD_PRIORITY_BELOW_NORMAL、UV_THREAD_PRIORITY_LOWEST。"
 
 #: ../../src/threading.rst:182
 msgid ""
@@ -209,21 +209,21 @@ msgid ""
 "the thread specified by tid. The value in the output parameter priority "
 "is platform dependent. For Linux, when schedule policy is SCHED_OTHER "
 "(default), priority is 0."
-msgstr ""
+msgstr "若函数成功，返回值为 0。若函数失败，返回值小于零。获取 tid 所指定线程的调度优先级。输出参数 priority 中的值取决于平台。对于 Linux，当调度策略为 SCHED_OTHER（默认）时，priority 为 0。"
 
 #: ../../src/threading.rst:193
 msgid "Thread-local storage"
-msgstr ""
+msgstr "线程局部存储"
 
 #: ../../src/threading.rst:196
 msgid ""
 "The total thread-local storage size may be limited. That is, it may not "
 "be possible to create many TLS keys."
-msgstr ""
+msgstr "线程局部存储的总大小可能受限。也就是说，可能无法创建很多 TLS 键。"
 
 #: ../../src/threading.rst:205
 msgid "Once-only initialization"
-msgstr ""
+msgstr "一次性初始化"
 
 #: ../../src/threading.rst:207
 msgid ""
@@ -231,11 +231,11 @@ msgid ""
 " with the same guard will block all callers except one (it's unspecified "
 "which one). The guard should be initialized statically with the "
 "UV_ONCE_INIT macro."
-msgstr ""
+msgstr "运行某个函数一次且仅一次。使用同一个 guard 对 :c:func:`uv_once` 的并发调用会阻塞除其中一个之外的所有调用者（未规定是哪一个）。guard 应使用 UV_ONCE_INIT 宏进行静态初始化。"
 
 #: ../../src/threading.rst:214
 msgid "Mutex locks"
-msgstr ""
+msgstr "互斥锁"
 
 #: ../../src/threading.rst:216 ../../src/threading.rst:229
 #: ../../src/threading.rst:244 ../../src/threading.rst:256
@@ -243,31 +243,31 @@ msgstr ""
 msgid ""
 "Functions return 0 on success or an error code < 0 (unless the return "
 "type is void, of course)."
-msgstr ""
+msgstr "这些函数成功时返回 0，否则返回错误码 < 0（当然，返回类型为 void 的除外）。"
 
 #: ../../src/threading.rst:227
 msgid "Read-write locks"
-msgstr ""
+msgstr "读写锁"
 
 #: ../../src/threading.rst:242
 msgid "Semaphores"
-msgstr ""
+msgstr "信号量"
 
 #: ../../src/threading.rst:254
 msgid "Conditions"
-msgstr ""
+msgstr "条件变量"
 
 #: ../../src/threading.rst:260
 msgid ""
 "Callers should be prepared to deal with spurious wakeups on "
 ":c:func:`uv_cond_wait` and :c:func:`uv_cond_timedwait`."
-msgstr ""
+msgstr "调用者应准备好处理 :c:func:`uv_cond_wait` 和 :c:func:`uv_cond_timedwait` 上的虚假唤醒。"
 
 #: ../../src/threading.rst:262
 msgid ""
 "The timeout parameter for :c:func:`uv_cond_timedwait` is relative to the "
 "time at which function is called."
-msgstr ""
+msgstr ":c:func:`uv_cond_timedwait` 的 timeout 参数相对于函数被调用时的时间。"
 
 #: ../../src/threading.rst:264
 msgid ""
@@ -276,15 +276,15 @@ msgid ""
 "current system clock time passes the absolute time calculated before the "
 "condition is signaled, an ETIMEDOUT error results. After the wait begins,"
 " the wait time is not affected by changes to the system clock."
-msgstr ""
+msgstr "在 z/OS 上，:c:func:`uv_cond_timedwait` 的 timeout 参数会被转换为一个绝对系统时间，等待将于该时间到期。如果在条件被发出信号之前，当前系统时钟时间已超过所计算的绝对时间，则会产生 ETIMEDOUT 错误。等待开始后，等待时长不受系统时钟变更的影响。"
 
 #: ../../src/threading.rst:278
 msgid "Barriers"
-msgstr ""
+msgstr "屏障"
 
 #: ../../src/threading.rst:284
 msgid ""
 ":c:func:`uv_barrier_wait` returns a value > 0 to an arbitrarily chosen "
 "\"serializer\" thread to facilitate cleanup, i.e."
-msgstr ""
+msgstr ":c:func:`uv_barrier_wait` 会向任意选定的一个“serializer”线程返回一个 > 0 的值，以便于清理，即："
 

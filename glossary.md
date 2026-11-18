@@ -195,6 +195,56 @@
 | console emulator | 控制台模拟器 | signal | |
 | console window | 控制台窗口 | signal | |
 
+### 2.2 P3 批次新增（2026-11-19 裁决，43 条）
+
+| 英文术语 | 统一译名 | 首次出现章节 | 禁用译名 / 备注 |
+|---|---|---|---|
+| chunk | 分块 | udp | recvmmsg 语境，与 datagram→数据报 区分 |
+| socket domain | 套接字域 | tcp/udp | init_ex 语境（AF_* 域） |
+| datagram contract | 数据报契约 | udp | |
+| raw socket | 原始套接字 | udp | |
+| source-specific multicast | 特定源组播 | udp | 缩写 SSM 语境 |
+| membership | 成员关系 | udp | 组播成员关系（drop/set membership） |
+| connectionless | 无连接 | udp | |
+| unconnected mode | 未连接模式 | udp | |
+| packet | 数据包 | udp/tcp | 与 datagram→数据报 区分（上游两词混用，译文保持区分） |
+| callee | 被调用方 | udp/stream | |
+| null buffer | null 缓冲区 | udp/stream | 禁用: 空缓冲区（与 empty buffer 混淆）；指 `buf->base` == NULL 的缓冲区 |
+| lazily | 惰性地（增长语境）/ 延迟创建（创建语境） | udp/threadpool | 禁用: 懒创建 |
+| memory footprint | 内存占用 | threadpool | |
+| throughput | 吞吐量 | threadpool | |
+| load balancing | 负载均衡 | udp | SO_REUSEPORT 语境 |
+| lightweight abstraction | 轻量抽象 | udp | |
+| dual-stack | 双栈 | tcp | IPv4/IPv6 语境 |
+| Nagle's algorithm | Nagle 算法 | tcp | 人名不译 |
+| keep-alive probe | keep-alive 探测 | tcp | keepalive 选项名不译 |
+| RST packet | RST 包 | tcp | |
+| stream socket | 流套接字 | tcp | BSD SOCK_STREAM 语境，与 Stream 句柄类型名区分 |
+| duplex communication channel | 双工通信通道 | stream | P3 裁决词根统一：channel→通道 |
+| communication channel | 通信通道 | process | 同上 |
+| idempotent | 幂等的 | tcp | |
+| listening socket | 监听套接字 | stream/tcp | |
+| incoming connection | 传入连接 | stream/tcp | |
+| linger interval | linger 间隔 | tcp | linger 套接字选项语义保留 |
+| simultaneous accepts | 并发接受 | tcp | |
+| multi-process setups | 多进程部署 | tcp | |
+| handle passing | 句柄传递 | pipe | IPC 句柄传递 |
+| abstract namespace socket | 抽象命名空间套接字 | pipe | Linux Unix 域套接字机制名 |
+| bytes on the wire | 线上传输的字节 | pipe | |
+| leading / trailing nul byte | 前导 / 结尾 nul 字节 | pipe | msgid 小写 nul 按字面常量保留（对齐 NUL 保留规则）；null byte 文本语境仍用空终止字节 |
+| pipe instance | 管道实例 | pipe | Windows 命名管道语境 |
+| spurious wakeup | 虚假唤醒 | threading | |
+| detach / detached thread | 分离 / 已分离的线程 | threading | pthread 语境 |
+| thread-local key | 线程局部键 | threading | 与线程局部存储配套（uv_key_t） |
+| once-only initialization | 一次性初始化 | threading | uv_once 语境 |
+| elevated privilege | 提升的特权 | process | 与已提权的用户同族 |
+| zombie process / reap | 僵尸进程 / 回收 | process | |
+| best-effort | 尽力而为 | process | |
+| stdio container | stdio 容器 | process | |
+| virtual terminal sequence | 虚拟终端序列 | tty | Windows 控制台机制，与控制台模拟器配套 |
+| TTY mode | TTY 模式 | tty | |
+| blocking writes | 阻塞式写入 | tty | 派生短语（blocking→阻塞） |
+
 ## 3. 错误描述惯用译法（errors.rst 高频错误信息，R2-9）
 
 > 适用: `UV_E*` 常量后的英文描述、错误返回说明文本。错误码常量本身不译（通则 3）。
@@ -262,6 +312,7 @@
 - HTTP 头名、URL、许可证名: CC BY 4.0、MIT
 - 无通行译名或特有行话（P1 裁决）: IPC、backlog（listen(2) 参数名）、tee（Unix 工具）、slab（内核术语）、baton（libuv 指南行话）、Hello World（程序名）
 - 无通行译名或特有行话（P2 裁决）: tick（事件循环 tick 语境）、CSPRNG、async-signal-safe、sysfs、ramdisk、reflink、WTF-8、NUL（字面常量）、Y2K38、Unicies（上游笔误词）
+- 无通行译名或特有行话（P3 裁决）: uv_once guard（「守护变量」易歧义，保留英文）、serializer thread（上游自造角色名，带引号原样保留）、keepalive（套接字选项名）
 - 编码名: UTF-16、UCS-2、WTF-8 等
 - 句柄/请求类型名: timer、prepare、check、idle、async、poll、signal、process、fs_event、fs_poll、tty、udp、tcp、pipe、stream（作为类型名出现时）
 
@@ -324,3 +375,4 @@ NUL 终止符
 以 null 结尾
 以零结尾
 null 字节
+远端对端

@@ -23,65 +23,65 @@ msgstr ""
 
 #: ../../src/tty.rst:5
 msgid ":c:type:`uv_tty_t` --- TTY handle"
-msgstr ""
+msgstr ":c:type:`uv_tty_t` —— TTY 句柄"
 
 #: ../../src/tty.rst:7
 msgid "TTY handles represent a stream for the console."
-msgstr ""
+msgstr "TTY 句柄表示用于控制台的流。"
 
 #: ../../src/tty.rst:9
 msgid ":c:type:`uv_tty_t` is a 'subclass' of :c:type:`uv_stream_t`."
-msgstr ""
+msgstr ":c:type:`uv_tty_t` 是 :c:type:`uv_stream_t` 的“子类”。"
 
 #: ../../src/tty.rst:13
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/tty.rst:17
 msgid "TTY handle type."
-msgstr ""
+msgstr "TTY 句柄类型。"
 
 #: ../../src/tty.rst:23
 msgid "TTY mode type:"
-msgstr ""
+msgstr "TTY 模式类型："
 
 #: ../../src/tty.rst:43
 msgid "Console virtual terminal mode type:"
-msgstr ""
+msgstr "控制台虚拟终端模式类型："
 
 #: ../../src/tty.rst:62
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/tty.rst:64
 msgid "N/A"
-msgstr ""
+msgstr "无"
 
 #: ../../src/tty.rst:66
 msgid "The :c:type:`uv_stream_t` members also apply."
-msgstr ""
+msgstr ":c:type:`uv_stream_t` 的成员也同样适用。"
 
 #: ../../src/tty.rst:70
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/tty.rst:74
 msgid ""
 "Initialize a new TTY stream with the given file descriptor. Usually the "
 "file descriptor will be:"
-msgstr ""
+msgstr "用给定的文件描述符初始化一个新的 TTY 流。该文件描述符通常是："
 
 #: ../../src/tty.rst:77
 msgid "0 = stdin"
-msgstr ""
+msgstr "0 = stdin"
 
 #: ../../src/tty.rst:78
 msgid "1 = stdout"
-msgstr ""
+msgstr "1 = stdout"
 
 #: ../../src/tty.rst:79
 msgid "2 = stderr"
-msgstr ""
+msgstr "2 = stderr"
 
 #: ../../src/tty.rst:81
 msgid ""
@@ -89,64 +89,64 @@ msgid ""
 "using :man:`ttyname_r(3)`, open it, and use it if the passed file "
 "descriptor refers to a TTY. This lets libuv put the tty in non-blocking "
 "mode without affecting other processes that share the tty."
-msgstr ""
+msgstr "在 Unix 上，此函数会使用 :man:`ttyname_r(3)` 确定该终端 fd 的路径并将其打开；如果传入的文件描述符指向一个 TTY，则使用它。这使得 libuv 能够把 tty 置于非阻塞模式，而不影响共享该 tty 的其他进程。"
 
 #: ../../src/tty.rst:86
 msgid ""
 "This function is not thread safe on systems that don't support ioctl "
 "TIOCGPTN or TIOCPTYGNAME, for instance OpenBSD and Solaris."
-msgstr ""
+msgstr "在不支持 ioctl TIOCGPTN 或 TIOCPTYGNAME 的系统（例如 OpenBSD 和 Solaris）上，此函数不是线程安全的。"
 
 #: ../../src/tty.rst:90
 msgid "If reopening the TTY fails, libuv falls back to blocking writes."
-msgstr ""
+msgstr "如果重新打开 TTY 失败，libuv 会回退到阻塞式写入。"
 
 #: ../../src/tty.rst:92
 msgid ""
 "the `readable` parameter is now unused and ignored. The correct value "
 "will now be auto-detected from the kernel."
-msgstr ""
+msgstr "`readable` 参数现已不再使用并被忽略。正确的值现在将由内核自动检测。"
 
 #: ../../src/tty.rst:95
 msgid ""
 "the path of the TTY is determined by :man:`ttyname_r(3)`. In earlier "
 "versions libuv opened `/dev/tty` instead."
-msgstr ""
+msgstr "TTY 的路径由 :man:`ttyname_r(3)` 确定。在更早的版本中，libuv 打开的是 `/dev/tty`。"
 
 #: ../../src/tty.rst:99
 msgid ""
 "trying to initialize a TTY stream with a file descriptor that refers to a"
 " file returns `UV_EINVAL` on UNIX."
-msgstr ""
+msgstr "在 UNIX 上，尝试用指向文件的文件描述符来初始化 TTY 流会返回 `UV_EINVAL`。"
 
 #: ../../src/tty.rst:105
 msgid "the mode is specified as a :c:enum:`uv_tty_mode_t` value."
-msgstr ""
+msgstr "mode 以 :c:enum:`uv_tty_mode_t` 值的形式指定。"
 
 #: ../../src/tty.rst:108
 msgid "Set the TTY using the specified terminal mode."
-msgstr ""
+msgstr "使用指定的终端模式设置 TTY。"
 
 #: ../../src/tty.rst:112
 msgid ""
 "To be called when the program exits. Resets TTY settings to default "
 "values for the next process to take over."
-msgstr ""
+msgstr "应在程序退出时调用。将 TTY 设置重置为默认值，供下一个进程接管。"
 
 #: ../../src/tty.rst:115
 msgid ""
 "This function is async signal-safe on Unix platforms but can fail with "
 "error code ``UV_EBUSY`` if you call it when execution is inside "
 ":c:func:`uv_tty_set_mode`."
-msgstr ""
+msgstr "此函数在 Unix 平台上是 async signal-safe 的，但如果在执行处于 :c:func:`uv_tty_set_mode` 内部时调用它，则可能失败并返回错误码 ``UV_EBUSY``。"
 
 #: ../../src/tty.rst:121
 msgid "Gets the current Window size. On success it returns 0."
-msgstr ""
+msgstr "获取当前的窗口大小。成功时返回 0。"
 
 #: ../../src/tty.rst:123
 msgid "The :c:type:`uv_stream_t` API functions also apply."
-msgstr ""
+msgstr ":c:type:`uv_stream_t` 的 API 函数也同样适用。"
 
 #: ../../src/tty.rst:127
 msgid ""
@@ -154,21 +154,21 @@ msgid ""
 "libuv or console. Useful in particular for enabling ConEmu support of "
 "ANSI X3.64 and Xterm 256 colors. Otherwise Windows10 consoles are usually"
 " detected automatically."
-msgstr ""
+msgstr "控制控制台虚拟终端序列由 libuv 还是控制台来处理。对于启用 ConEmu 对 ANSI X3.64 和 Xterm 256 色的支持尤其有用。否则，Windows10 控制台通常会被自动检测。"
 
 #: ../../src/tty.rst:132
 msgid ""
 "This function is only meaningful on Windows systems. On Unix it is "
 "silently ignored."
-msgstr ""
+msgstr "此函数仅在 Windows 系统上有意义。在 Unix 上它会被静默忽略。"
 
 #: ../../src/tty.rst:139
 msgid ""
 "Get the current state of whether console virtual terminal sequences are "
 "handled by libuv or the console."
-msgstr ""
+msgstr "获取控制台虚拟终端序列当前由 libuv 还是控制台处理的状态。"
 
 #: ../../src/tty.rst:142
 msgid "This function is not implemented on Unix, where it returns ``UV_ENOTSUP``."
-msgstr ""
+msgstr "此函数在 Unix 上未实现，在该平台上返回 ``UV_ENOTSUP``。"
 

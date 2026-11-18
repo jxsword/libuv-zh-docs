@@ -159,7 +159,7 @@ msgstr ""
 
 #: ../../src/fs.rst:217
 msgid "The :c:type:`uv_req_t` members also apply."
-msgstr ":c:type:`uv_req_t` 的成员同样适用。"
+msgstr ":c:type:`uv_req_t` 的成员也同样适用。"
 
 #: ../../src/fs.rst:221
 msgid "API"
@@ -623,7 +623,7 @@ msgstr "返回 `&req->statbuf`。"
 
 #: ../../src/fs.rst:546
 msgid "The :c:type:`uv_req_t` API functions also apply."
-msgstr ":c:type:`uv_req_t` 的 API 函数同样适用。"
+msgstr ":c:type:`uv_req_t` 的 API 函数也同样适用。"
 
 #: ../../src/fs.rst:549
 msgid "Helper functions"

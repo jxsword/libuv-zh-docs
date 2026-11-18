@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../../src/threadpool.rst:5
 msgid "Thread pool work scheduling"
-msgstr ""
+msgstr "线程池工作调度"
 
 #: ../../src/threadpool.rst:7
 msgid ""
@@ -31,28 +31,28 @@ msgid ""
 "notified in the loop thread. This thread pool is internally used to run "
 "all file system operations, as well as getaddrinfo and getnameinfo "
 "requests."
-msgstr ""
+msgstr "libuv 提供了一个线程池，可用于运行用户代码并在循环线程中接收通知。该线程池在内部用于运行所有文件系统操作，以及 getaddrinfo 和 getnameinfo 请求。"
 
 #: ../../src/threadpool.rst:11
 msgid ""
 "Its default size is 4, but it can be changed at startup time by setting "
 "the ``UV_THREADPOOL_SIZE`` environment variable to any value (the "
 "absolute maximum is 1024)."
-msgstr ""
+msgstr "其默认大小为 4，但可以在启动时通过将 ``UV_THREADPOOL_SIZE`` 环境变量设置为任意值来更改（绝对上限为 1024）。"
 
 #: ../../src/threadpool.rst:15
 msgid "the maximum UV_THREADPOOL_SIZE allowed was increased from 128 to 1024."
-msgstr ""
+msgstr "允许的 UV_THREADPOOL_SIZE 最大值从 128 提高到 1024。"
 
 #: ../../src/threadpool.rst:17
 msgid ""
 "threads now have an 8 MB stack instead of the (sometimes too low) "
 "platform default."
-msgstr ""
+msgstr "线程现在拥有 8 MB 的栈，而不是（有时过低的）平台默认值。"
 
 #: ../../src/threadpool.rst:20
 msgid "threads now have a default name of libuv-worker."
-msgstr ""
+msgstr "线程现在的默认名称为 libuv-worker。"
 
 #: ../../src/threadpool.rst:22
 msgid ""
@@ -62,27 +62,27 @@ msgid ""
 "number of threads allowed by ``UV_THREADPOOL_SIZE``. More threads usually"
 " means more throughput but a higher memory footprint. Thread stacks grow "
 "lazily on most platforms though."
-msgstr ""
+msgstr "线程池是全局的，并在所有事件循环之间共享。当某个特定函数利用线程池时（例如使用 :c:func:`uv_queue_work` 时），libuv 会预分配并初始化 ``UV_THREADPOOL_SIZE`` 所允许的最大线程数。更多的线程通常意味着更高的吞吐量，但也意味着更高的内存占用。不过在大多数平台上，线程栈是惰性增长的。"
 
 #: ../../src/threadpool.rst:29
 msgid ""
 "Note that even though a global thread pool which is shared across all "
 "events loops is used, the functions are not thread safe."
-msgstr ""
+msgstr "注意，尽管使用的是在所有事件循环之间共享的全局线程池，这些函数并不是线程安全的。"
 
 #: ../../src/threadpool.rst:34
 msgid "Data types"
-msgstr ""
+msgstr "数据类型"
 
 #: ../../src/threadpool.rst:38
 msgid "Work request type."
-msgstr ""
+msgstr "工作请求类型。"
 
 #: ../../src/threadpool.rst:42
 msgid ""
 "Callback passed to :c:func:`uv_queue_work` which will be run on the "
 "thread pool."
-msgstr ""
+msgstr "传递给 :c:func:`uv_queue_work` 的回调，它将在线程池上运行。"
 
 #: ../../src/threadpool.rst:47
 msgid ""
@@ -90,38 +90,38 @@ msgid ""
 "loop thread after the work on the threadpool has been completed. If the "
 "work was cancelled using :c:func:`uv_cancel` `status` will be "
 "``UV_ECANCELED``."
-msgstr ""
+msgstr "传递给 :c:func:`uv_queue_work` 的回调，它会在线程池上的工作完成后于循环线程上被调用。如果该工作已通过 :c:func:`uv_cancel` 取消，`status` 将为 ``UV_ECANCELED``。"
 
 #: ../../src/threadpool.rst:53
 msgid "Public members"
-msgstr ""
+msgstr "公开成员"
 
 #: ../../src/threadpool.rst:57
 msgid ""
 "Loop that started this request and where completion will be reported. "
 "Readonly."
-msgstr ""
+msgstr "发起此请求并在其中报告完成情况的事件循环。只读。"
 
 #: ../../src/threadpool.rst:60
 msgid "The :c:type:`uv_req_t` members also apply."
-msgstr ""
+msgstr ":c:type:`uv_req_t` 的成员也同样适用。"
 
 #: ../../src/threadpool.rst:64
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../src/threadpool.rst:68
 msgid ""
 "Initializes a work request which will run the given `work_cb` in a thread"
 " from the threadpool. Once `work_cb` is completed, `after_work_cb` will "
 "be called on the loop thread."
-msgstr ""
+msgstr "初始化一个工作请求，它会在线程池的某个线程中运行给定的 `work_cb`。`work_cb` 完成后，`after_work_cb` 将在循环线程上被调用。"
 
 #: ../../src/threadpool.rst:72
 msgid "This request can be cancelled with :c:func:`uv_cancel`."
-msgstr ""
+msgstr "此请求可以用 :c:func:`uv_cancel` 取消。"
 
 #: ../../src/threadpool.rst:74
 msgid "The :c:type:`uv_req_t` API functions also apply."
-msgstr ""
+msgstr ":c:type:`uv_req_t` 的 API 函数也同样适用。"
 
