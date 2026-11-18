@@ -245,6 +245,17 @@
 | TTY mode | TTY 模式 | tty | |
 | blocking writes | 阻塞式写入 | tty | 派生短语（blocking→阻塞） |
 
+### 2.3 P4 批次新增（2026-11-19 裁决，4 条）
+
+| 英文术语 | 统一译名 | 首次出现章节 | 禁用译名 / 备注 |
+|---|---|---|---|
+| by value | 按值传递 | migration_010_100 | 动词搭配作「按值返回 / 按值接收」；与 by reference（按引用）相对 |
+| roundtrip | 往返 | migration_010_100 | 线程池往返语境（"make a roundtrip to the threadpool"） |
+| deprecated | 弃用 / 已弃用 | migration_010_100 | |
+| internals | 内部结构 | migration_010_100 | "libuv internals" 语境，指内部数据结构 |
+
+> 备案不入库: duality（个案句式「不再有 … 之分」，不冻结）；`..note::`（上游 migration_010_100.rst:139 指令缺空格笔误被抽取为文本段，按 DR-005 同类处置逐字镜像，登记于 P4 批次报告）。
+
 ## 3. 错误描述惯用译法（errors.rst 高频错误信息，R2-9）
 
 > 适用: `UV_E*` 常量后的英文描述、错误返回说明文本。错误码常量本身不译（通则 3）。

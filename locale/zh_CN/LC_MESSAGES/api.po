@@ -23,5 +23,5 @@ msgstr ""
 
 #: ../../src/api.rst:4
 msgid "API documentation"
-msgstr ""
+msgstr "API 文档"
 

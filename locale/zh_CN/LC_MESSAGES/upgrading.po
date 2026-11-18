@@ -23,9 +23,9 @@ msgstr ""
 
 #: ../../src/upgrading.rst:4
 msgid "Upgrading"
-msgstr ""
+msgstr "升级"
 
 #: ../../src/upgrading.rst:6
 msgid "Migration guides for different libuv versions, starting with 1.0."
-msgstr ""
+msgstr "适用于不同 libuv 版本的迁移指南，自 1.0 起。"
 

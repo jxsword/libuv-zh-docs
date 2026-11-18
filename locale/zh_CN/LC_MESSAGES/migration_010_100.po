@@ -23,18 +23,18 @@ msgstr ""
 
 #: ../../src/migration_010_100.rst:5
 msgid "libuv 0.10 -> 1.0.0 migration guide"
-msgstr ""
+msgstr "libuv 0.10 → 1.0.0 迁移指南"
 
 #: ../../src/migration_010_100.rst:7
 msgid ""
 "Some APIs changed quite a bit throughout the 1.0.0 development process. "
 "Here is a migration guide for the most significant changes that happened "
 "after 0.10 was released."
-msgstr ""
+msgstr "在 1.0.0 的整个开发过程中，一些 API 发生了相当大的变化。下面这份迁移指南涵盖了 0.10 发布之后发生的最为重大的变化。"
 
 #: ../../src/migration_010_100.rst:13
 msgid "Loop initialization and closing"
-msgstr ""
+msgstr "事件循环的初始化与关闭"
 
 #: ../../src/migration_010_100.rst:15
 msgid ""
@@ -43,27 +43,27 @@ msgid ""
 "and destroyed with `uv_loop_delete`, which destroyed the loop and freed "
 "the memory. Starting with 1.0, those are deprecated and the user is "
 "responsible for allocating the memory and then initializing the loop."
-msgstr ""
+msgstr "在 libuv 0.10（以及更早的版本）中，事件循环用 `uv_loop_new` 创建，它会为新的事件循环分配内存并将其初始化；用 `uv_loop_delete` 销毁，它会销毁事件循环并释放内存。从 1.0 开始，这两个函数均已弃用，用户需要自行分配内存，然后再初始化事件循环。"
 
 #: ../../src/migration_010_100.rst:20 ../../src/migration_010_100.rst:53
 #: ../../src/migration_010_100.rst:119 ../../src/migration_010_100.rst:150
 msgid "libuv 0.10"
-msgstr ""
+msgstr "libuv 0.10"
 
 #: ../../src/migration_010_100.rst:28 ../../src/migration_010_100.rst:64
 #: ../../src/migration_010_100.rst:127 ../../src/migration_010_100.rst:168
 msgid "libuv 1.0"
-msgstr ""
+msgstr "libuv 1.0"
 
 #: ../../src/migration_010_100.rst:39
 msgid ""
 "Error handling was omitted for brevity. Check the documentation for "
 ":c:func:`uv_loop_init` and :c:func:`uv_loop_close`."
-msgstr ""
+msgstr "为简洁起见，省略了错误处理。请查阅 :c:func:`uv_loop_init` 和 :c:func:`uv_loop_close` 的文档。"
 
 #: ../../src/migration_010_100.rst:44
 msgid "Error handling"
-msgstr ""
+msgstr "错误处理"
 
 #: ../../src/migration_010_100.rst:46
 msgid ""
@@ -71,96 +71,96 @@ msgid ""
 "and status parameters would get 0 for success and -1 for failure on libuv"
 " 0.10, and the user had to use `uv_last_error` to fetch the error code, "
 "which was a positive number."
-msgstr ""
+msgstr "libuv 1.0 对错误处理进行了大幅重构。总体而言，在 libuv 0.10 中，函数和状态参数在成功时为 0，失败时为 -1，用户必须使用 `uv_last_error` 来获取错误码，而错误码是一个正数。"
 
 #: ../../src/migration_010_100.rst:50
 msgid ""
 "In 1.0, functions and status parameters contain the actual error code, "
 "which is 0 for success, or a negative number in case of error."
-msgstr ""
+msgstr "在 1.0 中，函数和状态参数包含实际的错误码：成功时为 0，出错时则为负数。"
 
 #: ../../src/migration_010_100.rst:76
 msgid "Threadpool changes"
-msgstr ""
+msgstr "线程池的变化"
 
 #: ../../src/migration_010_100.rst:78
 msgid ""
 "In libuv 0.10 Unix used a threadpool which defaulted to 4 threads, while "
 "Windows used the `QueueUserWorkItem` API, which uses a Windows internal "
 "threadpool, which defaults to 512 threads per process."
-msgstr ""
+msgstr "在 libuv 0.10 中，Unix 使用的线程池默认为 4 个线程，而 Windows 使用 `QueueUserWorkItem` API，它使用的是 Windows 内部的线程池，默认每个进程有 512 个线程。"
 
 #: ../../src/migration_010_100.rst:82
 msgid ""
 "In 1.0, we unified both implementations, so Windows now uses the same "
 "implementation Unix does. The threadpool size can be set by exporting the"
 " ``UV_THREADPOOL_SIZE`` environment variable. See :c:ref:`threadpool`."
-msgstr ""
+msgstr "在 1.0 中，我们统一了这两种实现，Windows 现在使用与 Unix 相同的实现。线程池的大小可以通过导出 ``UV_THREADPOOL_SIZE`` 环境变量来设置。参见 :c:ref:`threadpool`。"
 
 #: ../../src/migration_010_100.rst:88
 msgid "Allocation callback API change"
-msgstr ""
+msgstr "分配回调 API 变更"
 
 #: ../../src/migration_010_100.rst:90
 msgid ""
 "In libuv 0.10 the callback had to return a filled :c:type:`uv_buf_t` by "
 "value:"
-msgstr ""
+msgstr "在 libuv 0.10 中，回调必须按值返回一个已填充的 :c:type:`uv_buf_t`："
 
 #: ../../src/migration_010_100.rst:98
 msgid ""
 "In libuv 1.0 a pointer to a buffer is passed to the callback, which the "
 "user needs to fill:"
-msgstr ""
+msgstr "在 libuv 1.0 中，传递给回调的是指向缓冲区的指针，由用户负责填充："
 
 #: ../../src/migration_010_100.rst:110
 msgid "Unification of IPv4 / IPv6 APIs"
-msgstr ""
+msgstr "IPv4 / IPv6 API 的统一"
 
 #: ../../src/migration_010_100.rst:112
 msgid ""
 "libuv 1.0 unified the IPv4 and IPv6 APIS. There is no longer a "
 "`uv_tcp_bind` and `uv_tcp_bind6` duality, there is only "
 ":c:func:`uv_tcp_bind` now."
-msgstr ""
+msgstr "libuv 1.0 统一了 IPv4 和 IPv6 的 API。不再有 `uv_tcp_bind` 与 `uv_tcp_bind6` 之分，现在只有 :c:func:`uv_tcp_bind`。"
 
 #: ../../src/migration_010_100.rst:115
 msgid ""
 "IPv4 functions took ``struct sockaddr_in`` structures by value, and IPv6 "
 "functions took ``struct sockaddr_in6``. Now functions take a ``struct "
 "sockaddr*`` (note it's a pointer). It can be stack allocated."
-msgstr ""
+msgstr "IPv4 函数按值接收 ``struct sockaddr_in`` 结构体，IPv6 函数则接收 ``struct sockaddr_in6``。现在的函数接收一个 ``struct sockaddr*`` （注意它是一个指针）。它可以在栈上分配。"
 
 #: ../../src/migration_010_100.rst:136
 msgid ""
 "The IPv4 and IPv6 struct creating functions (:c:func:`uv_ip4_addr` and "
 ":c:func:`uv_ip6_addr`) have also changed, make sure you check the "
 "documentation."
-msgstr ""
+msgstr "用于创建 IPv4 和 IPv6 结构体的函数（:c:func:`uv_ip4_addr` 和 :c:func:`uv_ip6_addr`）也已改变，请务必查阅文档。"
 
 #: ../../src/migration_010_100.rst:142
 msgid "..note::"
-msgstr ""
+msgstr "..note::"
 
 #: ../../src/migration_010_100.rst:140
 msgid ""
 "This change applies to all functions that made a distinction between IPv4"
 " and IPv6 addresses."
-msgstr ""
+msgstr "这一变化适用于所有曾区分 IPv4 和 IPv6 地址的函数。"
 
 #: ../../src/migration_010_100.rst:145
 msgid "Streams / UDP  data receive callback API change"
-msgstr ""
+msgstr "Stream / UDP 数据接收回调 API 变更"
 
 #: ../../src/migration_010_100.rst:147
 msgid ""
 "The streams and UDP data receive callbacks now get a pointer to a "
 ":c:type:`uv_buf_t` buffer, not a structure by value."
-msgstr ""
+msgstr "Stream 与 UDP 数据接收回调现在得到的是指向 :c:type:`uv_buf_t` 缓冲区的指针，而不是按值传递的结构体。"
 
 #: ../../src/migration_010_100.rst:188
 msgid "Receiving handles over pipes API change"
-msgstr ""
+msgstr "通过管道接收句柄的 API 变更"
 
 #: ../../src/migration_010_100.rst:190
 msgid ""
@@ -168,33 +168,33 @@ msgid ""
 "used to start reading data on a pipe, which could also result in the "
 "reception of handles over it. The callback for such function looked like "
 "this:"
-msgstr ""
+msgstr "在 libuv 0.10（以及更早的版本）中，使用 `uv_read2_start` 函数开始读取管道上的数据，这也可能导致经由该管道接收句柄。该函数的回调形如："
 
 #: ../../src/migration_010_100.rst:203
 msgid ""
 "In libuv 1.0, `uv_read2_start` was removed, and the user needs to check "
 "if there are pending handles using :c:func:`uv_pipe_pending_count` and "
 ":c:func:`uv_pipe_pending_type` while in the read callback:"
-msgstr ""
+msgstr "在 libuv 1.0 中，`uv_read2_start` 已被移除，用户需要在读取回调中借助 :c:func:`uv_pipe_pending_count` 和 :c:func:`uv_pipe_pending_type` 检查是否存在待处理的句柄："
 
 #: ../../src/migration_010_100.rst:222
 msgid "Extracting the file descriptor out of a handle"
-msgstr ""
+msgstr "从句柄中提取文件描述符"
 
 #: ../../src/migration_010_100.rst:224
 msgid ""
 "While it wasn't supported by the API, users often accessed the libuv "
 "internals in order to get access to the file descriptor of a TCP handle, "
 "for example."
-msgstr ""
+msgstr "虽然 API 并不支持这种做法，但用户常常会访问 libuv 的内部结构，以获取文件描述符（例如 TCP 句柄的）。"
 
 #: ../../src/migration_010_100.rst:231
 msgid "This is now properly exposed through the :c:func:`uv_fileno` function."
-msgstr ""
+msgstr "现在，这已通过 :c:func:`uv_fileno` 函数以规范的方式对外提供。"
 
 #: ../../src/migration_010_100.rst:235
 msgid "uv_fs_readdir rename and API change"
-msgstr ""
+msgstr "uv_fs_readdir 的重命名与 API 变更"
 
 #: ../../src/migration_010_100.rst:237
 msgid ""
@@ -202,7 +202,7 @@ msgid ""
 "completion in libuv 0.10. In 1.0, this function got renamed to "
 ":c:func:`uv_fs_scandir`, since it's actually implemented using "
 "``scandir(3)``."
-msgstr ""
+msgstr "在 libuv 0.10 中，`uv_fs_readdir` 在完成时会在 `req->ptr` 字段中返回一个字符串列表。在 1.0 中，该函数更名为 :c:func:`uv_fs_scandir`，因为它实际上是使用 ``scandir(3)`` 实现的。"
 
 #: ../../src/migration_010_100.rst:241
 msgid ""
@@ -211,5 +211,5 @@ msgid ""
 "function. This function does not need to make a roundtrip to the "
 "threadpool, because libuv will keep the list of *dents* returned by "
 "``scandir(3)`` around."
-msgstr ""
+msgstr "此外，用户无需一次性分配完整的字符串列表，而是可以使用 :c:func:`uv_fs_scandir_next` 函数每次获取一个结果。该函数无需向线程池做一次往返，因为 libuv 会保留 ``scandir(3)`` 返回的 *dents* 列表。"
 

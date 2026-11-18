@@ -34,7 +34,7 @@ libuv 官方文档的社区中文翻译，基于 gettext PO 工作流跟随上�
 
 - 译文许可: 本仓库译文以 [CC BY 4.0](LICENSE) 发布（与上游一致）。
 - 上游代码: libuv 代码本身为 MIT 许可（与本文档仓库无关，仅译文相关）。
-- 参考语料: 部分批次如采纳 [neverwin/libuv-docs-chinese](https://github.com/neverwin/libuv-docs-chinese)（CC BY 4.0，v1.26.0 旧译文）整段译文，将按批次报告在下方动态登记（P0 现状：无采纳）。
+- 参考语料: 部分批次如采纳 [neverwin/libuv-docs-chinese](https://github.com/neverwin/libuv-docs-chinese)（CC BY 4.0，v1.26.0 旧译文）整段译文，将按批次报告在下方动态登记（P1–P4 现状：均无采纳，全部原创翻译）。
 
 ## 构建（本地复现）
 
