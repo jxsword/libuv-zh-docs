@@ -5,7 +5,7 @@
 
 ## 1. 状态快照
 
-- 分支: `p4-final` → PR #4（validate 全量绿）→ squash merge 进 main；Pages 自动发布完成，**v1.0 全量发布**：站点 https://jxsword.github.io/libuv-zh-docs/ 42 页全部中文（含 guide 12 + 核心 API 19 + 网络/进程/线程 8 + api/migration/upgrading 3）。
+- 分支: `p4-final` → PR #4（validate 1m48s 绿，含 linkcheck）→ squash merge **main@4982f24** → Pages 自动发布完成（build 47s + deploy 12s）→ **tag `v1.0` 已打在 main@4982f24 并推送**；站点 https://jxsword.github.io/libuv-zh-docs/ 42 页全部中文（含 guide 12 + 核心 API 19 + 网络/进程/线程 8 + api/migration/upgrading 3），线上验证通过（footer 声明、migration/upgrading 中文内容、API 文档侧栏均在线上命中）。
 - 翻译进度 **1728 / 1728（100%）**，fuzzy=0，untranslated=0——`sphinx-intl stat` 全量门禁**项目史上首次全绿**；P1（509）+ P2（799）+ P3（384）+ P4（36：api 1 / migration_010_100 33 / upgrading 2）全部完成。
 - 终态门禁: msgfmt 43 po 零错误 / check_markup 全库 0 error（16 warning 为 P1–P2 既有提示级基线）/ term_check 0 error（黑名单 **51 词**）/ stat 全绿 / 构建 error 2=基线 2、warning 9=基线 9（零增量）。
 - 全库一致性 sweep（P4 终检）: 同 msgid 跨文件对齐 **0 组不一致**（1573 唯一 msgid / 跨文件共享 35 组，双解析器交叉验证）、「信道」残留 0、黑名单复扫 0 error、P4 新译 36 条终检全合规——**四项零缺陷，0 修改**。
